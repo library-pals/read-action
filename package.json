@@ -1,0 +1,49 @@
+{
+  "name": "read-action",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "jest",
+    "build": "ncc build src/index.js",
+    "pretty-quick": "pretty-quick"
+  },
+  "author": "Katy DeCorah",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.5",
+    "@actions/github": "^4.0.0",
+    "js-yaml": "^3.14.0",
+    "json-to-pretty-yaml": "^1.2.2",
+    "node-isbn": "^1.6.0"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.9.0",
+    "husky": "^4.3.0",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm run build"
+    }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katydecorah/read.git"
+  },
+  "bugs": {
+    "url": "https://github.com/katydecorah/read/issues"
+  },
+  "homepage": "https://github.com/katydecorah/read#readme",
+  "description": "This GitHub action tracks the books that you've read by updating the `_data/read.yml` file in your repository.",
+  "keywords": [
+    "github-actions"
+  ]
+}

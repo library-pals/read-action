@@ -1,0 +1,5 @@
+name: Read
+description: "Looks up books information given an issue with the title of an ISBN."
+runs:
+  using: "node12"
+  main: dist/index.js

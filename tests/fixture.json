@@ -1,0 +1,41 @@
+{
+  "title": "Transcendent Kingdom",
+  "authors": ["Yaa Gyasi"],
+  "publisher": "Knopf Publishing Group",
+  "publishedDate": "2020",
+  "description": "\"A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice\"--",
+  "industryIdentifiers": [
+    {
+      "type": "ISBN_10",
+      "identifier": "0525658181"
+    },
+    {
+      "type": "ISBN_13",
+      "identifier": "9780525658184"
+    }
+  ],
+  "readingModes": {
+    "text": false,
+    "image": false
+  },
+  "pageCount": 288,
+  "printType": "BOOK",
+  "categories": ["Fiction"],
+  "averageRating": 3,
+  "ratingsCount": 1,
+  "maturityRating": "NOT_MATURE",
+  "allowAnonLogging": false,
+  "contentVersion": "preview-1.0.0",
+  "panelizationSummary": {
+    "containsEpubBubbles": false,
+    "containsImageBubbles": false
+  },
+  "imageLinks": {
+    "smallThumbnail": "http://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "thumbnail": "http://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+  },
+  "language": "en",
+  "previewLink": "http://books.google.com/books?id=ty19yQEACAAJ&dq=isbn:0525658181&hl=&cd=1&source=gbs_api",
+  "infoLink": "http://books.google.com/books?id=ty19yQEACAAJ&dq=isbn:0525658181&hl=&source=gbs_api",
+  "canonicalVolumeLink": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ"
+}
