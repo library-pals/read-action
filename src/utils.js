@@ -54,7 +54,7 @@ const addBook = async (options, book, fileName) => {
 const toJson = async (fileName) => {
   try {
     const contents = await readFile(fileName);
-    return yaml.safeLoad(contents);
+    return yaml.load(contents);
   } catch (e) {
     core.setFailed(e);
   }
