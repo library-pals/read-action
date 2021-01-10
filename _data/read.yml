@@ -38,3 +38,25 @@
       thumbnail: "http://books.google.com/books/content?id=5fqTDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
     language: "en"
     canonicalVolumeLink: "https://play.google.com/store/books/details?id=5fqTDwAAQBAJ"
+  - isbn: "9780399181146"
+    dateFinished: "2021-01-10"
+    title: "Black Futures"
+    authors:
+      - "Kimberly Drew"
+      - "Jenna Wortham"
+    publishedDate: "2020-12-01"
+    description: "NEW YORK TIMES EDITORS’ CHOICE • An archive of collective memory and exuberant testimony A luminous map to navigate an opaque and disorienting present An infinite geography of possible futures What does it mean to be Black and alive right now? Kimberly Drew and Jenna Wortham have brought together this collection of work—images, photos, essays, memes, dialogues, recipes, tweets, poetry, and more—to tell the story of the radical, imaginative, provocative, and gorgeous world that Black creators are bringing forth today. The book presents a succession of startling and beautiful pieces that generate an entrancing rhythm: Readers will go from conversations with activists and academics to memes and Instagram posts, from powerful essays to dazzling paintings and insightful infographics. In answering the question of what it means to be Black and alive, Black Futures opens a prismatic vision of possibility for every reader."
+    industryIdentifiers:
+      - type: "ISBN_13"
+        identifier: "9780399181146"
+      - type: "ISBN_10"
+        identifier: "0399181148"
+    pageCount: 544
+    printType: "BOOK"
+    categories:
+      - "Social Science"
+    imageLinks:
+      smallThumbnail: "http://books.google.com/books/content?id=pUGGDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+      thumbnail: "http://books.google.com/books/content?id=pUGGDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+    language: "en"
+    canonicalVolumeLink: "https://play.google.com/store/books/details?id=pUGGDwAAQBAJ"
