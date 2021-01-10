@@ -64,15 +64,15 @@ it("removeWrappedQuotes", () => {
 it("titleParser", () => {
   expect(titleParser("1234567890")).toEqual({
     bookIsbn: "1234567890",
-    date: "2020-11-22",
+    date: "2021-01-10",
   });
   expect(titleParser("1234567890 ")).toEqual({
     bookIsbn: "1234567890",
-    date: "2020-11-22",
+    date: "2021-01-10",
   });
   expect(titleParser("1234567890123")).toEqual({
     bookIsbn: "1234567890123",
-    date: "2020-11-22",
+    date: "2021-01-10",
   });
   expect(titleParser("1234567890 2020-01-12")).toEqual({
     bookIsbn: "1234567890",
@@ -84,7 +84,7 @@ it("titleParser", () => {
   });
   expect(titleParser("1234567890123 abcde")).toEqual({
     bookIsbn: "1234567890123",
-    date: "2020-11-22",
+    date: "2021-01-10",
   });
 });
 
