@@ -62,14 +62,14 @@ it("removeWrappedQuotes", () => {
 });
 
 it("titleParser", () => {
-  const today = new Date().toISOString().slice(0,10);
+  const today = new Date().toISOString().slice(0, 10);
   expect(titleParser("1234567890")).toEqual({
     bookIsbn: "1234567890",
     date: today,
   });
   expect(titleParser("1234567890 ")).toEqual({
     bookIsbn: "1234567890",
-    date:today,
+    date: today,
   });
   expect(titleParser("1234567890123")).toEqual({
     bookIsbn: "1234567890123",
