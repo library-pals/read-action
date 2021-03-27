@@ -13,11 +13,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Read
         uses: ./
-        # with:
-        # change the output file of your books
-        # readFileName: "_data/books.yml"
-        # change the list of providers
-        # providers: "openlibrary"
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"

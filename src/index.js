@@ -9,11 +9,10 @@ async function read() {
   try {
     const { title, number, body } = github.context.payload.issue;
     const { bookIsbn, date } = titleParser(title);
-    const fileName = core.getInput("readFileName") || "_data/read.yml";
+    const fileName = core.getInput("readFileName");
     const providers = core.getInput("providers")
       ? core.getInput("providers").split(",")
       : isbn._providers;
-    console.log("providers", providers);
     core.exportVariable("IssueNumber", number);
     const bookMetadata = await getBook(
       { date, body, bookIsbn, providers },
