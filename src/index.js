@@ -8,11 +8,9 @@ const { titleParser, getBook, writeFile } = require("./utils");
 
 async function read() {
   try {
-    const { title, number, body } = {
-      title: "9780525620792",
-      number: 9,
-      body: "",
-    };
+    const title = "9780525620792";
+    const number = 9;
+    const body = "";
     const { bookIsbn, date } = titleParser(title);
     const fileName = core.getInput("readFileName");
     const providers = core.getInput("providers")
