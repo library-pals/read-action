@@ -33,7 +33,20 @@ const cleanBook = (options, book) => {
     (obj, key) => {
       if (allowedFields.indexOf(key) > -1) {
         if (key === "description") obj[key] = removeWrappedQuotes(book[key]);
-        else obj[key] = book[key];
+        if (key === "imageLinks") {
+          // Use https
+          obj[key] = {
+            ...(book[key].smallThumbnail && {
+              smallThumbnail: book[key].smallThumbnail.replace(
+                "http:",
+                "https:"
+              ),
+            }),
+            ...(book[key].thumbnail && {
+              thumbnail: book[key].thumbnail.replace("http:", "https:"),
+            }),
+          };
+        } else obj[key] = book[key];
       }
       return obj;
     },
@@ -46,6 +59,11 @@ const addBook = async (options, book, fileName) => {
   const readListJson = (await toJson(fileName)) || [];
   // clean up book data
   const newBook = cleanBook(options, book);
+  // export book thumbnail to download later
+  if (newBook.imageLinks && newBook.imageLinks.thumbnail) {
+    core.exportVariable("BookThumbOutput", `book-${newBook.isbn}.png`);
+    core.exportVariable("BookThumb", newBook.imageLinks.thumbnail);
+  }
   // append new book
   readListJson.push(newBook);
   return sortByDate(readListJson);

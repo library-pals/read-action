@@ -30,6 +30,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Read
         uses: katydecorah/read-action@1.1.0
+      - name: Download the book thumbnail
+        run: curl "${{ env.BookThumb }}" -o "img/staging/${{ env.BookThumbOutput }}"
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
