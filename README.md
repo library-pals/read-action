@@ -15,16 +15,14 @@ Create `.github/workflows/read.yml` file using the following template:
 <!-- START GENERATED SETUP -->
 
 ```yml
-on:
-  issues:
-    types: opened
+on: push
 
 jobs:
   update_library:
     runs-on: macOS-latest
     name: Read
     # only continue if issue has "read" label
-    if: contains( github.event.issue.labels.*.name, 'read')
+    # if: contains( github.event.issue.labels.*.name, 'read')
     steps:
       - name: Checkout
         uses: actions/checkout@v2
