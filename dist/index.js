@@ -6079,6 +6079,13 @@ const cleanBook = (options, book) => {
     (obj, key) => {
       if (allowedFields.indexOf(key) > -1) {
         if (key === "description") obj[key] = removeWrappedQuotes(book[key]);
+        if (key === 'imageLinks') {
+          // Use https
+          obj[key] = {
+            ...book[key].smallThumbnail && { smallThumbnail: book[key].smallThumbnail.replace('http:', 'https:') },
+            ...book[key].thumbnail && { thumbnail: book[key].thumbnail.replace('http:', 'https:')},
+          }
+        }
         else obj[key] = book[key];
       }
       return obj;
@@ -7454,7 +7461,7 @@ async function read() {
   try {
     const title = "9780525620792";
     const number = 9;
-    const body = '';
+    const body = "";
     const { bookIsbn, date } = titleParser(title);
     const fileName = core.getInput("readFileName");
     const providers = core.getInput("providers")
@@ -7466,14 +7473,6 @@ async function read() {
       { date, body, bookIsbn, providers },
       fileName
     );
-    // Use https for thumbnail
-    if (
-      bookMetadata.imageLinks.thumbnail &&
-      bookMetadata.imageLinks.thumbnail.startsWith("http:")
-    ) {
-      bookMetadata.imageLinks.thumbnail =
-        bookMetadata.imageLinks.thumbnail.replace("http:", "https:");
-    }
     // Write book to yaml file
     await writeFile(fileName, bookMetadata);
     // Download book thumbnail

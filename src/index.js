@@ -22,14 +22,6 @@ async function read() {
       { date, body, bookIsbn, providers },
       fileName
     );
-    // Use https for thumbnail
-    if (
-      bookMetadata.imageLinks.thumbnail &&
-      bookMetadata.imageLinks.thumbnail.startsWith("http:")
-    ) {
-      bookMetadata.imageLinks.thumbnail =
-        bookMetadata.imageLinks.thumbnail.replace("http:", "https:");
-    }
     // Write book to yaml file
     await writeFile(fileName, bookMetadata);
     // Download book thumbnail
