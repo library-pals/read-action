@@ -51,6 +51,7 @@ jobs:
 
 - `readFileName`: The file where you want to save your books. Default: `_data/read.yml`.
 - `providers`: Specify the [ISBN providers](https://github.com/palmerabollo/node-isbn#setting-backend-providers) that you want to use, in the order you need them to be invoked. If setting more than one provider, separate each with a comma.
+- `imageDirectory`: The directory to save the image thumbnail. Default: `img/staging`.
 
 <!-- END GENERATED OPTIONS -->
 
