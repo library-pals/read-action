@@ -1,14 +1,18 @@
 "use strict";
 
 const core = require("@actions/core");
-const github = require("@actions/github");
+// const github = require("@actions/github");
 const isbn = require("node-isbn");
 const fetch = require("node-fetch");
 const { titleParser, getBook, writeFile } = require("./utils");
 
 async function read() {
   try {
-    const { title, number, body } = github.context.payload.issue;
+    const { title, number, body } = {
+      title: "9780525620792",
+      number: 9,
+      body: "",
+    };
     const { bookIsbn, date } = titleParser(title);
     const fileName = core.getInput("readFileName");
     const providers = core.getInput("providers")
