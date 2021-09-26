@@ -11807,7 +11807,6 @@ async function read() {
       { date, body, bookIsbn, providers },
       fileName
     );
-    // Write book to yaml file
     await writeFile(fileName, bookMetadata);
   } catch (error) {
     core.setFailed(error.message);
