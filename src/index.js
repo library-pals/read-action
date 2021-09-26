@@ -36,7 +36,7 @@ async function read() {
         const response = await fetch(bookMetadata.imageLinks.thumbnail);
         const buffer = await response.buffer();
         await writeFile(`${imageDirectory}/book-${bookIsbn}.png`, buffer);
-      } catch (err) {
+      } catch (error) {
         core.setFailed(error.err);
       }
     }
