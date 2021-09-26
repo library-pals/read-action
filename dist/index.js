@@ -6165,7 +6165,12 @@ async function getBook(options, fileName) {
         try {
           const response = await fetch(book.imageLinks.thumbnail);
           const buffer = await response.buffer();
-          await writeFile(`${imageDirectory}/book-${bookIsbn}.png`, buffer, 'binary');
+          core.warning(buffer)
+          await writeFile(
+            `${imageDirectory}/book-${bookIsbn}.png`,
+            buffer,
+            "binary"
+          );
         } catch (error) {
           core.setFailed(error.err);
         }

@@ -119,6 +119,7 @@ async function getBook(options, fileName) {
         try {
           const response = await fetch(book.imageLinks.thumbnail);
           const buffer = await response.buffer();
+          core.warning(buffer);
           await writeFile(
             `${imageDirectory}/book-${bookIsbn}.png`,
             buffer,
