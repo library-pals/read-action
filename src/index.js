@@ -22,6 +22,7 @@ async function read() {
       { date, body, bookIsbn, providers },
       fileName
     );
+    core.warning(bookMetadata);
     // Write book to yaml file
     await writeFile(fileName, bookMetadata);
     // Download book thumbnail
