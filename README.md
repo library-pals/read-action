@@ -15,21 +15,23 @@ Create `.github/workflows/read.yml` file using the following template:
 <!-- START GENERATED SETUP -->
 
 ```yml
-on: push
+on:
+  issues:
+    types: opened
 
 jobs:
   update_library:
     runs-on: macOS-latest
     name: Read
     # only continue if issue has "read" label
-    # if: contains( github.event.issue.labels.*.name, 'read')
+    if: contains( github.event.issue.labels.*.name, 'read')
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Read
         uses: katydecorah/read-action@1.1.0
       - name: Download the book thumbnail
-        run: curl ${{ env.BookThumb }} -o img/staging/${{ env.BookThumbOutput }}
+        run: curl "${{ env.BookThumb }}" -o "img/staging/${{ env.BookThumbOutput }}"
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
