@@ -6049,6 +6049,7 @@ const core = __webpack_require__(470);
 const yaml = __webpack_require__(414);
 const YAML = __webpack_require__(289);
 const isbn = __webpack_require__(78);
+const fetch = __webpack_require__(724);
 
 const allowedFields = [
   "title",
@@ -6152,11 +6153,24 @@ const sortByDate = (array) =>
 
 async function getBook(options, fileName) {
   const { bookIsbn, providers } = options;
+  const imageDirectory = core.getInput("imageDirectory");
   return isbn
     .provider(providers)
     .resolve(bookIsbn)
     .then(async (book) => {
       core.exportVariable("BookTitle", book.title);
+
+      // Download book thumbnail
+      if (book.imageLinks.thumbnail) {
+        try {
+          const response = await fetch(book.imageLinks.thumbnail);
+          const buffer = await response.buffer();
+          await writeFile(`${imageDirectory}/book-${bookIsbn}.png`, buffer);
+        } catch (error) {
+          core.setFailed(error.err);
+        }
+      }
+
       return await addBook(options, book, fileName);
     })
     .catch(async (err) => {
@@ -7460,7 +7474,6 @@ module.exports = function httpAdapter(config) {
 const core = __webpack_require__(470);
 // const github = require("@actions/github");
 const isbn = __webpack_require__(78);
-const fetch = __webpack_require__(724);
 const { titleParser, getBook, writeFile } = __webpack_require__(543);
 
 async function read() {
@@ -7473,25 +7486,13 @@ async function read() {
     const providers = core.getInput("providers")
       ? core.getInput("providers").split(",")
       : isbn._providers;
-    const imageDirectory = core.getInput("imageDirectory");
     core.exportVariable("IssueNumber", number);
     const bookMetadata = await getBook(
       { date, body, bookIsbn, providers },
       fileName
     );
-    core.warning(bookMetadata)
     // Write book to yaml file
     await writeFile(fileName, bookMetadata);
-    // Download book thumbnail
-    if (bookMetadata.imageLinks.thumbnail) {
-      try {
-        const response = await fetch(bookMetadata.imageLinks.thumbnail);
-        const buffer = await response.buffer();
-        await writeFile(`${imageDirectory}/book-${bookIsbn}.png`, buffer);
-      } catch (error) {
-        core.setFailed(error.err);
-      }
-    }
   } catch (error) {
     core.setFailed(error.message);
   }

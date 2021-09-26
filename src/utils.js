@@ -3,6 +3,7 @@ const core = require("@actions/core");
 const yaml = require("js-yaml");
 const YAML = require("json-to-pretty-yaml");
 const isbn = require("node-isbn");
+const fetch = require("node-fetch");
 
 const allowedFields = [
   "title",
@@ -106,11 +107,24 @@ const sortByDate = (array) =>
 
 async function getBook(options, fileName) {
   const { bookIsbn, providers } = options;
+  const imageDirectory = core.getInput("imageDirectory");
   return isbn
     .provider(providers)
     .resolve(bookIsbn)
     .then(async (book) => {
       core.exportVariable("BookTitle", book.title);
+
+      // Download book thumbnail
+      if (book.imageLinks.thumbnail) {
+        try {
+          const response = await fetch(book.imageLinks.thumbnail);
+          const buffer = await response.buffer();
+          await writeFile(`${imageDirectory}/book-${bookIsbn}.png`, buffer);
+        } catch (error) {
+          core.setFailed(error.err);
+        }
+      }
+
       return await addBook(options, book, fileName);
     })
     .catch(async (err) => {
