@@ -12,7 +12,7 @@ jobs:
       - name: Read
         uses: ./
       - name: Download the book thumbnail
-        run: curl ${{ env.BookThumb }} -o img/staging/${{ env.BookThumbOutput }}
+        run: curl "${{ env.BookThumb }}" -o "img/staging/${{ env.BookThumbOutput }}"
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
