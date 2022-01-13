@@ -5,31 +5,29 @@
   "scripts": {
     "pretest": "eslint .",
     "test": "jest",
-    "build": "ncc build src/index.js && node src/docs.js",
-    "pretty-quick": "pretty-quick"
+    "build": "ncc build src/index.js && node src/docs.mjs",
+    "pretty-quick": "pretty-quick",
+    "prepare": "husky install"
   },
   "author": "Katy DeCorah",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0",
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "@vercel/ncc": "^0.33.1",
     "js-yaml": "^4.0.0",
     "json-to-pretty-yaml": "^1.2.2",
     "node-isbn": "^1.6.0"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.22.3",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.17.0",
-    "husky": "^4.3.7",
-    "jest": "^26.6.3",
-    "prettier": "^2.2.1",
-    "pretty-quick": "^3.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run pretest && pretty-quick --staged && npm run build"
-    }
+    "@babel/eslint-parser": "^7.16.5",
+    "@babel/preset-env": "^7.16.8",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.0",
+    "jest": "^27.4.7",
+    "prettier": "^2.5.1",
+    "pretty-quick": "^3.1.3"
   },
   "directories": {
     "test": "tests"
