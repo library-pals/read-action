@@ -155,6 +155,37 @@ Array [
     "publishedDate": "2020-06-30",
     "title": "Mexican Gothic",
   },
+  Object {
+    "authors": Array [
+      "bell hooks",
+    ],
+    "canonicalVolumeLink": "https://play.google.com/store/books/details?id=f2_fBQAAQBAJ",
+    "categories": Array [
+      "Social Science",
+    ],
+    "dateFinished": "2022-01-13",
+    "description": "A classic work of feminist scholarship, Ain't I a Woman has become a must-read for all those interested in the nature of black womanhood. Examining the impact of sexism on black women during slavery, the devaluation of black womanhood, black male sexism, racism among feminists, and the black woman's involvement with feminism, hooks attempts to move us beyond racist and sexist assumptions. The result is nothing short of groundbreaking, giving this book a critical place on every feminist scholar's bookshelf.",
+    "imageLinks": Object {
+      "smallThumbnail": "https://books.google.com/books/content?id=f2_fBQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "thumbnail": "https://books.google.com/books/content?id=f2_fBQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    },
+    "industryIdentifiers": Array [
+      Object {
+        "identifier": "9781317588610",
+        "type": "ISBN_13",
+      },
+      Object {
+        "identifier": "1317588614",
+        "type": "ISBN_10",
+      },
+    ],
+    "isbn": "9781317588610",
+    "language": "en",
+    "pageCount": 206,
+    "printType": "BOOK",
+    "publishedDate": "2014-12-17",
+    "title": "Ain't I a Woman",
+  },
 ]
 `;
 
@@ -299,5 +330,26 @@ exports[`toYaml 1`] = `
       thumbnail: \\"https://books.google.com/books/content?id=ksKyDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api\\"
     language: \\"en\\"
     canonicalVolumeLink: \\"https://play.google.com/store/books/details?id=ksKyDwAAQBAJ\\"
+  - isbn: \\"9781317588610\\"
+    dateFinished: \\"2022-01-13\\"
+    title: \\"Ain't I a Woman\\"
+    authors:
+      - \\"bell hooks\\"
+    publishedDate: \\"2014-12-17\\"
+    description: \\"A classic work of feminist scholarship, Ain't I a Woman has become a must-read for all those interested in the nature of black womanhood. Examining the impact of sexism on black women during slavery, the devaluation of black womanhood, black male sexism, racism among feminists, and the black woman's involvement with feminism, hooks attempts to move us beyond racist and sexist assumptions. The result is nothing short of groundbreaking, giving this book a critical place on every feminist scholar's bookshelf.\\"
+    industryIdentifiers:
+      - type: \\"ISBN_13\\"
+        identifier: \\"9781317588610\\"
+      - type: \\"ISBN_10\\"
+        identifier: \\"1317588614\\"
+    pageCount: 206
+    printType: \\"BOOK\\"
+    categories:
+      - \\"Social Science\\"
+    imageLinks:
+      smallThumbnail: \\"https://books.google.com/books/content?id=f2_fBQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api\\"
+      thumbnail: \\"https://books.google.com/books/content?id=f2_fBQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api\\"
+    language: \\"en\\"
+    canonicalVolumeLink: \\"https://play.google.com/store/books/details?id=f2_fBQAAQBAJ\\"
 "
 `;
