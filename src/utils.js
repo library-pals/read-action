@@ -1,8 +1,8 @@
-const fs = require("fs");
-const core = require("@actions/core");
-const yaml = require("js-yaml");
-const YAML = require("json-to-pretty-yaml");
-const isbn = require("node-isbn");
+import { readFileSync, writeFileSync } from "fs";
+import { exportVariable, setFailed } from "@actions/core";
+import { load } from "js-yaml";
+import { stringify } from "json-to-pretty-yaml";
+import { provider } from "node-isbn";
 
 const allowedFields = [
   "title",
@@ -18,7 +18,7 @@ const allowedFields = [
   "canonicalVolumeLink",
 ];
 
-const removeWrappedQuotes = (str) => {
+export const removeWrappedQuotes = (str) => {
   if (str.startsWith('"') && str.endsWith('"')) {
     return str.substr(1, str.length - 2);
   }
@@ -27,7 +27,7 @@ const removeWrappedQuotes = (str) => {
   } else return str;
 };
 
-const cleanBook = (options, book) => {
+export const cleanBook = (options, book) => {
   const { date, body, bookIsbn } = options;
   return Object.keys(book).reduce(
     (obj, key) => {
@@ -54,42 +54,42 @@ const cleanBook = (options, book) => {
   );
 };
 
-const addBook = async (options, book, fileName) => {
+export const addBook = async (options, book, fileName) => {
   // convert yaml file to JSON
   const readListJson = (await toJson(fileName)) || [];
   // clean up book data
   const newBook = cleanBook(options, book);
   // export book thumbnail to download later
   if (newBook.imageLinks && newBook.imageLinks.thumbnail) {
-    core.exportVariable("BookThumbOutput", `book-${newBook.isbn}.png`);
-    core.exportVariable("BookThumb", newBook.imageLinks.thumbnail);
+    exportVariable("BookThumbOutput", `book-${newBook.isbn}.png`);
+    exportVariable("BookThumb", newBook.imageLinks.thumbnail);
   }
   // append new book
   readListJson.push(newBook);
   return sortByDate(readListJson);
 };
 
-const toJson = async (fileName) => {
+export const toJson = async (fileName) => {
   try {
     const contents = await readFile(fileName);
-    return yaml.load(contents);
+    return load(contents);
   } catch (e) {
-    core.setFailed(e);
+    setFailed(e);
   }
 };
 
 // make sure date is in YYYY-MM-DD format
-const dateFormat = (date) => date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
+export const dateFormat = (date) => date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
 // make sure date value is a date
-const isDate = (date) => !isNaN(Date.parse(date)) && dateFormat(date);
+export const isDate = (date) => !isNaN(Date.parse(date)) && dateFormat(date);
 // make sure ISBN has 10 or 13 characters
-const isIsbn = (isbn) => isbn.length === 10 || isbn.length === 13;
+export const isIsbn = (isbn) => isbn.length === 10 || isbn.length === 13;
 
-const titleParser = (title) => {
+export const titleParser = (title) => {
   const split = title.split(" ");
   const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
   if (!bookIsbn)
-    core.setFailed(
+    setFailed(
       `ISBN must be 10 or 13 characters: ${bookIsbn} is ${
         bookIsbn ? `${bookIsbn.length} characters` : "undefined"
       }`
@@ -97,58 +97,43 @@ const titleParser = (title) => {
   const date = isDate(split[1])
     ? split[1]
     : new Date().toISOString().slice(0, 10);
-  core.exportVariable("DateRead", date);
+  exportVariable("DateRead", date);
   return {
     bookIsbn,
     date,
   };
 };
 
-const toYaml = (json) => YAML.stringify(json);
+export const toYaml = (json) => stringify(json);
 
-const sortByDate = (array) =>
+export const sortByDate = (array) =>
   array.sort((a, b) => new Date(a.dateFinished) - new Date(b.dateFinished));
 
-async function getBook(options, fileName) {
+export async function getBook(options, fileName) {
   const { bookIsbn, providers } = options;
-  return isbn
-    .provider(providers)
+  return provider(providers)
     .resolve(bookIsbn)
     .then(async (book) => {
-      core.exportVariable("BookTitle", book.title);
+      exportVariable("BookTitle", book.title);
       return await addBook(options, book, fileName);
     })
     .catch(async (err) => {
-      core.setFailed(`Book (${bookIsbn}) not found: `, err);
+      setFailed(`Book (${bookIsbn}) not found: `, err);
     });
 }
 
-async function readFile(fileName) {
+export async function readFile(fileName) {
   try {
-    return fs.readFileSync(fileName, "utf8");
+    return readFileSync(fileName, "utf8");
   } catch (error) {
-    core.setFailed(error.message);
+    setFailed(error.message);
   }
 }
 
-async function writeFile(fileName, bookMetadata) {
+export async function writeFile(fileName, bookMetadata) {
   try {
-    fs.writeFileSync(fileName, toYaml(bookMetadata), "utf-8");
+    writeFileSync(fileName, toYaml(bookMetadata), "utf-8");
   } catch (error) {
-    core.setFailed(error.message);
+    setFailed(error.message);
   }
 }
-
-module.exports = {
-  cleanBook,
-  addBook,
-  removeWrappedQuotes,
-  titleParser,
-  isIsbn,
-  isDate,
-  toYaml,
-  sortByDate,
-  getBook,
-  writeFile,
-  readFile,
-};

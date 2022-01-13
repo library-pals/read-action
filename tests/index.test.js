@@ -1,4 +1,4 @@
-const {
+import {
   cleanBook,
   addBook,
   removeWrappedQuotes,
@@ -7,8 +7,10 @@ const {
   isDate,
   toYaml,
   sortByDate,
-} = require("../src/utils");
-const book = require("./fixture.json");
+} from "../src/utils";
+import book from "./fixture.json";
+
+jest.mock("@actions/core");
 
 const date = "2020-09-12";
 
