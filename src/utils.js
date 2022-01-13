@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from "fs";
 import { exportVariable, setFailed } from "@actions/core";
 import { load } from "js-yaml";
 import { stringify } from "json-to-pretty-yaml";
-import { provider } from "node-isbn";
+import isbn from "node-isbn";
 
 const allowedFields = [
   "title",
@@ -111,7 +111,8 @@ export const sortByDate = (array) =>
 
 export async function getBook(options, fileName) {
   const { bookIsbn, providers } = options;
-  return provider(providers)
+  return isbn
+    .provider(providers)
     .resolve(bookIsbn)
     .then(async (book) => {
       exportVariable("BookTitle", book.title);

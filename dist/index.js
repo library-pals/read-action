@@ -17177,7 +17177,7 @@ const sortByDate = (array) =>
 
 async function getBook(options, fileName) {
   const { bookIsbn, providers } = options;
-  return (0,node_isbn.provider)(providers)
+  return node_isbn_default().provider(providers)
     .resolve(bookIsbn)
     .then(async (book) => {
       (0,core.exportVariable)("BookTitle", book.title);
