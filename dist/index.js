@@ -17162,7 +17162,7 @@ function returnReadFile(fileName) {
         try {
             const controller = new AbortController();
             const { signal } = controller;
-            const promise = (0,promises_namespaceObject.readFile)(fileName, { signal, encoding: 'utf-8' });
+            const promise = (0,promises_namespaceObject.readFile)(fileName, { signal, encoding: "utf-8" });
             controller.abort();
             return yield promise;
         }
