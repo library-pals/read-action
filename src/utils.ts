@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFile, writeFile } from "fs/promises";
 import { exportVariable, setFailed } from "@actions/core";
 import { load } from "js-yaml";
 import { stringify } from "json-to-pretty-yaml";
@@ -126,14 +126,14 @@ export const addBook = async (
   return sortByDate(readListJson);
 };
 
-export const toJson = async (fileName: string) => {
+export async function toJson(fileName: string) {
   try {
-    const contents = (await readFile(fileName)) as string;
+    const contents = (await returnReadFile(fileName)) as string;
     return load(contents);
   } catch (error) {
-    setFailed(error);
+    setFailed(error.message);
   }
-};
+}
 
 /** make sure date is in YYYY-MM-DD format */
 export const dateFormat = (date: string) =>
@@ -150,12 +150,7 @@ export const titleParser = (
 ): { bookIsbn?: string; date: string } => {
   const split = title.split(" ");
   const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
-  if (!bookIsbn)
-    setFailed(
-      `ISBN must be 10 or 13 characters: ${bookIsbn} is ${
-        bookIsbn ? `${bookIsbn.length} characters` : "undefined"
-      }`
-    );
+  if (!bookIsbn) setFailed(`ISBN is not valid: ${title}`);
   const date = isDate(split[1])
     ? split[1]
     : new Date().toISOString().slice(0, 10);
@@ -190,19 +185,31 @@ export async function getBook(
   }
 }
 
-export async function readFile(fileName: string) {
+export async function returnReadFile(fileName: string) {
   try {
-    return readFileSync(fileName, "utf8");
+    const controller = new AbortController();
+    const { signal } = controller;
+    const promise = readFile(fileName, { signal });
+    controller.abort();
+    return await promise;
   } catch (error) {
-    setFailed(error.message);
+    setFailed(error);
   }
 }
 
-export async function writeFile(fileName: string, bookMetadata: CleanBook[]) {
+export async function returnWriteFile(
+  fileName: string,
+  bookMetadata: CleanBook[]
+) {
   try {
-    writeFileSync(fileName, toYaml(bookMetadata), "utf-8");
+    const controller = new AbortController();
+    const { signal } = controller;
+    const data = toYaml(bookMetadata);
+    const promise = writeFile(fileName, data, { signal });
+    controller.abort();
+    await promise;
   } catch (error) {
-    setFailed(error.message);
+    setFailed(error);
   }
 }
 

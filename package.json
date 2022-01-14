@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "pretest": "eslint .",
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "ncc build src/index.ts && node src/docs.mjs",
     "pretty-quick": "pretty-quick",
     "prepare": "husky install"
@@ -47,5 +47,16 @@
   "description": "This GitHub action tracks the books that you've read by updating the `_data/read.yml` file in your repository.",
   "keywords": [
     "github-actions"
-  ]
+  ],
+  "jest": {
+    "resetMocks": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  }
 }

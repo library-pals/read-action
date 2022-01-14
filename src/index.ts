@@ -3,7 +3,7 @@
 import { getInput, exportVariable, setFailed } from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
-import { titleParser, getBook, writeFile, CleanBook } from "./utils.js";
+import { titleParser, getBook, returnWriteFile, CleanBook } from "./utils.js";
 
 async function read() {
   try {
@@ -23,7 +23,7 @@ async function read() {
       { date, body, bookIsbn, providers },
       fileName
     )) as CleanBook[];
-    await writeFile(fileName, bookMetadata);
+    await returnWriteFile(fileName, bookMetadata);
   } catch (error) {
     setFailed(error.message);
   }
