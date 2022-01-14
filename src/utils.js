@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFile, writeFile } from "fs/promises";
 import { exportVariable, setFailed } from "@actions/core";
 import { load } from "js-yaml";
 import { stringify } from "json-to-pretty-yaml";
@@ -56,7 +56,7 @@ export const cleanBook = (options, book) => {
 
 export const addBook = async (options, book, fileName) => {
   // convert yaml file to JSON
-  const readListJson = (await toJson(fileName)) || [];
+  const readListJson = await toJson(fileName);
   // clean up book data
   const newBook = cleanBook(options, book);
   // export book thumbnail to download later
@@ -69,14 +69,14 @@ export const addBook = async (options, book, fileName) => {
   return sortByDate(readListJson);
 };
 
-export const toJson = async (fileName) => {
+export async function toJson(fileName) {
   try {
-    const contents = await readFile(fileName);
+    const contents = await returnReadFile(fileName);
     return load(contents);
-  } catch (e) {
-    setFailed(e);
+  } catch (error) {
+    setFailed(error.message);
   }
-};
+}
 
 // make sure date is in YYYY-MM-DD format
 export const dateFormat = (date) => date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
@@ -88,12 +88,7 @@ export const isIsbn = (isbn) => isbn.length === 10 || isbn.length === 13;
 export const titleParser = (title) => {
   const split = title.split(" ");
   const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
-  if (!bookIsbn)
-    setFailed(
-      `ISBN must be 10 or 13 characters: ${bookIsbn} is ${
-        bookIsbn ? `${bookIsbn.length} characters` : "undefined"
-      }`
-    );
+  if (!bookIsbn) setFailed(`ISBN is not valid: ${title}`);
   const date = isDate(split[1])
     ? split[1]
     : new Date().toISOString().slice(0, 10);
@@ -118,23 +113,32 @@ export async function getBook(options, fileName) {
       exportVariable("BookTitle", book.title);
       return await addBook(options, book, fileName);
     })
-    .catch(async (err) => {
-      setFailed(`Book (${bookIsbn}) not found: `, err);
+    .catch((err) => {
+      setFailed(`Book (${bookIsbn}) not found: ${err}`);
     });
 }
 
-export async function readFile(fileName) {
+export async function returnReadFile(fileName) {
   try {
-    return readFileSync(fileName, "utf8");
+    const controller = new AbortController();
+    const { signal } = controller;
+    const promise = readFile(fileName, { signal });
+    controller.abort();
+    return await promise;
   } catch (error) {
-    setFailed(error.message);
+    setFailed(error);
   }
 }
 
-export async function writeFile(fileName, bookMetadata) {
+export async function returnWriteFile(fileName, bookMetadata) {
   try {
-    writeFileSync(fileName, toYaml(bookMetadata), "utf-8");
+    const controller = new AbortController();
+    const { signal } = controller;
+    const data = toYaml(bookMetadata);
+    const promise = writeFile(fileName, data, { signal });
+    controller.abort();
+    await promise;
   } catch (error) {
-    setFailed(error.message);
+    setFailed(error);
   }
 }
