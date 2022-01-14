@@ -17154,15 +17154,17 @@ const sortByDate = (array) => array.sort((a, b) => new Date(a.dateFinished).valu
 function getBook(options, fileName) {
     return __awaiter(this, void 0, void 0, function* () {
         const { bookIsbn, providers } = options;
-        return node_isbn_default().provider(providers)
-            .resolve(bookIsbn)
-            .then((book) => __awaiter(this, void 0, void 0, function* () {
+        try {
+            const book = yield node_isbn_default().provider(providers).resolve(bookIsbn);
+            if (!book)
+                throw new Error(`Could not find book with ISBN: ${bookIsbn}`);
             (0,core.exportVariable)("BookTitle", book.title);
-            return yield addBook(options, book, fileName);
-        }))
-            .catch((err) => {
-            (0,core.setFailed)(`Book (${bookIsbn}) not found: ${err}`);
-        });
+            const books = yield addBook(options, book, fileName);
+            return books;
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
     });
 }
 function readFile(fileName) {
@@ -17208,13 +17210,15 @@ function read() {
                 throw new Error("Cannot find GitHub issue");
             }
             const { title, number, body } = github.context.payload.issue;
+            (0,core.exportVariable)("IssueNumber", number);
             const { bookIsbn, date } = titleParser(title);
+            if (!bookIsbn)
+                throw new Error(`Cannot find book ISBN from given input" ${title}`);
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
-            (0,core.exportVariable)("IssueNumber", number);
-            const bookMetadata = yield getBook({ date, body, bookIsbn, providers }, fileName);
+            const bookMetadata = (yield getBook({ date, body, bookIsbn, providers }, fileName));
             yield writeFile(fileName, bookMetadata);
         }
         catch (error) {

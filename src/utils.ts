@@ -69,7 +69,12 @@ export type CleanBook = {
   notes?: string;
 };
 
-export type BookOptions = { date: string; body?: string; bookIsbn: string };
+export type BookOptions = {
+  date: string;
+  body?: string;
+  bookIsbn: string;
+  providers: [];
+};
 
 export const cleanBook = (options: BookOptions, book: Book): CleanBook => {
   const { date, body, bookIsbn } = options;
@@ -149,7 +154,9 @@ export const isDate = (date: string) =>
 export const isIsbn = (isbn: string) =>
   isbn.length === 10 || isbn.length === 13;
 
-export const titleParser = (title: string) => {
+export const titleParser = (
+  title: string
+): { bookIsbn?: string; date: string } => {
   const split = title.split(" ");
   const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
   if (!bookIsbn)
@@ -176,18 +183,20 @@ export const sortByDate = (array: { dateFinished: string }[]) =>
       new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf()
   );
 
-export async function getBook(options, fileName) {
+export async function getBook(
+  options: BookOptions,
+  fileName: string
+): Promise<CleanBook[]> {
   const { bookIsbn, providers } = options;
-  return isbn
-    .provider(providers)
-    .resolve(bookIsbn)
-    .then(async (book: Book) => {
-      exportVariable("BookTitle", book.title);
-      return await addBook(options, book, fileName);
-    })
-    .catch((err) => {
-      setFailed(`Book (${bookIsbn}) not found: ${err}`);
-    });
+  try {
+    const book = (await isbn.provider(providers).resolve(bookIsbn)) as Book;
+    if (!book) throw new Error(`Could not find book with ISBN: ${bookIsbn}`);
+    exportVariable("BookTitle", book.title);
+    const books = (await addBook(options, book, fileName)) as CleanBook[];
+    return books;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 }
 
 export async function readFile(fileName: string) {
@@ -198,7 +207,7 @@ export async function readFile(fileName: string) {
   }
 }
 
-export async function writeFile(fileName: string, bookMetadata: Book[]) {
+export async function writeFile(fileName: string, bookMetadata: CleanBook[]) {
   try {
     writeFileSync(fileName, toYaml(bookMetadata), "utf-8");
   } catch (error) {
