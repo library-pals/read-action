@@ -13206,8 +13206,8 @@ var github = __nccwpck_require__(5438);
 // EXTERNAL MODULE: ./node_modules/node-isbn/index.js
 var node_isbn = __nccwpck_require__(5209);
 var node_isbn_default = /*#__PURE__*/__nccwpck_require__.n(node_isbn);
-// EXTERNAL MODULE: external "fs"
-var external_fs_ = __nccwpck_require__(7147);
+;// CONCATENATED MODULE: external "fs/promises"
+const promises_namespaceObject = require("fs/promises");
 ;// CONCATENATED MODULE: ./node_modules/js-yaml/dist/js-yaml.mjs
 
 /*! js-yaml 4.1.0 https://github.com/nodeca/js-yaml @license MIT */
@@ -17110,15 +17110,17 @@ const addBook = (options, book, fileName) => __awaiter(void 0, void 0, void 0, f
     readListJson.push(newBook);
     return sortByDate(readListJson);
 });
-const toJson = (fileName) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const contents = (yield readFile(fileName));
-        return load(contents);
-    }
-    catch (error) {
-        (0,core.setFailed)(error);
-    }
-});
+function toJson(fileName) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const contents = (yield returnReadFile(fileName));
+            return load(contents);
+        }
+        catch (error) {
+            (0,core.setFailed)(error.message);
+        }
+    });
+}
 /** make sure date is in YYYY-MM-DD format */
 const dateFormat = (date) => date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
 /** make sure date value is a date */
@@ -17129,7 +17131,7 @@ const titleParser = (title) => {
     const split = title.split(" ");
     const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
     if (!bookIsbn)
-        (0,core.setFailed)(`ISBN must be 10 or 13 characters: ${bookIsbn} is ${bookIsbn ? `${bookIsbn.length} characters` : "undefined"}`);
+        (0,core.setFailed)(`ISBN is not valid: ${title}`);
     const date = isDate(split[1])
         ? split[1]
         : new Date().toISOString().slice(0, 10);
@@ -17146,8 +17148,6 @@ function getBook(options, fileName) {
         const { bookIsbn, providers } = options;
         try {
             const book = (yield node_isbn_default().provider(providers).resolve(bookIsbn));
-            if (!book)
-                throw new Error(`Could not find book with ISBN: ${bookIsbn}`);
             (0,core.exportVariable)("BookTitle", book.title);
             const books = (yield addBook(options, book, fileName));
             return books;
@@ -17157,23 +17157,32 @@ function getBook(options, fileName) {
         }
     });
 }
-function readFile(fileName) {
+function returnReadFile(fileName) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            return (0,external_fs_.readFileSync)(fileName, "utf8");
+            const controller = new AbortController();
+            const { signal } = controller;
+            const promise = (0,promises_namespaceObject.readFile)(fileName, { signal, encoding: 'utf-8' });
+            controller.abort();
+            return yield promise;
         }
         catch (error) {
-            (0,core.setFailed)(error.message);
+            (0,core.setFailed)(error);
         }
     });
 }
-function writeFile(fileName, bookMetadata) {
+function returnWriteFile(fileName, bookMetadata) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            (0,external_fs_.writeFileSync)(fileName, toYaml(bookMetadata), "utf-8");
+            const controller = new AbortController();
+            const { signal } = controller;
+            const data = toYaml(bookMetadata);
+            const promise = (0,promises_namespaceObject.writeFile)(fileName, data, { signal });
+            controller.abort();
+            yield promise;
         }
         catch (error) {
-            (0,core.setFailed)(error.message);
+            (0,core.setFailed)(error);
         }
     });
 }
@@ -17219,7 +17228,7 @@ function read() {
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
             const bookMetadata = (yield getBook({ date, body, bookIsbn, providers }, fileName));
-            yield writeFile(fileName, bookMetadata);
+            yield returnWriteFile(fileName, bookMetadata);
         }
         catch (error) {
             (0,core.setFailed)(error.message);

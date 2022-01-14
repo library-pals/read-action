@@ -176,7 +176,6 @@ export async function getBook(
   const { bookIsbn, providers } = options;
   try {
     const book = (await isbn.provider(providers).resolve(bookIsbn)) as Book;
-    if (!book) throw new Error(`Could not find book with ISBN: ${bookIsbn}`);
     exportVariable("BookTitle", book.title);
     const books = (await addBook(options, book, fileName)) as CleanBook[];
     return books;
@@ -189,7 +188,7 @@ export async function returnReadFile(fileName: string) {
   try {
     const controller = new AbortController();
     const { signal } = controller;
-    const promise = readFile(fileName, { signal });
+    const promise = readFile(fileName, { signal, encoding: "utf-8" });
     controller.abort();
     return await promise;
   } catch (error) {
