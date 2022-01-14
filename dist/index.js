@@ -17160,10 +17160,7 @@ function getBook(options, fileName) {
 function returnReadFile(fileName) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const controller = new AbortController();
-            const { signal } = controller;
-            const promise = (0,promises_namespaceObject.readFile)(fileName, { signal, encoding: "utf-8" });
-            controller.abort();
+            const promise = (0,promises_namespaceObject.readFile)(fileName, "utf-8");
             return yield promise;
         }
         catch (error) {
@@ -17174,11 +17171,8 @@ function returnReadFile(fileName) {
 function returnWriteFile(fileName, bookMetadata) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const controller = new AbortController();
-            const { signal } = controller;
             const data = toYaml(bookMetadata);
-            const promise = (0,promises_namespaceObject.writeFile)(fileName, data, { signal });
-            controller.abort();
+            const promise = (0,promises_namespaceObject.writeFile)(fileName, data);
             yield promise;
         }
         catch (error) {

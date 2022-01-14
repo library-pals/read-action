@@ -186,10 +186,7 @@ export async function getBook(
 
 export async function returnReadFile(fileName: string) {
   try {
-    const controller = new AbortController();
-    const { signal } = controller;
-    const promise = readFile(fileName, { signal, encoding: "utf-8" });
-    controller.abort();
+    const promise = readFile(fileName, "utf-8");
     return await promise;
   } catch (error) {
     setFailed(error);
@@ -201,11 +198,8 @@ export async function returnWriteFile(
   bookMetadata: CleanBook[]
 ) {
   try {
-    const controller = new AbortController();
-    const { signal } = controller;
     const data = toYaml(bookMetadata);
-    const promise = writeFile(fileName, data, { signal });
-    controller.abort();
+    const promise = writeFile(fileName, data);
     await promise;
   } catch (error) {
     setFailed(error);
