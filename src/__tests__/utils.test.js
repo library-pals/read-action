@@ -221,14 +221,13 @@ describe("getBook", () => {
     ).toMatchSnapshot();
   });
   test("fails", async () => {
-    jest.spyOn(isbn, "resolve").mockRejectedValue("Error!");
-    await getBook(
-      { bookIsbn: "9780525658184", providers: ["google"] },
-      "_data/read.yml"
-    );
-    expect(setFailed).toHaveBeenCalledWith(
-      "Book (9780525658184) not found: Error!"
-    );
+    jest.spyOn(isbn, "resolve").mockRejectedValue({ message: "Error!" });
+    await expect(
+      getBook(
+        { bookIsbn: "9780525658184", providers: ["google"] },
+        "_data/read.yml"
+      )
+    ).rejects.toMatchInlineSnapshot(`[Error: Error!]`);
   });
 });
 
