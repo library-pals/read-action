@@ -4,15 +4,6 @@ import { load } from "js-yaml";
 import { stringify } from "json-to-pretty-yaml";
 import isbn from "node-isbn";
 
-export const removeWrappedQuotes = (str: string) => {
-  if (str.startsWith('"') && str.endsWith('"')) {
-    return str.substring(1, str.length - 1);
-  }
-  if (str.startsWith('"') && str.endsWith('"--')) {
-    return `${str.substring(1, str.length - 3)}…`;
-  } else return str;
-};
-
 export type Book = {
   title: string;
   authors: string[];
@@ -214,3 +205,12 @@ export async function writeFile(fileName: string, bookMetadata: CleanBook[]) {
     setFailed(error.message);
   }
 }
+
+export const removeWrappedQuotes = (str: string) => {
+  if (str.startsWith('"') && str.endsWith('"')) {
+    return str.substring(1, str.length - 1);
+  }
+  if (str.startsWith('"') && str.endsWith('"--')) {
+    return `${str.substring(1, str.length - 3)}…`;
+  } else return str;
+};

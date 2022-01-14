@@ -17078,16 +17078,6 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 
 
 
-const removeWrappedQuotes = (str) => {
-    if (str.startsWith('"') && str.endsWith('"')) {
-        return str.substring(1, str.length - 1);
-    }
-    if (str.startsWith('"') && str.endsWith('"--')) {
-        return `${str.substring(1, str.length - 3)}…`;
-    }
-    else
-        return str;
-};
 const cleanBook = (options, book) => {
     const { date, body, bookIsbn } = options;
     return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: date }, (body && { notes: body })), ("title" in book && { title: book.title })), ("authors" in book && {
@@ -17155,11 +17145,11 @@ function getBook(options, fileName) {
     return __awaiter(this, void 0, void 0, function* () {
         const { bookIsbn, providers } = options;
         try {
-            const book = yield node_isbn_default().provider(providers).resolve(bookIsbn);
+            const book = (yield node_isbn_default().provider(providers).resolve(bookIsbn));
             if (!book)
                 throw new Error(`Could not find book with ISBN: ${bookIsbn}`);
             (0,core.exportVariable)("BookTitle", book.title);
-            const books = yield addBook(options, book, fileName);
+            const books = (yield addBook(options, book, fileName));
             return books;
         }
         catch (error) {
@@ -17187,6 +17177,16 @@ function writeFile(fileName, bookMetadata) {
         }
     });
 }
+const removeWrappedQuotes = (str) => {
+    if (str.startsWith('"') && str.endsWith('"')) {
+        return str.substring(1, str.length - 1);
+    }
+    if (str.startsWith('"') && str.endsWith('"--')) {
+        return `${str.substring(1, str.length - 3)}…`;
+    }
+    else
+        return str;
+};
 
 ;// CONCATENATED MODULE: ./src/index.ts
 
