@@ -17080,10 +17080,10 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 
 const removeWrappedQuotes = (str) => {
     if (str.startsWith('"') && str.endsWith('"')) {
-        return str.substr(1, str.length - 2);
+        return str.substring(1, str.length - 1);
     }
     if (str.startsWith('"') && str.endsWith('"--')) {
-        return `${str.substr(1, str.length - 4)}…`;
+        return `${str.substring(1, str.length - 3)}…`;
     }
     else
         return str;
