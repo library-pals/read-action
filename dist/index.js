@@ -17063,174 +17063,165 @@ var jsYaml = {
 
 // EXTERNAL MODULE: ./node_modules/json-to-pretty-yaml/index.js
 var json_to_pretty_yaml = __nccwpck_require__(6760);
-;// CONCATENATED MODULE: ./src/utils.js
+;// CONCATENATED MODULE: ./src/utils.ts
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 
 
 
 
-
-
-const allowedFields = [
-  "title",
-  "authors",
-  "publishedDate",
-  "description",
-  "industryIdentifiers",
-  "pageCount",
-  "printType",
-  "categories",
-  "imageLinks",
-  "language",
-  "canonicalVolumeLink",
-];
 
 const removeWrappedQuotes = (str) => {
-  if (str.startsWith('"') && str.endsWith('"')) {
-    return str.substr(1, str.length - 2);
-  }
-  if (str.startsWith('"') && str.endsWith('"--')) {
-    return `${str.substr(1, str.length - 4)}…`;
-  } else return str;
+    if (str.startsWith('"') && str.endsWith('"')) {
+        return str.substr(1, str.length - 2);
+    }
+    if (str.startsWith('"') && str.endsWith('"--')) {
+        return `${str.substr(1, str.length - 4)}…`;
+    }
+    else
+        return str;
 };
-
 const cleanBook = (options, book) => {
-  const { date, body, bookIsbn } = options;
-  return Object.keys(book).reduce(
-    (obj, key) => {
-      if (allowedFields.indexOf(key) > -1) {
-        if (key === "description") obj[key] = removeWrappedQuotes(book[key]);
-        if (key === "imageLinks") {
-          // Use https
-          obj[key] = {
-            ...(book[key].smallThumbnail && {
-              smallThumbnail: book[key].smallThumbnail.replace(
-                "http:",
-                "https:"
-              ),
-            }),
-            ...(book[key].thumbnail && {
-              thumbnail: book[key].thumbnail.replace("http:", "https:"),
-            }),
-          };
-        } else obj[key] = book[key];
-      }
-      return obj;
-    },
-    { isbn: bookIsbn, dateFinished: date, ...(body && { notes: body }) }
-  );
+    const { date, body, bookIsbn } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: date }, (body && { notes: body })), ("title" in book && { title: book.title })), ("authors" in book && {
+        authors: book.authors,
+    })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
+        description: removeWrappedQuotes(book.description),
+    })), ("industryIdentifiers" in book && {
+        industryIdentifiers: book.industryIdentifiers,
+    })), ("pageCount" in book && { pageCount: book.pageCount })), ("printType" in book && { printType: book.printType })), ("categories" in book && { categories: book.categories })), ("imageLinks" in book && {
+        imageLinks: Object.assign(Object.assign({}, ("smallThumbnail" in book.imageLinks && {
+            smallThumbnail: book.imageLinks.smallThumbnail.replace("http:", "https:"),
+        })), ("thumbnail" in book.imageLinks && {
+            thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
+        })),
+    })), ("language" in book && { language: book.language })), ("canonicalVolumeLink" in book && {
+        canonicalVolumeLink: book.canonicalVolumeLink,
+    }));
 };
-
-const addBook = async (options, book, fileName) => {
-  // convert yaml file to JSON
-  const readListJson = (await toJson(fileName)) || [];
-  // clean up book data
-  const newBook = cleanBook(options, book);
-  // export book thumbnail to download later
-  if (newBook.imageLinks && newBook.imageLinks.thumbnail) {
-    (0,core.exportVariable)("BookThumbOutput", `book-${newBook.isbn}.png`);
-    (0,core.exportVariable)("BookThumb", newBook.imageLinks.thumbnail);
-  }
-  // append new book
-  readListJson.push(newBook);
-  return sortByDate(readListJson);
-};
-
-const toJson = async (fileName) => {
-  try {
-    const contents = await readFile(fileName);
-    return load(contents);
-  } catch (e) {
-    (0,core.setFailed)(e);
-  }
-};
-
-// make sure date is in YYYY-MM-DD format
+const addBook = (options, book, fileName) => __awaiter(void 0, void 0, void 0, function* () {
+    // convert yaml file to JSON
+    const readListJson = (yield toJson(fileName));
+    // clean up book data
+    const newBook = cleanBook(options, book);
+    // export book thumbnail to download later
+    if (newBook.imageLinks && newBook.imageLinks.thumbnail) {
+        (0,core.exportVariable)("BookThumbOutput", `book-${newBook.isbn}.png`);
+        (0,core.exportVariable)("BookThumb", newBook.imageLinks.thumbnail);
+    }
+    // append new book
+    readListJson.push(newBook);
+    return sortByDate(readListJson);
+});
+const toJson = (fileName) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const contents = (yield readFile(fileName));
+        return load(contents);
+    }
+    catch (error) {
+        (0,core.setFailed)(error);
+    }
+});
+/** make sure date is in YYYY-MM-DD format */
 const dateFormat = (date) => date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
-// make sure date value is a date
+/** make sure date value is a date */
 const isDate = (date) => !isNaN(Date.parse(date)) && dateFormat(date);
-// make sure ISBN has 10 or 13 characters
+/** make sure ISBN has 10 or 13 characters */
 const isIsbn = (isbn) => isbn.length === 10 || isbn.length === 13;
-
 const titleParser = (title) => {
-  const split = title.split(" ");
-  const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
-  if (!bookIsbn)
-    (0,core.setFailed)(
-      `ISBN must be 10 or 13 characters: ${bookIsbn} is ${
-        bookIsbn ? `${bookIsbn.length} characters` : "undefined"
-      }`
-    );
-  const date = isDate(split[1])
-    ? split[1]
-    : new Date().toISOString().slice(0, 10);
-  (0,core.exportVariable)("DateRead", date);
-  return {
-    bookIsbn,
-    date,
-  };
+    const split = title.split(" ");
+    const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
+    if (!bookIsbn)
+        (0,core.setFailed)(`ISBN must be 10 or 13 characters: ${bookIsbn} is ${bookIsbn ? `${bookIsbn.length} characters` : "undefined"}`);
+    const date = isDate(split[1])
+        ? split[1]
+        : new Date().toISOString().slice(0, 10);
+    (0,core.exportVariable)("DateRead", date);
+    return {
+        bookIsbn,
+        date,
+    };
 };
-
 const toYaml = (json) => (0,json_to_pretty_yaml/* stringify */.P)(json);
-
-const sortByDate = (array) =>
-  array.sort((a, b) => new Date(a.dateFinished) - new Date(b.dateFinished));
-
-async function getBook(options, fileName) {
-  const { bookIsbn, providers } = options;
-  return node_isbn_default().provider(providers)
-    .resolve(bookIsbn)
-    .then(async (book) => {
-      (0,core.exportVariable)("BookTitle", book.title);
-      return await addBook(options, book, fileName);
-    })
-    .catch(async (err) => {
-      (0,core.setFailed)(`Book (${bookIsbn}) not found: `, err);
+const sortByDate = (array) => array.sort((a, b) => new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf());
+function getBook(options, fileName) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { bookIsbn, providers } = options;
+        return node_isbn_default().provider(providers)
+            .resolve(bookIsbn)
+            .then((book) => __awaiter(this, void 0, void 0, function* () {
+            (0,core.exportVariable)("BookTitle", book.title);
+            return yield addBook(options, book, fileName);
+        }))
+            .catch((err) => {
+            (0,core.setFailed)(`Book (${bookIsbn}) not found: ${err}`);
+        });
+    });
+}
+function readFile(fileName) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            return (0,external_fs_.readFileSync)(fileName, "utf8");
+        }
+        catch (error) {
+            (0,core.setFailed)(error.message);
+        }
+    });
+}
+function writeFile(fileName, bookMetadata) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            (0,external_fs_.writeFileSync)(fileName, toYaml(bookMetadata), "utf-8");
+        }
+        catch (error) {
+            (0,core.setFailed)(error.message);
+        }
     });
 }
 
-async function readFile(fileName) {
-  try {
-    return (0,external_fs_.readFileSync)(fileName, "utf8");
-  } catch (error) {
-    (0,core.setFailed)(error.message);
-  }
+;// CONCATENATED MODULE: ./src/index.ts
+
+var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+
+function read() {
+    return src_awaiter(this, void 0, void 0, function* () {
+        try {
+            if (!github.context.payload.issue) {
+                throw new Error("Cannot find GitHub issue");
+            }
+            const { title, number, body } = github.context.payload.issue;
+            const { bookIsbn, date } = titleParser(title);
+            const fileName = (0,core.getInput)("readFileName");
+            const providers = (0,core.getInput)("providers")
+                ? (0,core.getInput)("providers").split(",")
+                : (node_isbn_default())._providers;
+            (0,core.exportVariable)("IssueNumber", number);
+            const bookMetadata = yield getBook({ date, body, bookIsbn, providers }, fileName);
+            yield writeFile(fileName, bookMetadata);
+        }
+        catch (error) {
+            (0,core.setFailed)(error.message);
+        }
+    });
 }
-
-async function writeFile(fileName, bookMetadata) {
-  try {
-    (0,external_fs_.writeFileSync)(fileName, toYaml(bookMetadata), "utf-8");
-  } catch (error) {
-    (0,core.setFailed)(error.message);
-  }
-}
-
-;// CONCATENATED MODULE: ./src/index.js
-
-
-
-
-
-
-
-async function read() {
-  try {
-    const { title, number, body } = github.context.payload.issue;
-    const { bookIsbn, date } = titleParser(title);
-    const fileName = (0,core.getInput)("readFileName");
-    const providers = (0,core.getInput)("providers")
-      ? (0,core.getInput)("providers").split(",")
-      : (node_isbn_default())._providers;
-    (0,core.exportVariable)("IssueNumber", number);
-    const bookMetadata = await getBook(
-      { date, body, bookIsbn, providers },
-      fileName
-    );
-    await writeFile(fileName, bookMetadata);
-  } catch (error) {
-    (0,core.setFailed)(error.message);
-  }
-}
-
 /* harmony default export */ const src = (read());
 
 })();

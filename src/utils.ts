@@ -4,21 +4,7 @@ import { load } from "js-yaml";
 import { stringify } from "json-to-pretty-yaml";
 import isbn from "node-isbn";
 
-const allowedFields = [
-  "title",
-  "authors",
-  "publishedDate",
-  "description",
-  "industryIdentifiers",
-  "pageCount",
-  "printType",
-  "categories",
-  "imageLinks",
-  "language",
-  "canonicalVolumeLink",
-];
-
-export const removeWrappedQuotes = (str) => {
+export const removeWrappedQuotes = (str: string) => {
   if (str.startsWith('"') && str.endsWith('"')) {
     return str.substr(1, str.length - 2);
   }
@@ -27,38 +13,113 @@ export const removeWrappedQuotes = (str) => {
   } else return str;
 };
 
-export const cleanBook = (options, book) => {
-  const { date, body, bookIsbn } = options;
-  return Object.keys(book).reduce(
-    (obj, key) => {
-      if (allowedFields.indexOf(key) > -1) {
-        if (key === "description") obj[key] = removeWrappedQuotes(book[key]);
-        if (key === "imageLinks") {
-          // Use https
-          obj[key] = {
-            ...(book[key].smallThumbnail && {
-              smallThumbnail: book[key].smallThumbnail.replace(
-                "http:",
-                "https:"
-              ),
-            }),
-            ...(book[key].thumbnail && {
-              thumbnail: book[key].thumbnail.replace("http:", "https:"),
-            }),
-          };
-        } else obj[key] = book[key];
-      }
-      return obj;
-    },
-    { isbn: bookIsbn, dateFinished: date, ...(body && { notes: body }) }
-  );
+export type Book = {
+  title: string;
+  authors: string[];
+  publisher: string;
+  publishedDate: string;
+  description: string;
+  industryIdentifiers: {
+    type: string;
+    identifier: string;
+  }[];
+  readingModes: {
+    text: boolean;
+    image: boolean;
+  };
+  pageCount: number;
+  printType: string;
+  categories: string[];
+  averageRating: number;
+  ratingsCount: number;
+  maturityRating: string;
+  allowAnonLogging: boolean;
+  contentVersion: string;
+  panelizationSummary: {
+    containsEpubBubbles: boolean;
+    containsImageBubbles: boolean;
+  };
+  imageLinks: {
+    smallThumbnail: string;
+    thumbnail: string;
+  };
+  language: string;
+  previewLink: string;
+  infoLink: string;
+  canonicalVolumeLink: string;
 };
 
-export const addBook = async (options, book, fileName) => {
+export type CleanBook = {
+  dateFinished: string;
+  title?: string;
+  authors?: string[];
+  publishedDate?: string;
+  description?: string;
+  industryIdentifiers?: { type?: string; indentifier?: string }[];
+  categories?: string[];
+  pageCount?: number;
+  printType?: string;
+  imageLinks?: {
+    smallThumbnail?: string;
+    thumbnail?: string;
+  };
+  language?: string;
+  canonicalVolumeLink?: string;
+  isbn: string;
+  notes?: string;
+};
+
+export type BookOptions = { date: string; body?: string; bookIsbn: string };
+
+export const cleanBook = (options: BookOptions, book: Book): CleanBook => {
+  const { date, body, bookIsbn } = options;
+  return {
+    isbn: bookIsbn,
+    dateFinished: date,
+    ...(body && { notes: body }),
+    ...("title" in book && { title: book.title }),
+    ...("authors" in book && {
+      authors: book.authors,
+    }),
+    ...("publishedDate" in book && { publishedDate: book.publishedDate }),
+    ...("description" in book && {
+      description: removeWrappedQuotes(book.description),
+    }),
+    ...("industryIdentifiers" in book && {
+      industryIdentifiers: book.industryIdentifiers,
+    }),
+    ...("pageCount" in book && { pageCount: book.pageCount }),
+    ...("printType" in book && { printType: book.printType }),
+    ...("categories" in book && { categories: book.categories }),
+    ...("imageLinks" in book && {
+      imageLinks: {
+        ...("smallThumbnail" in book.imageLinks && {
+          smallThumbnail: book.imageLinks.smallThumbnail.replace(
+            "http:",
+            "https:"
+          ),
+        }),
+        ...("thumbnail" in book.imageLinks && {
+          thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
+        }),
+      },
+    }),
+    ...("language" in book && { language: book.language }),
+    ...("canonicalVolumeLink" in book && {
+      canonicalVolumeLink: book.canonicalVolumeLink,
+    }),
+  };
+};
+
+export const addBook = async (
+  options: BookOptions,
+  book: Book,
+  fileName: string
+) => {
   // convert yaml file to JSON
-  const readListJson = (await toJson(fileName)) || [];
+  const readListJson = (await toJson(fileName)) as CleanBook[];
   // clean up book data
-  const newBook = cleanBook(options, book);
+  const newBook: CleanBook = cleanBook(options, book);
   // export book thumbnail to download later
   if (newBook.imageLinks && newBook.imageLinks.thumbnail) {
     exportVariable("BookThumbOutput", `book-${newBook.isbn}.png`);
@@ -69,23 +130,26 @@ export const addBook = async (options, book, fileName) => {
   return sortByDate(readListJson);
 };
 
-export const toJson = async (fileName) => {
+export const toJson = async (fileName: string) => {
   try {
-    const contents = await readFile(fileName);
+    const contents = (await readFile(fileName)) as string;
     return load(contents);
-  } catch (e) {
-    setFailed(e);
+  } catch (error) {
+    setFailed(error);
   }
 };
 
-// make sure date is in YYYY-MM-DD format
-export const dateFormat = (date) => date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
-// make sure date value is a date
-export const isDate = (date) => !isNaN(Date.parse(date)) && dateFormat(date);
-// make sure ISBN has 10 or 13 characters
-export const isIsbn = (isbn) => isbn.length === 10 || isbn.length === 13;
+/** make sure date is in YYYY-MM-DD format */
+export const dateFormat = (date: string) =>
+  date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
+/** make sure date value is a date */
+export const isDate = (date: string) =>
+  !isNaN(Date.parse(date)) && dateFormat(date);
+/** make sure ISBN has 10 or 13 characters */
+export const isIsbn = (isbn: string) =>
+  isbn.length === 10 || isbn.length === 13;
 
-export const titleParser = (title) => {
+export const titleParser = (title: string) => {
   const split = title.split(" ");
   const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
   if (!bookIsbn)
@@ -104,26 +168,29 @@ export const titleParser = (title) => {
   };
 };
 
-export const toYaml = (json) => stringify(json);
+export const toYaml = (json: {}) => stringify(json);
 
-export const sortByDate = (array) =>
-  array.sort((a, b) => new Date(a.dateFinished) - new Date(b.dateFinished));
+export const sortByDate = (array: { dateFinished: string }[]) =>
+  array.sort(
+    (a, b) =>
+      new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf()
+  );
 
 export async function getBook(options, fileName) {
   const { bookIsbn, providers } = options;
   return isbn
     .provider(providers)
     .resolve(bookIsbn)
-    .then(async (book) => {
+    .then(async (book: Book) => {
       exportVariable("BookTitle", book.title);
       return await addBook(options, book, fileName);
     })
-    .catch(async (err) => {
-      setFailed(`Book (${bookIsbn}) not found: `, err);
+    .catch((err) => {
+      setFailed(`Book (${bookIsbn}) not found: ${err}`);
     });
 }
 
-export async function readFile(fileName) {
+export async function readFile(fileName: string) {
   try {
     return readFileSync(fileName, "utf8");
   } catch (error) {
@@ -131,7 +198,7 @@ export async function readFile(fileName) {
   }
 }
 
-export async function writeFile(fileName, bookMetadata) {
+export async function writeFile(fileName: string, bookMetadata: Book[]) {
   try {
     writeFileSync(fileName, toYaml(bookMetadata), "utf-8");
   } catch (error) {
