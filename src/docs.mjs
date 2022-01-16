@@ -25,7 +25,7 @@ let yml = readFileSync("./.github/workflows/read.yml", "utf8");
 // TODO: clean this up!
 writeDocs(
   `\`\`\`yml
-${yml.replace("uses: ./", `uses: katydecorah/read-action@${version}`)}
+${yml.replace("uses: ./", `uses: katydecorah/read-action@v${version}`)}
 \`\`\`
 `,
   "SETUP"
