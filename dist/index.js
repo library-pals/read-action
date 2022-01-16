@@ -17114,7 +17114,7 @@ function toJson(fileName) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const contents = (yield returnReadFile(fileName));
-            return load(contents);
+            return load(contents) || [];
         }
         catch (error) {
             (0,core.setFailed)(error.message);

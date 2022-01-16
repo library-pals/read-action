@@ -93,6 +93,22 @@ describe("addBook", () => {
       "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
     );
   });
+
+  test("works, empty file", async () => {
+    jest.spyOn(promises, "readFile").mockResolvedValueOnce("");
+    expect(
+      await addBook(
+        {
+          date,
+          body: "Brilliant!",
+          bookIsbn: "0525658181",
+        },
+
+        book,
+        "_data/read.yml"
+      )
+    ).toMatchSnapshot();
+  });
 });
 
 it("toYaml", async () => {

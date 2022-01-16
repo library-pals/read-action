@@ -129,7 +129,7 @@ export const addBook = async (
 export async function toJson(fileName: string) {
   try {
     const contents = (await returnReadFile(fileName)) as string;
-    return load(contents);
+    return load(contents) || [];
   } catch (error) {
     setFailed(error.message);
   }
