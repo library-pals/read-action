@@ -23,3 +23,49 @@ The action will automatically set the date that you finished the book (`dateFini
 ```
 
 If you add content to the body of the comment, the action will add it as the value of `notes`.
+
+
+<!-- START GENERATED DOCUMENTATION -->
+
+## Set up the workflow
+
+To use this action, create a new workflow in `.github/workflows` and modify it as needed:
+
+```yml
+on:
+  issues:
+    types: opened
+
+jobs:
+  update_library:
+    runs-on: macOS-latest
+    name: Read
+    # only continue if issue has "read" label
+    if: contains( github.event.issue.labels.*.name, 'read')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Read
+        uses: katydecorah/read-action@v3.0.1
+      - name: Download the book thumbnail
+        run: curl "${{ env.BookThumb }}" -o "img/staging/${{ env.BookThumbOutput }}"
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A && git commit -m "Updated _data/read.yml"
+          git push "https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF}
+      - name: Close issue
+        uses: peter-evans/close-issue@v1
+        with:
+          issue-number: "${{ env.IssueNumber }}"
+          comment: "📚 You read ${{ env.BookTitle }} on ${{env.DateRead}}."
+```
+
+## Action options
+
+- `readFileName`: The file where you want to save your books. Default: `_data/read.yml`.
+
+- `providers`: Specify the [ISBN providers](https://github.com/palmerabollo/node-isbn#setting-backend-providers) that you want to use, in the order you need them to be invoked. If setting more than one provider, separate each with a comma.
+
+<!-- END GENERATED DOCUMENTATION -->
