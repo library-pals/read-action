@@ -2,7 +2,7 @@ name: Document GitHub action
 on:
   push:
     paths:
-      - ".github/workflows/example.yml"
+      - ".github/workflows/read.yml"
       - "action.yml"
       - "package.json"
       - "README.md"
