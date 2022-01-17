@@ -4,9 +4,9 @@
 
 ![.github/workflows/read.yml](https://github.com/katydecorah/read-action/workflows/.github/workflows/read.yml/badge.svg)
 
-This GitHub action tracks the books that you've read by updating the `_data/read.yml` file in your repository.
+This GitHub action tracks the books that you read by updating a yaml file in your repository.
 
-Create a new issue with the book's ISBN in the title. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and add it to `_data/read.yml` in your repository, always sorting by the date you finished the book.
+Create a new issue with the book's ISBN in the title. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
 
 ## Action trigger: create an issue
 
