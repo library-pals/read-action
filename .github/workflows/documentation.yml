@@ -1,0 +1,25 @@
+name: Document GitHub action
+on:
+  push:
+    paths:
+      - ".github/workflows/example.yml"
+      - "action.yml"
+      - "package.json"
+      - "README.md"
+
+jobs:
+  document_action:
+    runs-on: macOS-latest
+    name: Write documentation
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Documentation action
+        uses: katydecorah/documentation-action@v0.1.0
+      - name: Commit files
+        if: env.UpdateDocumentation == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Update documentation"
+          git push

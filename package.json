@@ -5,7 +5,7 @@
   "scripts": {
     "pretest": "eslint .",
     "test": "jest --coverage",
-    "build": "ncc build src/index.ts && node src/docs.mjs",
+    "build": "ncc build src/index.ts",
     "pretty-quick": "pretty-quick",
     "prepare": "husky install"
   },
