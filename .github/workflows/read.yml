@@ -19,8 +19,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -A && git commit -m "Updated _data/read.yml"
-          git push "https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF}
+          git commit -am "Updated _data/read.yml"
+          git push
       - name: Close issue
         uses: peter-evans/close-issue@v1
         with:
