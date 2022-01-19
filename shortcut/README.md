@@ -1,6 +1,6 @@
 # Finished a book shortcut
 
-Download the [Finished a book shortcut](finished-a-book.shortcut) to quickly create GitHub issues for the action.
+Download the [Finished a book shortcut](Finished%20a%20book.shortcut) to quickly create GitHub issues for the action.
 
 ## Set up
 
