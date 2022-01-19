@@ -2,6 +2,8 @@
 
 Download the [Finished a book shortcut](Finished%20a%20book.shortcut) to quickly create GitHub issues for the action.
 
+![](thumbnail.png)
+
 ## Set up
 
 When you first open the shortcut, it will ask you to enter your GitHub repository and a GitHub token.
