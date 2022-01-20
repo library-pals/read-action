@@ -3,7 +3,7 @@
   "version": "3.0.1",
   "main": "dist/index.js",
   "scripts": {
-    "pretest": "eslint .",
+    "pretest": "eslint src/**/*.ts",
     "test": "jest --coverage",
     "build": "ncc build src/index.ts",
     "pretty-quick": "pretty-quick",
