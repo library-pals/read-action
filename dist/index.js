@@ -13208,6 +13208,89 @@ var node_isbn = __nccwpck_require__(5209);
 var node_isbn_default = /*#__PURE__*/__nccwpck_require__.n(node_isbn);
 ;// CONCATENATED MODULE: external "fs/promises"
 const promises_namespaceObject = require("fs/promises");
+// EXTERNAL MODULE: ./node_modules/json-to-pretty-yaml/index.js
+var json_to_pretty_yaml = __nccwpck_require__(6760);
+;// CONCATENATED MODULE: ./src/utils.ts
+
+/** make sure date is in YYYY-MM-DD format */
+function dateFormat(date) {
+    return date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
+}
+/** make sure date value is a date */
+function isDate(date) {
+    return !isNaN(Date.parse(date)) && dateFormat(date);
+}
+/** make sure ISBN has 10 or 13 characters */
+function isIsbn(isbn) {
+    return isbn.length === 10 || isbn.length === 13;
+}
+/** convert json to pretty yaml */
+function toYaml(json) {
+    return (0,json_to_pretty_yaml/* stringify */.P)(json);
+}
+/** sort array of objects by `dateFinished` */
+function sortByDate(array) {
+    return array.sort((a, b) => new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf());
+}
+/** remove wrapped quotes */
+function removeWrappedQuotes(str) {
+    if (str.startsWith('"') && str.endsWith('"')) {
+        return str.substring(1, str.length - 1);
+    }
+    if (str.startsWith('"') && str.endsWith('"--')) {
+        return `${str.substring(1, str.length - 3)}…`;
+    }
+    else
+        return str;
+}
+
+;// CONCATENATED MODULE: ./src/write-file.ts
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+function returnWriteFile(fileName, bookMetadata) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const data = toYaml(bookMetadata);
+            const promise = (0,promises_namespaceObject.writeFile)(fileName, data);
+            yield promise;
+        }
+        catch (error) {
+            (0,core.setFailed)(error);
+        }
+    });
+}
+
+;// CONCATENATED MODULE: ./src/clean-book.ts
+
+function cleanBook(options, book) {
+    const { date, body, bookIsbn } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: date }, (body && { notes: body })), ("title" in book && { title: book.title })), ("authors" in book && {
+        authors: book.authors,
+    })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
+        description: removeWrappedQuotes(book.description),
+    })), ("industryIdentifiers" in book && {
+        industryIdentifiers: book.industryIdentifiers,
+    })), ("pageCount" in book && { pageCount: book.pageCount })), ("printType" in book && { printType: book.printType })), ("categories" in book && { categories: book.categories })), ("imageLinks" in book && {
+        imageLinks: Object.assign(Object.assign({}, ("smallThumbnail" in book.imageLinks && {
+            smallThumbnail: book.imageLinks.smallThumbnail.replace("http:", "https:"),
+        })), ("thumbnail" in book.imageLinks && {
+            thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
+        })),
+    })), ("language" in book && { language: book.language })), ("canonicalVolumeLink" in book && {
+        canonicalVolumeLink: book.canonicalVolumeLink,
+    }));
+}
+
 ;// CONCATENATED MODULE: ./node_modules/js-yaml/dist/js-yaml.mjs
 
 /*! js-yaml 4.1.0 https://github.com/nodeca/js-yaml @license MIT */
@@ -17061,10 +17144,57 @@ var jsYaml = {
 /* harmony default export */ const js_yaml = ((/* unused pure expression or super */ null && (jsYaml)));
 
 
-// EXTERNAL MODULE: ./node_modules/json-to-pretty-yaml/index.js
-var json_to_pretty_yaml = __nccwpck_require__(6760);
-;// CONCATENATED MODULE: ./src/utils.ts
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+;// CONCATENATED MODULE: ./src/read-file.ts
+var read_file_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+function returnReadFile(fileName) {
+    return read_file_awaiter(this, void 0, void 0, function* () {
+        try {
+            const promise = (0,promises_namespaceObject.readFile)(fileName, "utf-8");
+            return yield promise;
+        }
+        catch (error) {
+            (0,core.setFailed)(error);
+        }
+    });
+}
+
+;// CONCATENATED MODULE: ./src/to-json.ts
+var to_json_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+function toJson(fileName) {
+    return to_json_awaiter(this, void 0, void 0, function* () {
+        try {
+            const contents = (yield returnReadFile(fileName));
+            return load(contents) || [];
+        }
+        catch (error) {
+            (0,core.setFailed)(error.message);
+        }
+    });
+}
+
+;// CONCATENATED MODULE: ./src/add-book.ts
+var add_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -17077,74 +17207,38 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 
 
 
-
-const cleanBook = (options, book) => {
-    const { date, body, bookIsbn } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: date }, (body && { notes: body })), ("title" in book && { title: book.title })), ("authors" in book && {
-        authors: book.authors,
-    })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
-        description: removeWrappedQuotes(book.description),
-    })), ("industryIdentifiers" in book && {
-        industryIdentifiers: book.industryIdentifiers,
-    })), ("pageCount" in book && { pageCount: book.pageCount })), ("printType" in book && { printType: book.printType })), ("categories" in book && { categories: book.categories })), ("imageLinks" in book && {
-        imageLinks: Object.assign(Object.assign({}, ("smallThumbnail" in book.imageLinks && {
-            smallThumbnail: book.imageLinks.smallThumbnail.replace("http:", "https:"),
-        })), ("thumbnail" in book.imageLinks && {
-            thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
-        })),
-    })), ("language" in book && { language: book.language })), ("canonicalVolumeLink" in book && {
-        canonicalVolumeLink: book.canonicalVolumeLink,
-    }));
-};
-const addBook = (options, book, fileName) => __awaiter(void 0, void 0, void 0, function* () {
-    // convert yaml file to JSON
-    const readListJson = (yield toJson(fileName));
-    // clean up book data
-    const newBook = cleanBook(options, book);
-    // export book thumbnail to download later
-    if (newBook.imageLinks && newBook.imageLinks.thumbnail) {
-        (0,core.exportVariable)("BookThumbOutput", `book-${newBook.isbn}.png`);
-        (0,core.exportVariable)("BookThumb", newBook.imageLinks.thumbnail);
-    }
-    // append new book
-    readListJson.push(newBook);
-    return sortByDate(readListJson);
-});
-function toJson(fileName) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const contents = (yield returnReadFile(fileName));
-            return load(contents) || [];
+function addBook(options, book, fileName) {
+    return add_book_awaiter(this, void 0, void 0, function* () {
+        // convert yaml file to JSON
+        const readListJson = (yield toJson(fileName));
+        // clean up book data
+        const newBook = cleanBook(options, book);
+        // export book thumbnail to download later
+        if (newBook.imageLinks && newBook.imageLinks.thumbnail) {
+            (0,core.exportVariable)("BookThumbOutput", `book-${newBook.isbn}.png`);
+            (0,core.exportVariable)("BookThumb", newBook.imageLinks.thumbnail);
         }
-        catch (error) {
-            (0,core.setFailed)(error.message);
-        }
+        // append new book
+        readListJson.push(newBook);
+        return sortByDate(readListJson);
     });
 }
-/** make sure date is in YYYY-MM-DD format */
-const dateFormat = (date) => date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
-/** make sure date value is a date */
-const isDate = (date) => !isNaN(Date.parse(date)) && dateFormat(date);
-/** make sure ISBN has 10 or 13 characters */
-const isIsbn = (isbn) => isbn.length === 10 || isbn.length === 13;
-const titleParser = (title) => {
-    const split = title.split(" ");
-    const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
-    if (!bookIsbn)
-        (0,core.setFailed)(`ISBN is not valid: ${title}`);
-    const date = isDate(split[1])
-        ? split[1]
-        : new Date().toISOString().slice(0, 10);
-    (0,core.exportVariable)("DateRead", date);
-    return {
-        bookIsbn,
-        date,
-    };
+
+;// CONCATENATED MODULE: ./src/get-book.ts
+var get_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
-const toYaml = (json) => (0,json_to_pretty_yaml/* stringify */.P)(json);
-const sortByDate = (array) => array.sort((a, b) => new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf());
+
+
+
 function getBook(options, fileName) {
-    return __awaiter(this, void 0, void 0, function* () {
+    return get_book_awaiter(this, void 0, void 0, function* () {
         const { bookIsbn, providers } = options;
         try {
             const book = (yield node_isbn_default().provider(providers).resolve(bookIsbn));
@@ -17157,39 +17251,24 @@ function getBook(options, fileName) {
         }
     });
 }
-function returnReadFile(fileName) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const promise = (0,promises_namespaceObject.readFile)(fileName, "utf-8");
-            return yield promise;
-        }
-        catch (error) {
-            (0,core.setFailed)(error);
-        }
-    });
+
+;// CONCATENATED MODULE: ./src/title-parser.ts
+
+
+function titleParser(title) {
+    const split = title.split(" ");
+    const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
+    if (!bookIsbn)
+        (0,core.setFailed)(`ISBN is not valid: ${title}`);
+    const date = isDate(split[1])
+        ? split[1]
+        : new Date().toISOString().slice(0, 10);
+    (0,core.exportVariable)("DateRead", date);
+    return {
+        bookIsbn,
+        date,
+    };
 }
-function returnWriteFile(fileName, bookMetadata) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const data = toYaml(bookMetadata);
-            const promise = (0,promises_namespaceObject.writeFile)(fileName, data);
-            yield promise;
-        }
-        catch (error) {
-            (0,core.setFailed)(error);
-        }
-    });
-}
-const removeWrappedQuotes = (str) => {
-    if (str.startsWith('"') && str.endsWith('"')) {
-        return str.substring(1, str.length - 1);
-    }
-    if (str.startsWith('"') && str.endsWith('"--')) {
-        return `${str.substring(1, str.length - 3)}…`;
-    }
-    else
-        return str;
-};
 
 ;// CONCATENATED MODULE: ./src/index.ts
 
@@ -17202,6 +17281,8 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+
+
 
 
 

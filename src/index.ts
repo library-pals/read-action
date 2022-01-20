@@ -3,7 +3,10 @@
 import { getInput, exportVariable, setFailed } from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
-import { titleParser, getBook, returnWriteFile, CleanBook } from "./utils.js";
+import { CleanBook } from "./clean-book";
+import returnWriteFile from "./write-file";
+import getBook from "./get-book";
+import titleParser from "./title-parser";
 
 async function read() {
   try {
