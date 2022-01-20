@@ -3,7 +3,7 @@
   "version": "3.0.1",
   "main": "dist/index.js",
   "scripts": {
-    "pretest": "eslint .",
+    "pretest": "eslint src/**/*.ts",
     "test": "jest --coverage",
     "build": "ncc build src/index.ts",
     "pretty-quick": "pretty-quick",
@@ -23,6 +23,7 @@
     "@babel/eslint-parser": "^7.16.5",
     "@babel/preset-env": "^7.16.8",
     "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.0",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^17.0.8",
     "eslint": "^8.6.0",
