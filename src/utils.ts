@@ -1,4 +1,5 @@
 import { stringify } from "json-to-pretty-yaml";
+import { CleanBook } from "./clean-book";
 
 /** make sure date is in YYYY-MM-DD format */
 export function dateFormat(date: string) {
@@ -16,7 +17,7 @@ export function isIsbn(isbn: string) {
 }
 
 /** convert json to pretty yaml */
-export function toYaml(json: {}) {
+export function toYaml(json: CleanBook[]) {
   return stringify(json);
 }
 
