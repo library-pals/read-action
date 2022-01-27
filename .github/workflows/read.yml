@@ -14,12 +14,12 @@ jobs:
       - name: Read
         uses: ./
       - name: Download the book thumbnail
-        run: curl "${{ env.BookThumb }}" -o "img/staging/${{ env.BookThumbOutput }}"
+        run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -am "Add ${{ env.BookTitle }} to _data/read.yml"
+          git add -A && git commit -m "Add ${{ env.BookTitle }} to _data/read.yml"
           git push
       - name: Close issue
         uses: peter-evans/close-issue@v1
