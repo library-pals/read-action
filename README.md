@@ -27,7 +27,7 @@ jobs:
     if: contains( github.event.issue.labels.*.name, 'read')
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Read
         uses: katydecorah/read-action@v3.0.1
       - name: Download the book thumbnail
