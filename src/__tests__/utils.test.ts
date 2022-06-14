@@ -1,11 +1,5 @@
 import { promises, readFileSync } from "fs";
-import {
-  removeWrappedQuotes,
-  isIsbn,
-  isDate,
-  toYaml,
-  sortByDate,
-} from "../utils";
+import { removeWrappedQuotes, isIsbn, toYaml, sortByDate } from "../utils";
 
 import book from "./fixture.json";
 import addBook from "../add-book";
@@ -23,11 +17,10 @@ it("toYaml", async () => {
       await addBook(
         {
           date,
-          body: "Amazing!",
+          notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],
         },
-
         book,
         "_data/read.yml"
       )
@@ -42,12 +35,6 @@ it("removeWrappedQuotes", () => {
   expect(removeWrappedQuotes('"this part will get cut off"--')).toBe(
     "this part will get cut off…"
   );
-});
-
-it("isDate", () => {
-  expect(isDate("abcde")).toEqual(false);
-  expect(isDate("2020-09-12")).toEqual(true);
-  expect(isDate("2020")).toEqual(false);
 });
 
 it("isIsbn", () => {

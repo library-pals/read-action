@@ -15,7 +15,7 @@ describe("addBook", () => {
       await addBook(
         {
           date,
-          body: "Amazing!",
+          notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],
         },
@@ -41,7 +41,7 @@ describe("addBook", () => {
       await addBook(
         {
           date,
-          body: "Amazing!",
+          notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],
         },
@@ -72,7 +72,7 @@ describe("addBook", () => {
       await addBook(
         {
           date,
-          body: "Brilliant!",
+          notes: "Brilliant!",
           bookIsbn: "0525658181",
           providers: [],
         },

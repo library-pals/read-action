@@ -13665,14 +13665,6 @@ const promises_namespaceObject = require("fs/promises");
 var json_to_pretty_yaml = __nccwpck_require__(6760);
 ;// CONCATENATED MODULE: ./src/utils.ts
 
-/** make sure date is in YYYY-MM-DD format */
-function dateFormat(date) {
-    return date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
-}
-/** make sure date value is a date */
-function isDate(date) {
-    return !isNaN(Date.parse(date)) && dateFormat(date);
-}
 /** make sure ISBN has 10 or 13 characters */
 function isIsbn(isbn) {
     return isbn.length === 10 || isbn.length === 13;
@@ -13726,8 +13718,8 @@ function returnWriteFile(fileName, bookMetadata) {
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
 function cleanBook(options, book) {
-    const { date, body, bookIsbn } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: date }, (body && { notes: body })), ("title" in book && { title: book.title })), ("authors" in book && {
+    const { notes, bookIsbn, date } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: date || new Date().toISOString().slice(0, 10) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
         authors: book.authors,
     })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
         description: removeWrappedQuotes(book.description),
@@ -17705,24 +17697,6 @@ function getBook(options, fileName) {
     });
 }
 
-;// CONCATENATED MODULE: ./src/title-parser.ts
-
-
-function titleParser(title) {
-    const split = title.split(" ");
-    const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
-    if (!bookIsbn)
-        (0,core.setFailed)(`ISBN is not valid: ${title}`);
-    const date = isDate(split[1])
-        ? split[1]
-        : new Date().toISOString().slice(0, 10);
-    (0,core.exportVariable)("DateRead", date);
-    return {
-        bookIsbn,
-        date,
-    };
-}
-
 ;// CONCATENATED MODULE: ./src/index.ts
 
 var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -17739,23 +17713,16 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 
 
-
 function read() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
-            if (!github.context.payload.issue) {
-                throw new Error("Cannot find GitHub issue");
-            }
-            const { title, number, body } = github.context.payload.issue;
-            (0,core.exportVariable)("IssueNumber", number);
-            const { bookIsbn, date } = titleParser(title);
-            if (!bookIsbn)
-                throw new Error(`Cannot find book ISBN from given input" ${title}`);
+            (0,core.info)(`Payload: ${JSON.stringify(github.context.payload.client_payload, null, 2)}`);
+            const { bookIsbn, notes, date } = github.context.payload.client_payload;
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
-            const bookMetadata = (yield getBook({ date, body, bookIsbn, providers }, fileName));
+            const bookMetadata = (yield getBook({ notes, bookIsbn, date, providers }, fileName));
             yield returnWriteFile(fileName, bookMetadata);
         }
         catch (error) {

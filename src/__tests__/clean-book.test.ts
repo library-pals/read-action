@@ -8,11 +8,10 @@ it("cleanBook", () =>
     cleanBook(
       {
         date,
-        body: "I loved it!",
+        notes: "I loved it!",
         bookIsbn: "0525658181",
         providers: [],
       },
-
       book
     )
   ).toMatchSnapshot());

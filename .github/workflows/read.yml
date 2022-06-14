@@ -1,28 +1,22 @@
 on:
-  issues:
-    types: opened
+  repository_dispatch:
+    types: [read]
 
 jobs:
   update_library:
     runs-on: macOS-latest
     name: Read
-    # only continue if issue has "read" label
-    if: contains( github.event.issue.labels.*.name, 'read')
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Read
         uses: ./
       - name: Download the book thumbnail
-        run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
+        run: curl "${{ env.BookThumb }}" -o "img/staging/${{ env.BookThumbOutput }}"
       - name: Commit files
         run: |
+          git pull
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A && git commit -m "Add ${{ env.BookTitle }} to _data/read.yml"
           git push
-      - name: Close issue
-        uses: peter-evans/close-issue@v2
-        with:
-          issue-number: "${{ env.IssueNumber }}"
-          comment: "📚 You read ${{ env.BookTitle }} on ${{env.DateRead}}."

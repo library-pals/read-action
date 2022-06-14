@@ -22,11 +22,11 @@ export type CleanBook = {
 };
 
 export default function cleanBook(options: BookOptions, book: Book): CleanBook {
-  const { date, body, bookIsbn } = options;
+  const { notes, bookIsbn, date } = options;
   return {
     isbn: bookIsbn,
-    dateFinished: date,
-    ...(body && { notes: body }),
+    dateFinished: date || new Date().toISOString().slice(0, 10),
+    ...(notes && { notes }),
     ...("title" in book && { title: book.title }),
     ...("authors" in book && {
       authors: book.authors,
