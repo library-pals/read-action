@@ -29,7 +29,7 @@
     "@vercel/ncc": "^0.34.0",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jest": "^26.5.3",
+    "eslint-plugin-jest": "^26.7.0",
     "husky": "^8.0.1",
     "jest": "^28.1.2",
     "prettier": "^2.7.1",
