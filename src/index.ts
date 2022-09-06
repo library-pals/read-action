@@ -17,7 +17,9 @@ async function read() {
     const { date, bookIsbn, notes } = github.context.payload
       .client_payload as BookOptions;
     const fileName: string = getInput("readFileName");
-    const providers = getProviders();
+    const providers = getInput("providers")
+      ? getInput("providers").split(",")
+      : isbn._providers;
     const bookMetadata = (await getBook(
       { notes, bookIsbn, date, providers },
       fileName
@@ -26,12 +28,6 @@ async function read() {
   } catch (error) {
     setFailed(error.message);
   }
-}
-
-function getProviders() {
-  return getInput("providers")
-    ? getInput("providers").split(",")
-    : isbn._providers;
 }
 
 export default read();
