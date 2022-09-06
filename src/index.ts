@@ -7,13 +7,6 @@ import getBook, { BookOptions } from "./get-book";
 
 async function read() {
   try {
-    info(
-      `Payload: ${JSON.stringify(
-        github.context.payload.client_payload,
-        null,
-        2
-      )}`
-    );
     const { dateFinished, bookIsbn, notes } = github.context.payload
       .client_payload as BookOptions;
     const fileName: string = getInput("readFileName");

@@ -18449,7 +18449,6 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 function read() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
-            (0,core.info)(`Payload: ${JSON.stringify(github.context.payload.client_payload, null, 2)}`);
             const { dateFinished, bookIsbn, notes } = github.context.payload.client_payload;
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
