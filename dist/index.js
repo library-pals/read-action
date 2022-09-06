@@ -18432,7 +18432,6 @@ function getBook(options, fileName) {
 }
 
 ;// CONCATENATED MODULE: ./src/index.ts
-
 var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -18451,11 +18450,9 @@ function read() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
             (0,core.info)(`Payload: ${JSON.stringify(github.context.payload.client_payload, null, 2)}`);
-            const { bookIsbn, notes, date } = github.context.payload.client_payload;
+            const { date, bookIsbn, notes } = github.context.payload.client_payload;
             const fileName = (0,core.getInput)("readFileName");
-            const providers = (0,core.getInput)("providers")
-                ? (0,core.getInput)("providers").split(",")
-                : (node_isbn_default())._providers;
+            const providers = getProviders();
             const bookMetadata = (yield getBook({ notes, bookIsbn, date, providers }, fileName));
             yield returnWriteFile(fileName, bookMetadata);
         }
@@ -18463,6 +18460,11 @@ function read() {
             (0,core.setFailed)(error.message);
         }
     });
+}
+function getProviders() {
+    return (0,core.getInput)("providers")
+        ? (0,core.getInput)("providers").split(",")
+        : (node_isbn_default())._providers;
 }
 /* harmony default export */ const src = (read());
 

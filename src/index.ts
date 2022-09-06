@@ -1,5 +1,3 @@
-"use strict";
-
 import { getInput, setFailed, info } from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
@@ -19,9 +17,7 @@ async function read() {
     const { date, bookIsbn, notes } = github.context.payload
       .client_payload as BookOptions;
     const fileName: string = getInput("readFileName");
-    const providers = getInput("providers")
-      ? getInput("providers").split(",")
-      : isbn._providers;
+    const providers = getProviders();
     const bookMetadata = (await getBook(
       { notes, bookIsbn, date, providers },
       fileName
@@ -30,6 +26,12 @@ async function read() {
   } catch (error) {
     setFailed(error.message);
   }
+}
+
+function getProviders() {
+  return getInput("providers")
+    ? getInput("providers").split(",")
+    : isbn._providers;
 }
 
 export default read();
