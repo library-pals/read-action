@@ -15,6 +15,8 @@ Create a new issue with the book's ISBN in the title. The action will then fetch
 To use this action, create a new workflow in `.github/workflows` and modify it as needed:
 
 ```yml
+name: Read
+
 on:
   repository_dispatch:
     types: [read]
