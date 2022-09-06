@@ -4,9 +4,22 @@
 
 ![.github/workflows/read.yml](https://github.com/katydecorah/read-action/workflows/.github/workflows/read.yml/badge.svg)
 
-This GitHub action tracks the books that you read by updating a YAML file in your repository. Pair it with the [iOS Shortcut](shortcut/README.md) to automatically format and open the GitHub issue.
+This GitHub action tracks the books that you read by updating a YAML file in your repository. Pair it with the [iOS Shortcut](shortcut/README.md) to automatically trigger the action.
 
-Create a new issue with the book's ISBN in the title. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
+[Create a respository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event) with information about the book. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
+
+## Payload
+
+```json
+{
+  "event_type": "read", // Optional. This helps you filter events in the workflow, in case you have more than one.
+  "client_payload": {
+    "bookIsbn": "", // Required. The book's ISBN.
+    "date": "", // Optional. The date you finished the book. The default date is today.
+    "notes": "" // Optional. Notes about the book.
+  }
+}
+```
 
 <!-- START GENERATED DOCUMENTATION -->
 
