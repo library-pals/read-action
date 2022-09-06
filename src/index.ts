@@ -1,4 +1,4 @@
-import { getInput, setFailed, info } from "@actions/core";
+import { getInput, setFailed } from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
 import { CleanBook } from "./clean-book";
