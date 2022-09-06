@@ -1,3 +1,5 @@
+name: Read
+
 on:
   repository_dispatch:
     types: [read]
