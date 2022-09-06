@@ -14,14 +14,14 @@ async function read() {
         2
       )}`
     );
-    const { date, bookIsbn, notes } = github.context.payload
+    const { dateFinished, bookIsbn, notes } = github.context.payload
       .client_payload as BookOptions;
     const fileName: string = getInput("readFileName");
     const providers = getInput("providers")
       ? getInput("providers").split(",")
       : isbn._providers;
     const bookMetadata = (await getBook(
-      { notes, bookIsbn, date, providers },
+      { notes, bookIsbn, dateFinished, providers },
       fileName
     )) as CleanBook[];
     await returnWriteFile(fileName, bookMetadata);

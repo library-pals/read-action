@@ -14452,8 +14452,8 @@ function returnWriteFile(fileName, bookMetadata) {
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
 function cleanBook(options, book) {
-    const { notes, bookIsbn, date } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: date || new Date().toISOString().slice(0, 10) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
+    const { notes, bookIsbn, dateFinished } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: dateFinished || new Date().toISOString().slice(0, 10) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
         authors: book.authors,
     })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
         description: removeWrappedQuotes(book.description),
@@ -18450,12 +18450,12 @@ function read() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
             (0,core.info)(`Payload: ${JSON.stringify(github.context.payload.client_payload, null, 2)}`);
-            const { date, bookIsbn, notes } = github.context.payload.client_payload;
+            const { dateFinished, bookIsbn, notes } = github.context.payload.client_payload;
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
-            const bookMetadata = (yield getBook({ notes, bookIsbn, date, providers }, fileName));
+            const bookMetadata = (yield getBook({ notes, bookIsbn, dateFinished, providers }, fileName));
             yield returnWriteFile(fileName, bookMetadata);
         }
         catch (error) {

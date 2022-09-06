@@ -8,7 +8,7 @@ const books = readFileSync("./_data/read.yml", "utf-8");
 
 jest.mock("@actions/core");
 
-const date = "2020-09-12";
+const dateFinished = "2020-09-12";
 
 it("toYaml", async () => {
   jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
@@ -16,7 +16,7 @@ it("toYaml", async () => {
     toYaml(
       await addBook(
         {
-          date,
+          dateFinished,
           notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],

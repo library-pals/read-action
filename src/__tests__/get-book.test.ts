@@ -5,7 +5,7 @@ import book from "./fixture.json";
 import isbn from "node-isbn";
 
 const books = readFileSync("./_data/read.yml", "utf-8");
-const date = "2020-09-12";
+const dateFinished = "2020-09-12";
 
 jest.mock("@actions/core");
 
@@ -14,7 +14,7 @@ describe("getBook", () => {
     jest.spyOn(isbn, "resolve").mockResolvedValueOnce(book);
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     await getBook(
-      { date, bookIsbn: "9780525658184", providers: ["google"] },
+      { dateFinished, bookIsbn: "9780525658184", providers: ["google"] },
       "_data/read.yml"
     );
     expect(exportVariable).toHaveBeenNthCalledWith(
@@ -35,7 +35,7 @@ describe("getBook", () => {
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     expect(
       await getBook(
-        { date, bookIsbn: "9780525658184", providers: ["google"] },
+        { dateFinished, bookIsbn: "9780525658184", providers: ["google"] },
         "_data/read.yml"
       )
     ).toMatchSnapshot();
@@ -44,7 +44,7 @@ describe("getBook", () => {
     jest.spyOn(isbn, "resolve").mockRejectedValue({ message: "Error!" });
     await expect(
       getBook(
-        { date, bookIsbn: "9780525658184", providers: ["google"] },
+        { dateFinished, bookIsbn: "9780525658184", providers: ["google"] },
         "_data/read.yml"
       )
     ).rejects.toMatchInlineSnapshot(`[Error: Error!]`);

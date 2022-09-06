@@ -40,7 +40,7 @@ export type Book = {
 };
 
 export type BookOptions = {
-  date?: string;
+  dateFinished?: string;
   notes?: string;
   bookIsbn: string;
   providers: string[];

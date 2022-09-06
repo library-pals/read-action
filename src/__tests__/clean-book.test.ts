@@ -1,7 +1,7 @@
 import cleanBook from "../clean-book";
 import book from "./fixture.json";
 
-const date = "2020-09-12";
+const dateFinished = "2020-09-12";
 
 describe("cleanBook", () => {
   afterEach(() => {
@@ -12,7 +12,7 @@ describe("cleanBook", () => {
     expect(
       cleanBook(
         {
-          date,
+          dateFinished,
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],

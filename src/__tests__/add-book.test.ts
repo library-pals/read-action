@@ -4,7 +4,7 @@ import book from "./fixture.json";
 import { exportVariable } from "@actions/core";
 
 const books = readFileSync("./_data/read.yml", "utf-8");
-const date = "2020-09-12";
+const dateFinished = "2020-09-12";
 
 jest.mock("@actions/core");
 
@@ -14,7 +14,7 @@ describe("addBook", () => {
     expect(
       await addBook(
         {
-          date,
+          dateFinished,
           notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],
@@ -40,7 +40,7 @@ describe("addBook", () => {
     expect(
       await addBook(
         {
-          date,
+          dateFinished,
           notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],
@@ -71,7 +71,7 @@ describe("addBook", () => {
     expect(
       await addBook(
         {
-          date,
+          dateFinished,
           notes: "Brilliant!",
           bookIsbn: "0525658181",
           providers: [],
