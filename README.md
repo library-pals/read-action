@@ -15,7 +15,7 @@ This GitHub action tracks the books that you read by updating a YAML file in you
   "event_type": "read", // Optional. This helps you filter events in the workflow, in case you have more than one.
   "client_payload": {
     "bookIsbn": "", // Required. The book's ISBN.
-    "date": "", // Optional. The date you finished the book. The default date is today.
+    "date": "", // Optional. The date you finished the book in YYYY-MM-DD format. The default date is today.
     "notes": "" // Optional. Notes about the book.
   }
 }
