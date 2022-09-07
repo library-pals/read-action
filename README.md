@@ -8,19 +8,6 @@ This GitHub action tracks the books that you read by updating a YAML file in you
 
 [Create a respository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event) with information about the book. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
 
-## Payload
-
-```js
-{
-  "event_type": "read", // Optional. This helps you filter events in the workflow, in case you have more than one.
-  "client_payload": {
-    "bookIsbn": "", // Required. The book's ISBN.
-    "date": "", // Optional. The date you finished the book in YYYY-MM-DD format. The default date is today.
-    "notes": "" // Optional. Notes about the book.
-  }
-}
-```
-
 <!-- START GENERATED DOCUMENTATION -->
 
 ## Set up the workflow
@@ -62,18 +49,21 @@ jobs:
 
 <!-- END GENERATED DOCUMENTATION -->
 
-## Create an issue
+## Send an event
 
-The title of your issue must start with the ISBN of the book:
+To trigger the action, you will [create a respository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event) with information about the book.
 
+The [iOS Shortcut](shortcut/README.md) helps format and send the event.
+
+### Payload
+
+```js
+{
+  "event_type": "read", // Optional. This helps you filter events in the workflow, in case you have more than one.
+  "client_payload": {
+    "bookIsbn": "", // Required. The book's ISBN.
+    "date": "", // Optional. The date you finished the book in YYYY-MM-DD format. The default date is today.
+    "notes": "" // Optional. Notes about the book.
+  }
+}
 ```
-1234567890
-```
-
-The action will automatically set the date that you finished the book (`dateFinished`) to today. To specify a different date that you finished the book, add the date after the ISBN in `YYYY-MM-DD` format.
-
-```
-1234567890 2020-06-12
-```
-
-If you add content to the body of the comment, the action will add it as the value of `notes`.
