@@ -1,18 +1,37 @@
 import cleanBook from "../clean-book";
 import book from "./fixture.json";
 
-const date = "2020-09-12";
+const dateFinished = "2020-09-12";
 
-it("cleanBook", () =>
-  expect(
-    cleanBook(
-      {
-        date,
-        body: "I loved it!",
-        bookIsbn: "0525658181",
-        providers: [],
-      },
+describe("cleanBook", () => {
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
 
-      book
-    )
-  ).toMatchSnapshot());
+  it("cleanBook", () =>
+    expect(
+      cleanBook(
+        {
+          dateFinished,
+          notes: "I loved it!",
+          bookIsbn: "0525658181",
+          providers: [],
+        },
+        book
+      )
+    ).toMatchSnapshot());
+
+  jest.useFakeTimers().setSystemTime(new Date("2020-01-01"));
+
+  it("cleanBook, no date", () =>
+    expect(
+      cleanBook(
+        {
+          notes: "I loved it!",
+          bookIsbn: "0525658181",
+          providers: [],
+        },
+        book
+      )
+    ).toMatchSnapshot());
+});

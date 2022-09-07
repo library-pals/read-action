@@ -1,29 +1,25 @@
-"use strict";
-
-import { getInput, exportVariable, setFailed } from "@actions/core";
+import { getInput, setFailed } from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
 import { CleanBook } from "./clean-book";
 import returnWriteFile from "./write-file";
-import getBook from "./get-book";
-import titleParser from "./title-parser";
+import getBook, { BookOptions } from "./get-book";
+import { isDate } from "./utils";
 
-async function read() {
+export async function read() {
   try {
-    if (!github.context.payload.issue) {
-      throw new Error("Cannot find GitHub issue");
-    }
-    const { title, number, body } = github.context.payload.issue;
-    exportVariable("IssueNumber", number);
-    const { bookIsbn, date } = titleParser(title);
-    if (!bookIsbn)
-      throw new Error(`Cannot find book ISBN from given input" ${title}`);
+    const payload = github.context.payload.client_payload as BookOptions;
+    if (!payload) return setFailed("Missing `client_payload`");
+    if (!payload.bookIsbn) return setFailed("Missing `bookIsbn` in payload");
+    const { bookIsbn, dateFinished, notes } = payload;
+    if (dateFinished && !isDate(dateFinished))
+      return setFailed("Invalid `dateFinished` in payload");
     const fileName: string = getInput("readFileName");
     const providers = getInput("providers")
       ? getInput("providers").split(",")
       : isbn._providers;
     const bookMetadata = (await getBook(
-      { date, body, bookIsbn, providers },
+      { notes, bookIsbn, dateFinished, providers },
       fileName
     )) as CleanBook[];
     await returnWriteFile(fileName, bookMetadata);

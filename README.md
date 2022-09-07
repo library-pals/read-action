@@ -4,9 +4,9 @@
 
 ![.github/workflows/read.yml](https://github.com/katydecorah/read-action/workflows/.github/workflows/read.yml/badge.svg)
 
-This GitHub action tracks the books that you read by updating a YAML file in your repository. Pair it with the [iOS Shortcut](shortcut/README.md) to automatically format and open the GitHub issue.
+This GitHub action tracks the books that you read by updating a YAML file in your repository. Pair it with the [iOS Shortcut](shortcut/README.md) to automatically trigger the action.
 
-Create a new issue with the book's ISBN in the title. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
+[Create a respository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event) with information about the book. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
 
 <!-- START GENERATED DOCUMENTATION -->
 
@@ -15,16 +15,16 @@ Create a new issue with the book's ISBN in the title. The action will then fetch
 To use this action, create a new workflow in `.github/workflows` and modify it as needed:
 
 ```yml
+name: Read
+
 on:
-  issues:
-    types: opened
+  repository_dispatch:
+    types: [read]
 
 jobs:
   update_library:
     runs-on: macOS-latest
     name: Read
-    # only continue if issue has "read" label
-    if: contains( github.event.issue.labels.*.name, 'read')
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -34,15 +34,11 @@ jobs:
         run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
       - name: Commit files
         run: |
+          git pull
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A && git commit -m "Add ${{ env.BookTitle }} to _data/read.yml"
           git push
-      - name: Close issue
-        uses: peter-evans/close-issue@v2
-        with:
-          issue-number: "${{ env.IssueNumber }}"
-          comment: "📚 You read ${{ env.BookTitle }} on ${{env.DateRead}}."
 ```
 
 ## Action options
@@ -53,18 +49,21 @@ jobs:
 
 <!-- END GENERATED DOCUMENTATION -->
 
-## Create an issue
+## Send an event
 
-The title of your issue must start with the ISBN of the book:
+To trigger the action, you will [create a respository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event) with information about the book.
 
+The [iOS Shortcut](shortcut/README.md) helps format and send the event.
+
+### Payload
+
+```js
+{
+  "event_type": "read", // Optional. This helps you filter events in the workflow, in case you have more than one.
+  "client_payload": {
+    "bookIsbn": "", // Required. The book's ISBN.
+    "date": "", // Optional. The date you finished the book in YYYY-MM-DD format. The default date is today.
+    "notes": "" // Optional. Notes about the book.
+  }
+}
 ```
-1234567890
-```
-
-The action will automatically set the date that you finished the book (`dateFinished`) to today. To specify a different date that you finished the book, add the date after the ISBN in `YYYY-MM-DD` format.
-
-```
-1234567890 2020-06-12
-```
-
-If you add content to the body of the comment, the action will add it as the value of `notes`.

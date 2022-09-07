@@ -14383,7 +14383,8 @@ __nccwpck_require__.r(__webpack_exports__);
 
 // EXPORTS
 __nccwpck_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ src)
+  "default": () => (/* binding */ src),
+  "read": () => (/* binding */ read)
 });
 
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
@@ -14443,7 +14444,6 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 };
 
 
-
 function returnWriteFile(fileName, bookMetadata) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -14452,7 +14452,7 @@ function returnWriteFile(fileName, bookMetadata) {
             yield promise;
         }
         catch (error) {
-            (0,core.setFailed)(error);
+            throw new Error(error);
         }
     });
 }
@@ -14460,8 +14460,8 @@ function returnWriteFile(fileName, bookMetadata) {
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
 function cleanBook(options, book) {
-    const { date, body, bookIsbn } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: date }, (body && { notes: body })), ("title" in book && { title: book.title })), ("authors" in book && {
+    const { notes, bookIsbn, dateFinished } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: dateFinished || new Date().toISOString().slice(0, 10) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
         authors: book.authors,
     })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
         description: removeWrappedQuotes(book.description),
@@ -18342,7 +18342,6 @@ var read_file_awaiter = (undefined && undefined.__awaiter) || function (thisArg,
     });
 };
 
-
 function returnReadFile(fileName) {
     return read_file_awaiter(this, void 0, void 0, function* () {
         try {
@@ -18350,7 +18349,7 @@ function returnReadFile(fileName) {
             return yield promise;
         }
         catch (error) {
-            (0,core.setFailed)(error);
+            throw new Error(error);
         }
     });
 }
@@ -18372,12 +18371,22 @@ function toJson(fileName) {
     return to_json_awaiter(this, void 0, void 0, function* () {
         try {
             const contents = (yield returnReadFile(fileName));
-            return load(contents) || [];
+            return parseYaml(contents);
         }
         catch (error) {
             (0,core.setFailed)(error.message);
         }
     });
+}
+function parseYaml(contents) {
+    // empty file
+    if (!contents)
+        return [];
+    const json = load(contents);
+    // unable to parse file
+    if (!json)
+        return [];
+    return json;
 }
 
 ;// CONCATENATED MODULE: ./src/add-book.ts
@@ -18439,26 +18448,7 @@ function getBook(options, fileName) {
     });
 }
 
-;// CONCATENATED MODULE: ./src/title-parser.ts
-
-
-function titleParser(title) {
-    const split = title.split(" ");
-    const bookIsbn = isIsbn(split[0]) ? split[0] : undefined;
-    if (!bookIsbn)
-        (0,core.setFailed)(`ISBN is not valid: ${title}`);
-    const date = isDate(split[1])
-        ? split[1]
-        : new Date().toISOString().slice(0, 10);
-    (0,core.exportVariable)("DateRead", date);
-    return {
-        bookIsbn,
-        date,
-    };
-}
-
 ;// CONCATENATED MODULE: ./src/index.ts
-
 var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -18477,19 +18467,19 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 function read() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
-            if (!github.context.payload.issue) {
-                throw new Error("Cannot find GitHub issue");
-            }
-            const { title, number, body } = github.context.payload.issue;
-            (0,core.exportVariable)("IssueNumber", number);
-            const { bookIsbn, date } = titleParser(title);
-            if (!bookIsbn)
-                throw new Error(`Cannot find book ISBN from given input" ${title}`);
+            const payload = github.context.payload.client_payload;
+            if (!payload)
+                return (0,core.setFailed)("Missing `client_payload`");
+            if (!payload.bookIsbn)
+                return (0,core.setFailed)("Missing `bookIsbn` in payload");
+            const { bookIsbn, dateFinished, notes } = payload;
+            if (dateFinished && !isDate(dateFinished))
+                return (0,core.setFailed)("Invalid `dateFinished` in payload");
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
-            const bookMetadata = (yield getBook({ date, body, bookIsbn, providers }, fileName));
+            const bookMetadata = (yield getBook({ notes, bookIsbn, dateFinished, providers }, fileName));
             yield returnWriteFile(fileName, bookMetadata);
         }
         catch (error) {

@@ -2,9 +2,9 @@ import { promises, readFileSync } from "fs";
 import {
   removeWrappedQuotes,
   isIsbn,
-  isDate,
   toYaml,
   sortByDate,
+  isDate,
 } from "../utils";
 
 import book from "./fixture.json";
@@ -14,7 +14,7 @@ const books = readFileSync("./_data/read.yml", "utf-8");
 
 jest.mock("@actions/core");
 
-const date = "2020-09-12";
+const dateFinished = "2020-09-12";
 
 it("toYaml", async () => {
   jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
@@ -22,12 +22,11 @@ it("toYaml", async () => {
     toYaml(
       await addBook(
         {
-          date,
-          body: "Amazing!",
+          dateFinished,
+          notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],
         },
-
         book,
         "_data/read.yml"
       )
@@ -44,18 +43,18 @@ it("removeWrappedQuotes", () => {
   );
 });
 
-it("isDate", () => {
-  expect(isDate("abcde")).toEqual(false);
-  expect(isDate("2020-09-12")).toEqual(true);
-  expect(isDate("2020")).toEqual(false);
-});
-
 it("isIsbn", () => {
   expect(isIsbn("1234567890")).toEqual(true);
   expect(isIsbn("1234567890123")).toEqual(true);
   expect(isIsbn("123456789012")).toEqual(false);
   expect(isIsbn("12345678901234")).toEqual(false);
   expect(isIsbn("1")).toEqual(false);
+});
+
+it("isDate", () => {
+  expect(isDate("abcde")).toEqual(false);
+  expect(isDate("2020-09-12")).toEqual(true);
+  expect(isDate("2020")).toEqual(false);
 });
 
 it("sortByDate", () => {

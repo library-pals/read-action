@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`cleanBook 1`] = `
+exports[`cleanBook cleanBook 1`] = `
 {
   "authors": [
     "Yaa Gyasi",
@@ -10,6 +10,41 @@ exports[`cleanBook 1`] = `
     "Fiction",
   ],
   "dateFinished": "2020-09-12",
+  "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
+  "imageLinks": {
+    "smallThumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+  },
+  "industryIdentifiers": [
+    {
+      "identifier": "0525658181",
+      "type": "ISBN_10",
+    },
+    {
+      "identifier": "9780525658184",
+      "type": "ISBN_13",
+    },
+  ],
+  "isbn": "0525658181",
+  "language": "en",
+  "notes": "I loved it!",
+  "pageCount": 288,
+  "printType": "BOOK",
+  "publishedDate": "2020",
+  "title": "Transcendent Kingdom",
+}
+`;
+
+exports[`cleanBook cleanBook, no date 1`] = `
+{
+  "authors": [
+    "Yaa Gyasi",
+  ],
+  "canonicalVolumeLink": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+  "categories": [
+    "Fiction",
+  ],
+  "dateFinished": "2020-01-01",
   "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
   "imageLinks": {
     "smallThumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
