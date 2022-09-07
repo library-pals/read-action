@@ -1,4 +1,3 @@
-import { setFailed } from "@actions/core";
 import { promises, readFileSync } from "fs";
 import returnWriteFile from "../write-file";
 import { load } from "js-yaml";
@@ -16,7 +15,8 @@ describe("returnWriteFile", () => {
   });
   test("fails", async () => {
     jest.spyOn(promises, "writeFile").mockRejectedValue("Error");
-    await returnWriteFile("myfile.yml", books);
-    expect(setFailed).toHaveBeenCalledWith("Error");
+    await expect(returnWriteFile("my-file.yml", books)).rejects.toThrow(
+      "Error"
+    );
   });
 });

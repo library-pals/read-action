@@ -1,17 +1,21 @@
-import { setFailed } from "@actions/core";
-import { promises } from "fs";
 import returnReadFile from "../read-file";
+import { promises } from "fs";
 
 jest.mock("@actions/core");
 
 describe("returnReadFile", () => {
   test("works", async () => {
-    jest.spyOn(promises, "readFile").mockResolvedValueOnce("Hello world");
-    expect(await returnReadFile("myfile.yml")).toEqual("Hello world");
+    const readSpy = jest.spyOn(promises, "readFile").mockImplementation();
+    await returnReadFile("my-file.yml");
+    expect(readSpy.mock.calls[0]).toMatchInlineSnapshot(`
+      [
+        "my-file.yml",
+        "utf-8",
+      ]
+    `);
   });
-  test("fails", async () => {
+  test("error", async () => {
     jest.spyOn(promises, "readFile").mockRejectedValue("Error");
-    await returnReadFile("myfile.yml");
-    expect(setFailed).toHaveBeenCalledWith("Error");
+    await expect(returnReadFile("my-file.yml")).rejects.toThrow("Error");
   });
 });

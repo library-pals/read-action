@@ -1,21 +1,45 @@
-import toJson from "../to-json";
-import { promises } from "fs";
 import { setFailed } from "@actions/core";
+import returnReadFile from "../read-file";
+import toJson from "../to-json";
 
 jest.mock("@actions/core");
+jest.mock("../read-file");
 
 describe("toJson", () => {
   test("works", async () => {
-    jest.spyOn(promises, "readFile").mockResolvedValueOnce("- title: my title");
-    expect(await toJson("myfile.yml")).toEqual([{ title: "my title" }]);
+    returnReadFile.mockReturnValue(Promise.resolve("- title: Luster"));
+    expect(await toJson("my-file.yml")).toEqual([{ title: "Luster" }]);
   });
-  test("fails", async () => {
-    jest
-      .spyOn(promises, "readFile")
-      .mockResolvedValueOnce("- title: my: title");
-    await toJson("myfile.yml");
-    expect(setFailed).toHaveBeenCalledWith(
-      expect.stringContaining("bad indentation of a mapping entry")
+
+  test("error", async () => {
+    returnReadFile.mockReturnValue(Promise.reject(new Error("oops")));
+    await toJson("my-file.yml");
+    expect(setFailed).toHaveBeenCalledWith("oops");
+  });
+
+  test("can add book game to filled yaml file", async () => {
+    returnReadFile.mockReturnValue(
+      Promise.resolve(`- title: God Save the Child`)
     );
+    expect(await toJson("my-file.yml")).toMatchInlineSnapshot(`
+      [
+        {
+          "title": "God Save the Child",
+        },
+      ]
+    `);
+  });
+
+  test("can add book to empty yaml file", async () => {
+    returnReadFile.mockReturnValue(Promise.resolve(""));
+    expect(await toJson("my-file.yml")).toMatchInlineSnapshot(`[]`);
+  });
+
+  test("can add book to yaml file with whitespace", async () => {
+    returnReadFile.mockReturnValue(
+      Promise.resolve(`
+  `)
+    );
+    expect(await toJson("my-file.yml")).toMatchInlineSnapshot(`[]`);
   });
 });

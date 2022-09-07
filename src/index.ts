@@ -4,11 +4,16 @@ import isbn from "node-isbn";
 import { CleanBook } from "./clean-book";
 import returnWriteFile from "./write-file";
 import getBook, { BookOptions } from "./get-book";
+import { isDate } from "./utils";
 
-async function read() {
+export async function read() {
   try {
-    const { dateFinished, bookIsbn, notes } = github.context.payload
-      .client_payload as BookOptions;
+    const payload = github.context.payload.client_payload as BookOptions;
+    if (!payload) return setFailed("Missing `client_payload`");
+    if (!payload.bookIsbn) return setFailed("Missing `bookIsbn` in payload");
+    const { bookIsbn, dateFinished, notes } = payload;
+    if (dateFinished && !isDate(dateFinished))
+      return setFailed("Invalid `dateFinished` in payload");
     const fileName: string = getInput("readFileName");
     const providers = getInput("providers")
       ? getInput("providers").split(",")

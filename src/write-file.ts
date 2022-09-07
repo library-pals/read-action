@@ -1,5 +1,4 @@
 import { writeFile } from "fs/promises";
-import { setFailed } from "@actions/core";
 import { toYaml } from "./utils";
 import { CleanBook } from "./clean-book";
 
@@ -12,6 +11,6 @@ export default async function returnWriteFile(
     const promise = writeFile(fileName, data);
     await promise;
   } catch (error) {
-    setFailed(error);
+    throw new Error(error);
   }
 }

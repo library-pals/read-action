@@ -14383,7 +14383,8 @@ __nccwpck_require__.r(__webpack_exports__);
 
 // EXPORTS
 __nccwpck_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ src)
+  "default": () => (/* binding */ src),
+  "read": () => (/* binding */ read)
 });
 
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
@@ -14399,6 +14400,14 @@ const promises_namespaceObject = require("fs/promises");
 var json_to_pretty_yaml = __nccwpck_require__(6760);
 ;// CONCATENATED MODULE: ./src/utils.ts
 
+/** make sure date is in YYYY-MM-DD format */
+function dateFormat(date) {
+    return date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
+}
+/** make sure date value is a date */
+function isDate(date) {
+    return !isNaN(Date.parse(date)) && dateFormat(date);
+}
 /** make sure ISBN has 10 or 13 characters */
 function isIsbn(isbn) {
     return isbn.length === 10 || isbn.length === 13;
@@ -14435,7 +14444,6 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 };
 
 
-
 function returnWriteFile(fileName, bookMetadata) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -14444,7 +14452,7 @@ function returnWriteFile(fileName, bookMetadata) {
             yield promise;
         }
         catch (error) {
-            (0,core.setFailed)(error);
+            throw new Error(error);
         }
     });
 }
@@ -18334,7 +18342,6 @@ var read_file_awaiter = (undefined && undefined.__awaiter) || function (thisArg,
     });
 };
 
-
 function returnReadFile(fileName) {
     return read_file_awaiter(this, void 0, void 0, function* () {
         try {
@@ -18342,7 +18349,7 @@ function returnReadFile(fileName) {
             return yield promise;
         }
         catch (error) {
-            (0,core.setFailed)(error);
+            throw new Error(error);
         }
     });
 }
@@ -18364,12 +18371,22 @@ function toJson(fileName) {
     return to_json_awaiter(this, void 0, void 0, function* () {
         try {
             const contents = (yield returnReadFile(fileName));
-            return load(contents) || [];
+            return parseYaml(contents);
         }
         catch (error) {
             (0,core.setFailed)(error.message);
         }
     });
+}
+function parseYaml(contents) {
+    // empty file
+    if (!contents)
+        return [];
+    const json = load(contents);
+    // unable to parse file
+    if (!json)
+        return [];
+    return json;
 }
 
 ;// CONCATENATED MODULE: ./src/add-book.ts
@@ -18446,10 +18463,18 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 
 
+
 function read() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
-            const { dateFinished, bookIsbn, notes } = github.context.payload.client_payload;
+            const payload = github.context.payload.client_payload;
+            if (!payload)
+                return (0,core.setFailed)("Missing `client_payload`");
+            if (!payload.bookIsbn)
+                return (0,core.setFailed)("Missing `bookIsbn` in payload");
+            const { bookIsbn, dateFinished, notes } = payload;
+            if (dateFinished && !isDate(dateFinished))
+                return (0,core.setFailed)("Invalid `dateFinished` in payload");
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")

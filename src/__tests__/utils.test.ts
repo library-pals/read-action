@@ -1,5 +1,11 @@
 import { promises, readFileSync } from "fs";
-import { removeWrappedQuotes, isIsbn, toYaml, sortByDate } from "../utils";
+import {
+  removeWrappedQuotes,
+  isIsbn,
+  toYaml,
+  sortByDate,
+  isDate,
+} from "../utils";
 
 import book from "./fixture.json";
 import addBook from "../add-book";
@@ -43,6 +49,12 @@ it("isIsbn", () => {
   expect(isIsbn("123456789012")).toEqual(false);
   expect(isIsbn("12345678901234")).toEqual(false);
   expect(isIsbn("1")).toEqual(false);
+});
+
+it("isDate", () => {
+  expect(isDate("abcde")).toEqual(false);
+  expect(isDate("2020-09-12")).toEqual(true);
+  expect(isDate("2020")).toEqual(false);
 });
 
 it("sortByDate", () => {
