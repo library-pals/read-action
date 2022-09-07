@@ -10,7 +10,7 @@ This GitHub action tracks the books that you read by updating a YAML file in you
 
 ## Payload
 
-```json
+```js
 {
   "event_type": "read", // Optional. This helps you filter events in the workflow, in case you have more than one.
   "client_payload": {
