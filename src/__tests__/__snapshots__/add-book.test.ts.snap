@@ -186,6 +186,37 @@ exports[`addBook works 1`] = `
     "publishedDate": "2014-12-17",
     "title": "Ain't I a Woman",
   },
+  {
+    "authors": [
+      "Kali Fajardo-Anstine",
+    ],
+    "canonicalVolumeLink": "https://play.google.com/store/books/details?id=5LhBEAAAQBAJ",
+    "categories": [
+      "Fiction",
+    ],
+    "dateFinished": "2022-09-07",
+    "description": "NATIONAL BESTSELLER • A dazzling epic of betrayal, love, and fate that spans five generations of an Indigenous Chicano family in the American West, from the author of the National Book Award finalist Sabrina & Corina A Phenomenal Book Club Pick • “Sometimes you just step into a book and let it wash over you, like you’re swimming under a big, sparkling night sky.”—Celeste Ng, author of Little Fires Everywhere and Everything I Never Told You ONE OF THE MOST ANTICIPATED BOOKS OF 2022—The Millions, Electric Lit, Lit Hub, Book Riot There is one every generation, a seer who keeps the stories. Luz “Little Light” Lopez, a tea leaf reader and laundress, is left to fend for herself after her older brother, Diego, a snake charmer and factory worker, is run out of town by a violent white mob. As Luz navigates 1930s Denver, she begins to have visions that transport her to her Indigenous homeland in the nearby Lost Territory. Luz recollects her ancestors’ origins, how her family flourished, and how they were threatened. She bears witness to the sinister forces that have devastated her people and their homelands for generations. In the end, it is up to Luz to save her family stories from disappearing into oblivion. Written in Kali Fajardo-Anstine’s singular voice, the wildly entertaining and complex lives of the Lopez family fill the pages of this multigenerational western saga. Woman of Light is a transfixing novel about survival, family secrets, and love—filled with an unforgettable cast of characters, all of whom are just as special, memorable, and complicated as our beloved heroine, Luz.",
+    "imageLinks": {
+      "smallThumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "thumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    },
+    "industryIdentifiers": [
+      {
+        "identifier": "9780525511342",
+        "type": "ISBN_13",
+      },
+      {
+        "identifier": "0525511342",
+        "type": "ISBN_10",
+      },
+    ],
+    "isbn": "9780525511342",
+    "language": "en",
+    "pageCount": 336,
+    "printType": "BOOK",
+    "publishedDate": "2022-06-07",
+    "title": "Woman of Light",
+  },
 ]
 `;
 
@@ -408,6 +439,37 @@ exports[`addBook works, no images 1`] = `
     "printType": "BOOK",
     "publishedDate": "2014-12-17",
     "title": "Ain't I a Woman",
+  },
+  {
+    "authors": [
+      "Kali Fajardo-Anstine",
+    ],
+    "canonicalVolumeLink": "https://play.google.com/store/books/details?id=5LhBEAAAQBAJ",
+    "categories": [
+      "Fiction",
+    ],
+    "dateFinished": "2022-09-07",
+    "description": "NATIONAL BESTSELLER • A dazzling epic of betrayal, love, and fate that spans five generations of an Indigenous Chicano family in the American West, from the author of the National Book Award finalist Sabrina & Corina A Phenomenal Book Club Pick • “Sometimes you just step into a book and let it wash over you, like you’re swimming under a big, sparkling night sky.”—Celeste Ng, author of Little Fires Everywhere and Everything I Never Told You ONE OF THE MOST ANTICIPATED BOOKS OF 2022—The Millions, Electric Lit, Lit Hub, Book Riot There is one every generation, a seer who keeps the stories. Luz “Little Light” Lopez, a tea leaf reader and laundress, is left to fend for herself after her older brother, Diego, a snake charmer and factory worker, is run out of town by a violent white mob. As Luz navigates 1930s Denver, she begins to have visions that transport her to her Indigenous homeland in the nearby Lost Territory. Luz recollects her ancestors’ origins, how her family flourished, and how they were threatened. She bears witness to the sinister forces that have devastated her people and their homelands for generations. In the end, it is up to Luz to save her family stories from disappearing into oblivion. Written in Kali Fajardo-Anstine’s singular voice, the wildly entertaining and complex lives of the Lopez family fill the pages of this multigenerational western saga. Woman of Light is a transfixing novel about survival, family secrets, and love—filled with an unforgettable cast of characters, all of whom are just as special, memorable, and complicated as our beloved heroine, Luz.",
+    "imageLinks": {
+      "smallThumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+      "thumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    },
+    "industryIdentifiers": [
+      {
+        "identifier": "9780525511342",
+        "type": "ISBN_13",
+      },
+      {
+        "identifier": "0525511342",
+        "type": "ISBN_10",
+      },
+    ],
+    "isbn": "9780525511342",
+    "language": "en",
+    "pageCount": 336,
+    "printType": "BOOK",
+    "publishedDate": "2022-06-07",
+    "title": "Woman of Light",
   },
 ]
 `;
