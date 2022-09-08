@@ -18461,8 +18461,8 @@ function getBook(options, fileName) {
     });
 }
 
-;// CONCATENATED MODULE: ./src/look-up-book.ts
-var look_up_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+;// CONCATENATED MODULE: ./src/finished-book.ts
+var finished_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -18473,18 +18473,18 @@ var look_up_book_awaiter = (undefined && undefined.__awaiter) || function (thisA
 };
 
 
-function lookUpBook({ fileName, bookIsbn, dateFinished, notes, }) {
-    return look_up_book_awaiter(this, void 0, void 0, function* () {
+function finishedBook({ fileName, bookIsbn, dateFinished, notes, }) {
+    return finished_book_awaiter(this, void 0, void 0, function* () {
         const currentBooks = yield toJson(fileName);
         if (currentBooks === undefined || currentBooks.length === 0)
             return false;
-        if (!currentBooks.filter((f) => f.isbn === bookIsbn).length)
+        if (currentBooks.filter((f) => f.isbn === bookIsbn).length === 0)
             return false;
-        return finishedBook({ currentBooks, bookIsbn, dateFinished, notes });
+        return updateBook({ currentBooks, bookIsbn, dateFinished, notes });
     });
 }
-function finishedBook({ currentBooks, bookIsbn, dateFinished, notes, }) {
-    return look_up_book_awaiter(this, void 0, void 0, function* () {
+function updateBook({ currentBooks, bookIsbn, dateFinished, notes, }) {
+    return finished_book_awaiter(this, void 0, void 0, function* () {
         return currentBooks.reduce((arr, book) => {
             if (book.isbn === bookIsbn) {
                 book.dateFinished = setDateFinished(dateFinished, book.dateStarted);
@@ -18533,16 +18533,16 @@ function read() {
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
-            // Check if book already exists
-            const checkLibrary = yield lookUpBook({
+            // Check if book already exists in library
+            const bookExists = yield finishedBook({
                 fileName,
                 bookIsbn,
                 dateFinished,
                 notes,
             });
-            const library = checkLibrary == false
+            const library = bookExists == false
                 ? yield getBook({ notes, bookIsbn, dateStarted, dateFinished, providers }, fileName)
-                : checkLibrary;
+                : bookExists;
             yield returnWriteFile(fileName, library);
         }
         catch (error) {
