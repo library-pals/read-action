@@ -14418,7 +14418,13 @@ function toYaml(json) {
 }
 /** sort array of objects by `dateFinished` */
 function sortByDate(array) {
-    return array.sort((a, b) => new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf());
+    return array.sort((a, b) => {
+        if (a.dateFinished && b.dateFinished) {
+            return (new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf());
+        }
+        else
+            return 0;
+    });
 }
 /** remove wrapped quotes */
 function removeWrappedQuotes(str) {
@@ -14430,6 +14436,13 @@ function removeWrappedQuotes(str) {
     }
     else
         return str;
+}
+function setDateFinished(dateFinished, dateStarted) {
+    return dateFinished
+        ? dateFinished
+        : dateStarted
+            ? undefined
+            : new Date().toISOString().slice(0, 10);
 }
 
 ;// CONCATENATED MODULE: ./src/write-file.ts
@@ -14460,8 +14473,8 @@ function returnWriteFile(fileName, bookMetadata) {
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
 function cleanBook(options, book) {
-    const { notes, bookIsbn, dateFinished } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: dateFinished || new Date().toISOString().slice(0, 10) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
+    const { notes, bookIsbn, dateStarted, dateFinished } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateStarted: dateStarted || undefined, dateFinished: setDateFinished(dateFinished, dateStarted) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
         authors: book.authors,
     })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
         description: removeWrappedQuotes(book.description),
@@ -18448,6 +18461,41 @@ function getBook(options, fileName) {
     });
 }
 
+;// CONCATENATED MODULE: ./src/look-up-book.ts
+var look_up_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+function lookUpBook({ fileName, bookIsbn, dateFinished, notes, }) {
+    return look_up_book_awaiter(this, void 0, void 0, function* () {
+        const currentBooks = yield toJson(fileName);
+        if (currentBooks === undefined || currentBooks.length === 0)
+            return false;
+        if (!currentBooks.filter((f) => f.isbn === bookIsbn).length)
+            return false;
+        return finishedBook({ currentBooks, bookIsbn, dateFinished, notes });
+    });
+}
+function finishedBook({ currentBooks, bookIsbn, dateFinished, notes, }) {
+    return look_up_book_awaiter(this, void 0, void 0, function* () {
+        return currentBooks.reduce((arr, book) => {
+            if (book.isbn === bookIsbn) {
+                book.dateFinished = setDateFinished(dateFinished, book.dateStarted);
+                book.notes = notes;
+            }
+            arr.push(book);
+            return arr;
+        }, []);
+    });
+}
+
 ;// CONCATENATED MODULE: ./src/index.ts
 var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -18464,23 +18512,38 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 
 
+
 function read() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
+            // Get client_payload
             const payload = github.context.payload.client_payload;
+            // Validate client_payload
             if (!payload)
                 return (0,core.setFailed)("Missing `client_payload`");
             if (!payload.bookIsbn)
                 return (0,core.setFailed)("Missing `bookIsbn` in payload");
-            const { bookIsbn, dateFinished, notes } = payload;
+            const { bookIsbn, dateFinished, dateStarted, notes } = payload;
             if (dateFinished && !isDate(dateFinished))
                 return (0,core.setFailed)("Invalid `dateFinished` in payload");
+            if (dateStarted && !isDate(dateStarted))
+                return (0,core.setFailed)("Invalid `dateStarted` in payload");
+            // Set inputs
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
-            const bookMetadata = (yield getBook({ notes, bookIsbn, dateFinished, providers }, fileName));
-            yield returnWriteFile(fileName, bookMetadata);
+            // Check if book already exists
+            const checkLibrary = yield lookUpBook({
+                fileName,
+                bookIsbn,
+                dateFinished,
+                notes,
+            });
+            const library = checkLibrary == false
+                ? yield getBook({ notes, bookIsbn, dateStarted, dateFinished, providers }, fileName)
+                : checkLibrary;
+            yield returnWriteFile(fileName, library);
         }
         catch (error) {
             (0,core.setFailed)(error.message);

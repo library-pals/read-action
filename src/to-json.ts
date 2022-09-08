@@ -5,7 +5,7 @@ import returnReadFile from "./read-file";
 
 export default async function toJson(
   fileName: string
-): Promise<CleanBook[] | [] | void> {
+): Promise<CleanBook[] | undefined> {
   try {
     const contents = (await returnReadFile(fileName)) as string;
     return parseYaml(contents);

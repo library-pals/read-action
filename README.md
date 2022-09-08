@@ -60,7 +60,8 @@ The [iOS Shortcut](shortcut/README.md) helps format and send the event.
   "event_type": "read", // Optional. This helps you filter events in the workflow, in case you have more than one.
   "client_payload": {
     "bookIsbn": "", // Required. The book's ISBN.
-    "date": "", // Optional. The date you finished the book in YYYY-MM-DD format. The default date is today.
+    "dateFinished": "", // Optional. The date you finished the book in YYYY-MM-DD format. The default date is today (unless dateStarted is defined, then it is `undefined`).
+    "dateStarted": "", // Optional. The date you started the book in YYYY-MM-DD format. The default date is `undefined`.
     "notes": "" // Optional. Notes about the book.
   }
 }
