@@ -109,28 +109,15 @@ describe("index", () => {
             "authors": [
               "Raven Leilani",
             ],
-            "canonicalVolumeLink": "https://books.google.com/books/about/Luster.html?hl=&id=eJ06zQEACAAJ",
             "dateFinished": "2022-01-18",
             "description": "Sharp, comic, disruptive, tender, Raven Leilani's debut novel, Luster, sees a young black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties--sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage--with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only black woman who young Akila knows. Razor sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make her sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
-            "imageLinks": {
-              "smallThumbnail": "https://books.google.com/books/content?id=eJ06zQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-              "thumbnail": "https://books.google.com/books/content?id=eJ06zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-            },
-            "industryIdentifiers": [
-              {
-                "identifier": "0385696000",
-                "type": "ISBN_10",
-              },
-              {
-                "identifier": "9780385696005",
-                "type": "ISBN_13",
-              },
-            ],
             "isbn": "9780385696005",
             "language": "en",
+            "link": "https://books.google.com/books/about/Luster.html?hl=&id=eJ06zQEACAAJ",
             "pageCount": 240,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
+            "thumbnail": "https://books.google.com/books/content?id=eJ06zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
             "title": "Luster",
           },
         ],
