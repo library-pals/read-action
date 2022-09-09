@@ -14204,20 +14204,15 @@ function removeWrappedQuotes(str) {
 
 function cleanBook(options, book) {
     const { notes, bookIsbn, dateFinished } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: dateFinished || new Date().toISOString().slice(0, 10) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: dateFinished || new Date().toISOString().slice(0, 10) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
         authors: book.authors,
     })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
         description: removeWrappedQuotes(book.description),
-    })), ("industryIdentifiers" in book && {
-        industryIdentifiers: book.industryIdentifiers,
-    })), ("pageCount" in book && { pageCount: book.pageCount })), ("printType" in book && { printType: book.printType })), ("categories" in book && { categories: book.categories })), ("imageLinks" in book && {
-        imageLinks: Object.assign(Object.assign({}, ("smallThumbnail" in book.imageLinks && {
-            smallThumbnail: book.imageLinks.smallThumbnail.replace("http:", "https:"),
-        })), ("thumbnail" in book.imageLinks && {
-            thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
-        })),
+    })), ("pageCount" in book && { pageCount: book.pageCount })), ("printType" in book && { printType: book.printType })), ("categories" in book && { categories: book.categories })), ("imageLinks" in book &&
+        "thumbnail" in book.imageLinks && {
+        thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
     })), ("language" in book && { language: book.language })), ("canonicalVolumeLink" in book && {
-        canonicalVolumeLink: book.canonicalVolumeLink,
+        link: book.canonicalVolumeLink,
     }));
 }
 
@@ -14266,9 +14261,9 @@ function addBook(options, book, fileName) {
         // clean up book data
         const newBook = cleanBook(options, book);
         // export book thumbnail to download later
-        if (newBook.imageLinks && newBook.imageLinks.thumbnail) {
+        if (newBook.thumbnail) {
             (0,core.exportVariable)("BookThumbOutput", `book-${newBook.isbn}.png`);
-            (0,core.exportVariable)("BookThumb", newBook.imageLinks.thumbnail);
+            (0,core.exportVariable)("BookThumb", newBook.thumbnail);
         }
         // append new book
         readListJson.push(newBook);
