@@ -6,16 +6,16 @@ jest.mock("@actions/core");
 describe("returnReadFile", () => {
   test("works", async () => {
     const readSpy = jest.spyOn(promises, "readFile").mockImplementation();
-    await returnReadFile("my-file.yml");
+    await returnReadFile("my-file.json");
     expect(readSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "my-file.yml",
+        "my-file.json",
         "utf-8",
       ]
     `);
   });
   test("error", async () => {
     jest.spyOn(promises, "readFile").mockRejectedValue("Error");
-    await expect(returnReadFile("my-file.yml")).rejects.toThrow("Error");
+    await expect(returnReadFile("my-file.json")).rejects.toThrow("Error");
   });
 });

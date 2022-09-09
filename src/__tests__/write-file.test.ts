@@ -1,21 +1,22 @@
 import { promises, readFileSync } from "fs";
 import returnWriteFile from "../write-file";
-import { load } from "js-yaml";
 import { CleanBook } from "../clean-book";
 
-const books = load(readFileSync("./_data/read.yml", "utf-8")) as CleanBook[];
+const books = JSON.parse(
+  readFileSync("./_data/read.json", "utf-8")
+) as CleanBook[];
 
 jest.mock("@actions/core");
 
 describe("returnWriteFile", () => {
   test("works", async () => {
     jest.spyOn(promises, "writeFile").mockResolvedValueOnce();
-    await returnWriteFile("myfile.yml", books);
+    await returnWriteFile("myfile.json", books);
     expect(promises.writeFile).toHaveBeenCalled();
   });
   test("fails", async () => {
     jest.spyOn(promises, "writeFile").mockRejectedValue("Error");
-    await expect(returnWriteFile("my-file.yml", books)).rejects.toThrow(
+    await expect(returnWriteFile("my-file.json", books)).rejects.toThrow(
       "Error"
     );
   });

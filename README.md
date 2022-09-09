@@ -2,7 +2,7 @@
 
 ![Test](https://github.com/katydecorah/read-action/workflows/Test/badge.svg?branch=main) [![Read](https://github.com/katydecorah/read-action/actions/workflows/read.yml/badge.svg)](https://github.com/katydecorah/read-action/actions/workflows/read.yml)
 
-This GitHub action tracks the books that you read by updating a YAML file in your repository. Pair it with the [iOS Shortcut](shortcut/README.md) to automatically trigger the action.
+This GitHub action tracks the books that you read by updating a JSON file in your repository. Pair it with the [iOS Shortcut](shortcut/README.md) to automatically trigger the action.
 
 [Create a respository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event) with information about the book. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
 
@@ -35,13 +35,13 @@ jobs:
           git pull
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -A && git commit -m "Add ${{ env.BookTitle }} to _data/read.yml"
+          git add -A && git commit -m "Add ${{ env.BookTitle }} to _data/read.json"
           git push
 ```
 
 ## Action options
 
-- `readFileName`: The file where you want to save your books. Default: `_data/read.yml`.
+- `readFileName`: The file where you want to save your books. Default: `_data/read.json`.
 
 - `providers`: Specify the [ISBN providers](https://github.com/palmerabollo/node-isbn#setting-backend-providers) that you want to use, in the order you need them to be invoked. If setting more than one provider, separate each with a comma.
 
