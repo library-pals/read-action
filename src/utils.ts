@@ -1,6 +1,3 @@
-import { stringify } from "json-to-pretty-yaml";
-import { CleanBook } from "./clean-book";
-
 /** make sure date is in YYYY-MM-DD format */
 export function dateFormat(date: string) {
   return date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
@@ -14,11 +11,6 @@ export function isDate(date: string) {
 /** make sure ISBN has 10 or 13 characters */
 export function isIsbn(isbn: string) {
   return isbn.length === 10 || isbn.length === 13;
-}
-
-/** convert json to pretty yaml */
-export function toYaml(json: CleanBook[]) {
-  return stringify(json);
 }
 
 /** sort array of objects by `dateFinished` */

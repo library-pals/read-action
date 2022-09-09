@@ -1,5 +1,4 @@
 import { writeFile } from "fs/promises";
-import { toYaml } from "./utils";
 import { CleanBook } from "./clean-book";
 
 export default async function returnWriteFile(
@@ -7,8 +6,7 @@ export default async function returnWriteFile(
   bookMetadata: CleanBook[]
 ) {
   try {
-    const data = toYaml(bookMetadata);
-    const promise = writeFile(fileName, data);
+    const promise = writeFile(fileName, JSON.stringify(bookMetadata, null, 2));
     await promise;
   } catch (error) {
     throw new Error(error);
