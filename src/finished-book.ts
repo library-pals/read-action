@@ -1,5 +1,5 @@
 import { CleanBook } from "./clean-book";
-import toJson from "./to-json";
+import returnReadFile from "./read-file";
 import { setDateFinished } from "./utils";
 
 export async function finishedBook({
@@ -10,10 +10,10 @@ export async function finishedBook({
 }: {
   fileName: string;
   bookIsbn: string;
-  dateFinished: string | undefined;
+  dateFinished?: string | undefined;
   notes?: string;
 }): Promise<false | CleanBook[]> {
-  const currentBooks = await toJson(fileName);
+  const currentBooks = await returnReadFile(fileName);
   if (currentBooks === undefined || currentBooks.length === 0) return false;
   if (currentBooks.filter((f) => f.isbn === bookIsbn).length === 0)
     return false;

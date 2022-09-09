@@ -1,16 +1,19 @@
 import { finishedBook } from "../finished-book";
 import { promises } from "fs";
 
-const mockReadFile = `
-- isbn: "9780374719760"
-  dateStarted: "2020-11-20"
-  dateFinished: "2020-11-22"
-  title: "Uncanny Valley"
-
-- isbn: "9780525620792"
-  dateStarted: "2021-09-26"
-  title: "Mexican Gothic"
-`;
+const mockReadFile = JSON.stringify([
+  {
+    isbn: "9780374719760",
+    dateStarted: "2020-11-20",
+    dateFinished: "2020-11-22",
+    title: "Uncanny Valley",
+  },
+  {
+    isbn: "9780525620792",
+    dateStarted: "2021-09-26",
+    title: "Mexican Gothic",
+  },
+]);
 
 describe("finishedBook", () => {
   it("works", async () => {
@@ -52,7 +55,7 @@ describe("finishedBook", () => {
   });
 
   it("no library", async () => {
-    jest.spyOn(promises, "readFile").mockResolvedValue([]);
+    jest.spyOn(promises, "readFile").mockResolvedValue(`[]`);
     return expect(
       finishedBook({
         fileName: "my-library.yml",

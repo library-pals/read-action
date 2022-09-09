@@ -14331,7 +14331,7 @@ var finished_book_awaiter = (undefined && undefined.__awaiter) || function (this
 
 function finishedBook({ fileName, bookIsbn, dateFinished, notes, }) {
     return finished_book_awaiter(this, void 0, void 0, function* () {
-        const currentBooks = yield toJson(fileName);
+        const currentBooks = yield returnReadFile(fileName);
         if (currentBooks === undefined || currentBooks.length === 0)
             return false;
         if (currentBooks.filter((f) => f.isbn === bookIsbn).length === 0)
