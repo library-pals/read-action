@@ -8,16 +8,12 @@ export type CleanBook = {
   authors?: string[];
   publishedDate?: string;
   description?: string;
-  industryIdentifiers?: { type?: string; indentifier?: string }[];
   categories?: string[];
   pageCount?: number;
   printType?: string;
-  imageLinks?: {
-    smallThumbnail?: string;
-    thumbnail?: string;
-  };
+  thumbnail?: string;
   language?: string;
-  canonicalVolumeLink?: string;
+  link?: string;
   isbn: string;
   notes?: string;
 };
@@ -37,28 +33,16 @@ export default function cleanBook(options: BookOptions, book: Book): CleanBook {
     ...("description" in book && {
       description: removeWrappedQuotes(book.description),
     }),
-    ...("industryIdentifiers" in book && {
-      industryIdentifiers: book.industryIdentifiers,
-    }),
     ...("pageCount" in book && { pageCount: book.pageCount }),
     ...("printType" in book && { printType: book.printType }),
     ...("categories" in book && { categories: book.categories }),
-    ...("imageLinks" in book && {
-      imageLinks: {
-        ...("smallThumbnail" in book.imageLinks && {
-          smallThumbnail: book.imageLinks.smallThumbnail.replace(
-            "http:",
-            "https:"
-          ),
-        }),
-        ...("thumbnail" in book.imageLinks && {
-          thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
-        }),
-      },
-    }),
+    ...("imageLinks" in book &&
+      "thumbnail" in book.imageLinks && {
+        thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
+      }),
     ...("language" in book && { language: book.language }),
     ...("canonicalVolumeLink" in book && {
-      canonicalVolumeLink: book.canonicalVolumeLink,
+      link: book.canonicalVolumeLink,
     }),
   };
 }
