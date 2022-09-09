@@ -4,7 +4,7 @@ import { promises, readFileSync } from "fs";
 import book from "./fixture.json";
 import isbn from "node-isbn";
 
-const books = readFileSync("./_data/read.yml", "utf-8");
+const books = readFileSync("./_data/read.json", "utf-8");
 const dateFinished = "2020-09-12";
 
 jest.mock("@actions/core");
@@ -45,7 +45,7 @@ describe("getBook", () => {
     await expect(
       getBook(
         { dateFinished, bookIsbn: "9780525658184", providers: ["google"] },
-        "_data/read.yml"
+        "_data/read.json"
       )
     ).rejects.toMatchInlineSnapshot(`[Error: Error!]`);
   });

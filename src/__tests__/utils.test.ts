@@ -1,38 +1,6 @@
-import { promises, readFileSync } from "fs";
-import {
-  removeWrappedQuotes,
-  isIsbn,
-  toYaml,
-  sortByDate,
-  isDate,
-} from "../utils";
-
-import book from "./fixture.json";
-import addBook from "../add-book";
-
-const books = readFileSync("./_data/read.yml", "utf-8");
+import { removeWrappedQuotes, isIsbn, sortByDate, isDate } from "../utils";
 
 jest.mock("@actions/core");
-
-const dateFinished = "2020-09-12";
-
-it("toYaml", async () => {
-  jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
-  expect(
-    toYaml(
-      await addBook(
-        {
-          dateFinished,
-          notes: "Amazing!",
-          bookIsbn: "0525658181",
-          providers: [],
-        },
-        book,
-        "_data/read.yml"
-      )
-    )
-  ).toMatchSnapshot();
-});
 
 it("removeWrappedQuotes", () => {
   expect(removeWrappedQuotes("hello")).toBe("hello");
