@@ -14376,9 +14376,9 @@ function read() {
                 return (0,core.setFailed)("Missing `bookIsbn` in payload");
             const { bookIsbn, dateFinished, dateStarted, notes } = payload;
             if (dateFinished && !isDate(dateFinished))
-                return (0,core.setFailed)("Invalid `dateFinished` in payload");
+                return (0,core.setFailed)(`Invalid \`dateFinished\` in payload: ${dateFinished}`);
             if (dateStarted && !isDate(dateStarted))
-                return (0,core.setFailed)("Invalid `dateStarted` in payload");
+                return (0,core.setFailed)(`Invalid \`dateStarted\` in payload: ${dateStarted}`);
             // Set inputs
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")

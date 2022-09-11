@@ -15,9 +15,9 @@ export async function read() {
     if (!payload.bookIsbn) return setFailed("Missing `bookIsbn` in payload");
     const { bookIsbn, dateFinished, dateStarted, notes } = payload;
     if (dateFinished && !isDate(dateFinished))
-      return setFailed("Invalid `dateFinished` in payload");
+      return setFailed(`Invalid \`dateFinished\` in payload: ${dateFinished}`);
     if (dateStarted && !isDate(dateStarted))
-      return setFailed("Invalid `dateStarted` in payload");
+      return setFailed(`Invalid \`dateStarted\` in payload: ${dateStarted}`);
     // Set inputs
     const fileName: string = getInput("readFileName");
     const providers = getInput("providers")
