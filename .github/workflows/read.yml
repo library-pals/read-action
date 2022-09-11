@@ -14,6 +14,7 @@ jobs:
       - name: Read
         uses: ./
       - name: Download the book thumbnail
+        if: env.BookThumbOutput != ''
         run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
       - name: Commit files
         run: |
