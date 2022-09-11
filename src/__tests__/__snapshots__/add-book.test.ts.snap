@@ -128,6 +128,26 @@ exports[`addBook works 1`] = `
     "thumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "title": "Woman of Light",
   },
+  {
+    "authors": [
+      "Kim Fu",
+    ],
+    "categories": [
+      "Fiction",
+    ],
+    "dateFinished": "2022-09-11",
+    "dateStarted": "2022-09-10",
+    "description": ""The strange and wonderful define Kim Fu’s story collection, where the line between fantasy and reality fades in and out, elusive and beckoning." —The New York Times Book Review A LitHub, ALTA, and PureWow Best Book of the Month A BuzzFeed and WIRED Pick for a Book You Need to Read This Winter In the twelve unforgettable tales of Lesser Known Monsters of the 21st Century, the strange is made familiar and the familiar strange, such that a girl growing wings on her legs feels like an ordinary rite of passage, while a bug-infested house becomes an impossible, Kafkaesque nightmare. Each story builds a new world all its own: a group of children steal a haunted doll; a runaway bride encounters a sea monster; a vendor sells toy boxes that seemingly control the passage of time; an insomniac is seduced by the Sandman. These visions of modern life wrestle with themes of death and technological consequence, guilt and sexuality, and unmask the contradictions that exist within all of us. Mesmerizing, electric, and wholly original, Kim Fu’s Lesser Known Monsters of the 21st Century blurs the boundaries of the real and fantastic, offering intricate and surprising insights into human nature.",
+    "isbn": "9781953534064",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=4D1UEAAAQBAJ",
+    "notes": "",
+    "pageCount": 232,
+    "printType": "BOOK",
+    "publishedDate": "2022-02-01",
+    "thumbnail": "https://books.google.com/books/content?id=4D1UEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "title": "Lesser Known Monsters of the 21st Century",
+  },
 ]
 `;
 
@@ -282,6 +302,26 @@ exports[`addBook works, no images 1`] = `
     "publishedDate": "2022-06-07",
     "thumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "title": "Woman of Light",
+  },
+  {
+    "authors": [
+      "Kim Fu",
+    ],
+    "categories": [
+      "Fiction",
+    ],
+    "dateFinished": "2022-09-11",
+    "dateStarted": "2022-09-10",
+    "description": ""The strange and wonderful define Kim Fu’s story collection, where the line between fantasy and reality fades in and out, elusive and beckoning." —The New York Times Book Review A LitHub, ALTA, and PureWow Best Book of the Month A BuzzFeed and WIRED Pick for a Book You Need to Read This Winter In the twelve unforgettable tales of Lesser Known Monsters of the 21st Century, the strange is made familiar and the familiar strange, such that a girl growing wings on her legs feels like an ordinary rite of passage, while a bug-infested house becomes an impossible, Kafkaesque nightmare. Each story builds a new world all its own: a group of children steal a haunted doll; a runaway bride encounters a sea monster; a vendor sells toy boxes that seemingly control the passage of time; an insomniac is seduced by the Sandman. These visions of modern life wrestle with themes of death and technological consequence, guilt and sexuality, and unmask the contradictions that exist within all of us. Mesmerizing, electric, and wholly original, Kim Fu’s Lesser Known Monsters of the 21st Century blurs the boundaries of the real and fantastic, offering intricate and surprising insights into human nature.",
+    "isbn": "9781953534064",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=4D1UEAAAQBAJ",
+    "notes": "",
+    "pageCount": 232,
+    "printType": "BOOK",
+    "publishedDate": "2022-02-01",
+    "thumbnail": "https://books.google.com/books/content?id=4D1UEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "title": "Lesser Known Monsters of the 21st Century",
   },
 ]
 `;

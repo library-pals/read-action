@@ -303,7 +303,7 @@ describe("index", () => {
     });
     await read();
     expect(setFailedSpy).toHaveBeenCalledWith(
-      "Invalid `dateFinished` in payload"
+      "Invalid `dateFinished` in payload: 1234"
     );
   });
 
@@ -321,7 +321,7 @@ describe("index", () => {
     });
     await read();
     expect(setFailedSpy).toHaveBeenCalledWith(
-      "Invalid `dateStarted` in payload"
+      "Invalid `dateStarted` in payload: 1234"
     );
   });
 });
