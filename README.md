@@ -29,6 +29,7 @@ jobs:
       - name: Read
         uses: katydecorah/read-action@v4.0.0
       - name: Download the book thumbnail
+        if: env.BookThumbOutput != ''
         run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
       - name: Commit files
         run: |
