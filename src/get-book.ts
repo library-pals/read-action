@@ -41,6 +41,7 @@ export type Book = {
 
 export type BookOptions = {
   dateFinished?: string;
+  dateStarted?: string | undefined;
   notes?: string;
   bookIsbn: string;
   providers: string[];

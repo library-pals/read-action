@@ -14186,7 +14186,13 @@ function isIsbn(isbn) {
 }
 /** sort array of objects by `dateFinished` */
 function sortByDate(array) {
-    return array.sort((a, b) => new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf());
+    return array.sort((a, b) => {
+        if (a.dateFinished && b.dateFinished) {
+            return (new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf());
+        }
+        else
+            return 0;
+    });
 }
 /** remove wrapped quotes */
 function removeWrappedQuotes(str) {
@@ -14199,12 +14205,19 @@ function removeWrappedQuotes(str) {
     else
         return str;
 }
+function setDateFinished(dateFinished, dateStarted) {
+    return dateFinished
+        ? dateFinished
+        : dateStarted
+            ? undefined
+            : new Date().toISOString().slice(0, 10);
+}
 
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
 function cleanBook(options, book) {
-    const { notes, bookIsbn, dateFinished } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateFinished: dateFinished || new Date().toISOString().slice(0, 10) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
+    const { notes, bookIsbn, dateStarted, dateFinished } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateStarted: dateStarted || undefined, dateFinished: setDateFinished(dateFinished, dateStarted) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
         authors: book.authors,
     })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
         description: removeWrappedQuotes(book.description),
@@ -14299,6 +14312,41 @@ function getBook(options, fileName) {
     });
 }
 
+;// CONCATENATED MODULE: ./src/finished-book.ts
+var finished_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+function finishedBook({ fileName, bookIsbn, dateFinished, notes, }) {
+    return finished_book_awaiter(this, void 0, void 0, function* () {
+        const currentBooks = yield returnReadFile(fileName);
+        if (currentBooks === undefined || currentBooks.length === 0)
+            return false;
+        if (currentBooks.filter((f) => f.isbn === bookIsbn).length === 0)
+            return false;
+        return updateBook({ currentBooks, bookIsbn, dateFinished, notes });
+    });
+}
+function updateBook({ currentBooks, bookIsbn, dateFinished, notes, }) {
+    return finished_book_awaiter(this, void 0, void 0, function* () {
+        return currentBooks.reduce((arr, book) => {
+            if (book.isbn === bookIsbn) {
+                book.dateFinished = setDateFinished(dateFinished, book.dateStarted);
+                book.notes = notes;
+            }
+            arr.push(book);
+            return arr;
+        }, []);
+    });
+}
+
 ;// CONCATENATED MODULE: ./src/index.ts
 var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -14315,23 +14363,38 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 
 
+
 function read() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
+            // Get client_payload
             const payload = github.context.payload.client_payload;
+            // Validate client_payload
             if (!payload)
                 return (0,core.setFailed)("Missing `client_payload`");
             if (!payload.bookIsbn)
                 return (0,core.setFailed)("Missing `bookIsbn` in payload");
-            const { bookIsbn, dateFinished, notes } = payload;
+            const { bookIsbn, dateFinished, dateStarted, notes } = payload;
             if (dateFinished && !isDate(dateFinished))
                 return (0,core.setFailed)("Invalid `dateFinished` in payload");
+            if (dateStarted && !isDate(dateStarted))
+                return (0,core.setFailed)("Invalid `dateStarted` in payload");
+            // Set inputs
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
-            const bookMetadata = (yield getBook({ notes, bookIsbn, dateFinished, providers }, fileName));
-            yield returnWriteFile(fileName, bookMetadata);
+            // Check if book already exists in library
+            const bookExists = yield finishedBook({
+                fileName,
+                bookIsbn,
+                dateFinished,
+                notes,
+            });
+            const library = bookExists == false
+                ? yield getBook({ notes, bookIsbn, dateStarted, dateFinished, providers }, fileName)
+                : bookExists;
+            yield returnWriteFile(fileName, library);
         }
         catch (error) {
             (0,core.setFailed)(error.message);

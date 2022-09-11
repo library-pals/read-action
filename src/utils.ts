@@ -1,3 +1,5 @@
+import { CleanBook } from "./clean-book";
+
 /** make sure date is in YYYY-MM-DD format */
 export function dateFormat(date: string) {
   return date.match(/^\d{4}-\d{2}-\d{2}$/) != null;
@@ -14,11 +16,14 @@ export function isIsbn(isbn: string) {
 }
 
 /** sort array of objects by `dateFinished` */
-export function sortByDate(array: { dateFinished: string }[]) {
-  return array.sort(
-    (a, b) =>
-      new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf()
-  );
+export function sortByDate(array: CleanBook[]): CleanBook[] {
+  return array.sort((a, b) => {
+    if (a.dateFinished && b.dateFinished) {
+      return (
+        new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf()
+      );
+    } else return 0;
+  });
 }
 
 /** remove wrapped quotes */
@@ -29,4 +34,15 @@ export function removeWrappedQuotes(str: string) {
   if (str.startsWith('"') && str.endsWith('"--')) {
     return `${str.substring(1, str.length - 3)}…`;
   } else return str;
+}
+
+export function setDateFinished(
+  dateFinished: string | undefined,
+  dateStarted: string | undefined
+) {
+  return dateFinished
+    ? dateFinished
+    : dateStarted
+    ? undefined
+    : new Date().toISOString().slice(0, 10);
 }
