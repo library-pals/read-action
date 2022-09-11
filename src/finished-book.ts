@@ -1,6 +1,7 @@
 import { CleanBook } from "./clean-book";
 import returnReadFile from "./read-file";
 import { setDateFinished } from "./utils";
+import { exportVariable } from "@actions/core";
 
 export async function finishedBook({
   fileName,
@@ -33,8 +34,9 @@ export async function updateBook({
 }): Promise<CleanBook[]> {
   return currentBooks.reduce((arr: CleanBook[], book) => {
     if (book.isbn === bookIsbn) {
+      exportVariable("BookTitle", book.title);
       book.dateFinished = setDateFinished(dateFinished, book.dateStarted);
-      book.notes = notes;
+      if (notes || book.notes) book.notes = notes || book.notes;
     }
     arr.push(book);
     return arr;

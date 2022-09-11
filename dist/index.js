@@ -14324,6 +14324,7 @@ var finished_book_awaiter = (undefined && undefined.__awaiter) || function (this
 };
 
 
+
 function finishedBook({ fileName, bookIsbn, dateFinished, notes, }) {
     return finished_book_awaiter(this, void 0, void 0, function* () {
         const currentBooks = yield returnReadFile(fileName);
@@ -14338,8 +14339,10 @@ function updateBook({ currentBooks, bookIsbn, dateFinished, notes, }) {
     return finished_book_awaiter(this, void 0, void 0, function* () {
         return currentBooks.reduce((arr, book) => {
             if (book.isbn === bookIsbn) {
+                (0,core.exportVariable)("BookTitle", book.title);
                 book.dateFinished = setDateFinished(dateFinished, book.dateStarted);
-                book.notes = notes;
+                if (notes || book.notes)
+                    book.notes = notes || book.notes;
             }
             arr.push(book);
             return arr;

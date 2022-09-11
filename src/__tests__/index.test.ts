@@ -127,7 +127,6 @@ describe("index", () => {
             "isbn": "9780525620792",
             "language": "en",
             "link": "https://play.google.com/store/books/details?id=ksKyDwAAQBAJ",
-            "notes": undefined,
             "pageCount": 320,
             "printType": "BOOK",
             "publishedDate": "2020-06-30",
