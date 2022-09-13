@@ -1,4 +1,4 @@
-import { getInput, setFailed } from "@actions/core";
+import { exportVariable, getInput, setFailed } from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
@@ -23,6 +23,11 @@ export async function read() {
     const providers = getInput("providers")
       ? getInput("providers").split(",")
       : isbn._providers;
+
+    // Set book status
+    if (dateStarted && !dateFinished) exportVariable("BookStatus", "started");
+    if ((!dateFinished && !dateStarted) || dateFinished)
+      exportVariable("BookStatus", "finished");
 
     // Check if book already exists in library
     const bookExists = await finishedBook({
