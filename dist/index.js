@@ -14387,6 +14387,11 @@ function read() {
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
+            // Set book status
+            if (dateStarted && !dateFinished)
+                (0,core.exportVariable)("BookStatus", "started");
+            if ((!dateFinished && !dateStarted) || dateFinished)
+                (0,core.exportVariable)("BookStatus", "finished");
             // Check if book already exists in library
             const bookExists = yield finishedBook({
                 fileName,
