@@ -16,8 +16,21 @@ To use this action, create a new workflow in `.github/workflows` and modify it a
 name: Read
 
 on:
-  repository_dispatch:
-    types: [read]
+  workflow_dispatch:
+    inputs:
+      bookIsbn:
+        description: ISBN
+        required: true
+        type: text
+      notes:
+        description: Notes
+        type: text
+      dateStarted:
+        description: Date started
+        type: text
+      dateFinished:
+        description: Date finished
+        type: text
 
 jobs:
   update_library:
