@@ -8,10 +8,10 @@ import { finishedBook } from "./finished-book";
 
 export async function read() {
   try {
-    // Get client_payload
-    const payload = github.context.payload.client_payload as BookOptions;
-    // Validate client_payload
-    if (!payload) return setFailed("Missing `client_payload`");
+    // Get inputs
+    const payload = github.context.payload.inputs as BookOptions;
+    // Validate inputs
+    if (!payload) return setFailed("Missing `inputs`");
     if (!payload.bookIsbn) return setFailed("Missing `bookIsbn` in payload");
     const { bookIsbn, dateFinished, dateStarted, notes } = payload;
     if (dateFinished && !isDate(dateFinished))

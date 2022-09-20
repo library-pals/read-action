@@ -4,7 +4,7 @@
 
 This GitHub action tracks the books that you read by updating a JSON file in your repository. Pair it with the [iOS Shortcut](shortcut/README.md) to automatically trigger the action.
 
-[Create a respository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event) with information about the book. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
+[Create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with information about the book. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
 
 <!-- START GENERATED DOCUMENTATION -->
 
@@ -59,7 +59,7 @@ The [iOS Shortcut](shortcut/README.md) helps format and send the event.
 ```js
 {
   "event_type": "read", // Optional. This helps you filter events in the workflow, in case you have more than one.
-  "client_payload": {
+  "inputs": {
     "bookIsbn": "", // Required. The book's ISBN.
     "dateFinished": "", // Optional. The date you finished the book in YYYY-MM-DD format. The default date is today (unless dateStarted is defined, then it is `undefined`).
     "dateStarted": "", // Optional. The date you started the book in YYYY-MM-DD format. The default date is `undefined`.
