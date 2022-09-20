@@ -16,6 +16,7 @@ To use this action, create a new workflow in `.github/workflows` and modify it a
 name: Read
 
 on:
+  workflow_dispatch:
   repository_dispatch:
     types: [read]
 
