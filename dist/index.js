@@ -14370,11 +14370,11 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 function read() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
-            // Get client_payload
-            const payload = github.context.payload.client_payload;
-            // Validate client_payload
+            // Get inputs
+            const payload = github.context.payload.inputs;
+            // Validate inputs
             if (!payload)
-                return (0,core.setFailed)("Missing `client_payload`");
+                return (0,core.setFailed)("Missing `inputs`");
             if (!payload.bookIsbn)
                 return (0,core.setFailed)("Missing `bookIsbn` in payload");
             const { bookIsbn, dateFinished, dateStarted, notes } = payload;

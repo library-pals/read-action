@@ -2,8 +2,20 @@ name: Read
 
 on:
   workflow_dispatch:
-  repository_dispatch:
-    types: [read]
+    inputs:
+      bookIsbn:
+        description: ISBN
+        required: true
+        type: text
+      notes:
+        description: Notes
+        type: text
+      dateStarted:
+        description: Date started
+        type: text
+      dateFinished:
+        description: Date finished
+        type: text
 
 jobs:
   update_library:

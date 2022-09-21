@@ -1,6 +1,6 @@
 # Finished a book shortcut
 
-Download the [Finished a book shortcut](Finished%20a%20book.shortcut) to [create a respository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event) with your book metadata.
+Download the [Finished a book shortcut](Finished%20a%20book.shortcut) to [create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with your book metadata.
 
 ![](thumbnail.png)
 

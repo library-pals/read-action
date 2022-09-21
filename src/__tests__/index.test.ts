@@ -39,7 +39,7 @@ describe("index", () => {
     Object.defineProperty(github, "context", {
       value: {
         payload: {
-          client_payload: {
+          inputs: {
             bookIsbn: "9780385696005",
             dateStarted: "2022-01-02",
           },
@@ -109,7 +109,7 @@ describe("index", () => {
     Object.defineProperty(github, "context", {
       value: {
         payload: {
-          client_payload: {
+          inputs: {
             bookIsbn: "9780525620792",
             dateFinished: "2021-09-30",
           },
@@ -163,7 +163,7 @@ describe("index", () => {
     Object.defineProperty(github, "context", {
       value: {
         payload: {
-          client_payload: {
+          inputs: {
             bookIsbn: "9780525511342",
           },
         },
@@ -239,7 +239,7 @@ describe("index", () => {
     Object.defineProperty(github, "context", {
       value: {
         payload: {
-          client_payload: {
+          inputs: {
             bookIsbn: "9780525511342",
             dateStarted: "2022-08-01",
             dateFinished: "2022-08-02",
@@ -318,7 +318,7 @@ describe("index", () => {
       },
     });
     await read();
-    expect(setFailedSpy).toHaveBeenCalledWith("Missing `client_payload`");
+    expect(setFailedSpy).toHaveBeenCalledWith("Missing `inputs`");
   });
 
   test("error, missing isbn", async () => {
@@ -326,7 +326,7 @@ describe("index", () => {
     Object.defineProperty(github, "context", {
       value: {
         payload: {
-          client_payload: {
+          inputs: {
             dateFinished: "2021-09-26",
           },
         },
@@ -341,7 +341,7 @@ describe("index", () => {
     Object.defineProperty(github, "context", {
       value: {
         payload: {
-          client_payload: {
+          inputs: {
             bookIsbn: "9780385696005",
           },
         },
@@ -363,7 +363,7 @@ describe("index", () => {
     Object.defineProperty(github, "context", {
       value: {
         payload: {
-          client_payload: {
+          inputs: {
             bookIsbn: "9780385696005",
           },
         },
@@ -378,7 +378,7 @@ describe("index", () => {
     Object.defineProperty(github, "context", {
       value: {
         payload: {
-          client_payload: {
+          inputs: {
             bookIsbn: "9780385696005",
             dateFinished: "2022-02-02",
           },
@@ -394,7 +394,7 @@ describe("index", () => {
     Object.defineProperty(github, "context", {
       value: {
         payload: {
-          client_payload: {
+          inputs: {
             bookIsbn: "9780385696005",
             dateFinished: "1234",
           },
@@ -412,7 +412,7 @@ describe("index", () => {
     Object.defineProperty(github, "context", {
       value: {
         payload: {
-          client_payload: {
+          inputs: {
             bookIsbn: "9780385696005",
             dateStarted: "1234",
           },
