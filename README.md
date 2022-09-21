@@ -21,16 +21,16 @@ on:
       bookIsbn:
         description: ISBN
         required: true
-        type: text
+        type: string
       notes:
         description: Notes
-        type: text
+        type: string
       dateStarted:
         description: Date started
-        type: text
+        type: string
       dateFinished:
         description: Date finished
-        type: text
+        type: string
 
 jobs:
   update_library:
