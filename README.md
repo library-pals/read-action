@@ -71,7 +71,7 @@ The [iOS Shortcut](shortcut/README.md) helps format and send the event.
 
 ```js
 {
-  "event_type": "read", // Optional. This helps you filter events in the workflow, in case you have more than one.
+  "ref": "main", // Required. The branch that you will send changes to.
   "inputs": {
     "bookIsbn": "", // Required. The book's ISBN.
     "dateFinished": "", // Optional. The date you finished the book in YYYY-MM-DD format. The default date is today (unless dateStarted is defined, then it is `undefined`).
