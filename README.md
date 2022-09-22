@@ -19,17 +19,17 @@ on:
   workflow_dispatch:
     inputs:
       bookIsbn:
-        description: ISBN
+        description: The book's ISBN.
         required: true
         type: string
       notes:
-        description: Notes
+        description: Notes about the book.
         type: string
       dateStarted:
-        description: Date started
+        description: Date you started the book (YYYY-MM-DD).
         type: string
       dateFinished:
-        description: Date finished
+        description: Date you finished the book (YYYY-MM-DD). The default date is today unless dateStarted is defined, then it is `undefined`.
         type: string
 
 jobs:
@@ -67,10 +67,10 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
 { 
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
-    "bookIsbn": "", // Required. ISBN
-    "notes": "", // Notes
-    "dateStarted": "", // Date started
-    "dateFinished": "", // Date finished
+    "bookIsbn": "", // Required. The book's ISBN.
+    "notes": "", // Notes about the book.
+    "dateStarted": "", // Date you started the book (YYYY-MM-DD).
+    "dateFinished": "", // Date you finished the book (YYYY-MM-DD). The default date is today unless dateStarted is defined, then it is `undefined`.
   }
 }
 ```
