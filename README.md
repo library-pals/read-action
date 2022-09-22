@@ -19,17 +19,17 @@ on:
   workflow_dispatch:
     inputs:
       bookIsbn:
-        description: ISBN
+        description: The book's ISBN.
         required: true
         type: string
       notes:
-        description: Notes
+        description: Notes about the book.
         type: string
       dateStarted:
-        description: Date started
+        description: Date you started the book (YYYY-MM-DD).
         type: string
       dateFinished:
-        description: Date finished
+        description: Date you finished the book (YYYY-MM-DD). The default date is today unless dateStarted is defined, then it is `undefined`.
         type: string
 
 jobs:
@@ -53,30 +53,25 @@ jobs:
           git push
 ```
 
+
 ## Action options
 
 - `readFileName`: The file where you want to save your books. Default: `_data/read.json`.
-
 - `providers`: Specify the [ISBN providers](https://github.com/palmerabollo/node-isbn#setting-backend-providers) that you want to use, in the order you need them to be invoked. If setting more than one provider, separate each with a comma.
 
-<!-- END GENERATED DOCUMENTATION -->
+## Trigger the action
 
-## Send an event
-
-To trigger the action, you will [create a respository dispatch event](https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event) with information about the book.
-
-The [iOS Shortcut](shortcut/README.md) helps format and send the event.
-
-### Payload
+To trigger the action, [create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with the following body parameters:
 
 ```js
-{
-  "ref": "main", // Required. The branch that you will send changes to.
+{ 
+  "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
     "bookIsbn": "", // Required. The book's ISBN.
-    "dateFinished": "", // Optional. The date you finished the book in YYYY-MM-DD format. The default date is today (unless dateStarted is defined, then it is `undefined`).
-    "dateStarted": "", // Optional. The date you started the book in YYYY-MM-DD format. The default date is `undefined`.
-    "notes": "" // Optional. Notes about the book.
+    "notes": "", // Notes about the book.
+    "dateStarted": "", // Date you started the book (YYYY-MM-DD).
+    "dateFinished": "", // Date you finished the book (YYYY-MM-DD). The default date is today unless dateStarted is defined, then it is `undefined`.
   }
 }
 ```
+<!-- END GENERATED DOCUMENTATION -->

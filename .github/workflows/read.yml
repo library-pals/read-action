@@ -4,17 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       bookIsbn:
-        description: ISBN
+        description: The book's ISBN.
         required: true
         type: string
       notes:
-        description: Notes
+        description: Notes about the book.
         type: string
       dateStarted:
-        description: Date started
+        description: Date you started the book (YYYY-MM-DD).
         type: string
       dateFinished:
-        description: Date finished
+        description: Date you finished the book (YYYY-MM-DD). The default date is today unless dateStarted is defined, then it is `undefined`.
         type: string
 
 jobs:
