@@ -53,10 +53,25 @@ jobs:
           git push
 ```
 
+
 ## Action options
 
 - `readFileName`: The file where you want to save your books. Default: `_data/read.json`.
-
 - `providers`: Specify the [ISBN providers](https://github.com/palmerabollo/node-isbn#setting-backend-providers) that you want to use, in the order you need them to be invoked. If setting more than one provider, separate each with a comma.
 
+## Trigger the action
+
+To trigger the action, [create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with the following body parameters:
+
+```js
+{ 
+  "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
+  "inputs": {
+    "bookIsbn": "", // Required. ISBN
+    "notes": "", // Notes
+    "dateStarted": "", // Date started
+    "dateFinished": "", // Date finished
+  }
+}
+```
 <!-- END GENERATED DOCUMENTATION -->
