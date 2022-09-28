@@ -34,6 +34,7 @@ exports[`addBook works 1`] = `
     "pageCount": 288,
     "printType": "BOOK",
     "publishedDate": "2020",
+    "status": undefined,
     "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     "title": "Transcendent Kingdom",
   },
@@ -170,6 +171,7 @@ exports[`addBook works, empty file 1`] = `
     "pageCount": 288,
     "printType": "BOOK",
     "publishedDate": "2020",
+    "status": undefined,
     "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     "title": "Transcendent Kingdom",
   },
@@ -210,6 +212,7 @@ exports[`addBook works, no images 1`] = `
     "pageCount": 288,
     "printType": "BOOK",
     "publishedDate": "2020",
+    "status": undefined,
     "title": "Transcendent Kingdom",
   },
   {

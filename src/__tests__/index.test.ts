@@ -95,6 +95,7 @@ describe("index", () => {
             "pageCount": 240,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
+            "status": "started",
             "thumbnail": "https://books.google.com/books/content?id=eJ06zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
             "title": "Luster",
           },
@@ -147,6 +148,7 @@ describe("index", () => {
             "pageCount": 320,
             "printType": "BOOK",
             "publishedDate": "2020-06-30",
+            "status": "finished",
             "thumbnail": "https://books.google.com/books/content?id=ksKyDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
             "title": "Mexican Gothic",
           },
@@ -155,16 +157,16 @@ describe("index", () => {
     `);
   });
 
-  test("works, finished a book (new, not started) (use default date)", async () => {
+  test("works, finished a book (new, not started)", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    jest.useFakeTimers().setSystemTime(new Date("2022-08-02").getTime());
     jest.spyOn(core, "getInput").mockImplementationOnce(() => "my-library.yml");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
           inputs: {
             bookIsbn: "9780525511342",
+            dateFinished: "2022-08-02",
           },
         },
       },
@@ -224,6 +226,7 @@ describe("index", () => {
             "pageCount": 336,
             "printType": "BOOK",
             "publishedDate": "2022-06-07",
+            "status": "finished",
             "thumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
             "title": "Woman of Light",
           },
@@ -302,8 +305,82 @@ describe("index", () => {
             "pageCount": 336,
             "printType": "BOOK",
             "publishedDate": "2022-06-07",
+            "status": "finished",
             "thumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
             "title": "Woman of Light",
+          },
+        ],
+      ]
+    `);
+  });
+
+  test("works, want to read/queue", async () => {
+    const exportVariableSpy = jest.spyOn(core, "exportVariable");
+    const setFailedSpy = jest.spyOn(core, "setFailed");
+    jest
+      .spyOn(core, "getInput")
+      .mockImplementationOnce(() => "my-library.json");
+    Object.defineProperty(github, "context", {
+      value: {
+        payload: {
+          inputs: {
+            bookIsbn: "9780385696005",
+          },
+        },
+      },
+    });
+    await read();
+    expect(exportVariableSpy).toHaveBeenNthCalledWith(
+      1,
+      "BookStatus",
+      "want to read"
+    );
+    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
+
+    expect(exportVariableSpy).toHaveBeenNthCalledWith(
+      3,
+      "BookThumbOutput",
+      "book-9780385696005.png"
+    );
+    expect(setFailedSpy).not.toHaveBeenCalled();
+    expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
+      [
+        "my-library.json",
+        [
+          {
+            "authors": [
+              "Silvia Moreno-Garcia",
+            ],
+            "categories": [
+              "Fiction",
+            ],
+            "dateStarted": "2021-09-26",
+            "description": "NEW YORK TIMES BESTSELLER",
+            "isbn": "9780525620792",
+            "language": "en",
+            "link": "https://play.google.com/store/books/details?id=ksKyDwAAQBAJ",
+            "pageCount": 320,
+            "printType": "BOOK",
+            "publishedDate": "2020-06-30",
+            "thumbnail": "https://books.google.com/books/content?id=ksKyDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+            "title": "Mexican Gothic",
+          },
+          {
+            "authors": [
+              "Raven Leilani",
+            ],
+            "dateFinished": undefined,
+            "dateStarted": undefined,
+            "description": "Sharp, comic, disruptive, tender, Raven Leilani's debut novel, Luster, sees a young black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties--sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage--with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only black woman who young Akila knows. Razor sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make her sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
+            "isbn": "9780385696005",
+            "language": "en",
+            "link": "https://books.google.com/books/about/Luster.html?hl=&id=eJ06zQEACAAJ",
+            "pageCount": 240,
+            "printType": "BOOK",
+            "publishedDate": "2020-08-04",
+            "status": "want to read",
+            "thumbnail": "https://books.google.com/books/content?id=eJ06zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+            "title": "Luster",
           },
         ],
       ]

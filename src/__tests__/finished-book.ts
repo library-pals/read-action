@@ -40,6 +40,7 @@ describe("finishedBook", () => {
                   "dateStarted": "2021-09-26",
                   "isbn": "9780525620792",
                   "notes": "Recommended by my sister.",
+                  "status": undefined,
                   "title": "Mexican Gothic",
                 },
               ]
@@ -68,6 +69,7 @@ describe("finishedBook", () => {
                   "dateStarted": "2021-09-26",
                   "isbn": "9780525620792",
                   "notes": "Great read",
+                  "status": undefined,
                   "title": "Mexican Gothic",
                 },
               ]

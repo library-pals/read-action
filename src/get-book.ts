@@ -1,7 +1,7 @@
 import { exportVariable } from "@actions/core";
 import isbn from "node-isbn";
 import addBook from "./add-book";
-import { CleanBook } from "./clean-book";
+import { BookStatus, CleanBook } from "./clean-book";
 
 export type Book = {
   title: string;
@@ -45,6 +45,7 @@ export type BookOptions = {
   notes?: string;
   bookIsbn: string;
   providers: string[];
+  bookStatus: BookStatus;
 };
 
 export default async function getBook(

@@ -24,10 +24,14 @@ export async function read() {
       ? getInput("providers").split(",")
       : isbn._providers;
 
+    let bookStatus;
+
     // Set book status
-    if (dateStarted && !dateFinished) exportVariable("BookStatus", "started");
-    if ((!dateFinished && !dateStarted) || dateFinished)
-      exportVariable("BookStatus", "finished");
+    if (dateStarted && !dateFinished) bookStatus = "started";
+    if (dateFinished) bookStatus = "finished";
+    if (!dateFinished && !dateStarted) bookStatus = "want to read";
+
+    exportVariable("BookStatus", bookStatus);
 
     // Check if book already exists in library
     const bookExists = await finishedBook({
@@ -35,12 +39,20 @@ export async function read() {
       bookIsbn,
       dateFinished,
       notes,
+      bookStatus,
     });
 
     const library =
       bookExists == false
         ? await getBook(
-            { notes, bookIsbn, dateStarted, dateFinished, providers },
+            {
+              notes,
+              bookIsbn,
+              dateStarted,
+              dateFinished,
+              providers,
+              bookStatus,
+            },
             fileName
           )
         : bookExists;

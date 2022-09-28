@@ -14206,19 +14206,12 @@ function removeWrappedQuotes(str) {
     else
         return str;
 }
-function setDateFinished(dateFinished, dateStarted) {
-    return dateFinished
-        ? dateFinished
-        : dateStarted
-            ? undefined
-            : new Date().toISOString().slice(0, 10);
-}
 
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
 function cleanBook(options, book) {
-    const { notes, bookIsbn, dateStarted, dateFinished } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateStarted: dateStarted || undefined, dateFinished: setDateFinished(dateFinished, dateStarted) }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
+    const { notes, bookIsbn, dateStarted, dateFinished, bookStatus } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateStarted: dateStarted || undefined, dateFinished: dateFinished || undefined, status: bookStatus }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
         authors: book.authors,
     })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
         description: removeWrappedQuotes(book.description),
@@ -14325,23 +14318,29 @@ var finished_book_awaiter = (undefined && undefined.__awaiter) || function (this
 };
 
 
-
-function finishedBook({ fileName, bookIsbn, dateFinished, notes, }) {
+function finishedBook({ fileName, bookIsbn, dateFinished, notes, bookStatus, }) {
     return finished_book_awaiter(this, void 0, void 0, function* () {
         const currentBooks = yield returnReadFile(fileName);
         if (currentBooks === undefined || currentBooks.length === 0)
             return false;
         if (currentBooks.filter((f) => f.isbn === bookIsbn).length === 0)
             return false;
-        return updateBook({ currentBooks, bookIsbn, dateFinished, notes });
+        return updateBook({
+            currentBooks,
+            bookIsbn,
+            dateFinished,
+            notes,
+            bookStatus,
+        });
     });
 }
-function updateBook({ currentBooks, bookIsbn, dateFinished, notes, }) {
+function updateBook({ currentBooks, bookIsbn, dateFinished, notes, bookStatus, }) {
     return finished_book_awaiter(this, void 0, void 0, function* () {
         return currentBooks.reduce((arr, book) => {
             if (book.isbn === bookIsbn) {
                 (0,core.exportVariable)("BookTitle", book.title);
-                book.dateFinished = setDateFinished(dateFinished, book.dateStarted);
+                book.dateFinished = dateFinished;
+                book.status = bookStatus;
                 if (notes || book.notes)
                     book.notes = notes || book.notes;
             }
@@ -14388,20 +14387,32 @@ function read() {
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
+            let bookStatus;
             // Set book status
             if (dateStarted && !dateFinished)
-                (0,core.exportVariable)("BookStatus", "started");
-            if ((!dateFinished && !dateStarted) || dateFinished)
-                (0,core.exportVariable)("BookStatus", "finished");
+                bookStatus = "started";
+            if (dateFinished)
+                bookStatus = "finished";
+            if (!dateFinished && !dateStarted)
+                bookStatus = "want to read";
+            (0,core.exportVariable)("BookStatus", bookStatus);
             // Check if book already exists in library
             const bookExists = yield finishedBook({
                 fileName,
                 bookIsbn,
                 dateFinished,
                 notes,
+                bookStatus,
             });
             const library = bookExists == false
-                ? yield getBook({ notes, bookIsbn, dateStarted, dateFinished, providers }, fileName)
+                ? yield getBook({
+                    notes,
+                    bookIsbn,
+                    dateStarted,
+                    dateFinished,
+                    providers,
+                    bookStatus,
+                }, fileName)
                 : bookExists;
             yield returnWriteFile(fileName, library);
         }

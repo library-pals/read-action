@@ -35,14 +35,3 @@ export function removeWrappedQuotes(str: string) {
     return `${str.substring(1, str.length - 3)}…`;
   } else return str;
 }
-
-export function setDateFinished(
-  dateFinished: string | undefined,
-  dateStarted: string | undefined
-) {
-  return dateFinished
-    ? dateFinished
-    : dateStarted
-    ? undefined
-    : new Date().toISOString().slice(0, 10);
-}

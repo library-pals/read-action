@@ -18,6 +18,7 @@ exports[`cleanBook cleanBook 1`] = `
   "pageCount": 288,
   "printType": "BOOK",
   "publishedDate": "2020",
+  "status": undefined,
   "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
   "title": "Transcendent Kingdom",
 }
@@ -31,7 +32,7 @@ exports[`cleanBook cleanBook, no date 1`] = `
   "categories": [
     "Fiction",
   ],
-  "dateFinished": "2020-01-01",
+  "dateFinished": undefined,
   "dateStarted": undefined,
   "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
   "isbn": "0525658181",
@@ -41,6 +42,7 @@ exports[`cleanBook cleanBook, no date 1`] = `
   "pageCount": 288,
   "printType": "BOOK",
   "publishedDate": "2020",
+  "status": undefined,
   "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
   "title": "Transcendent Kingdom",
 }
