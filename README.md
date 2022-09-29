@@ -29,7 +29,7 @@ on:
         description: Date you started the book (YYYY-MM-DD).
         type: string
       dateFinished:
-        description: Date you finished the book (YYYY-MM-DD). The default date is today unless dateStarted is defined, then it is `undefined`.
+        description: Date you finished the book (YYYY-MM-DD).
         type: string
 
 jobs:
@@ -70,7 +70,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
     "bookIsbn": "", // Required. The book's ISBN.
     "notes": "", // Notes about the book.
     "dateStarted": "", // Date you started the book (YYYY-MM-DD).
-    "dateFinished": "", // Date you finished the book (YYYY-MM-DD). The default date is today unless dateStarted is defined, then it is `undefined`.
+    "dateFinished": "", // Date you finished the book (YYYY-MM-DD).
   }
 }
 ```
