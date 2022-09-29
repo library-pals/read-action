@@ -16,6 +16,7 @@ describe("cleanBook", () => {
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
+          bookStatus: "finished",
         },
         book
       )
@@ -29,6 +30,7 @@ describe("cleanBook", () => {
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
+          bookStatus: "finished",
         },
         book
       )

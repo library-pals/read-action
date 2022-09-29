@@ -18,6 +18,7 @@ describe("addBook", () => {
           notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],
+          bookStatus: "finished",
         },
         book,
         "_data/read.yml"
@@ -44,6 +45,7 @@ describe("addBook", () => {
           notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],
+          bookStatus: "finished",
         },
 
         {
@@ -75,6 +77,7 @@ describe("addBook", () => {
           notes: "Brilliant!",
           bookIsbn: "0525658181",
           providers: [],
+          bookStatus: "finished",
         },
 
         book,

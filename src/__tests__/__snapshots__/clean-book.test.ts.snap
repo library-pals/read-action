@@ -18,7 +18,7 @@ exports[`cleanBook cleanBook 1`] = `
   "pageCount": 288,
   "printType": "BOOK",
   "publishedDate": "2020",
-  "status": undefined,
+  "status": "finished",
   "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
   "title": "Transcendent Kingdom",
 }
@@ -42,7 +42,7 @@ exports[`cleanBook cleanBook, no date 1`] = `
   "pageCount": 288,
   "printType": "BOOK",
   "publishedDate": "2020",
-  "status": undefined,
+  "status": "finished",
   "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
   "title": "Transcendent Kingdom",
 }
