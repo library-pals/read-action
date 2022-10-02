@@ -64,6 +64,7 @@ jobs:
           git push
 ```
 
+
 ## Action options
 
 - `readFileName`: The file where you want to save your books. Default: `_data/read.json`.
@@ -75,7 +76,7 @@ jobs:
 To trigger the action, [create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with the following body parameters:
 
 ```js
-{
+{ 
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
     "bookIsbn": "", // Required. The book's ISBN.
@@ -85,5 +86,4 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
-
 <!-- END GENERATED DOCUMENTATION -->
