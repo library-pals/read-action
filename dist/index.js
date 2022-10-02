@@ -14396,9 +14396,7 @@ function read() {
             if (!dateFinished && !dateStarted)
                 bookStatus = "want to read";
             const dates = {
-                dateAdded: bookStatus === "want to read"
-                    ? localDate()
-                    : undefined,
+                dateAdded: bookStatus === "want to read" ? localDate() : undefined,
                 dateStarted: dateStarted || undefined,
                 dateFinished: dateFinished || undefined,
             };
