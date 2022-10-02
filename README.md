@@ -50,7 +50,7 @@ jobs:
           git pull
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -A && git commit -m "📚 ${{ env.BookStatus }} ${{ env.BookTitle }}"
+          git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})"
           git push
 ```
 
