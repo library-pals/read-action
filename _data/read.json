@@ -143,5 +143,24 @@
     "thumbnail": "https://books.google.com/books/content?id=LIH6wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     "language": "en",
     "link": "https://books.google.com/books/about/Fledgling.html?hl=&id=LIH6wAEACAAJ"
+  },
+  {
+    "isbn": "9781936071883",
+    "dateAdded": "2022-10-01",
+    "status": "want to read",
+    "title": "The Singer's Gun",
+    "authors": [
+      "Emily St. John Mandel"
+    ],
+    "publishedDate": "2010-05-01",
+    "description": "From the award-winning, bestselling author of Station Eleven and The Glass Hotel, “a gripping story, full of moral ambiguities, where deception and betrayal become the norm, and where the expression ‘a riddle wrapped in a mystery, inside an enigma’ is lifted to new heights” (St. Louis Post-Dispatch). Everyone Anton Waker grew up with is corrupt. His parents dealt in stolen goods, and he was a successful purveyor of forged documents until he abandoned it all in his early twenties, determined to live a normal life, complete with career, apartment, and a fiancée who knows nothing of his criminal beginnings. He’s on the verge of finally getting married when Aria—his cousin and former partner in crime—blackmails him into helping her with one last job. Anton considers the task a small price for future freedom. But as he sets off for an Italian honeymoon, it soon becomes clear that the ghosts of his past can't be left behind so easily, and that the task Aria requires will cost him more than he could ever imagine. Look for Emily St. John Mandel’s new novel, Sea of Tranquility, coming soon!",
+    "pageCount": 304,
+    "printType": "BOOK",
+    "categories": [
+      "Fiction"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=wseQBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=wseQBwAAQBAJ"
   }
 ]
