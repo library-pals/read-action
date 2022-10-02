@@ -2,8 +2,9 @@ import { removeWrappedQuotes } from "./utils";
 import { BookOptions, Book } from "./get-book";
 
 export type CleanBook = {
-  dateFinished: string | undefined;
+  dateAdded: string | undefined;
   dateStarted: string | undefined;
+  dateFinished: string | undefined;
   title?: string;
   authors?: string[];
   publishedDate?: string;
@@ -22,11 +23,10 @@ export type CleanBook = {
 export type BookStatus = "want to read" | "started" | "finished";
 
 export default function cleanBook(options: BookOptions, book: Book): CleanBook {
-  const { notes, bookIsbn, dateStarted, dateFinished, bookStatus } = options;
+  const { notes, bookIsbn, dates, bookStatus } = options;
   return {
     isbn: bookIsbn,
-    dateStarted: dateStarted || undefined,
-    dateFinished: dateFinished || undefined,
+    ...dates,
     status: bookStatus,
     ...(notes && { notes }),
     ...("title" in book && { title: book.title }),

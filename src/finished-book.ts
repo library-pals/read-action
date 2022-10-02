@@ -1,17 +1,18 @@
 import { CleanBook, BookStatus } from "./clean-book";
 import returnReadFile from "./read-file";
 import { exportVariable } from "@actions/core";
+import { Dates } from ".";
 
 export async function finishedBook({
   fileName,
   bookIsbn,
-  dateFinished,
+  dates,
   notes,
   bookStatus,
 }: {
   fileName: string;
   bookIsbn: string;
-  dateFinished?: string | undefined;
+  dates: Dates;
   notes?: string;
   bookStatus: BookStatus;
 }): Promise<false | CleanBook[]> {
@@ -22,7 +23,7 @@ export async function finishedBook({
   return updateBook({
     currentBooks,
     bookIsbn,
-    dateFinished,
+    dates,
     notes,
     bookStatus,
   });
@@ -31,20 +32,20 @@ export async function finishedBook({
 export async function updateBook({
   currentBooks,
   bookIsbn,
-  dateFinished,
+  dates,
   notes,
   bookStatus,
 }: {
   currentBooks: CleanBook[];
   bookIsbn: string;
-  dateFinished: string | undefined;
+  dates: Dates;
   notes?: string;
   bookStatus: BookStatus;
 }): Promise<CleanBook[]> {
   return currentBooks.reduce((arr: CleanBook[], book) => {
     if (book.isbn === bookIsbn) {
       exportVariable("BookTitle", book.title);
-      book.dateFinished = dateFinished;
+      book.dateFinished = dates.dateFinished;
       book.status = bookStatus;
       if (notes || book.notes) book.notes = notes || book.notes;
     }

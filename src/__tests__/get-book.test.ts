@@ -15,7 +15,11 @@ describe("getBook", () => {
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     await getBook(
       {
-        dateFinished,
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished,
+        },
         bookIsbn: "9780525658184",
         providers: ["google"],
         bookStatus: "finished",
@@ -41,7 +45,11 @@ describe("getBook", () => {
     expect(
       await getBook(
         {
-          dateFinished,
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished,
+          },
           bookIsbn: "9780525658184",
           providers: ["google"],
           bookStatus: "finished",
@@ -55,7 +63,11 @@ describe("getBook", () => {
     await expect(
       getBook(
         {
-          dateFinished,
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished,
+          },
           bookIsbn: "9780525658184",
           providers: ["google"],
           bookStatus: "finished",

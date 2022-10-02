@@ -14210,8 +14210,8 @@ function removeWrappedQuotes(str) {
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
 function cleanBook(options, book) {
-    const { notes, bookIsbn, dateStarted, dateFinished, bookStatus } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn, dateStarted: dateStarted || undefined, dateFinished: dateFinished || undefined, status: bookStatus }, (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
+    const { notes, bookIsbn, dates, bookStatus } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn }, dates), { status: bookStatus }), (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
         authors: book.authors,
     })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
         description: removeWrappedQuotes(book.description),
@@ -14318,7 +14318,7 @@ var finished_book_awaiter = (undefined && undefined.__awaiter) || function (this
 };
 
 
-function finishedBook({ fileName, bookIsbn, dateFinished, notes, bookStatus, }) {
+function finishedBook({ fileName, bookIsbn, dates, notes, bookStatus, }) {
     return finished_book_awaiter(this, void 0, void 0, function* () {
         const currentBooks = yield returnReadFile(fileName);
         if (currentBooks === undefined || currentBooks.length === 0)
@@ -14328,18 +14328,18 @@ function finishedBook({ fileName, bookIsbn, dateFinished, notes, bookStatus, }) 
         return updateBook({
             currentBooks,
             bookIsbn,
-            dateFinished,
+            dates,
             notes,
             bookStatus,
         });
     });
 }
-function updateBook({ currentBooks, bookIsbn, dateFinished, notes, bookStatus, }) {
+function updateBook({ currentBooks, bookIsbn, dates, notes, bookStatus, }) {
     return finished_book_awaiter(this, void 0, void 0, function* () {
         return currentBooks.reduce((arr, book) => {
             if (book.isbn === bookIsbn) {
                 (0,core.exportVariable)("BookTitle", book.title);
-                book.dateFinished = dateFinished;
+                book.dateFinished = dates.dateFinished;
                 book.status = bookStatus;
                 if (notes || book.notes)
                     book.notes = notes || book.notes;
@@ -14395,12 +14395,19 @@ function read() {
                 bookStatus = "finished";
             if (!dateFinished && !dateStarted)
                 bookStatus = "want to read";
+            const dates = {
+                dateAdded: bookStatus === "want to read"
+                    ? new Date().toISOString().slice(0, 10)
+                    : undefined,
+                dateStarted: dateStarted || undefined,
+                dateFinished: dateFinished || undefined,
+            };
             (0,core.exportVariable)("BookStatus", bookStatus);
             // Check if book already exists in library
             const bookExists = yield finishedBook({
                 fileName,
                 bookIsbn,
-                dateFinished,
+                dates,
                 notes,
                 bookStatus,
             });
@@ -14408,8 +14415,7 @@ function read() {
                 ? yield getBook({
                     notes,
                     bookIsbn,
-                    dateStarted,
-                    dateFinished,
+                    dates,
                     providers,
                     bookStatus,
                 }, fileName)

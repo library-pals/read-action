@@ -2,14 +2,28 @@ import { exportVariable, getInput, setFailed } from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
-import getBook, { BookOptions } from "./get-book";
+import getBook from "./get-book";
 import { isDate } from "./utils";
 import { finishedBook } from "./finished-book";
+
+export type Dates = {
+  dateAdded: string | undefined;
+  dateStarted: string | undefined;
+  dateFinished: string | undefined;
+};
+
+export type BookInputs = {
+  dateStarted: string | undefined;
+  dateFinished: string | undefined;
+  notes?: string;
+  bookIsbn: string;
+  providers: string[];
+};
 
 export async function read() {
   try {
     // Get inputs
-    const payload = github.context.payload.inputs as BookOptions;
+    const payload = github.context.payload.inputs as BookInputs;
     // Validate inputs
     if (!payload) return setFailed("Missing `inputs`");
     if (!payload.bookIsbn) return setFailed("Missing `bookIsbn` in payload");
@@ -31,13 +45,22 @@ export async function read() {
     if (dateFinished) bookStatus = "finished";
     if (!dateFinished && !dateStarted) bookStatus = "want to read";
 
+    const dates = {
+      dateAdded:
+        bookStatus === "want to read"
+          ? new Date().toISOString().slice(0, 10)
+          : undefined,
+      dateStarted: dateStarted || undefined,
+      dateFinished: dateFinished || undefined,
+    };
+
     exportVariable("BookStatus", bookStatus);
 
     // Check if book already exists in library
     const bookExists = await finishedBook({
       fileName,
       bookIsbn,
-      dateFinished,
+      dates,
       notes,
       bookStatus,
     });
@@ -48,8 +71,7 @@ export async function read() {
             {
               notes,
               bookIsbn,
-              dateStarted,
-              dateFinished,
+              dates,
               providers,
               bookStatus,
             },

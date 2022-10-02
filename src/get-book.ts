@@ -1,5 +1,6 @@
 import { exportVariable } from "@actions/core";
 import isbn from "node-isbn";
+import { Dates } from ".";
 import addBook from "./add-book";
 import { BookStatus, CleanBook } from "./clean-book";
 
@@ -40,8 +41,7 @@ export type Book = {
 };
 
 export type BookOptions = {
-  dateFinished?: string;
-  dateStarted?: string | undefined;
+  dates: Dates;
   notes?: string;
   bookIsbn: string;
   providers: string[];

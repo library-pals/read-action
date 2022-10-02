@@ -25,7 +25,11 @@ describe("finishedBook", () => {
       finishedBook({
         fileName: "my-library.yml",
         bookIsbn: "9780525620792",
-        dateFinished: "2022-02-02",
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished: "2022-02-02",
+        },
         bookStatus: "finished",
       })
     ).resolves.toMatchInlineSnapshot(`
@@ -54,7 +58,11 @@ describe("finishedBook", () => {
       finishedBook({
         fileName: "my-library.yml",
         bookIsbn: "9780525620792",
-        dateFinished: "2022-02-02",
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished: "2022-02-02",
+        },
         notes: "Great read",
         bookStatus: "finished",
       })
@@ -84,7 +92,11 @@ describe("finishedBook", () => {
       finishedBook({
         fileName: "my-library.yml",
         bookIsbn: "12345",
-        dateFinished: "2022-02-02",
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished: "2022-02-02",
+        },
         bookStatus: "finished",
       })
     ).resolves.toBe(false);
@@ -96,7 +108,11 @@ describe("finishedBook", () => {
       finishedBook({
         fileName: "my-library.yml",
         bookIsbn: "12345",
-        dateFinished: "2022-02-02",
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished: "2022-02-02",
+        },
         bookStatus: "finished",
       })
     ).resolves.toBe(false);

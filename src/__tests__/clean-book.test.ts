@@ -12,7 +12,11 @@ describe("cleanBook", () => {
     expect(
       cleanBook(
         {
-          dateFinished,
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished,
+          },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
@@ -26,7 +30,11 @@ describe("cleanBook", () => {
     expect(
       cleanBook(
         {
-          dateFinished: undefined,
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished: undefined,
+          },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
