@@ -19,27 +19,6 @@ exports[`getBook works 1`] = `
   },
   {
     "authors": [
-      "Yaa Gyasi",
-    ],
-    "categories": [
-      "Fiction",
-    ],
-    "dateAdded": undefined,
-    "dateFinished": "2020-09-12",
-    "dateStarted": undefined,
-    "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
-    "isbn": "9780525658184",
-    "language": "en",
-    "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
-    "pageCount": 288,
-    "printType": "BOOK",
-    "publishedDate": "2020",
-    "status": "finished",
-    "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-    "title": "Transcendent Kingdom",
-  },
-  {
-    "authors": [
       "Anna Wiener",
     ],
     "categories": [
@@ -148,6 +127,46 @@ exports[`getBook works 1`] = `
     "publishedDate": "2022-02-01",
     "thumbnail": "https://books.google.com/books/content?id=4D1UEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "title": "Lesser Known Monsters of the 21st Century",
+  },
+  {
+    "authors": [
+      "Octavia E. Butler",
+    ],
+    "categories": [
+      "Fiction",
+    ],
+    "dateAdded": "2022-10-02",
+    "description": ""A master storyteller, Butler casts an unflinching eye on racism, sexism, poverty, and ignorance and lets the reader see the terror and beauty of human nature." - The Washington Post This is the story of an apparently young, amnesiac girl whose alarmingly unhuman needs and abilities lead her to a startling conclusion: She is in fact a genetically modified, 53-year-old vampire. Forced to discover what she can about her stolen former life, she must at the same time learn who wanted-and still wants-to destroy her and those she cares for and how she can save herself.",
+    "isbn": "9780446696166",
+    "language": "en",
+    "link": "https://books.google.com/books/about/Fledgling.html?hl=&id=LIH6wAEACAAJ",
+    "pageCount": 320,
+    "printType": "BOOK",
+    "publishedDate": "2007-01-02",
+    "status": "want to read",
+    "thumbnail": "https://books.google.com/books/content?id=LIH6wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "title": "Fledgling",
+  },
+  {
+    "authors": [
+      "Yaa Gyasi",
+    ],
+    "categories": [
+      "Fiction",
+    ],
+    "dateAdded": undefined,
+    "dateFinished": "2020-09-12",
+    "dateStarted": undefined,
+    "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
+    "isbn": "9780525658184",
+    "language": "en",
+    "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+    "pageCount": 288,
+    "printType": "BOOK",
+    "publishedDate": "2020",
+    "status": "finished",
+    "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "title": "Transcendent Kingdom",
   },
 ]
 `;
