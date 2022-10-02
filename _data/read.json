@@ -124,5 +124,24 @@
     "link": "https://play.google.com/store/books/details?id=4D1UEAAAQBAJ",
     "dateFinished": "2022-09-11",
     "notes": ""
+  },
+  {
+    "isbn": "9780446696166",
+    "dateAdded": "2022-10-02",
+    "status": "want to read",
+    "title": "Fledgling",
+    "authors": [
+      "Octavia E. Butler"
+    ],
+    "publishedDate": "2007-01-02",
+    "description": "\"A master storyteller, Butler casts an unflinching eye on racism, sexism, poverty, and ignorance and lets the reader see the terror and beauty of human nature.\" - The Washington Post This is the story of an apparently young, amnesiac girl whose alarmingly unhuman needs and abilities lead her to a startling conclusion: She is in fact a genetically modified, 53-year-old vampire. Forced to discover what she can about her stolen former life, she must at the same time learn who wanted-and still wants-to destroy her and those she cares for and how she can save herself.",
+    "pageCount": 320,
+    "printType": "BOOK",
+    "categories": [
+      "Fiction"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=LIH6wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "language": "en",
+    "link": "https://books.google.com/books/about/Fledgling.html?hl=&id=LIH6wAEACAAJ"
   }
 ]

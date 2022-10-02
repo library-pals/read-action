@@ -14,7 +14,16 @@ describe("getBook", () => {
     jest.spyOn(isbn, "resolve").mockResolvedValueOnce(book);
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     await getBook(
-      { dateFinished, bookIsbn: "9780525658184", providers: ["google"] },
+      {
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished,
+        },
+        bookIsbn: "9780525658184",
+        providers: ["google"],
+        bookStatus: "finished",
+      },
       "_data/read.yml"
     );
     expect(exportVariable).toHaveBeenNthCalledWith(
@@ -35,7 +44,16 @@ describe("getBook", () => {
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     expect(
       await getBook(
-        { dateFinished, bookIsbn: "9780525658184", providers: ["google"] },
+        {
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished,
+          },
+          bookIsbn: "9780525658184",
+          providers: ["google"],
+          bookStatus: "finished",
+        },
         "_data/read.yml"
       )
     ).toMatchSnapshot();
@@ -44,7 +62,16 @@ describe("getBook", () => {
     jest.spyOn(isbn, "resolve").mockRejectedValue({ message: "Error!" });
     await expect(
       getBook(
-        { dateFinished, bookIsbn: "9780525658184", providers: ["google"] },
+        {
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished,
+          },
+          bookIsbn: "9780525658184",
+          providers: ["google"],
+          bookStatus: "finished",
+        },
         "_data/read.json"
       )
     ).rejects.toMatchInlineSnapshot(`[Error: Error!]`);

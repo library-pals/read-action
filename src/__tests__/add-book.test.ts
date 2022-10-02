@@ -14,10 +14,15 @@ describe("addBook", () => {
     expect(
       await addBook(
         {
-          dateFinished,
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished,
+          },
           notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],
+          bookStatus: "finished",
         },
         book,
         "_data/read.yml"
@@ -40,10 +45,15 @@ describe("addBook", () => {
     expect(
       await addBook(
         {
-          dateFinished,
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished,
+          },
           notes: "Amazing!",
           bookIsbn: "0525658181",
           providers: [],
+          bookStatus: "finished",
         },
 
         {
@@ -71,10 +81,15 @@ describe("addBook", () => {
     expect(
       await addBook(
         {
-          dateFinished,
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished,
+          },
           notes: "Brilliant!",
           bookIsbn: "0525658181",
           providers: [],
+          bookStatus: "finished",
         },
 
         book,

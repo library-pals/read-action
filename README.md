@@ -25,11 +25,12 @@ on:
       notes:
         description: Notes about the book.
         type: string
+      # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
       dateStarted:
         description: Date you started the book (YYYY-MM-DD).
         type: string
       dateFinished:
-        description: Date you finished the book (YYYY-MM-DD). The default date is today unless dateStarted is defined, then it is `undefined`.
+        description: Date you finished the book (YYYY-MM-DD).
         type: string
 
 jobs:
@@ -49,7 +50,7 @@ jobs:
           git pull
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add -A && git commit -m "📚 ${{ env.BookStatus }} ${{ env.BookTitle }}"
+          git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})"
           git push
 ```
 
@@ -58,6 +59,7 @@ jobs:
 
 - `readFileName`: The file where you want to save your books. Default: `_data/read.json`.
 - `providers`: Specify the [ISBN providers](https://github.com/palmerabollo/node-isbn#setting-backend-providers) that you want to use, in the order you need them to be invoked. If setting more than one provider, separate each with a comma.
+- `timeZone`: Your timezone. Default: `America/New_York`.
 
 ## Trigger the action
 
@@ -70,7 +72,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
     "bookIsbn": "", // Required. The book's ISBN.
     "notes": "", // Notes about the book.
     "dateStarted": "", // Date you started the book (YYYY-MM-DD).
-    "dateFinished": "", // Date you finished the book (YYYY-MM-DD). The default date is today unless dateStarted is defined, then it is `undefined`.
+    "dateFinished": "", // Date you finished the book (YYYY-MM-DD).
   }
 }
 ```

@@ -25,7 +25,12 @@ describe("finishedBook", () => {
       finishedBook({
         fileName: "my-library.yml",
         bookIsbn: "9780525620792",
-        dateFinished: "2022-02-02",
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished: "2022-02-02",
+        },
+        bookStatus: "finished",
       })
     ).resolves.toMatchInlineSnapshot(`
               [
@@ -40,6 +45,7 @@ describe("finishedBook", () => {
                   "dateStarted": "2021-09-26",
                   "isbn": "9780525620792",
                   "notes": "Recommended by my sister.",
+                  "status": "finished",
                   "title": "Mexican Gothic",
                 },
               ]
@@ -52,8 +58,13 @@ describe("finishedBook", () => {
       finishedBook({
         fileName: "my-library.yml",
         bookIsbn: "9780525620792",
-        dateFinished: "2022-02-02",
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished: "2022-02-02",
+        },
         notes: "Great read",
+        bookStatus: "finished",
       })
     ).resolves.toMatchInlineSnapshot(`
               [
@@ -68,6 +79,7 @@ describe("finishedBook", () => {
                   "dateStarted": "2021-09-26",
                   "isbn": "9780525620792",
                   "notes": "Great read",
+                  "status": "finished",
                   "title": "Mexican Gothic",
                 },
               ]
@@ -80,7 +92,12 @@ describe("finishedBook", () => {
       finishedBook({
         fileName: "my-library.yml",
         bookIsbn: "12345",
-        dateFinished: "2022-02-02",
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished: "2022-02-02",
+        },
+        bookStatus: "finished",
       })
     ).resolves.toBe(false);
   });
@@ -91,7 +108,12 @@ describe("finishedBook", () => {
       finishedBook({
         fileName: "my-library.yml",
         bookIsbn: "12345",
-        dateFinished: "2022-02-02",
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished: "2022-02-02",
+        },
+        bookStatus: "finished",
       })
     ).resolves.toBe(false);
   });

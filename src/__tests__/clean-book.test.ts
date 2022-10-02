@@ -12,24 +12,33 @@ describe("cleanBook", () => {
     expect(
       cleanBook(
         {
-          dateFinished,
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished,
+          },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
+          bookStatus: "finished",
         },
         book
       )
     ).toMatchSnapshot());
 
-  jest.useFakeTimers().setSystemTime(new Date("2020-01-01"));
-
   it("cleanBook, no date", () =>
     expect(
       cleanBook(
         {
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished: undefined,
+          },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
+          bookStatus: "finished",
         },
         book
       )
