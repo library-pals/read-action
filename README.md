@@ -59,6 +59,7 @@ jobs:
 
 - `readFileName`: The file where you want to save your books. Default: `_data/read.json`.
 - `providers`: Specify the [ISBN providers](https://github.com/palmerabollo/node-isbn#setting-backend-providers) that you want to use, in the order you need them to be invoked. If setting more than one provider, separate each with a comma.
+- `timeZone`: Your timezone. Default: `America/New_York`.
 
 ## Trigger the action
 
