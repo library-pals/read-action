@@ -46,10 +46,7 @@ export async function read() {
     if (!dateFinished && !dateStarted) bookStatus = "want to read";
 
     const dates = {
-      dateAdded:
-        bookStatus === "want to read"
-          ? new Date().toISOString().slice(0, 10)
-          : undefined,
+      dateAdded: bookStatus === "want to read" ? localDate() : undefined,
       dateStarted: dateStarted || undefined,
       dateFinished: dateFinished || undefined,
     };
@@ -86,3 +83,12 @@ export async function read() {
 }
 
 export default read();
+
+function localDate() {
+  // "fr-ca" will result YYYY-MM-DD formatting
+  const dateFormat = new Intl.DateTimeFormat("fr-ca", {
+    dateStyle: "short",
+    timeZone: getInput("timeZone"),
+  });
+  return dateFormat.format(new Date());
+}

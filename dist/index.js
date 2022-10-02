@@ -14397,7 +14397,7 @@ function read() {
                 bookStatus = "want to read";
             const dates = {
                 dateAdded: bookStatus === "want to read"
-                    ? new Date().toISOString().slice(0, 10)
+                    ? localDate()
                     : undefined,
                 dateStarted: dateStarted || undefined,
                 dateFinished: dateFinished || undefined,
@@ -14428,6 +14428,14 @@ function read() {
     });
 }
 /* harmony default export */ const src = (read());
+function localDate() {
+    // "fr-ca" will result YYYY-MM-DD formatting
+    const dateFormat = new Intl.DateTimeFormat("fr-ca", {
+        dateStyle: "short",
+        timeZone: (0,core.getInput)("timeZone"),
+    });
+    return dateFormat.format(new Date());
+}
 
 })();
 

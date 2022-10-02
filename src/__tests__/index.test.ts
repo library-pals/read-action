@@ -318,11 +318,16 @@ describe("index", () => {
   });
 
   test("works, want to read/queue", async () => {
+    jest.useFakeTimers().setSystemTime(new Date("2022-10-01T12:00:00"));
+
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
     jest
       .spyOn(core, "getInput")
       .mockImplementationOnce(() => "my-library.json");
+    jest
+      .spyOn(core, "getInput")
+      .mockImplementation((v) => (v === "timeZone" ? "America/New_York" : ""));
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -372,7 +377,7 @@ describe("index", () => {
             "authors": [
               "Raven Leilani",
             ],
-            "dateAdded": "2022-10-02",
+            "dateAdded": "2022-10-01",
             "dateFinished": undefined,
             "dateStarted": undefined,
             "description": "Sharp, comic, disruptive, tender, Raven Leilani's debut novel, Luster, sees a young black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties--sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage--with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only black woman who young Akila knows. Razor sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make her sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
