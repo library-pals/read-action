@@ -14354,7 +14354,7 @@ function updateBook({ currentBooks, bookIsbn, dates, notes, bookStatus, }) {
         return currentBooks.reduce((arr, book) => {
             if (book.isbn === bookIsbn) {
                 (0,core.exportVariable)("BookTitle", book.title);
-                book = Object.assign(Object.assign(Object.assign({}, book), { dateAdded: book.dateAdded || dates.dateAdded, dateStarted: book.dateStarted || dates.dateStarted, dateFinished: book.dateFinished || dates.dateFinished, status: bookStatus }), (notes) && { notes });
+                book = Object.assign(Object.assign(Object.assign({}, book), { dateAdded: book.dateAdded || dates.dateAdded, dateStarted: book.dateStarted || dates.dateStarted, dateFinished: book.dateFinished || dates.dateFinished, status: bookStatus }), (notes && { notes }));
             }
             arr.push(book);
             return arr;
