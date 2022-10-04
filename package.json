@@ -1,6 +1,6 @@
 {
   "name": "read-action",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "main": "dist/index.js",
   "scripts": {
     "pretest": "eslint . --ext .js,.ts",
