@@ -1,4 +1,5 @@
 name: Read
+run-name: Book (${{ inputs.bookIsbn }})
 
 on:
   workflow_dispatch:

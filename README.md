@@ -24,6 +24,7 @@ To use this action, create a new workflow in `.github/workflows` and modify it a
 
 ```yml
 name: Read
+run-name: Book (${{ inputs.bookIsbn }})
 
 on:
   workflow_dispatch:
