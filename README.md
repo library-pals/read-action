@@ -24,6 +24,7 @@ To use this action, create a new workflow in `.github/workflows` and modify it a
 
 ```yml
 name: Read
+run-name: Book (${{ inputs.bookIsbn }})
 
 on:
   workflow_dispatch:
@@ -51,7 +52,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Read
-        uses: katydecorah/read-action@v6.0.0
+        uses: katydecorah/read-action@v6.0.1
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
         run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
