@@ -3,7 +3,7 @@ import returnReadFile from "./read-file";
 import { exportVariable } from "@actions/core";
 import { Dates } from ".";
 
-export async function finishedBook({
+export async function checkOutBook({
   fileName,
   bookIsbn,
   dates,
@@ -45,9 +45,14 @@ export async function updateBook({
   return currentBooks.reduce((arr: CleanBook[], book) => {
     if (book.isbn === bookIsbn) {
       exportVariable("BookTitle", book.title);
-      book.dateFinished = dates.dateFinished;
-      book.status = bookStatus;
-      if (notes || book.notes) book.notes = notes || book.notes;
+      book = {
+        ...book,
+        dateAdded: book.dateAdded || dates.dateAdded,
+        dateStarted: book.dateStarted || dates.dateStarted,
+        dateFinished: book.dateFinished || dates.dateFinished,
+        status: bookStatus,
+        ...(notes && { notes }),
+      };
     }
     arr.push(book);
     return arr;

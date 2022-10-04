@@ -1,4 +1,4 @@
-import { finishedBook } from "../finished-book";
+import { checkOutBook } from "../checkout-book";
 import { promises } from "fs";
 
 jest.mock("@actions/core");
@@ -18,11 +18,11 @@ const mockReadFile = JSON.stringify([
   },
 ]);
 
-describe("finishedBook", () => {
+describe("checkOutBook", () => {
   it("works", async () => {
     jest.spyOn(promises, "readFile").mockResolvedValue(mockReadFile);
     return expect(
-      finishedBook({
+      checkOutBook({
         fileName: "my-library.yml",
         bookIsbn: "9780525620792",
         dates: {
@@ -30,6 +30,7 @@ describe("finishedBook", () => {
           dateStarted: undefined,
           dateFinished: "2022-02-02",
         },
+
         bookStatus: "finished",
       })
     ).resolves.toMatchInlineSnapshot(`
@@ -41,6 +42,7 @@ describe("finishedBook", () => {
                   "title": "Uncanny Valley",
                 },
                 {
+                  "dateAdded": undefined,
                   "dateFinished": "2022-02-02",
                   "dateStarted": "2021-09-26",
                   "isbn": "9780525620792",
@@ -55,7 +57,7 @@ describe("finishedBook", () => {
   it("works, notes", async () => {
     jest.spyOn(promises, "readFile").mockResolvedValue(mockReadFile);
     return expect(
-      finishedBook({
+      checkOutBook({
         fileName: "my-library.yml",
         bookIsbn: "9780525620792",
         dates: {
@@ -63,6 +65,7 @@ describe("finishedBook", () => {
           dateStarted: undefined,
           dateFinished: "2022-02-02",
         },
+
         notes: "Great read",
         bookStatus: "finished",
       })
@@ -75,6 +78,7 @@ describe("finishedBook", () => {
                   "title": "Uncanny Valley",
                 },
                 {
+                  "dateAdded": undefined,
                   "dateFinished": "2022-02-02",
                   "dateStarted": "2021-09-26",
                   "isbn": "9780525620792",
@@ -89,7 +93,7 @@ describe("finishedBook", () => {
   it("does not find book", async () => {
     jest.spyOn(promises, "readFile").mockResolvedValue(mockReadFile);
     return expect(
-      finishedBook({
+      checkOutBook({
         fileName: "my-library.yml",
         bookIsbn: "12345",
         dates: {
@@ -105,7 +109,7 @@ describe("finishedBook", () => {
   it("no library", async () => {
     jest.spyOn(promises, "readFile").mockResolvedValue(`[]`);
     return expect(
-      finishedBook({
+      checkOutBook({
         fileName: "my-library.yml",
         bookIsbn: "12345",
         dates: {
