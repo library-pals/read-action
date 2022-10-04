@@ -14321,8 +14321,8 @@ function getBook(options, fileName) {
     });
 }
 
-;// CONCATENATED MODULE: ./src/finished-book.ts
-var finished_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+;// CONCATENATED MODULE: ./src/checkout-book.ts
+var checkout_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -14333,8 +14333,8 @@ var finished_book_awaiter = (undefined && undefined.__awaiter) || function (this
 };
 
 
-function finishedBook({ fileName, bookIsbn, dates, notes, bookStatus, }) {
-    return finished_book_awaiter(this, void 0, void 0, function* () {
+function checkOutBook({ fileName, bookIsbn, dates, notes, bookStatus, }) {
+    return checkout_book_awaiter(this, void 0, void 0, function* () {
         const currentBooks = yield returnReadFile(fileName);
         if (currentBooks === undefined || currentBooks.length === 0)
             return false;
@@ -14350,14 +14350,11 @@ function finishedBook({ fileName, bookIsbn, dates, notes, bookStatus, }) {
     });
 }
 function updateBook({ currentBooks, bookIsbn, dates, notes, bookStatus, }) {
-    return finished_book_awaiter(this, void 0, void 0, function* () {
+    return checkout_book_awaiter(this, void 0, void 0, function* () {
         return currentBooks.reduce((arr, book) => {
             if (book.isbn === bookIsbn) {
                 (0,core.exportVariable)("BookTitle", book.title);
-                book.dateFinished = dates.dateFinished;
-                book.status = bookStatus;
-                if (notes || book.notes)
-                    book.notes = notes || book.notes;
+                book = Object.assign(Object.assign(Object.assign(Object.assign({}, book), dates), { status: bookStatus }), (notes || book.notes) && { notes: notes || book.notes });
             }
             arr.push(book);
             return arr;
@@ -14417,7 +14414,7 @@ function read() {
             };
             (0,core.exportVariable)("BookStatus", bookStatus);
             // Check if book already exists in library
-            const bookExists = yield finishedBook({
+            const bookExists = yield checkOutBook({
                 fileName,
                 bookIsbn,
                 dates,

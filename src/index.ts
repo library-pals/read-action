@@ -4,7 +4,7 @@ import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
 import getBook from "./get-book";
 import { isDate } from "./utils";
-import { finishedBook } from "./finished-book";
+import { checkOutBook } from "./checkout-book";
 
 export type Dates = {
   dateAdded: string | undefined;
@@ -54,7 +54,7 @@ export async function read() {
     exportVariable("BookStatus", bookStatus);
 
     // Check if book already exists in library
-    const bookExists = await finishedBook({
+    const bookExists = await checkOutBook({
       fileName,
       bookIsbn,
       dates,
