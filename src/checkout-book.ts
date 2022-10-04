@@ -47,9 +47,11 @@ export async function updateBook({
       exportVariable("BookTitle", book.title);
       book = {
         ...book,
-        ...dates,
+        dateAdded: book.dateAdded || dates.dateAdded,
+        dateStarted: book.dateStarted || dates.dateStarted,
+        dateFinished: book.dateFinished || dates.dateFinished,
         status: bookStatus,
-        ...((notes || book.notes) && { notes: notes || book.notes }),
+        ...(notes && { notes }),
       };
     }
     arr.push(book);

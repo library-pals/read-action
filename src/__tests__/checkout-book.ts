@@ -44,7 +44,7 @@ describe("checkOutBook", () => {
                 {
                   "dateAdded": undefined,
                   "dateFinished": "2022-02-02",
-                  "dateStarted": undefined,
+                  "dateStarted": "2021-09-26",
                   "isbn": "9780525620792",
                   "notes": "Recommended by my sister.",
                   "status": "finished",
@@ -80,7 +80,7 @@ describe("checkOutBook", () => {
                 {
                   "dateAdded": undefined,
                   "dateFinished": "2022-02-02",
-                  "dateStarted": undefined,
+                  "dateStarted": "2021-09-26",
                   "isbn": "9780525620792",
                   "notes": "Great read",
                   "status": "finished",
