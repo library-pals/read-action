@@ -55,6 +55,44 @@ describe("checkOutBook", () => {
   });
 
   it("works, notes", async () => {
+    jest.spyOn(promises, "readFile").mockResolvedValue(
+      JSON.stringify([
+        {
+          isbn: "9780525620792",
+          dateStarted: "2021-09-26",
+          title: "Mexican Gothic",
+        },
+      ])
+    );
+    return expect(
+      checkOutBook({
+        fileName: "my-library.yml",
+        bookIsbn: "9780525620792",
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished: "2022-02-02",
+        },
+
+        notes: "Great read",
+        bookStatus: "finished",
+      })
+    ).resolves.toMatchInlineSnapshot(`
+              [
+                {
+                  "dateAdded": undefined,
+                  "dateFinished": "2022-02-02",
+                  "dateStarted": "2021-09-26",
+                  "isbn": "9780525620792",
+                  "notes": "Great read",
+                  "status": "finished",
+                  "title": "Mexican Gothic",
+                },
+              ]
+            `);
+  });
+
+  it("works, append notes", async () => {
     jest.spyOn(promises, "readFile").mockResolvedValue(mockReadFile);
     return expect(
       checkOutBook({
@@ -82,7 +120,9 @@ describe("checkOutBook", () => {
                   "dateFinished": "2022-02-02",
                   "dateStarted": "2021-09-26",
                   "isbn": "9780525620792",
-                  "notes": "Great read",
+                  "notes": "Recommended by my sister.
+
+              Great read",
                   "status": "finished",
                   "title": "Mexican Gothic",
                 },

@@ -51,10 +51,14 @@ export async function updateBook({
         dateStarted: book.dateStarted || dates.dateStarted,
         dateFinished: book.dateFinished || dates.dateFinished,
         status: bookStatus,
-        ...(notes && { notes }),
+        ...(notes && { notes: addNotes(notes, book.notes) }),
       };
     }
     arr.push(book);
     return arr;
   }, []);
+}
+
+function addNotes(notes: string, bookNotes?: string) {
+  return `${bookNotes ? `${bookNotes}\n\n` : ""}${notes}`;
 }
