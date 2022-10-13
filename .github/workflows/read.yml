@@ -11,6 +11,9 @@ on:
       notes:
         description: Notes about the book.
         type: string
+      # Adding a rating is optional.
+      # You can change the options to whatever you want to use.
+      # For example, you can use numbers, other emoji, or words.
       rating:
         description: Rating
         type: choice
