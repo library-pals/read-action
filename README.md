@@ -40,7 +40,7 @@ on:
       # You can change the options to whatever you want to use.
       # For example, you can use numbers, other emoji, or words.
       rating:
-        description: Rath the book. Optional.
+        description: Rate the book. Optional.
         type: choice
         options:
           -
@@ -95,7 +95,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   "inputs": {
     "bookIsbn": "", // Required. The book's ISBN. Required.
     "notes": "", // Notes about the book. Optional.
-    "rating": "", // Rath the book. Optional.
+    "rating": "", // Rate the book. Optional.
     "dateStarted": "", // Date you started the book (YYYY-MM-DD). Optional.
     "dateFinished": "", // Date you finished the book (YYYY-MM-DD). Optional.
   }
