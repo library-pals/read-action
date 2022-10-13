@@ -40,6 +40,7 @@ on:
         description: Rating
         type: choice
         options:
+          -
           - ⭐️
           - ⭐️⭐️
           - ⭐️⭐️⭐️
