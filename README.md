@@ -30,14 +30,17 @@ on:
   workflow_dispatch:
     inputs:
       bookIsbn:
-        description: The book's ISBN.
+        description: The book's ISBN. Required.
         required: true
         type: string
       notes:
-        description: Notes about the book.
+        description: Notes about the book. Optional.
         type: string
+      # Adding a rating is optional.
+      # You can change the options to whatever you want to use.
+      # For example, you can use numbers, other emoji, or words.
       rating:
-        description: Rating
+        description: Rath the book. Optional.
         type: choice
         options:
           -
@@ -48,10 +51,10 @@ on:
           - ⭐️⭐️⭐️⭐️⭐️
       # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
       dateStarted:
-        description: Date you started the book (YYYY-MM-DD).
+        description: Date you started the book (YYYY-MM-DD). Optional.
         type: string
       dateFinished:
-        description: Date you finished the book (YYYY-MM-DD).
+        description: Date you finished the book (YYYY-MM-DD). Optional.
         type: string
 
 jobs:
@@ -90,11 +93,11 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
 { 
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
-    "bookIsbn": "", // Required. The book's ISBN.
-    "notes": "", // Notes about the book.
-    "rating": "", // Rating
-    "dateStarted": "", // Date you started the book (YYYY-MM-DD).
-    "dateFinished": "", // Date you finished the book (YYYY-MM-DD).
+    "bookIsbn": "", // Required. The book's ISBN. Required.
+    "notes": "", // Notes about the book. Optional.
+    "rating": "", // Rath the book. Optional.
+    "dateStarted": "", // Date you started the book (YYYY-MM-DD). Optional.
+    "dateFinished": "", // Date you finished the book (YYYY-MM-DD). Optional.
   }
 }
 ```
