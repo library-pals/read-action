@@ -21,6 +21,7 @@ describe("cleanBook", () => {
           bookIsbn: "0525658181",
           providers: [],
           bookStatus: "finished",
+          fileName: "_data/read.yml",
         },
         book
       )
@@ -58,6 +59,7 @@ describe("cleanBook", () => {
           bookIsbn: "0525658181",
           providers: [],
           bookStatus: "finished",
+          fileName: "_data/read.yml",
         },
         book
       )

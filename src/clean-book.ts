@@ -1,5 +1,6 @@
 import { removeWrappedQuotes } from "./utils";
-import { BookOptions, Book } from "./get-book";
+import { Book } from "./get-book";
+import { BookParams } from ".";
 
 export type CleanBook = {
   dateAdded: string | undefined;
@@ -23,7 +24,7 @@ export type CleanBook = {
 
 export type BookStatus = "want to read" | "started" | "finished";
 
-export default function cleanBook(options: BookOptions, book: Book): CleanBook {
+export default function cleanBook(options: BookParams, book: Book): CleanBook {
   const { notes, bookIsbn, dates, bookStatus, rating } = options;
   return {
     isbn: bookIsbn,

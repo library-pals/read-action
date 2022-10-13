@@ -13,19 +13,17 @@ describe("getBook", () => {
   test("works", async () => {
     jest.spyOn(isbn, "resolve").mockResolvedValueOnce(book);
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
-    await getBook(
-      {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: undefined,
-          dateFinished,
-        },
-        bookIsbn: "9780525658184",
-        providers: ["google"],
-        bookStatus: "finished",
+    await getBook({
+      dates: {
+        dateAdded: undefined,
+        dateStarted: undefined,
+        dateFinished,
       },
-      "_data/read.yml"
-    );
+      bookIsbn: "9780525658184",
+      providers: ["google"],
+      bookStatus: "finished",
+      fileName: "_data/read.yml",
+    });
     expect(exportVariable).toHaveBeenNthCalledWith(
       1,
       "BookTitle",
@@ -43,37 +41,33 @@ describe("getBook", () => {
     );
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     expect(
-      await getBook(
-        {
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
-            dateFinished,
-          },
-          bookIsbn: "9780525658184",
-          providers: ["google"],
-          bookStatus: "finished",
+      await getBook({
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished,
         },
-        "_data/read.yml"
-      )
+        bookIsbn: "9780525658184",
+        providers: ["google"],
+        bookStatus: "finished",
+        fileName: "_data/read.yml",
+      })
     ).toMatchSnapshot();
   });
   test("fails", async () => {
     jest.spyOn(isbn, "resolve").mockRejectedValue({ message: "Error!" });
     await expect(
-      getBook(
-        {
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
-            dateFinished,
-          },
-          bookIsbn: "9780525658184",
-          providers: ["google"],
-          bookStatus: "finished",
+      getBook({
+        dates: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished,
         },
-        "_data/read.json"
-      )
+        bookIsbn: "9780525658184",
+        providers: ["google"],
+        bookStatus: "finished",
+        fileName: "_data/read.json",
+      })
     ).rejects.toMatchInlineSnapshot(`[Error: Error!]`);
   });
 });
