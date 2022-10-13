@@ -14225,8 +14225,8 @@ function removeWrappedQuotes(str) {
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
 function cleanBook(options, book) {
-    const { notes, bookIsbn, dates, bookStatus } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn }, dates), { status: bookStatus }), (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
+    const { notes, bookIsbn, dates, bookStatus, rating } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn }, dates), { status: bookStatus }), rating && { rating }), (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
         authors: book.authors,
     })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
         description: removeWrappedQuotes(book.description),
@@ -14333,7 +14333,7 @@ var checkout_book_awaiter = (undefined && undefined.__awaiter) || function (this
 };
 
 
-function checkOutBook({ fileName, bookIsbn, dates, notes, bookStatus, }) {
+function checkOutBook({ fileName, bookIsbn, dates, notes, bookStatus, rating }) {
     return checkout_book_awaiter(this, void 0, void 0, function* () {
         const currentBooks = yield returnReadFile(fileName);
         if (currentBooks === undefined || currentBooks.length === 0)
@@ -14346,15 +14346,16 @@ function checkOutBook({ fileName, bookIsbn, dates, notes, bookStatus, }) {
             dates,
             notes,
             bookStatus,
+            rating
         });
     });
 }
-function updateBook({ currentBooks, bookIsbn, dates, notes, bookStatus, }) {
+function updateBook({ currentBooks, bookIsbn, dates, notes, bookStatus, rating }) {
     return checkout_book_awaiter(this, void 0, void 0, function* () {
         return currentBooks.reduce((arr, book) => {
             if (book.isbn === bookIsbn) {
                 (0,core.exportVariable)("BookTitle", book.title);
-                book = Object.assign(Object.assign(Object.assign({}, book), { dateAdded: book.dateAdded || dates.dateAdded, dateStarted: book.dateStarted || dates.dateStarted, dateFinished: book.dateFinished || dates.dateFinished, status: bookStatus }), (notes && { notes: addNotes(notes, book.notes) }));
+                book = Object.assign(Object.assign(Object.assign(Object.assign({}, book), { dateAdded: book.dateAdded || dates.dateAdded, dateStarted: book.dateStarted || dates.dateStarted, dateFinished: book.dateFinished || dates.dateFinished, status: bookStatus }), rating && { rating }), (notes && { notes: addNotes(notes, book.notes) }));
             }
             arr.push(book);
             return arr;
@@ -14392,7 +14393,7 @@ function read() {
                 return (0,core.setFailed)("Missing `inputs`");
             if (!payload.bookIsbn)
                 return (0,core.setFailed)("Missing `bookIsbn` in payload");
-            const { bookIsbn, dateFinished, dateStarted, notes } = payload;
+            const { bookIsbn, dateFinished, dateStarted, notes, rating } = payload;
             if (dateFinished && !isDate(dateFinished))
                 return (0,core.setFailed)(`Invalid \`dateFinished\` in payload: ${dateFinished}`);
             if (dateStarted && !isDate(dateStarted))
@@ -14423,6 +14424,7 @@ function read() {
                 dates,
                 notes,
                 bookStatus,
+                rating
             });
             const library = bookExists == false
                 ? yield getBook({
@@ -14431,6 +14433,7 @@ function read() {
                     dates,
                     providers,
                     bookStatus,
+                    rating
                 }, fileName)
                 : bookExists;
             yield returnWriteFile(fileName, library);

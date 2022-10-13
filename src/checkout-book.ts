@@ -1,7 +1,7 @@
 import { CleanBook, BookStatus } from "./clean-book";
 import returnReadFile from "./read-file";
 import { exportVariable } from "@actions/core";
-import { Dates } from ".";
+import { BookInputs, Dates } from ".";
 
 export async function checkOutBook({
   fileName,
@@ -9,12 +9,14 @@ export async function checkOutBook({
   dates,
   notes,
   bookStatus,
+  rating,
 }: {
   fileName: string;
   bookIsbn: string;
   dates: Dates;
   notes?: string;
   bookStatus: BookStatus;
+  rating: BookInputs["rating"];
 }): Promise<false | CleanBook[]> {
   const currentBooks = await returnReadFile(fileName);
   if (currentBooks === undefined || currentBooks.length === 0) return false;
@@ -26,6 +28,7 @@ export async function checkOutBook({
     dates,
     notes,
     bookStatus,
+    rating,
   });
 }
 
@@ -35,12 +38,14 @@ export async function updateBook({
   dates,
   notes,
   bookStatus,
+  rating,
 }: {
   currentBooks: CleanBook[];
   bookIsbn: string;
   dates: Dates;
   notes?: string;
   bookStatus: BookStatus;
+  rating: BookInputs["rating"];
 }): Promise<CleanBook[]> {
   return currentBooks.reduce((arr: CleanBook[], book) => {
     if (book.isbn === bookIsbn) {
@@ -51,6 +56,7 @@ export async function updateBook({
         dateStarted: book.dateStarted || dates.dateStarted,
         dateFinished: book.dateFinished || dates.dateFinished,
         status: bookStatus,
+        ...(rating && { rating }),
         ...(notes && { notes: addNotes(notes, book.notes) }),
       };
     }

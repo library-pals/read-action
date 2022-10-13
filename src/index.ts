@@ -18,6 +18,7 @@ export type BookInputs = {
   notes?: string;
   bookIsbn: string;
   providers: string[];
+  rating?: string;
 };
 
 export async function read() {
@@ -27,7 +28,7 @@ export async function read() {
     // Validate inputs
     if (!payload) return setFailed("Missing `inputs`");
     if (!payload.bookIsbn) return setFailed("Missing `bookIsbn` in payload");
-    const { bookIsbn, dateFinished, dateStarted, notes } = payload;
+    const { bookIsbn, dateFinished, dateStarted, notes, rating } = payload;
     if (dateFinished && !isDate(dateFinished))
       return setFailed(`Invalid \`dateFinished\` in payload: ${dateFinished}`);
     if (dateStarted && !isDate(dateStarted))
@@ -60,6 +61,7 @@ export async function read() {
       dates,
       notes,
       bookStatus,
+      rating,
     });
 
     const library =
@@ -71,6 +73,7 @@ export async function read() {
               dates,
               providers,
               bookStatus,
+              rating,
             },
             fileName
           )

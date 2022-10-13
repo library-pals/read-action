@@ -11,6 +11,15 @@ on:
       notes:
         description: Notes about the book.
         type: string
+      rating:
+        description: Rating
+        type: choice
+        options:
+          - ⭐️
+          - ⭐️⭐️
+          - ⭐️⭐️⭐️
+          - ⭐️⭐️⭐️⭐️
+          - ⭐️⭐️⭐️⭐️⭐️
       # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
       dateStarted:
         description: Date you started the book (YYYY-MM-DD).
