@@ -1,11 +1,12 @@
 import { exportVariable } from "@actions/core";
 import cleanBook, { CleanBook } from "./clean-book";
 import { sortByDate } from "./utils";
-import { Book, BookOptions } from "./get-book";
+import { Book } from "./get-book";
 import returnReadFile from "./read-file";
+import { BookParams } from ".";
 
 export default async function addBook(
-  options: BookOptions,
+  options: BookParams,
   book: Book,
   fileName: string
 ) {

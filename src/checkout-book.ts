@@ -1,47 +1,24 @@
-import { CleanBook, BookStatus } from "./clean-book";
+import { CleanBook } from "./clean-book";
 import returnReadFile from "./read-file";
 import { exportVariable } from "@actions/core";
-import { Dates } from ".";
+import { BookParams } from ".";
 
-export async function checkOutBook({
-  fileName,
-  bookIsbn,
-  dates,
-  notes,
-  bookStatus,
-}: {
-  fileName: string;
-  bookIsbn: string;
-  dates: Dates;
-  notes?: string;
-  bookStatus: BookStatus;
-}): Promise<false | CleanBook[]> {
+export async function checkOutBook(
+  bookParams: BookParams
+): Promise<false | CleanBook[]> {
+  const { fileName, bookIsbn } = bookParams;
   const currentBooks = await returnReadFile(fileName);
   if (currentBooks === undefined || currentBooks.length === 0) return false;
   if (currentBooks.filter((f) => f.isbn === bookIsbn).length === 0)
     return false;
-  return updateBook({
-    currentBooks,
-    bookIsbn,
-    dates,
-    notes,
-    bookStatus,
-  });
+  return updateBook(currentBooks, bookParams);
 }
 
-export async function updateBook({
-  currentBooks,
-  bookIsbn,
-  dates,
-  notes,
-  bookStatus,
-}: {
-  currentBooks: CleanBook[];
-  bookIsbn: string;
-  dates: Dates;
-  notes?: string;
-  bookStatus: BookStatus;
-}): Promise<CleanBook[]> {
+export async function updateBook(
+  currentBooks: CleanBook[],
+  bookParams: BookParams
+): Promise<CleanBook[]> {
+  const { bookIsbn, dates, bookStatus, notes } = bookParams;
   return currentBooks.reduce((arr: CleanBook[], book) => {
     if (book.isbn === bookIsbn) {
       exportVariable("BookTitle", book.title);

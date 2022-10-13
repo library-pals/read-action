@@ -14306,9 +14306,9 @@ var get_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, 
 
 
 
-function getBook(options, fileName) {
+function getBook(options) {
     return get_book_awaiter(this, void 0, void 0, function* () {
-        const { bookIsbn, providers } = options;
+        const { bookIsbn, providers, fileName } = options;
         try {
             const book = (yield node_isbn_default().provider(providers).resolve(bookIsbn));
             (0,core.exportVariable)("BookTitle", book.title);
@@ -14333,24 +14333,20 @@ var checkout_book_awaiter = (undefined && undefined.__awaiter) || function (this
 };
 
 
-function checkOutBook({ fileName, bookIsbn, dates, notes, bookStatus, }) {
+function checkOutBook(bookParams) {
     return checkout_book_awaiter(this, void 0, void 0, function* () {
+        const { fileName, bookIsbn } = bookParams;
         const currentBooks = yield returnReadFile(fileName);
         if (currentBooks === undefined || currentBooks.length === 0)
             return false;
         if (currentBooks.filter((f) => f.isbn === bookIsbn).length === 0)
             return false;
-        return updateBook({
-            currentBooks,
-            bookIsbn,
-            dates,
-            notes,
-            bookStatus,
-        });
+        return updateBook(currentBooks, bookParams);
     });
 }
-function updateBook({ currentBooks, bookIsbn, dates, notes, bookStatus, }) {
+function updateBook(currentBooks, bookParams) {
     return checkout_book_awaiter(this, void 0, void 0, function* () {
+        const { bookIsbn, dates, bookStatus, notes } = bookParams;
         return currentBooks.reduce((arr, book) => {
             if (book.isbn === bookIsbn) {
                 (0,core.exportVariable)("BookTitle", book.title);
@@ -14385,54 +14381,30 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 function read() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
-            // Get inputs
+            // Get book payload
             const payload = github.context.payload.inputs;
-            // Validate inputs
-            if (!payload)
-                return (0,core.setFailed)("Missing `inputs`");
-            if (!payload.bookIsbn)
-                return (0,core.setFailed)("Missing `bookIsbn` in payload");
+            // Validate payload
+            validatePayload(payload);
             const { bookIsbn, dateFinished, dateStarted, notes } = payload;
-            if (dateFinished && !isDate(dateFinished))
-                return (0,core.setFailed)(`Invalid \`dateFinished\` in payload: ${dateFinished}`);
-            if (dateStarted && !isDate(dateStarted))
-                return (0,core.setFailed)(`Invalid \`dateStarted\` in payload: ${dateStarted}`);
             // Set inputs
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
                 ? (0,core.getInput)("providers").split(",")
                 : (node_isbn_default())._providers;
-            let bookStatus;
-            // Set book status
-            if (dateStarted && !dateFinished)
-                bookStatus = "started";
-            if (dateFinished)
-                bookStatus = "finished";
-            if (!dateFinished && !dateStarted)
-                bookStatus = "want to read";
-            const dates = {
-                dateAdded: bookStatus === "want to read" ? localDate() : undefined,
-                dateStarted: dateStarted || undefined,
-                dateFinished: dateFinished || undefined,
-            };
+            const bookStatus = getBookStatus(dateStarted, dateFinished);
             (0,core.exportVariable)("BookStatus", bookStatus);
-            // Check if book already exists in library
-            const bookExists = yield checkOutBook({
+            const dates = getDates(bookStatus, dateStarted, dateFinished);
+            const bookParams = {
                 fileName,
                 bookIsbn,
                 dates,
                 notes,
                 bookStatus,
-            });
-            const library = bookExists == false
-                ? yield getBook({
-                    notes,
-                    bookIsbn,
-                    dates,
-                    providers,
-                    bookStatus,
-                }, fileName)
-                : bookExists;
+                providers,
+            };
+            // Check if book already exists in library
+            const bookExists = yield checkOutBook(bookParams);
+            const library = bookExists == false ? yield getBook(bookParams) : bookExists;
             yield returnWriteFile(fileName, library);
         }
         catch (error) {
@@ -14448,6 +14420,31 @@ function localDate() {
         timeZone: (0,core.getInput)("timeZone"),
     });
     return dateFormat.format(new Date());
+}
+function getBookStatus(dateStarted, dateFinished) {
+    // Set book status
+    if (dateStarted && !dateFinished)
+        return "started";
+    if (dateFinished)
+        return "finished";
+    return "want to read";
+}
+function getDates(bookStatus, dateStarted, dateFinished) {
+    return {
+        dateAdded: bookStatus === "want to read" ? localDate() : undefined,
+        dateStarted: dateStarted || undefined,
+        dateFinished: dateFinished || undefined,
+    };
+}
+function validatePayload(payload) {
+    if (!payload)
+        return (0,core.setFailed)("Missing `inputs`");
+    if (!payload.bookIsbn)
+        return (0,core.setFailed)("Missing `bookIsbn` in payload");
+    if (payload.dateFinished && !isDate(payload.dateFinished))
+        return (0,core.setFailed)(`Invalid \`dateFinished\` in payload: ${payload.dateFinished}`);
+    if (payload.dateStarted && !isDate(payload.dateStarted))
+        return (0,core.setFailed)(`Invalid \`dateStarted\` in payload: ${payload.dateStarted}`);
 }
 
 })();
