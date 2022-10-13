@@ -36,6 +36,15 @@ on:
       notes:
         description: Notes about the book.
         type: string
+      rating:
+        description: Rating
+        type: choice
+        options:
+          - ⭐️
+          - ⭐️⭐️
+          - ⭐️⭐️⭐️
+          - ⭐️⭐️⭐️⭐️
+          - ⭐️⭐️⭐️⭐️⭐️
       # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
       dateStarted:
         description: Date you started the book (YYYY-MM-DD).
@@ -82,6 +91,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   "inputs": {
     "bookIsbn": "", // Required. The book's ISBN.
     "notes": "", // Notes about the book.
+    "rating": "", // Rating
     "dateStarted": "", // Date you started the book (YYYY-MM-DD).
     "dateFinished": "", // Date you finished the book (YYYY-MM-DD).
   }
