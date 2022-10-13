@@ -15,7 +15,7 @@ on:
       # You can change the options to whatever you want to use.
       # For example, you can use numbers, other emoji, or words.
       rating:
-        description: Rath the book. Optional.
+        description: Rate the book. Optional.
         type: choice
         options:
           -
