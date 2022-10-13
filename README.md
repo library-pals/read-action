@@ -42,8 +42,9 @@ on:
       rating:
         description: Rate the book. Optional.
         type: choice
+        default: ""
         options:
-          -
+          - ""
           - ⭐️
           - ⭐️⭐️
           - ⭐️⭐️⭐️
