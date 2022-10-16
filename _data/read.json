@@ -143,5 +143,25 @@
     "thumbnail": "https://books.google.com/books/content?id=LIH6wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     "language": "en",
     "link": "https://books.google.com/books/about/Fledgling.html?hl=&id=LIH6wAEACAAJ"
+  },
+  {
+    "isbn": "9781101911952",
+    "dateAdded": "2022-10-16",
+    "status": "want to read",
+    "rating": "unrated",
+    "title": "Last Night in Montreal",
+    "authors": [
+      "Emily St. John Mandel"
+    ],
+    "publishedDate": "2015-08-04",
+    "description": "From the bestselling author of Station Eleven and Sea of Tranquility—when Lilia Albert was a child, her father appeared on the doorstep of her mother's house and took her away. Now, haunted by an inability to remember much about her early childhood, Lilia moves restlessly from city to city, abandoning lovers and eluding the private detective who has dedicated a career to following close behind. Then comes Eli. When Lilia goes out for a paper and fails to return to their Brooklyn apartment, he follows her to Montreal, not knowing whether he wants to disappear, too, or help her find her way home. But what he discovers is a deeper mystery, one that will set past and present spinning toward collision. Look for Emily St. John Mandel’s bestselling new novel, Sea of Tranquility!",
+    "pageCount": 242,
+    "printType": "BOOK",
+    "categories": [
+      "Fiction"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=kfCMDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://books.google.com/books/about/Last_Night_in_Montreal.html?hl=&id=kfCMDQAAQBAJ"
   }
 ]
