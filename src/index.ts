@@ -18,11 +18,13 @@ export type BookPayload = {
   dateFinished: string | undefined;
   notes?: string;
   bookIsbn: string;
+  rating?: string;
 };
 
 export type ActionInputs = {
   readFileName: string;
   providers: string[];
+  rating?: string;
   timeZone: string;
 };
 
@@ -33,6 +35,7 @@ export type BookParams = {
   notes?: BookPayload["notes"];
   bookStatus: BookStatus;
   providers?: ActionInputs["providers"];
+  rating?: ActionInputs["rating"];
 };
 
 export async function read() {
@@ -41,7 +44,7 @@ export async function read() {
     const payload = github.context.payload.inputs as BookPayload;
     // Validate payload
     validatePayload(payload);
-    const { bookIsbn, dateFinished, dateStarted, notes } = payload;
+    const { bookIsbn, dateFinished, dateStarted, notes, rating } = payload;
 
     // Set inputs
     const fileName: ActionInputs["readFileName"] = getInput("readFileName");
@@ -58,6 +61,7 @@ export async function read() {
       dates,
       notes,
       bookStatus,
+      rating,
       providers,
     };
 

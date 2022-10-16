@@ -19,16 +19,18 @@ export type CleanBook = {
   isbn: string;
   notes?: string;
   status: BookStatus;
+  rating?: string;
 };
 
 export type BookStatus = "want to read" | "started" | "finished";
 
 export default function cleanBook(options: BookParams, book: Book): CleanBook {
-  const { notes, bookIsbn, dates, bookStatus } = options;
+  const { notes, bookIsbn, dates, bookStatus, rating } = options;
   return {
     isbn: bookIsbn,
     ...dates,
     status: bookStatus,
+    ...(rating && { rating }),
     ...(notes && { notes }),
     ...("title" in book && { title: book.title }),
     ...("authors" in book && {

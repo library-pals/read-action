@@ -27,6 +27,25 @@ describe("cleanBook", () => {
       )
     ).toMatchSnapshot());
 
+  it("cleanBook with rating", () =>
+    expect(
+      cleanBook(
+        {
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished,
+          },
+          notes: "I loved it!",
+          bookIsbn: "0525658181",
+          providers: [],
+          bookStatus: "finished",
+          rating: "⭐️⭐️⭐️⭐️⭐️",
+        },
+        book
+      )
+    ).toMatchSnapshot());
+
   it("cleanBook, no date", () =>
     expect(
       cleanBook(

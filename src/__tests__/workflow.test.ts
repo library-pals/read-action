@@ -177,6 +177,7 @@ describe("workflow", () => {
           inputs: {
             bookIsbn: "9780385696005",
             dateFinished: "2022-10-03",
+            rating: "⭐️⭐️⭐️⭐️⭐️",
           },
         },
       },
@@ -207,6 +208,7 @@ describe("workflow", () => {
             "pageCount": 240,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
+            "rating": "⭐️⭐️⭐️⭐️⭐️",
             "status": "finished",
             "thumbnail": "https://books.google.com/books/content?id=eJ06zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
             "title": "Luster",
