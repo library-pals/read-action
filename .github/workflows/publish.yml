@@ -19,11 +19,11 @@ jobs:
           ref: ${{ github.event.release.tag_name }}
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
 
       # Compile dist/index.js and bundle with action.yml
       # Force push major and minor tags, e.g. v1, v1.0
       # See documentation: https://github.com/JasonEtco/build-and-tag-action
       - uses: JasonEtco/build-and-tag-action@v2
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
