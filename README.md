@@ -42,9 +42,9 @@ on:
       rating:
         description: Rate the book. Optional.
         type: choice
-        default: ""
+        default: "unrated"
         options:
-          - ""
+          - "unrated"
           - ⭐️
           - ⭐️⭐️
           - ⭐️⭐️⭐️
@@ -96,7 +96,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   "inputs": {
     "bookIsbn": "", // Required. The book's ISBN. Required.
     "notes": "", // Notes about the book. Optional.
-    "rating": "", // Rate the book. Optional.
+    "rating": "", // Rate the book. Optional. Default: `unrated`.
     "dateStarted": "", // Date you started the book (YYYY-MM-DD). Optional.
     "dateFinished": "", // Date you finished the book (YYYY-MM-DD). Optional.
   }
