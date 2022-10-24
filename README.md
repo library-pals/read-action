@@ -70,7 +70,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Read
-        uses: katydecorah/read-action@v6.2.0
+        uses: katydecorah/read-action@v6.3.0
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
         run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
