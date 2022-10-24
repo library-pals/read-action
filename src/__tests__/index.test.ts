@@ -584,20 +584,4 @@ describe("index", () => {
       "Invalid `dateStarted` in payload: 1234"
     );
   });
-
-  test("error, bad tags", async () => {
-    const setFailedSpy = jest.spyOn(core, "setFailed");
-    Object.defineProperty(github, "context", {
-      value: {
-        payload: {
-          inputs: {
-            bookIsbn: "9780385696005",
-            tags: "",
-          },
-        },
-      },
-    });
-    await read();
-    expect(setFailedSpy).toHaveBeenCalledWith();
-  });
 });

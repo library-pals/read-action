@@ -127,10 +127,4 @@ function validatePayload(payload: BookPayload): void {
     return setFailed(
       `Invalid \`dateStarted\` in payload: ${payload.dateStarted}`
     );
-
-  if (payload.tags && payload.tags.split(",").filter((f) => f).length === 0) {
-    return setFailed(
-      `Invalid \`tags\` in payload. Each tag must be seperated by a comma: ${payload.tags}`
-    );
-  }
 }
