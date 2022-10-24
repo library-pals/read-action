@@ -50,6 +50,10 @@ on:
           - ⭐️⭐️⭐️
           - ⭐️⭐️⭐️⭐️
           - ⭐️⭐️⭐️⭐️⭐️
+      # Tags are optional.
+      tags:
+        description: Add tags to categorize the book. Separate each tag with a comma. Optional.
+        type: string
       # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
       dateStarted:
         description: Date you started the book (YYYY-MM-DD). Optional.
@@ -97,6 +101,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
     "bookIsbn": "", // Required. The book's ISBN. Required.
     "notes": "", // Notes about the book. Optional.
     "rating": "", // Rate the book. Optional. Default: `unrated`.
+    "tags": "", // Add tags to categorize the book. Separate each tag with a comma. Optional.
     "dateStarted": "", // Date you started the book (YYYY-MM-DD). Optional.
     "dateFinished": "", // Date you finished the book (YYYY-MM-DD). Optional.
   }

@@ -14225,8 +14225,8 @@ function removeWrappedQuotes(str) {
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
 function cleanBook(options, book) {
-    const { notes, bookIsbn, dates, bookStatus, rating } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn }, dates), { status: bookStatus }), (rating && { rating })), (notes && { notes })), ("title" in book && { title: book.title })), ("authors" in book && {
+    const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
+    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn }, dates), { status: bookStatus }), (rating && { rating })), (notes && { notes })), (tags && { tags })), ("title" in book && { title: book.title })), ("authors" in book && {
         authors: book.authors,
     })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
         description: removeWrappedQuotes(book.description),
@@ -14346,11 +14346,11 @@ function checkOutBook(bookParams) {
 }
 function updateBook(currentBooks, bookParams) {
     return checkout_book_awaiter(this, void 0, void 0, function* () {
-        const { bookIsbn, dates, bookStatus, notes, rating } = bookParams;
+        const { bookIsbn, dates, bookStatus, notes, rating, tags } = bookParams;
         return currentBooks.reduce((arr, book) => {
             if (book.isbn === bookIsbn) {
                 (0,core.exportVariable)("BookTitle", book.title);
-                book = Object.assign(Object.assign(Object.assign(Object.assign({}, book), { dateAdded: book.dateAdded || dates.dateAdded, dateStarted: book.dateStarted || dates.dateStarted, dateFinished: book.dateFinished || dates.dateFinished, status: bookStatus }), (rating && { rating })), (notes && { notes: addNotes(notes, book.notes) }));
+                book = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, book), { dateAdded: book.dateAdded || dates.dateAdded, dateStarted: book.dateStarted || dates.dateStarted, dateFinished: book.dateFinished || dates.dateFinished, status: bookStatus }), (rating && { rating })), (notes && { notes: addNotes(notes, book.notes) })), (tags && { tags }));
             }
             arr.push(book);
             return arr;
@@ -14385,7 +14385,7 @@ function read() {
             const payload = github.context.payload.inputs;
             // Validate payload
             validatePayload(payload);
-            const { bookIsbn, dateFinished, dateStarted, notes, rating } = payload;
+            const { bookIsbn, dateFinished, dateStarted, notes, rating, tags } = payload;
             // Set inputs
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
@@ -14394,15 +14394,13 @@ function read() {
             const bookStatus = getBookStatus(dateStarted, dateFinished);
             (0,core.exportVariable)("BookStatus", bookStatus);
             const dates = getDates(bookStatus, dateStarted, dateFinished);
-            const bookParams = {
-                fileName,
+            const bookParams = Object.assign({ fileName,
                 bookIsbn,
                 dates,
                 notes,
                 bookStatus,
                 rating,
-                providers,
-            };
+                providers }, (tags && { tags: toArray(tags) }));
             // Check if book already exists in library
             const bookExists = yield checkOutBook(bookParams);
             const library = bookExists == false ? yield getBook(bookParams) : bookExists;
@@ -14446,6 +14444,9 @@ function validatePayload(payload) {
         return (0,core.setFailed)(`Invalid \`dateFinished\` in payload: ${payload.dateFinished}`);
     if (payload.dateStarted && !isDate(payload.dateStarted))
         return (0,core.setFailed)(`Invalid \`dateStarted\` in payload: ${payload.dateStarted}`);
+}
+function toArray(tags) {
+    return tags.split(",").map((f) => f.trim());
 }
 
 })();
