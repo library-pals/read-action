@@ -456,7 +456,7 @@ describe("index", () => {
         payload: {
           inputs: {
             bookIsbn: "9780385696005",
-            tags: "new,recommend",
+            tags: "new, recommend",
           },
         },
       },

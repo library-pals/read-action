@@ -65,7 +65,7 @@ export async function read() {
       bookStatus,
       rating,
       providers,
-      ...(tags && { tags: tags.split(",") }),
+      ...(tags && { tags: toArray(tags) }),
     };
 
     // Check if book already exists in library
@@ -127,4 +127,8 @@ function validatePayload(payload: BookPayload): void {
     return setFailed(
       `Invalid \`dateStarted\` in payload: ${payload.dateStarted}`
     );
+}
+
+function toArray(tags: string): BookParams["tags"] {
+  return tags.split(",").map((f) => f.trim());
 }

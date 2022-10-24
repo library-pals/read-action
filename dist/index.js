@@ -14400,7 +14400,7 @@ function read() {
                 notes,
                 bookStatus,
                 rating,
-                providers }, (tags && { tags: tags.split(",") }));
+                providers }, (tags && { tags: toArray(tags) }));
             // Check if book already exists in library
             const bookExists = yield checkOutBook(bookParams);
             const library = bookExists == false ? yield getBook(bookParams) : bookExists;
@@ -14444,6 +14444,9 @@ function validatePayload(payload) {
         return (0,core.setFailed)(`Invalid \`dateFinished\` in payload: ${payload.dateFinished}`);
     if (payload.dateStarted && !isDate(payload.dateStarted))
         return (0,core.setFailed)(`Invalid \`dateStarted\` in payload: ${payload.dateStarted}`);
+}
+function toArray(tags) {
+    return tags.split(",").map((f) => f.trim());
 }
 
 })();
