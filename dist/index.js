@@ -14444,9 +14444,6 @@ function validatePayload(payload) {
         return (0,core.setFailed)(`Invalid \`dateFinished\` in payload: ${payload.dateFinished}`);
     if (payload.dateStarted && !isDate(payload.dateStarted))
         return (0,core.setFailed)(`Invalid \`dateStarted\` in payload: ${payload.dateStarted}`);
-    if (payload.tags && payload.tags.split(",").filter((f) => f).length === 0) {
-        return (0,core.setFailed)(`Invalid \`tags\` in payload. Each tag must be seperated by a comma: ${payload.tags}`);
-    }
 }
 
 })();
