@@ -20,18 +20,20 @@ export type CleanBook = {
   notes?: string;
   status: BookStatus;
   rating?: string;
+  tags?: BookParams["tags"];
 };
 
 export type BookStatus = "want to read" | "started" | "finished";
 
 export default function cleanBook(options: BookParams, book: Book): CleanBook {
-  const { notes, bookIsbn, dates, bookStatus, rating } = options;
+  const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
   return {
     isbn: bookIsbn,
     ...dates,
     status: bookStatus,
     ...(rating && { rating }),
     ...(notes && { notes }),
+    ...(tags && { tags }),
     ...("title" in book && { title: book.title }),
     ...("authors" in book && {
       authors: book.authors,

@@ -19,6 +19,7 @@ export type BookPayload = {
   notes?: string;
   bookIsbn: string;
   rating?: string;
+  tags?: string;
 };
 
 export type ActionInputs = {
@@ -36,6 +37,7 @@ export type BookParams = {
   bookStatus: BookStatus;
   providers?: ActionInputs["providers"];
   rating?: ActionInputs["rating"];
+  tags?: string[];
 };
 
 export async function read() {
@@ -44,8 +46,8 @@ export async function read() {
     const payload = github.context.payload.inputs as BookPayload;
     // Validate payload
     validatePayload(payload);
-    const { bookIsbn, dateFinished, dateStarted, notes, rating } = payload;
-
+    const { bookIsbn, dateFinished, dateStarted, notes, rating, tags } =
+      payload;
     // Set inputs
     const fileName: ActionInputs["readFileName"] = getInput("readFileName");
     const providers: ActionInputs["providers"] = getInput("providers")
@@ -63,6 +65,7 @@ export async function read() {
       bookStatus,
       rating,
       providers,
+      ...(tags && { tags: tags.split(",") }),
     };
 
     // Check if book already exists in library
@@ -124,4 +127,10 @@ function validatePayload(payload: BookPayload): void {
     return setFailed(
       `Invalid \`dateStarted\` in payload: ${payload.dateStarted}`
     );
+
+  if (payload.tags && payload.tags.split(",").filter((f) => f).length === 0) {
+    return setFailed(
+      `Invalid \`tags\` in payload. Each tag must be seperated by a comma: ${payload.tags}`
+    );
+  }
 }

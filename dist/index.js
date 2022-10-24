@@ -14385,7 +14385,7 @@ function read() {
             const payload = github.context.payload.inputs;
             // Validate payload
             validatePayload(payload);
-            const { bookIsbn, dateFinished, dateStarted, notes, rating } = payload;
+            const { bookIsbn, dateFinished, dateStarted, notes, rating, tags } = payload;
             // Set inputs
             const fileName = (0,core.getInput)("readFileName");
             const providers = (0,core.getInput)("providers")
@@ -14394,15 +14394,13 @@ function read() {
             const bookStatus = getBookStatus(dateStarted, dateFinished);
             (0,core.exportVariable)("BookStatus", bookStatus);
             const dates = getDates(bookStatus, dateStarted, dateFinished);
-            const bookParams = {
-                fileName,
+            const bookParams = Object.assign({ fileName,
                 bookIsbn,
                 dates,
                 notes,
                 bookStatus,
                 rating,
-                providers,
-            };
+                providers }, (tags) && { tags: tags.split(',') });
             // Check if book already exists in library
             const bookExists = yield checkOutBook(bookParams);
             const library = bookExists == false ? yield getBook(bookParams) : bookExists;

@@ -61,6 +61,7 @@ describe("checkOutBook", () => {
           isbn: "9780525620792",
           dateStarted: "2021-09-26",
           title: "Mexican Gothic",
+          tags: ["recommend"],
         },
       ])
     );
@@ -86,6 +87,9 @@ describe("checkOutBook", () => {
                   "isbn": "9780525620792",
                   "notes": "Great read",
                   "status": "finished",
+                  "tags": [
+                    "recommend",
+                  ],
                   "title": "Mexican Gothic",
                 },
               ]
@@ -98,6 +102,7 @@ describe("checkOutBook", () => {
       checkOutBook({
         fileName: "my-library.yml",
         bookIsbn: "9780525620792",
+        tags: [""],
         dates: {
           dateAdded: undefined,
           dateStarted: undefined,
@@ -124,6 +129,9 @@ describe("checkOutBook", () => {
 
               Great read",
                   "status": "finished",
+                  "tags": [
+                    "",
+                  ],
                   "title": "Mexican Gothic",
                 },
               ]
