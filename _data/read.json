@@ -143,5 +143,30 @@
     "thumbnail": "https://books.google.com/books/content?id=LIH6wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     "language": "en",
     "link": "https://books.google.com/books/about/Fledgling.html?hl=&id=LIH6wAEACAAJ"
+  },
+  {
+    "isbn": "9781250236227",
+    "dateAdded": "2022-10-24",
+    "status": "want to read",
+    "rating": "unrated",
+    "tags": [
+      "recommend",
+      " science fiction",
+      " audiobook"
+    ],
+    "title": "A Psalm for the Wild-Built",
+    "authors": [
+      "Becky Chambers"
+    ],
+    "publishedDate": "2021-07-13",
+    "description": "Winner of the Hugo Award! In A Psalm for the Wild-Built, bestselling Becky Chambers's delightful new Monk and Robot series, gives us hope for the future. It's been centuries since the robots of Panga gained self-awareness and laid down their tools; centuries since they wandered, en masse, into the wilderness, never to be seen again; centuries since they faded into myth and urban legend. One day, the life of a tea monk is upended by the arrival of a robot, there to honor the old promise of checking in. The robot cannot go back until the question of \"what do people need?\" is answered. But the answer to that question depends on who you ask, and how. They're going to need to ask it a lot. Becky Chambers's new series asks: in a world where people have what they want, does having more matter? At the Publisher's request, this title is being sold without Digital Rights Management Software (DRM) applied.",
+    "pageCount": 102,
+    "printType": "BOOK",
+    "categories": [
+      "Fiction"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=XgT6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=XgT6DwAAQBAJ"
   }
 ]
