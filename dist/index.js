@@ -14165,26 +14165,15 @@ var node_isbn_default = /*#__PURE__*/__nccwpck_require__.n(node_isbn);
 ;// CONCATENATED MODULE: external "fs/promises"
 const promises_namespaceObject = require("fs/promises");
 ;// CONCATENATED MODULE: ./src/write-file.ts
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 
-function returnWriteFile(fileName, bookMetadata) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const promise = (0,promises_namespaceObject.writeFile)(fileName, JSON.stringify(bookMetadata, null, 2));
-            yield promise;
-        }
-        catch (error) {
-            throw new Error(error);
-        }
-    });
+async function returnWriteFile(fileName, bookMetadata) {
+    try {
+        const promise = (0,promises_namespaceObject.writeFile)(fileName, JSON.stringify(bookMetadata, null, 2));
+        await promise;
+    }
+    catch (error) {
+        throw new Error(error);
+    }
 }
 
 ;// CONCATENATED MODULE: ./src/utils.ts
@@ -14226,151 +14215,122 @@ function removeWrappedQuotes(str) {
 
 function cleanBook(options, book) {
     const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
-    return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ isbn: bookIsbn }, dates), { status: bookStatus }), (rating && { rating })), (notes && { notes })), (tags && { tags })), ("title" in book && { title: book.title })), ("authors" in book && {
-        authors: book.authors,
-    })), ("publishedDate" in book && { publishedDate: book.publishedDate })), ("description" in book && {
-        description: removeWrappedQuotes(book.description),
-    })), ("pageCount" in book && { pageCount: book.pageCount })), ("printType" in book && { printType: book.printType })), ("categories" in book && { categories: book.categories })), ("imageLinks" in book &&
-        "thumbnail" in book.imageLinks && {
-        thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
-    })), ("language" in book && { language: book.language })), ("canonicalVolumeLink" in book && {
-        link: book.canonicalVolumeLink,
-    }));
+    return {
+        isbn: bookIsbn,
+        ...dates,
+        status: bookStatus,
+        ...(rating && { rating }),
+        ...(notes && { notes }),
+        ...(tags && { tags }),
+        ...("title" in book && { title: book.title }),
+        ...("authors" in book && {
+            authors: book.authors,
+        }),
+        ...("publishedDate" in book && { publishedDate: book.publishedDate }),
+        ...("description" in book && {
+            description: removeWrappedQuotes(book.description),
+        }),
+        ...("pageCount" in book && { pageCount: book.pageCount }),
+        ...("printType" in book && { printType: book.printType }),
+        ...("categories" in book && { categories: book.categories }),
+        ...("imageLinks" in book &&
+            "thumbnail" in book.imageLinks && {
+            thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
+        }),
+        ...("language" in book && { language: book.language }),
+        ...("canonicalVolumeLink" in book && {
+            link: book.canonicalVolumeLink,
+        }),
+    };
 }
 
 ;// CONCATENATED MODULE: ./src/read-file.ts
-var read_file_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 
-function returnReadFile(fileName) {
-    return read_file_awaiter(this, void 0, void 0, function* () {
-        try {
-            const contents = yield (0,promises_namespaceObject.readFile)(fileName, "utf-8");
-            if (contents === "" || !contents)
-                return [];
-            return JSON.parse(contents);
-        }
-        catch (error) {
-            throw new Error(error);
-        }
-    });
+async function returnReadFile(fileName) {
+    try {
+        const contents = await (0,promises_namespaceObject.readFile)(fileName, "utf-8");
+        if (contents === "" || !contents)
+            return [];
+        return JSON.parse(contents);
+    }
+    catch (error) {
+        throw new Error(error);
+    }
 }
 
 ;// CONCATENATED MODULE: ./src/add-book.ts
-var add_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 
 
 
 
-function addBook(options, book, fileName) {
-    return add_book_awaiter(this, void 0, void 0, function* () {
-        const readListJson = (yield returnReadFile(fileName));
-        // clean up book data
-        const newBook = cleanBook(options, book);
-        // export book thumbnail to download later
-        if (newBook.thumbnail) {
-            (0,core.exportVariable)("BookThumbOutput", `book-${newBook.isbn}.png`);
-            (0,core.exportVariable)("BookThumb", newBook.thumbnail);
-        }
-        // append new book
-        readListJson.push(newBook);
-        return sortByDate(readListJson);
-    });
+async function addBook(options, book, fileName) {
+    const readListJson = (await returnReadFile(fileName));
+    // clean up book data
+    const newBook = cleanBook(options, book);
+    // export book thumbnail to download later
+    if (newBook.thumbnail) {
+        (0,core.exportVariable)("BookThumbOutput", `book-${newBook.isbn}.png`);
+        (0,core.exportVariable)("BookThumb", newBook.thumbnail);
+    }
+    // append new book
+    readListJson.push(newBook);
+    return sortByDate(readListJson);
 }
 
 ;// CONCATENATED MODULE: ./src/get-book.ts
-var get_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 
 
 
-function getBook(options) {
-    return get_book_awaiter(this, void 0, void 0, function* () {
-        const { bookIsbn, providers, fileName } = options;
-        try {
-            const book = (yield node_isbn_default().provider(providers).resolve(bookIsbn));
-            (0,core.exportVariable)("BookTitle", book.title);
-            const books = (yield addBook(options, book, fileName));
-            return books;
-        }
-        catch (error) {
-            throw new Error(error.message);
-        }
-    });
+async function getBook(options) {
+    const { bookIsbn, providers, fileName } = options;
+    try {
+        const book = (await node_isbn_default().provider(providers).resolve(bookIsbn));
+        (0,core.exportVariable)("BookTitle", book.title);
+        const books = (await addBook(options, book, fileName));
+        return books;
+    }
+    catch (error) {
+        throw new Error(error.message);
+    }
 }
 
 ;// CONCATENATED MODULE: ./src/checkout-book.ts
-var checkout_book_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 
 
-function checkOutBook(bookParams) {
-    return checkout_book_awaiter(this, void 0, void 0, function* () {
-        const { fileName, bookIsbn } = bookParams;
-        const currentBooks = yield returnReadFile(fileName);
-        if (currentBooks === undefined || currentBooks.length === 0)
-            return false;
-        if (currentBooks.filter((f) => f.isbn === bookIsbn).length === 0)
-            return false;
-        return updateBook(currentBooks, bookParams);
-    });
+async function checkOutBook(bookParams) {
+    const { fileName, bookIsbn } = bookParams;
+    const currentBooks = await returnReadFile(fileName);
+    if (currentBooks === undefined || currentBooks.length === 0)
+        return false;
+    if (currentBooks.filter((f) => f.isbn === bookIsbn).length === 0)
+        return false;
+    return updateBook(currentBooks, bookParams);
 }
-function updateBook(currentBooks, bookParams) {
-    return checkout_book_awaiter(this, void 0, void 0, function* () {
-        const { bookIsbn, dates, bookStatus, notes, rating, tags } = bookParams;
-        return currentBooks.reduce((arr, book) => {
-            if (book.isbn === bookIsbn) {
-                (0,core.exportVariable)("BookTitle", book.title);
-                book = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, book), { dateAdded: book.dateAdded || dates.dateAdded, dateStarted: book.dateStarted || dates.dateStarted, dateFinished: book.dateFinished || dates.dateFinished, status: bookStatus }), (rating && { rating })), (notes && { notes: addNotes(notes, book.notes) })), (tags && { tags }));
-            }
-            arr.push(book);
-            return arr;
-        }, []);
-    });
+async function updateBook(currentBooks, bookParams) {
+    const { bookIsbn, dates, bookStatus, notes, rating, tags } = bookParams;
+    return currentBooks.reduce((arr, book) => {
+        if (book.isbn === bookIsbn) {
+            (0,core.exportVariable)("BookTitle", book.title);
+            book = {
+                ...book,
+                dateAdded: book.dateAdded || dates.dateAdded,
+                dateStarted: book.dateStarted || dates.dateStarted,
+                dateFinished: book.dateFinished || dates.dateFinished,
+                status: bookStatus,
+                ...(rating && { rating }),
+                ...(notes && { notes: addNotes(notes, book.notes) }),
+                ...(tags && { tags }),
+            };
+        }
+        arr.push(book);
+        return arr;
+    }, []);
 }
 function addNotes(notes, bookNotes) {
     return `${bookNotes ? `${bookNotes}\n\n` : ""}${notes}`;
 }
 
 ;// CONCATENATED MODULE: ./src/index.ts
-var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 
 
 
@@ -14378,38 +14338,39 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 
 
-function read() {
-    return src_awaiter(this, void 0, void 0, function* () {
-        try {
-            // Get book payload
-            const payload = github.context.payload.inputs;
-            // Validate payload
-            validatePayload(payload);
-            const { bookIsbn, dateFinished, dateStarted, notes, rating, tags } = payload;
-            // Set inputs
-            const fileName = (0,core.getInput)("readFileName");
-            const providers = (0,core.getInput)("providers")
-                ? (0,core.getInput)("providers").split(",")
-                : (node_isbn_default())._providers;
-            const bookStatus = getBookStatus(dateStarted, dateFinished);
-            (0,core.exportVariable)("BookStatus", bookStatus);
-            const dates = getDates(bookStatus, dateStarted, dateFinished);
-            const bookParams = Object.assign({ fileName,
-                bookIsbn,
-                dates,
-                notes,
-                bookStatus,
-                rating,
-                providers }, (tags && { tags: toArray(tags) }));
-            // Check if book already exists in library
-            const bookExists = yield checkOutBook(bookParams);
-            const library = bookExists == false ? yield getBook(bookParams) : bookExists;
-            yield returnWriteFile(fileName, library);
-        }
-        catch (error) {
-            (0,core.setFailed)(error.message);
-        }
-    });
+async function read() {
+    try {
+        // Get book payload
+        const payload = github.context.payload.inputs;
+        // Validate payload
+        validatePayload(payload);
+        const { bookIsbn, dateFinished, dateStarted, notes, rating, tags } = payload;
+        // Set inputs
+        const fileName = (0,core.getInput)("readFileName");
+        const providers = (0,core.getInput)("providers")
+            ? (0,core.getInput)("providers").split(",")
+            : (node_isbn_default())._providers;
+        const bookStatus = getBookStatus(dateStarted, dateFinished);
+        (0,core.exportVariable)("BookStatus", bookStatus);
+        const dates = getDates(bookStatus, dateStarted, dateFinished);
+        const bookParams = {
+            fileName,
+            bookIsbn,
+            dates,
+            notes,
+            bookStatus,
+            rating,
+            providers,
+            ...(tags && { tags: toArray(tags) }),
+        };
+        // Check if book already exists in library
+        const bookExists = await checkOutBook(bookParams);
+        const library = bookExists == false ? await getBook(bookParams) : bookExists;
+        await returnWriteFile(fileName, library);
+    }
+    catch (error) {
+        (0,core.setFailed)(error.message);
+    }
 }
 /* harmony default export */ const src = (read());
 function localDate() {
