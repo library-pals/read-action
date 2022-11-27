@@ -21,6 +21,7 @@ const cli = meow(
       year: {
         type: "string",
         alias: "y",
+        default: "2022",
       },
       readFile: {
         type: "string",
@@ -32,7 +33,6 @@ const cli = meow(
 );
 
 const books = JSON.parse(readFileSync(cli.flags.readFile, "utf-8"));
-
-const reviewObj = yearReview(books, cli.flags.year || "2022");
+const reviewObj = yearReview(books, cli.flags.year);
 
 console.log(yearReviewSummary(reviewObj));

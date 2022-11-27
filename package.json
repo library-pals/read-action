@@ -60,5 +60,8 @@
         "statements": 100
       }
     }
+  },
+  "bin": {
+    "read-action-summary": "dist/cli/index.js"
   }
 }
