@@ -11960,7 +11960,10 @@ const cli = node_modules_meow(`
 	Examples
 	  $ read-action-summary -y 2022 -r _data/read.json
 `, {
-    importMeta: ({}),
+    importMeta: {
+        ...({}),
+        url: "file:///Users/katydecorah/GitHub/katydecorah/read-action/src/summary/cli.ts"
+    },
     flags: {
         year: {
             type: "string",

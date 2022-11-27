@@ -16,7 +16,10 @@ const cli = meow(
 	  $ read-action-summary -y 2022 -r _data/read.json
 `,
   {
-    importMeta: import.meta,
+    importMeta: {
+      ...import.meta,
+      url: import.meta.url,
+    },
     flags: {
       year: {
         type: "string",
