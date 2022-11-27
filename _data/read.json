@@ -143,5 +143,25 @@
     "thumbnail": "https://books.google.com/books/content?id=LIH6wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     "language": "en",
     "link": "https://books.google.com/books/about/Fledgling.html?hl=&id=LIH6wAEACAAJ"
+  },
+  {
+    "isbn": "9781250807366",
+    "dateAdded": "2022-11-27",
+    "status": "want to read",
+    "rating": "unrated",
+    "title": "Drunk on All Your Strange New Words",
+    "authors": [
+      "Eddie Robson"
+    ],
+    "publishedDate": "2022-06-28",
+    "description": "Eddie Robson's Drunk on All Your Strange New Words is a locked room mystery in a near future world of politics and alien diplomacy. Lydia works as translator for the Logi cultural attaché to Earth. They work well together, even if the act of translating his thoughts into English makes her somewhat wobbly on her feet. She’s not the agency’s best translator, but what else is she going to do? She has no qualifications, and no discernible talent in any other field. So when tragedy strikes, and Lydia finds herself at the center of an intergalactic incident, her future employment prospects look dire—that is, if she can keep herself out of jail! But Lydia soon discovers that help can appear from the most unexpected source... At the Publisher's request, this title is being sold without Digital Rights Management Software (DRM) applied.",
+    "pageCount": 256,
+    "printType": "BOOK",
+    "categories": [
+      "Fiction"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=Xlk8EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=Xlk8EAAAQBAJ"
   }
 ]
