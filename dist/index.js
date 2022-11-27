@@ -14257,6 +14257,7 @@ async function read() {
         await returnWriteFile(fileName, library);
         core.summary.addHeading("Updated library")
             .addRaw(`${process.env.BookTitle}” (${process.env.BookStatus})`)
+            .addImage(`${process.env.BookThumb}`, 'book cover art')
             .write();
     }
     catch (error) {

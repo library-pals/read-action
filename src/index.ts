@@ -78,6 +78,7 @@ export async function read() {
     summary
       .addHeading("Updated library")
       .addRaw(`${process.env.BookTitle}” (${process.env.BookStatus})`)
+      .addImage(`${process.env.BookThumb}`, "book cover art")
       .write();
   } catch (error) {
     setFailed(error.message);
