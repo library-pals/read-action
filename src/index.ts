@@ -1,4 +1,4 @@
-import { exportVariable, getInput, setFailed } from "@actions/core";
+import { exportVariable, getInput, setFailed, summary } from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
@@ -74,6 +74,11 @@ export async function read() {
       bookExists == false ? await getBook(bookParams) : bookExists;
 
     await returnWriteFile(fileName, library);
+
+    summary
+      .addHeading("Updated library")
+      .addRaw(`${process.env.BookTitle}” (${process.env.BookStatus})`)
+      .write();
   } catch (error) {
     setFailed(error.message);
   }

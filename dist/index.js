@@ -14255,6 +14255,9 @@ async function read() {
         const bookExists = await checkOutBook(bookParams);
         const library = bookExists == false ? await getBook(bookParams) : bookExists;
         await returnWriteFile(fileName, library);
+        core.summary.addHeading("Updated library")
+            .addRaw(`${process.env.BookTitle}” (${process.env.BookStatus})`)
+            .write();
     }
     catch (error) {
         (0,core.setFailed)(error.message);
