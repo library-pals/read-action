@@ -143,5 +143,25 @@
     "thumbnail": "https://books.google.com/books/content?id=LIH6wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     "language": "en",
     "link": "https://books.google.com/books/about/Fledgling.html?hl=&id=LIH6wAEACAAJ"
+  },
+  {
+    "isbn": "9780358622345",
+    "dateAdded": "2022-11-27",
+    "status": "want to read",
+    "rating": "unrated",
+    "title": "We Had to Remove This Post",
+    "authors": [
+      "Hanna Bervoets"
+    ],
+    "publishedDate": "2022-05-24",
+    "description": "WHAT IS “NORMAL”? WHAT IS “RIGHT”? AND WHO GETS TO DECIDE? To be a content moderator is to see humanity at its worst—but Kayleigh needs money. So she takes a job working for a social media platform whose name she isn’t allowed to mention. Her task: review offensive videos and pictures, rants and conspiracy theories, and decide which need to be removed. It’s grueling work. Kayleigh and her colleagues spend all day watching horrors and hate on their screens, evaluating them with the platform’s ever-changing moderating guidelines. Yet Kayleigh is good at her job, and she finds in her colleagues a group of friends—even a new girlfriend—and for the first time in her life, her future seems bright. But soon the job seems to change them all, shifting their worlds in alarming ways. How long before the moderators’ own senses of right and wrong begin to bend and flex? From one of the most acclaimed Dutch writers of her generation, We Had to Remove This Post is a chilling, powerful, and urgent literary masterpiece about who or what determines our worldview, who sets the boundaries, and just how much a person can be asked to accept.",
+    "pageCount": 93,
+    "printType": "BOOK",
+    "categories": [
+      "Fiction"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=kwYzEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=kwYzEAAAQBAJ"
   }
 ]
