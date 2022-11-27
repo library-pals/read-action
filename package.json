@@ -2,6 +2,7 @@
   "name": "read-action",
   "version": "6.3.0",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "pretest": "eslint . --ext .js,.ts",
     "test": "jest --coverage",
