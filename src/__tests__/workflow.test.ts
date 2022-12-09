@@ -4,15 +4,30 @@ import * as core from "@actions/core";
 import returnWriteFile from "../write-file";
 import { promises } from "fs";
 
-jest.mock("@actions/core");
+jest.mock("@actions/core", () => {
+  return {
+    ...jest.requireActual("@actions/core"),
+    setFailed: jest.fn(),
+    getInput: jest.fn(),
+    summary: {
+      addRaw: () => ({
+        write: jest.fn(),
+      }),
+    },
+  };
+});
+
 jest.mock("../write-file");
 
 describe("workflow", () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   test("want to read", async () => {
     jest.spyOn(promises, "readFile").mockResolvedValue();
+    const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest.useFakeTimers().setSystemTime(new Date("2022-10-01T12:00:00"));
-
-    const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
     jest
       .spyOn(core, "getInput")
@@ -30,19 +45,14 @@ describe("workflow", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "want to read"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
-
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      3,
-      "BookThumbOutput",
-      "book-9780385696005.png"
-    );
     expect(setFailedSpy).not.toHaveBeenCalled();
+    expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
+      [
+        "# Updated library
+
+      Want to read: “Luster”",
+      ]
+    `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.json",
@@ -96,8 +106,8 @@ describe("workflow", () => {
         },
       ])
     );
-    const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
+    const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest
       .spyOn(core, "getInput")
       .mockImplementationOnce(() => "my-library.json");
@@ -112,13 +122,14 @@ describe("workflow", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "started"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
     expect(setFailedSpy).not.toHaveBeenCalled();
+    expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
+      [
+        "# Updated library
+
+      Started: “Luster”",
+      ]
+    `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.json",
@@ -169,8 +180,8 @@ describe("workflow", () => {
         },
       ])
     );
-    const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
+    const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest
       .spyOn(core, "getInput")
       .mockImplementationOnce(() => "my-library.json");
@@ -186,13 +197,15 @@ describe("workflow", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "finished"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
+
     expect(setFailedSpy).not.toHaveBeenCalled();
+    expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
+      [
+        "# Updated library
+
+      Finished: “Luster”",
+      ]
+    `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.json",

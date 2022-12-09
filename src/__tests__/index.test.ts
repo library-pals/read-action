@@ -22,10 +22,25 @@ const mockReadFile = JSON.stringify([
   },
 ]);
 
-jest.mock("@actions/core");
+jest.mock("@actions/core", () => {
+  return {
+    setFailed: jest.fn(),
+    exportVariable: jest.fn(),
+    getInput: jest.fn(),
+    summary: {
+      addRaw: () => ({
+        write: jest.fn(),
+      }),
+    },
+  };
+});
 jest.mock("../write-file");
 
 describe("index", () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   beforeEach(() => {
     jest.spyOn(promises, "readFile").mockResolvedValue(mockReadFile);
   });
@@ -47,18 +62,26 @@ describe("index", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "started"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
-
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      3,
-      "BookThumbOutput",
-      "book-9780385696005.png"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookStatus",
+          "started",
+        ],
+        [
+          "BookTitle",
+          "Luster",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780385696005.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=pUmNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -122,16 +145,18 @@ describe("index", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "finished"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      2,
-      "BookTitle",
-      "Mexican Gothic"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookStatus",
+          "finished",
+        ],
+        [
+          "BookTitle",
+          "Mexican Gothic",
+        ],
+      ]
+    `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.yml",
@@ -177,21 +202,26 @@ describe("index", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "finished"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      2,
-      "BookTitle",
-      "Woman of Light"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      3,
-      "BookThumbOutput",
-      "book-9780525511342.png"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookStatus",
+          "finished",
+        ],
+        [
+          "BookTitle",
+          "Woman of Light",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780525511342.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -257,21 +287,26 @@ describe("index", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "finished"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      2,
-      "BookTitle",
-      "Woman of Light"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      3,
-      "BookThumbOutput",
-      "book-9780525511342.png"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookStatus",
+          "finished",
+        ],
+        [
+          "BookTitle",
+          "Woman of Light",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780525511342.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -342,18 +377,26 @@ describe("index", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "want to read"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
-
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      3,
-      "BookThumbOutput",
-      "book-9780385696005.png"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookStatus",
+          "want to read",
+        ],
+        [
+          "BookTitle",
+          "Luster",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780385696005.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=pUmNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [

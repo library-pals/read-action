@@ -14255,6 +14255,10 @@ async function read() {
         const bookExists = await checkOutBook(bookParams);
         const library = bookExists == false ? await getBook(bookParams) : bookExists;
         await returnWriteFile(fileName, library);
+        await core.summary.addRaw(`# Updated library
+
+${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”`)
+            .write();
     }
     catch (error) {
         (0,core.setFailed)(error.message);
@@ -14296,6 +14300,9 @@ function validatePayload(payload) {
 }
 function toArray(tags) {
     return tags.split(",").map((f) => f.trim());
+}
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 })();

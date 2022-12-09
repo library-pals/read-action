@@ -1,4 +1,4 @@
-import { exportVariable, getInput, setFailed } from "@actions/core";
+import { exportVariable, getInput, setFailed, summary } from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
@@ -74,6 +74,14 @@ export async function read() {
       bookExists == false ? await getBook(bookParams) : bookExists;
 
     await returnWriteFile(fileName, library);
+
+    await summary
+      .addRaw(
+        `# Updated library
+
+${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”`
+      )
+      .write();
   } catch (error) {
     setFailed(error.message);
   }
@@ -131,4 +139,8 @@ function validatePayload(payload: BookPayload): void {
 
 function toArray(tags: string): BookParams["tags"] {
   return tags.split(",").map((f) => f.trim());
+}
+
+function capitalize(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
