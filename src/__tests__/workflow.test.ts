@@ -72,7 +72,7 @@ describe("workflow", () => {
       [
         "# Updated library
 
-      want to read: “Luster”",
+      Want to read: “Luster”",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
@@ -162,7 +162,7 @@ describe("workflow", () => {
       [
         "# Updated library
 
-      started: “Luster”",
+      Started: “Luster”",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
@@ -251,7 +251,7 @@ describe("workflow", () => {
       [
         "# Updated library
 
-      finished: “Luster”",
+      Finished: “Luster”",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`

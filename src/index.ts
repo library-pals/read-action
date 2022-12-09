@@ -79,7 +79,7 @@ export async function read() {
       .addRaw(
         `# Updated library
 
-${process.env.BookStatus}: “${process.env.BookTitle}”`
+${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”`
       )
       .write();
   } catch (error) {
@@ -139,4 +139,8 @@ function validatePayload(payload: BookPayload): void {
 
 function toArray(tags: string): BookParams["tags"] {
   return tags.split(",").map((f) => f.trim());
+}
+
+function capitalize(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
