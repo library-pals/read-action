@@ -14255,9 +14255,9 @@ async function read() {
         const bookExists = await checkOutBook(bookParams);
         const library = bookExists == false ? await getBook(bookParams) : bookExists;
         await returnWriteFile(fileName, library);
-        core.summary.addHeading("Updated library")
-            .addRaw(`${process.env.BookTitle}” (${process.env.BookStatus})`)
-            .addImage(`${process.env.BookThumb}`, 'book cover art')
+        await core.summary.addRaw(`# Updated library
+
+${process.env.BookStatus}: “${process.env.BookTitle}”`)
             .write();
     }
     catch (error) {

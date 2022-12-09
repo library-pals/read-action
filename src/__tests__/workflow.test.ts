@@ -6,8 +6,8 @@ import { promises } from "fs";
 
 jest.mock("@actions/core", () => {
   return {
+    ...jest.requireActual("@actions/core"),
     setFailed: jest.fn(),
-    exportVariable: jest.fn(),
     getInput: jest.fn(),
     summary: {
       addRaw: () => ({
@@ -23,12 +23,13 @@ describe("workflow", () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });
+
   test("want to read", async () => {
     jest.spyOn(promises, "readFile").mockResolvedValue();
     const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest.useFakeTimers().setSystemTime(new Date("2022-10-01T12:00:00"));
 
-    const exportVariableSpy = jest.spyOn(core, "exportVariable");
+    const exportVariableSpy = jest.spyOn(process.stdout, "write");
     const setFailedSpy = jest.spyOn(core, "setFailed");
     jest
       .spyOn(core, "getInput")
@@ -46,24 +47,32 @@ describe("workflow", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "want to read"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
-
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      3,
-      "BookThumbOutput",
-      "book-9780385696005.png"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "::set-env name=BookStatus::want to read
+      ",
+        ],
+        [
+          "::set-env name=BookTitle::Luster
+      ",
+        ],
+        [
+          "::set-env name=BookThumbOutput::book-9780385696005.png
+      ",
+        ],
+        [
+          "::set-env name=BookThumb::https://books.google.com/books/content?id=pUmNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api
+      ",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "# Updated library
 
-      undefined: “undefined”",
+      want to read: “Luster”",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
@@ -119,7 +128,7 @@ describe("workflow", () => {
         },
       ])
     );
-    const exportVariableSpy = jest.spyOn(core, "exportVariable");
+    const exportVariableSpy = jest.spyOn(process.stdout, "write");
     const setFailedSpy = jest.spyOn(core, "setFailed");
     const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest
@@ -136,18 +145,24 @@ describe("workflow", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "started"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "::set-env name=BookStatus::started
+      ",
+        ],
+        [
+          "::set-env name=BookTitle::Luster
+      ",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "# Updated library
 
-      undefined: “undefined”",
+      started: “Luster”",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
@@ -200,7 +215,7 @@ describe("workflow", () => {
         },
       ])
     );
-    const exportVariableSpy = jest.spyOn(core, "exportVariable");
+    const exportVariableSpy = jest.spyOn(process.stdout, "write");
     const setFailedSpy = jest.spyOn(core, "setFailed");
     const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest
@@ -218,18 +233,25 @@ describe("workflow", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "finished"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "::set-env name=BookStatus::finished
+      ",
+        ],
+        [
+          "::set-env name=BookTitle::Luster
+      ",
+        ],
+      ]
+    `);
+
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "# Updated library
 
-      undefined: “undefined”",
+      finished: “Luster”",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
