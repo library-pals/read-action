@@ -28,8 +28,6 @@ describe("workflow", () => {
     jest.spyOn(promises, "readFile").mockResolvedValue();
     const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest.useFakeTimers().setSystemTime(new Date("2022-10-01T12:00:00"));
-
-    const exportVariableSpy = jest.spyOn(process.stdout, "write");
     const setFailedSpy = jest.spyOn(core, "setFailed");
     jest
       .spyOn(core, "getInput")
@@ -47,26 +45,6 @@ describe("workflow", () => {
       },
     });
     await read();
-    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "::set-env name=BookStatus::want to read
-      ",
-        ],
-        [
-          "::set-env name=BookTitle::Luster
-      ",
-        ],
-        [
-          "::set-env name=BookThumbOutput::book-9780385696005.png
-      ",
-        ],
-        [
-          "::set-env name=BookThumb::https://books.google.com/books/content?id=pUmNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api
-      ",
-        ],
-      ]
-    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -128,7 +106,6 @@ describe("workflow", () => {
         },
       ])
     );
-    const exportVariableSpy = jest.spyOn(process.stdout, "write");
     const setFailedSpy = jest.spyOn(core, "setFailed");
     const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest
@@ -145,18 +122,6 @@ describe("workflow", () => {
       },
     });
     await read();
-    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "::set-env name=BookStatus::started
-      ",
-        ],
-        [
-          "::set-env name=BookTitle::Luster
-      ",
-        ],
-      ]
-    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -215,7 +180,6 @@ describe("workflow", () => {
         },
       ])
     );
-    const exportVariableSpy = jest.spyOn(process.stdout, "write");
     const setFailedSpy = jest.spyOn(core, "setFailed");
     const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest
@@ -233,18 +197,6 @@ describe("workflow", () => {
       },
     });
     await read();
-    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "::set-env name=BookStatus::finished
-      ",
-        ],
-        [
-          "::set-env name=BookTitle::Luster
-      ",
-        ],
-      ]
-    `);
 
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
