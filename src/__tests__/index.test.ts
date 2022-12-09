@@ -22,10 +22,25 @@ const mockReadFile = JSON.stringify([
   },
 ]);
 
-jest.mock("@actions/core");
+jest.mock("@actions/core", () => {
+  return {
+    setFailed: jest.fn(),
+    exportVariable: jest.fn(),
+    getInput: jest.fn(),
+    summary: {
+      addRaw: () => ({
+        write: jest.fn(),
+      }),
+    },
+  };
+});
 jest.mock("../write-file");
 
 describe("index", () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   beforeEach(() => {
     jest.spyOn(promises, "readFile").mockResolvedValue(mockReadFile);
   });
@@ -47,18 +62,26 @@ describe("index", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "started"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
-
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      3,
-      "BookThumbOutput",
-      "book-9780385696005.png"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookStatus",
+          "started",
+        ],
+        [
+          "BookTitle",
+          "Luster",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780385696005.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=pUmNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -95,12 +118,12 @@ describe("index", () => {
             "description": "NEW YORK TIMES BESTSELLER Winner of the 2020 Center for Fiction First Novel Prize Winner of the 2020 National Book Critics Circle's John Leonard Prize for Best First Book Winner of the 2020 Kirkus Prize for Fiction Winner of the 2021 Dylan Thomas Prize Finalist for the 2021 PEN/Hemingway Award for Best First Novel Longlisted for the 2021 Andrew Carnegie Medal for Excellence in Fiction Longlisted for the 2021 PEN/Jean Stein Book Award Longlisted for the 2021 Women's Prize for Fiction A New York Times Notable Book of the Year Named Best Book of the Year by O: the Oprah Magazine, Vanity Fair, Los Angeles Times, Town and Country, Amazon, Indigo, NPR, Harper’s Bazaar, Kirkus Reviews, Marie Claire, Good Housekeeping Sharp, comic, disruptive, and tender, Luster sees a young Black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties—sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage—with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only Black woman who young Akila knows. Razor-sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
             "isbn": "9780385696005",
             "language": "en",
-            "link": "https://books.google.com/books/about/Luster.html?hl=&id=NFeTEAAAQBAJ",
+            "link": "https://books.google.com/books/about/Luster.html?hl=&id=pUmNEAAAQBAJ",
             "pageCount": 0,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
             "status": "started",
-            "thumbnail": "https://books.google.com/books/content?id=NFeTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+            "thumbnail": "https://books.google.com/books/content?id=pUmNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
             "title": "Luster",
           },
         ],
@@ -122,16 +145,18 @@ describe("index", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "finished"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      2,
-      "BookTitle",
-      "Mexican Gothic"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookStatus",
+          "finished",
+        ],
+        [
+          "BookTitle",
+          "Mexican Gothic",
+        ],
+      ]
+    `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.yml",
@@ -177,21 +202,26 @@ describe("index", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "finished"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      2,
-      "BookTitle",
-      "Woman of Light"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      3,
-      "BookThumbOutput",
-      "book-9780525511342.png"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookStatus",
+          "finished",
+        ],
+        [
+          "BookTitle",
+          "Woman of Light",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780525511342.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -257,21 +287,26 @@ describe("index", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "finished"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      2,
-      "BookTitle",
-      "Woman of Light"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      3,
-      "BookThumbOutput",
-      "book-9780525511342.png"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookStatus",
+          "finished",
+        ],
+        [
+          "BookTitle",
+          "Woman of Light",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780525511342.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -342,18 +377,26 @@ describe("index", () => {
       },
     });
     await read();
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      1,
-      "BookStatus",
-      "want to read"
-    );
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(2, "BookTitle", "Luster");
-
-    expect(exportVariableSpy).toHaveBeenNthCalledWith(
-      3,
-      "BookThumbOutput",
-      "book-9780385696005.png"
-    );
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookStatus",
+          "want to read",
+        ],
+        [
+          "BookTitle",
+          "Luster",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780385696005.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=pUmNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -390,12 +433,12 @@ describe("index", () => {
             "description": "NEW YORK TIMES BESTSELLER Winner of the 2020 Center for Fiction First Novel Prize Winner of the 2020 National Book Critics Circle's John Leonard Prize for Best First Book Winner of the 2020 Kirkus Prize for Fiction Winner of the 2021 Dylan Thomas Prize Finalist for the 2021 PEN/Hemingway Award for Best First Novel Longlisted for the 2021 Andrew Carnegie Medal for Excellence in Fiction Longlisted for the 2021 PEN/Jean Stein Book Award Longlisted for the 2021 Women's Prize for Fiction A New York Times Notable Book of the Year Named Best Book of the Year by O: the Oprah Magazine, Vanity Fair, Los Angeles Times, Town and Country, Amazon, Indigo, NPR, Harper’s Bazaar, Kirkus Reviews, Marie Claire, Good Housekeeping Sharp, comic, disruptive, and tender, Luster sees a young Black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties—sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage—with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only Black woman who young Akila knows. Razor-sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
             "isbn": "9780385696005",
             "language": "en",
-            "link": "https://books.google.com/books/about/Luster.html?hl=&id=NFeTEAAAQBAJ",
+            "link": "https://books.google.com/books/about/Luster.html?hl=&id=pUmNEAAAQBAJ",
             "pageCount": 0,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
             "status": "want to read",
-            "thumbnail": "https://books.google.com/books/content?id=NFeTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+            "thumbnail": "https://books.google.com/books/content?id=pUmNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
             "title": "Luster",
           },
         ],
@@ -497,7 +540,7 @@ describe("index", () => {
             "description": "NEW YORK TIMES BESTSELLER Winner of the 2020 Center for Fiction First Novel Prize Winner of the 2020 National Book Critics Circle's John Leonard Prize for Best First Book Winner of the 2020 Kirkus Prize for Fiction Winner of the 2021 Dylan Thomas Prize Finalist for the 2021 PEN/Hemingway Award for Best First Novel Longlisted for the 2021 Andrew Carnegie Medal for Excellence in Fiction Longlisted for the 2021 PEN/Jean Stein Book Award Longlisted for the 2021 Women's Prize for Fiction A New York Times Notable Book of the Year Named Best Book of the Year by O: the Oprah Magazine, Vanity Fair, Los Angeles Times, Town and Country, Amazon, Indigo, NPR, Harper’s Bazaar, Kirkus Reviews, Marie Claire, Good Housekeeping Sharp, comic, disruptive, and tender, Luster sees a young Black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties—sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage—with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only Black woman who young Akila knows. Razor-sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
             "isbn": "9780385696005",
             "language": "en",
-            "link": "https://books.google.com/books/about/Luster.html?hl=&id=NFeTEAAAQBAJ",
+            "link": "https://books.google.com/books/about/Luster.html?hl=&id=pUmNEAAAQBAJ",
             "pageCount": 0,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
@@ -506,7 +549,7 @@ describe("index", () => {
               "new",
               "recommend",
             ],
-            "thumbnail": "https://books.google.com/books/content?id=NFeTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+            "thumbnail": "https://books.google.com/books/content?id=pUmNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
             "title": "Luster",
           },
         ],
