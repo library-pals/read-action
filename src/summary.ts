@@ -1,28 +1,43 @@
-import { CleanBook } from "../clean-book";
+import { CleanBook } from "./clean-book";
 
 function s(num: number) {
   return num === 1 ? "" : "s";
 }
 
-export function yearReviewSummary(obj: YearReview) {
+export function yearReviewSummary(obj: YearReview | undefined) {
+  if (obj === undefined) return undefined;
+  const moreThanOne = obj.count > 1;
   const summary = [
-    `In ${obj.year}, I read ${obj.count} books.`,
-    ...(obj.dates.averageFinishTime
+    `In ${obj.year}, I read ${obj.count} book${s(obj.count)}.`,
+
+    ...(obj.dates && obj.dates.averageFinishTime && moreThanOne
       ? [
           `On average, I finished a book in about ${obj.dates.averageFinishTime.toFixed(
             1
           )} day${s(obj.dates.averageFinishTime)}.`,
         ]
       : []),
-    `I read the most books in ${obj.dates.mostReadMonth.month} when I read ${
-      obj.dates.mostReadMonth.count
-    } book${s(
-      obj.dates.mostReadMonth.count
-    )} and the least amount of books in ${
-      obj.dates.leastReadMonth.month
-    } when I read ${obj.dates.leastReadMonth.count}.`,
-    `The genre I read the most was ${obj.categories.mostReadCategory.toLowerCase()}.`,
-    ...(obj.dates.finishedInOneDay.count
+
+    ...(obj.dates &&
+    obj.dates.mostReadMonth.count !== obj.dates.leastReadMonth.count
+      ? [
+          `I read the most books in ${
+            obj.dates.mostReadMonth.month
+          } when I read ${obj.dates.mostReadMonth.count} book${s(
+            obj.dates.mostReadMonth.count
+          )} and the least amount of books in ${
+            obj.dates.leastReadMonth.month
+          } when I read ${obj.dates.leastReadMonth.count}.`,
+        ]
+      : []),
+
+    ...(obj.categories?.mostReadCategory && moreThanOne
+      ? [
+          `The genre I read the most was ${obj.categories.mostReadCategory.toLowerCase()}.`,
+        ]
+      : []),
+
+    ...(obj.dates && obj.dates.finishedInOneDay.count
       ? [
           `I started and finished ${obj.dates.finishedInOneDay.count} book${s(
             obj.dates.finishedInOneDay.count
@@ -33,14 +48,28 @@ export function yearReviewSummary(obj: YearReview) {
           )}.`,
         ]
       : []),
-    `On average, the books I read were around ${obj.length.averageBookLength} pages. The longest book I read was ${obj.length.longestBook.pageCount} pages,${obj.length.longestBook.title} by ${obj.length.longestBook.authors}, and the shortest was ${obj.length.shortestBook.pageCount} pages, ${obj.length.shortestBook.title} by ${obj.length.shortestBook.authors}.`,
-    `My most popular author was ${obj.popularAuthor.popularAuthor}, I read ${obj.popularAuthor.count} books by this author.`,
-    Object.keys(obj.tags)
-      .map(
-        (tag) =>
-          `I tagged ${obj.tags[tag]} book${s(obj.tags[tag])} with “${tag}.”`
-      )
-      .join(" "),
+    ...(obj.length && moreThanOne
+      ? [
+          `On average, the books I read were around ${obj.length.averageBookLength} pages. The longest book I read was ${obj.length.longestBook.pageCount} pages,${obj.length.longestBook.title} by ${obj.length.longestBook.authors}, and the shortest was ${obj.length.shortestBook.pageCount} pages, ${obj.length.shortestBook.title} by ${obj.length.shortestBook.authors}.`,
+        ]
+      : []),
+    ...(obj.popularAuthor && moreThanOne
+      ? [
+          `My most popular author was ${obj.popularAuthor.popularAuthor}, I read ${obj.popularAuthor.count} books by this author.`,
+        ]
+      : []),
+    ...(obj.tags
+      ? [
+          Object.keys(obj.tags)
+            .map(
+              (tag) =>
+                `I tagged ${obj.tags[tag]} book${s(
+                  obj.tags[tag]
+                )} with “${tag}.”`
+            )
+            .join(" "),
+        ]
+      : []),
   ];
   return summary.join("\n\n");
 }
@@ -48,7 +77,8 @@ export function yearReviewSummary(obj: YearReview) {
 export default function yearReview(
   books: CleanBook[],
   year: string
-): YearReview {
+): YearReview | undefined {
+  if (books.length === 0) return undefined;
   const booksThisYear = books
     .filter((f) => f.dateFinished?.startsWith(year))
     .map((b) => ({
@@ -64,7 +94,15 @@ export default function yearReview(
     .sort((a, b) =>
       b.pageCount && a.pageCount ? b.pageCount - a.pageCount : -1
     );
+
   const count = booksThisYear.length;
+  if (count === 0) return undefined;
+  if (count === 1)
+    return {
+      year,
+      count,
+    };
+
   const longestBook = booksThisYear[0];
   const shortestBook = booksThisYear[count - 1];
 
@@ -130,8 +168,7 @@ export default function yearReview(
     .filter((book) => book.tags !== undefined)
     .map((book) => book.tags)
     .flat()
-    .reduce((obj, k) => {
-      if (!k) return obj;
+    .reduce((obj, k: string) => {
       if (!obj[k]) obj[k] = 0;
       obj[k]++;
       return obj;
@@ -185,15 +222,11 @@ function simpleData(book: CleanBook) {
 }
 
 function getKeyFromBiggestValue(object) {
-  return Object.keys(object).reduce(function (a, b) {
-    return object[a] > object[b] ? a : b;
-  });
+  return Object.keys(object).reduce((a, b) => (object[a] > object[b] ? a : b));
 }
 
 function getKeyFromSmallestValue(object) {
-  return Object.keys(object).reduce(function (a, b) {
-    return object[a] < object[b] ? a : b;
-  });
+  return Object.keys(object).reduce((a, b) => (object[a] > object[b] ? b : a));
 }
 
 function groupBy(array, key) {
@@ -212,8 +245,8 @@ const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
 export type YearReview = {
   year: string;
   count: number;
-  popularAuthor: { popularAuthor: string; count: any };
-  dates: {
+  popularAuthor?: { popularAuthor: string; count: any };
+  dates?: {
     averageFinishTime: number;
     mostReadMonth: { month: any; count: number };
     leastReadMonth: { month: any; count: number };
@@ -227,11 +260,11 @@ export type YearReview = {
       }[];
     };
   };
-  categories: {
+  categories?: {
     mostReadCategory: string;
   };
-  tags: any;
-  length: {
+  tags?: any;
+  length?: {
     longestBook: {
       title: string | undefined;
       authors: string | undefined;

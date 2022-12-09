@@ -6,7 +6,7 @@
   "scripts": {
     "pretest": "eslint . --ext .js,.ts",
     "test": "jest --coverage",
-    "build": "ncc build src/index.ts && ncc build src/summary/cli.ts -o dist/cli",
+    "build": "ncc build src/index.ts",
     "pretty-quick": "pretty-quick",
     "prepare": "husky install"
   },

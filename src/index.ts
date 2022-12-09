@@ -6,6 +6,7 @@ import getBook from "./get-book";
 import { isDate } from "./utils";
 import { checkOutBook } from "./checkout-book";
 import { BookStatus } from "./clean-book";
+import yearReview, { yearReviewSummary } from "./summary";
 
 export type Dates = {
   dateAdded: string | undefined;
@@ -79,7 +80,15 @@ export async function read() {
       .addRaw(
         `# Updated library
 
-${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”`
+${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”
+${
+  process.env.BookStatus === "finished"
+    ? `\n\n## Reading summary\n\n${yearReviewSummary(
+        yearReview(library, String(new Date().getFullYear()))
+      )}`
+    : ""
+}
+`
       )
       .write();
   } catch (error) {
