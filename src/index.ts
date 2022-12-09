@@ -75,10 +75,12 @@ export async function read() {
 
     await returnWriteFile(fileName, library);
 
-    summary
-      .addHeading("Updated library")
-      .addRaw(`${process.env.BookTitle}” (${process.env.BookStatus})`)
-      .addImage(`${process.env.BookThumb}`, "book cover art")
+    await summary
+      .addRaw(
+        `# Updated library
+
+${process.env.BookStatus}: “${process.env.BookTitle}”`
+      )
       .write();
   } catch (error) {
     setFailed(error.message);
