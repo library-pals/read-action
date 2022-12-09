@@ -14257,7 +14257,7 @@ async function read() {
         await returnWriteFile(fileName, library);
         await core.summary.addRaw(`# Updated library
 
-${process.env.BookStatus}: “${process.env.BookTitle}”`)
+${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”`)
             .write();
     }
     catch (error) {
@@ -14300,6 +14300,9 @@ function validatePayload(payload) {
 }
 function toArray(tags) {
     return tags.split(",").map((f) => f.trim());
+}
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 })();
