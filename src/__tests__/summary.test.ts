@@ -1,24 +1,21 @@
 import yearReview, { yearReviewSummary } from "../summary";
 import books from "../../_data/read.json";
-import lotsOfBooks from "./books.json";
+import booksLots from "./library/lots.json";
+import booksNoPageCount from "./library/no-page-count.json";
 
 describe("yearReviewSummary", () => {
   it("works", () => {
     const result = yearReview(books, "2022");
     expect(yearReviewSummary(result)).toMatchInlineSnapshot(`
-      "In 2022, I read 3 books.
-
-      On average, I finished a book in about 1.0 day.
-
-      I read the most books in September when I read 2 books and the least amount of books in January when I read 1.
-
-      The genre I read the most was fiction.
-
-      On average, the books I read were around 258 pages. The longest book I read was 336 pages,“Woman of Light” by Kali Fajardo-Anstine, and the shortest was 206 pages, “Ain't I a Woman” by bell hooks.
-
-      My most popular author was bell hooks, I read 1 books by this author.
-
-      "
+      "- **Total books:** 5
+      - **Average days to finish:** 2.3
+      - **Month with most books:** September (2 books)
+      - **Month with least books:** January (1 book)
+      - **Most popular genre:** fiction
+      - **Average book length:** 293 pages
+      - **Longest book:** 352 pages, “The Candy House” by Jennifer Egan
+      - **Shortest book:** 206 pages, “Ain't I a Woman” by bell hooks
+      - **Tags:** 1 book with “recommend”"
     `);
   });
 
@@ -28,102 +25,48 @@ describe("yearReviewSummary", () => {
   });
 
   it("no books, this year", () => {
-    const result = yearReview(lotsOfBooks, "2021");
+    const result = yearReview(booksLots, "2021");
     expect(yearReviewSummary(result)).toMatchInlineSnapshot(`undefined`);
   });
 
   it("no pagecount", () => {
-    const result = yearReview(
-      [
-        {
-          isbn: "9780698175174",
-          dateFinished: "2022-01-05",
-          dateStarted: "2022-01-05",
-          title: "Noor",
-          authors: ["Nnedi Okorafor"],
-          publishedDate: "2021-11-16",
-          printType: "BOOK",
-          categories: ["Fiction"],
-          language: "en",
-        },
-        {
-          isbn: "9780698175174",
-          dateFinished: "2022-01-05",
-          dateStarted: "2022-01-06",
-          title: "Noor",
-          authors: ["Nnedi Okorafor"],
-          publishedDate: "2021-11-16",
-          printType: "BOOK",
-          categories: ["Fiction"],
-          language: "en",
-        },
-      ],
-      "2022"
-    );
+    const result = yearReview(booksNoPageCount, "2022");
     expect(yearReviewSummary(result)).toMatchInlineSnapshot(`
-      "In 2022, I read 2 books.
-
-      On average, I finished a book in about -1.0 days.
-
-      The genre I read the most was fiction.
-
-      I started and finished 1 book on the same day, “Noor” by Nnedi Okorafor.
-
-      On average, the books I read were around NaN pages. The longest book I read was undefined pages,“Noor” by Nnedi Okorafor, and the shortest was undefined pages, “Noor” by Nnedi Okorafor.
-
-      My most popular author was Nnedi Okorafor, I read 2 books by this author.
-
-      "
+      "- **Total books:** 5
+      - **Average days to finish:** 1.0
+      - **Most popular genre:** fiction
+      - **Started and finished on the same day:** 1 book, “Book 1” by Author Name
+      - **Most popular author:** Author Name (4 books)"
     `);
   });
 
   it("works, lots", () => {
-    const result = yearReview(lotsOfBooks, "2022");
+    const result = yearReview(booksLots, "2022");
     expect(yearReviewSummary(result)).toMatchInlineSnapshot(`
-      "In 2022, I read 13 books.
-
-      I read the most books in January when I read 12 books and the least amount of books in February when I read 1.
-
-      The genre I read the most was fiction.
-
-      I started and finished 1 book on the same day, “Noor” by Nnedi Okorafor.
-
-      On average, the books I read were around 303 pages. The longest book I read was 678 pages,“Caste” by Isabel Wilkerson, and the shortest was 100 pages, “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis.
-
-      My most popular author was Katel LeDû,Lisa Maria Marquis, I read 1 books by this author.
-
-      I tagged 3 books with “recommend.”"
+      "- **Total books:** 13
+      - **Month with most books:** January (12 books)
+      - **Month with least books:** February (1 book)
+      - **Most popular genre:** fiction
+      - **Started and finished on the same day:** 1 book, “Noor” by Nnedi Okorafor
+      - **Average book length:** 303 pages
+      - **Longest book:** 678 pages, “Caste” by Isabel Wilkerson
+      - **Shortest book:** 100 pages, “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis
+      - **Tags:** 3 books with “recommend”"
     `);
   });
 
   it("works, 2021", () => {
     const result = yearReview(books, "2021");
-    expect(yearReviewSummary(result)).toMatchInlineSnapshot(`
-      "In 2021, I read 2 books.
-
-      The genre I read the most was fiction.
-
-      On average, the books I read were around 432 pages. The longest book I read was 544 pages,“Black Futures” by Kimberly Drew, Jenna Wortham, and the shortest was 320 pages, “Mexican Gothic” by Silvia Moreno-Garcia.
-
-      My most popular author was Silvia Moreno-Garcia, I read 1 books by this author.
-
-      "
-    `);
+    expect(yearReviewSummary(result)).toMatchInlineSnapshot(
+      `"- **Total books:** 2"`
+    );
   });
 
   it("works, 2020", () => {
     const result = yearReview(books, "2020");
-    expect(yearReviewSummary(result)).toMatchInlineSnapshot(`
-      "In 2020, I read 2 books.
-
-      The genre I read the most was biography & autobiography.
-
-      On average, the books I read were around 264 pages. The longest book I read was 288 pages,“Uncanny Valley” by Anna Wiener, and the shortest was 240 pages, “Luster” by Raven Leilani.
-
-      My most popular author was Raven Leilani, I read 1 books by this author.
-
-      "
-    `);
+    expect(yearReviewSummary(result)).toMatchInlineSnapshot(
+      `"- **Total books:** 2"`
+    );
   });
 });
 
@@ -135,9 +78,9 @@ describe("yearReview", () => {
         "categories": {
           "mostReadCategory": "Fiction",
         },
-        "count": 3,
+        "count": 5,
         "dates": {
-          "averageFinishTime": 1,
+          "averageFinishTime": 2.3333333333333335,
           "finishedInOneDay": {
             "books": [],
             "count": 0,
@@ -152,12 +95,12 @@ describe("yearReview", () => {
           },
         },
         "length": {
-          "averageBookLength": 258,
+          "averageBookLength": 293,
           "longestBook": {
-            "authors": "Kali Fajardo-Anstine",
-            "isbn": "9780525511342",
-            "pageCount": 336,
-            "title": "“Woman of Light”",
+            "authors": "Jennifer Egan",
+            "isbn": "9781476716763",
+            "pageCount": 352,
+            "title": "“The Candy House”",
           },
           "shortestBook": {
             "authors": "bell hooks",
@@ -170,7 +113,9 @@ describe("yearReview", () => {
           "count": 1,
           "popularAuthor": "bell hooks",
         },
-        "tags": {},
+        "tags": {
+          "recommend": 1,
+        },
         "year": "2022",
       }
     `);
@@ -208,7 +153,7 @@ describe("yearReview", () => {
     `);
 
     expect(yearReviewSummary(result)).toMatchInlineSnapshot(
-      `"In 2022, I read 1 book."`
+      `"- **Total books:** 1"`
     );
   });
 });

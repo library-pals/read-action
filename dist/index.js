@@ -14227,47 +14227,50 @@ function yearReviewSummary(obj) {
         return undefined;
     const moreThanOne = obj.count > 1;
     const summary = [
-        `In ${obj.year}, I read ${obj.count} book${s(obj.count)}.`,
+        `- **Total books:** ${obj.count}`,
         ...(obj.dates && obj.dates.averageFinishTime && moreThanOne
             ? [
-                `On average, I finished a book in about ${obj.dates.averageFinishTime.toFixed(1)} day${s(obj.dates.averageFinishTime)}.`,
+                `- **Average days to finish:** ${obj.dates.averageFinishTime.toFixed(1)}`,
             ]
             : []),
         ...(obj.dates &&
             obj.dates.mostReadMonth.count !== obj.dates.leastReadMonth.count
             ? [
-                `I read the most books in ${obj.dates.mostReadMonth.month} when I read ${obj.dates.mostReadMonth.count} book${s(obj.dates.mostReadMonth.count)} and the least amount of books in ${obj.dates.leastReadMonth.month} when I read ${obj.dates.leastReadMonth.count}.`,
+                `- **Month with most books:** ${obj.dates.mostReadMonth.month} (${obj.dates.mostReadMonth.count} book${s(obj.dates.mostReadMonth.count)})
+- **Month with least books:** ${obj.dates.leastReadMonth.month} (${obj.dates.leastReadMonth.count} book${s(obj.dates.leastReadMonth.count)})`,
             ]
             : []),
         ...(obj.categories?.mostReadCategory && moreThanOne
             ? [
-                `The genre I read the most was ${obj.categories.mostReadCategory.toLowerCase()}.`,
+                `- **Most popular genre:** ${obj.categories.mostReadCategory.toLowerCase()}`,
             ]
             : []),
         ...(obj.dates && obj.dates.finishedInOneDay.count
             ? [
-                `I started and finished ${obj.dates.finishedInOneDay.count} book${s(obj.dates.finishedInOneDay.count)} on the same day, ${and(obj.dates.finishedInOneDay.books.map((book) => `${book.title} by ${book.authors}`))}.`,
+                `- **Started and finished on the same day:** ${obj.dates.finishedInOneDay.count} book${s(obj.dates.finishedInOneDay.count)}, ${and(obj.dates.finishedInOneDay.books.map((book) => `${book.title} by ${book.authors}`))}`,
             ]
             : []),
-        ...(obj.length && moreThanOne
+        ...(obj.length && obj.length.averageBookLength && moreThanOne
             ? [
-                `On average, the books I read were around ${obj.length.averageBookLength} pages. The longest book I read was ${obj.length.longestBook.pageCount} pages,${obj.length.longestBook.title} by ${obj.length.longestBook.authors}, and the shortest was ${obj.length.shortestBook.pageCount} pages, ${obj.length.shortestBook.title} by ${obj.length.shortestBook.authors}.`,
+                `- **Average book length:** ${obj.length.averageBookLength} pages
+- **Longest book:** ${obj.length.longestBook.pageCount} pages, ${obj.length.longestBook.title} by ${obj.length.longestBook.authors}
+- **Shortest book:** ${obj.length.shortestBook.pageCount} pages, ${obj.length.shortestBook.title} by ${obj.length.shortestBook.authors}`,
             ]
             : []),
-        ...(obj.popularAuthor && moreThanOne
+        ...(obj.popularAuthor && obj.popularAuthor.count > 1 && moreThanOne
             ? [
-                `My most popular author was ${obj.popularAuthor.popularAuthor}, I read ${obj.popularAuthor.count} books by this author.`,
+                `- **Most popular author:** ${obj.popularAuthor.popularAuthor} (${obj.popularAuthor.count} books)`,
             ]
             : []),
-        ...(obj.tags
+        ...(obj.tags && Object.keys(obj.tags).length > 0
             ? [
-                Object.keys(obj.tags)
-                    .map((tag) => `I tagged ${obj.tags[tag]} book${s(obj.tags[tag])} with “${tag}.”`)
-                    .join(" "),
+                `- **Tags:** ${Object.keys(obj.tags)
+                    .map((tag) => `${obj.tags[tag]} book${s(obj.tags[tag])} with “${tag}”`)
+                    .join(", ")}`,
             ]
             : []),
     ];
-    return summary.join("\n\n");
+    return summary.join("\n");
 }
 function yearReview(books, year) {
     if (books.length === 0)
@@ -14328,8 +14331,9 @@ function yearReview(books, year) {
     const popularAuthor = getKeyFromBiggestValue(authors);
     // average finish tme
     const averageFinishTime = average(booksThisYear.filter((b) => b.finishTime).map((b) => b.finishTime));
+    const bookLengths = booksThisYear.map((b) => b.pageCount).filter((f) => f);
     // average book length
-    const averageBookLength = Math.round(average(booksThisYear.map((b) => b.pageCount)));
+    const averageBookLength = bookLengths.length > 0 ? Math.round(average(bookLengths)) : undefined;
     // tags
     const tags = booksThisYear
         .filter((book) => book.tags !== undefined)

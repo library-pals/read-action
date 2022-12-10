@@ -1,0 +1,57 @@
+[
+  {
+    "isbn": "0987654321",
+    "dateFinished": "2022-01-05",
+    "dateStarted": "2022-01-05",
+    "title": "Book 1",
+    "authors": ["Author Name"],
+    "publishedDate": "2021-11-16",
+    "printType": "BOOK",
+    "categories": ["Fiction"],
+    "language": "en"
+  },
+  {
+    "isbn": "1234567890",
+    "dateFinished": "2022-01-06",
+    "dateStarted": "2022-01-05",
+    "title": "Book 2",
+    "authors": ["Author Name"],
+    "publishedDate": "2021-11-16",
+    "printType": "BOOK",
+    "categories": ["Fiction"],
+    "language": "en"
+  },
+  {
+    "isbn": "1234567890",
+    "dateFinished": "2022-01-06",
+    "dateStarted": "2022-01-05",
+    "title": "Book 3",
+    "authors": ["Author Name"],
+    "publishedDate": "2021-11-16",
+    "printType": "BOOK",
+    "categories": ["Fiction"],
+    "language": "en"
+  },
+  {
+    "isbn": "1234567890",
+    "dateFinished": "2022-01-06",
+    "dateStarted": "2022-01-05",
+    "title": "Book 4",
+    "authors": ["Author Name"],
+    "publishedDate": "2021-11-16",
+    "printType": "BOOK",
+    "categories": ["Fiction"],
+    "language": "en"
+  },
+  {
+    "isbn": "1234567890",
+    "dateFinished": "2022-01-06",
+    "dateStarted": "2022-01-05",
+    "title": "Book 5",
+    "authors": ["Other Author Name"],
+    "publishedDate": "2021-11-16",
+    "printType": "BOOK",
+    "categories": ["Fiction"],
+    "language": "en"
+  }
+]

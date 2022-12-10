@@ -210,9 +210,9 @@ describe("workflow", () => {
       Finished: “Luster”
 
 
-      ## Reading summary
+      ## 2022 reading summary
 
-      In 2022, I read 1 book.
+      - **Total books:** 1
       ",
       ]
     `);

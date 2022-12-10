@@ -83,7 +83,7 @@ export async function read() {
 ${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”
 ${
   process.env.BookStatus === "finished"
-    ? `\n\n## Reading summary\n\n${yearReviewSummary(
+    ? `\n\n## ${new Date().getFullYear()} reading summary\n\n${yearReviewSummary(
         yearReview(library, String(new Date().getFullYear()))
       )}`
     : ""
