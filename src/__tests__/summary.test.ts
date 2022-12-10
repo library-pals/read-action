@@ -7,16 +7,16 @@ describe("yearReviewSummary", () => {
   it("works", () => {
     const result = yearReview(books, "2022");
     expect(yearReviewSummary(result)).toMatchInlineSnapshot(`
-      "- **Total books:** 6
-      - **Average days to finish:** 2.3
+      "- **Total books:** 7
+      - **Average days to finish:** 2.0
       - **Month with most books:** September (2 books)
-      - **Month with least books:** November (1 book)
+      - **Month with least books:** January (1 book)
       - **Most popular genre:** fiction
       - **Started and finished on the same day:** 1 book, “Belly of the Beast” by Da'Shaun L. Harrison
-      - **Average book length:** 269 pages
+      - **Average book length:** 251 pages
       - **Longest book:** 352 pages, “The Candy House” by Jennifer Egan
-      - **Shortest book:** 148 pages, “Belly of the Beast” by Da'Shaun L. Harrison
-      - **Tags:** 2 books with “recommend”"
+      - **Shortest book:** 145 pages, “Bliss Montage” by Ling Ma
+      - **Tags:** 3 books with “recommend”"
     `);
   });
 
@@ -79,9 +79,9 @@ describe("yearReview", () => {
         "categories": {
           "mostReadCategory": "Fiction",
         },
-        "count": 6,
+        "count": 7,
         "dates": {
-          "averageFinishTime": 2.3333333333333335,
+          "averageFinishTime": 2,
           "finishedInOneDay": {
             "books": [
               {
@@ -95,7 +95,7 @@ describe("yearReview", () => {
           },
           "leastReadMonth": {
             "count": 1,
-            "month": "November",
+            "month": "January",
           },
           "mostReadMonth": {
             "count": 2,
@@ -103,7 +103,7 @@ describe("yearReview", () => {
           },
         },
         "length": {
-          "averageBookLength": 269,
+          "averageBookLength": 251,
           "longestBook": {
             "authors": "Jennifer Egan",
             "isbn": "9781476716763",
@@ -111,18 +111,18 @@ describe("yearReview", () => {
             "title": "“The Candy House”",
           },
           "shortestBook": {
-            "authors": "Da'Shaun L. Harrison",
-            "isbn": "9781623175979",
-            "pageCount": 148,
-            "title": "“Belly of the Beast”",
+            "authors": "Ling Ma",
+            "isbn": "9780374717124",
+            "pageCount": 145,
+            "title": "“Bliss Montage”",
           },
         },
         "popularAuthor": {
           "count": 1,
-          "popularAuthor": "Da'Shaun L. Harrison",
+          "popularAuthor": "Ling Ma",
         },
         "tags": {
-          "recommend": 2,
+          "recommend": 3,
         },
         "year": "2022",
       }

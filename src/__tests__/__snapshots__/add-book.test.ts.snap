@@ -171,6 +171,30 @@ exports[`addBook works 1`] = `
   },
   {
     "authors": [
+      "Ling Ma",
+    ],
+    "categories": [
+      "Fiction",
+    ],
+    "dateFinished": "2022-11-25",
+    "dateStarted": "2022-11-24",
+    "description": "A new creation by the author of Severance, Bliss Montage crashes through our carefully built mirages. What happens when fantasy tears the screen of the everyday to wake us up? Could that waking be our end? In Bliss Montage, Ling Ma brings us eight wildly different tales of people making their way through the madness and reality of our collective delusions: love and loneliness, connection and possession, friendship, motherhood, the idea of home. A woman lives in a house with all her ex-boyfriends. A toxic friendship grows up around a drug that makes you invisible. An ancient ritual might heal you of anything—if you bury yourself alive. These and other scenarios investigate the ways that the outlandish and the ordinary are shockingly, deceptively, heartbreakingly alike.",
+    "isbn": "9780374717124",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=8ABdEAAAQBAJ",
+    "pageCount": 145,
+    "printType": "BOOK",
+    "publishedDate": "2022-09-13",
+    "rating": "⭐️⭐️⭐️⭐️",
+    "status": "finished",
+    "tags": [
+      "recommend",
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=8ABdEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "title": "Bliss Montage",
+  },
+  {
+    "authors": [
       "Da'Shaun L. Harrison",
     ],
     "categories": [
@@ -436,6 +460,30 @@ exports[`addBook works, no images 1`] = `
     "status": "want to read",
     "thumbnail": "https://books.google.com/books/content?id=LIH6wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     "title": "Fledgling",
+  },
+  {
+    "authors": [
+      "Ling Ma",
+    ],
+    "categories": [
+      "Fiction",
+    ],
+    "dateFinished": "2022-11-25",
+    "dateStarted": "2022-11-24",
+    "description": "A new creation by the author of Severance, Bliss Montage crashes through our carefully built mirages. What happens when fantasy tears the screen of the everyday to wake us up? Could that waking be our end? In Bliss Montage, Ling Ma brings us eight wildly different tales of people making their way through the madness and reality of our collective delusions: love and loneliness, connection and possession, friendship, motherhood, the idea of home. A woman lives in a house with all her ex-boyfriends. A toxic friendship grows up around a drug that makes you invisible. An ancient ritual might heal you of anything—if you bury yourself alive. These and other scenarios investigate the ways that the outlandish and the ordinary are shockingly, deceptively, heartbreakingly alike.",
+    "isbn": "9780374717124",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=8ABdEAAAQBAJ",
+    "pageCount": 145,
+    "printType": "BOOK",
+    "publishedDate": "2022-09-13",
+    "rating": "⭐️⭐️⭐️⭐️",
+    "status": "finished",
+    "tags": [
+      "recommend",
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=8ABdEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "title": "Bliss Montage",
   },
   {
     "authors": [
