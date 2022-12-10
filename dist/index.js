@@ -14218,132 +14218,115 @@ function addNotes(notes, bookNotes) {
     return `${bookNotes ? `${bookNotes}\n\n` : ""}${notes}`;
 }
 
-;// CONCATENATED MODULE: ./src/summary.ts
+;// CONCATENATED MODULE: ./src/summary-markdown.ts
 function s(num) {
     return num === 1 ? "" : "s";
 }
-function yearReviewSummary(obj) {
+function and(array) {
+    const lf = new Intl.ListFormat("en");
+    return lf.format(array);
+}
+function mAverageDays(obj) {
+    return obj.dates && obj.dates.averageFinishTime
+        ? [
+            `- **Average days to finish:** ${obj.dates.averageFinishTime.toFixed(1)}`,
+        ]
+        : [];
+}
+function mMostReadMonth(obj) {
+    return obj.dates &&
+        obj.dates.mostReadMonth.count !== obj.dates.leastReadMonth.count
+        ? [
+            `- **Month with most books:** ${obj.dates.mostReadMonth.month} (${obj.dates.mostReadMonth.count} book${s(obj.dates.mostReadMonth.count)})
+- **Month with least books:** ${obj.dates.leastReadMonth.month} (${obj.dates.leastReadMonth.count} book${s(obj.dates.leastReadMonth.count)})`,
+        ]
+        : [];
+}
+function mLeastReadMonth(obj) {
+    return obj.categories?.mostReadCategory
+        ? [
+            `- **Most popular genre:** ${obj.categories.mostReadCategory.toLowerCase()}`,
+        ]
+        : [];
+}
+function mSameDay(obj) {
+    return obj.dates && obj.dates.finishedInOneDay.count
+        ? [
+            `- **Started and finished on the same day:** ${obj.dates.finishedInOneDay.count} book${s(obj.dates.finishedInOneDay.count)}, ${and(obj.dates.finishedInOneDay.books.map((book) => `${book.title} by ${book.authors}`))}`,
+        ]
+        : [];
+}
+function mAverageLength(obj) {
+    return obj.length && obj.length.averageBookLength
+        ? [
+            `- **Average book length:** ${obj.length.averageBookLength} pages
+- **Longest book:** ${obj.length.longestBook.pageCount} pages, ${obj.length.longestBook.title} by ${obj.length.longestBook.authors}
+- **Shortest book:** ${obj.length.shortestBook.pageCount} pages, ${obj.length.shortestBook.title} by ${obj.length.shortestBook.authors}`,
+        ]
+        : [];
+}
+function mPopularAuthor(obj) {
+    return obj.popularAuthor && obj.popularAuthor.count > 1
+        ? [
+            `- **Most popular author:** ${obj.popularAuthor.popularAuthor} (${obj.popularAuthor.count} books)`,
+        ]
+        : [];
+}
+function mTags(obj) {
+    return obj.tags && Object.keys(obj.tags).length > 0
+        ? [
+            `- **Tags:** ${Object.keys(obj.tags)
+                .map((tag) => `${obj.tags[tag]} book${s(obj.tags[tag])} with “${tag}”`)
+                .join(", ")}`,
+        ]
+        : [];
+}
+
+;// CONCATENATED MODULE: ./src/summary.ts
+
+function yearReviewSummary(books, year) {
+    const obj = yearReview(books, year);
     if (obj === undefined)
         return undefined;
     const summary = [
         `- **Total books:** ${obj.count}`,
-        ...(obj.dates && obj.dates.averageFinishTime
-            ? [
-                `- **Average days to finish:** ${obj.dates.averageFinishTime.toFixed(1)}`,
-            ]
-            : []),
-        ...(obj.dates &&
-            obj.dates.mostReadMonth.count !== obj.dates.leastReadMonth.count
-            ? [
-                `- **Month with most books:** ${obj.dates.mostReadMonth.month} (${obj.dates.mostReadMonth.count} book${s(obj.dates.mostReadMonth.count)})
-- **Month with least books:** ${obj.dates.leastReadMonth.month} (${obj.dates.leastReadMonth.count} book${s(obj.dates.leastReadMonth.count)})`,
-            ]
-            : []),
-        ...(obj.categories?.mostReadCategory
-            ? [
-                `- **Most popular genre:** ${obj.categories.mostReadCategory.toLowerCase()}`,
-            ]
-            : []),
-        ...(obj.dates && obj.dates.finishedInOneDay.count
-            ? [
-                `- **Started and finished on the same day:** ${obj.dates.finishedInOneDay.count} book${s(obj.dates.finishedInOneDay.count)}, ${and(obj.dates.finishedInOneDay.books.map((book) => `${book.title} by ${book.authors}`))}`,
-            ]
-            : []),
-        ...(obj.length && obj.length.averageBookLength
-            ? [
-                `- **Average book length:** ${obj.length.averageBookLength} pages
-- **Longest book:** ${obj.length.longestBook.pageCount} pages, ${obj.length.longestBook.title} by ${obj.length.longestBook.authors}
-- **Shortest book:** ${obj.length.shortestBook.pageCount} pages, ${obj.length.shortestBook.title} by ${obj.length.shortestBook.authors}`,
-            ]
-            : []),
-        ...(obj.popularAuthor && obj.popularAuthor.count > 1
-            ? [
-                `- **Most popular author:** ${obj.popularAuthor.popularAuthor} (${obj.popularAuthor.count} books)`,
-            ]
-            : []),
-        ...(obj.tags && Object.keys(obj.tags).length > 0
-            ? [
-                `- **Tags:** ${Object.keys(obj.tags)
-                    .map((tag) => `${obj.tags[tag]} book${s(obj.tags[tag])} with “${tag}”`)
-                    .join(", ")}`,
-            ]
-            : []),
+        ...mAverageDays(obj),
+        ...mMostReadMonth(obj),
+        ...mLeastReadMonth(obj),
+        ...mSameDay(obj),
+        ...mAverageLength(obj),
+        ...mPopularAuthor(obj),
+        ...mTags(obj),
     ];
     return summary.join("\n");
 }
 function yearReview(books, year) {
     if (books.length === 0)
         return undefined;
-    const booksThisYear = books
-        .filter((f) => f.dateFinished?.startsWith(year))
-        .map((b) => ({
-        ...b,
-        finishTime: b.dateFinished !== undefined && b.dateStarted !== undefined
-            ? Math.floor((Date.parse(b.dateFinished) - Date.parse(b.dateStarted)) /
-                86400000)
-            : undefined,
-    }))
-        .sort((a, b) => b.pageCount && a.pageCount ? b.pageCount - a.pageCount : -1);
+    const booksThisYear = bBooksThisYear(books, year);
     const count = booksThisYear.length;
     if (count === 0)
         return undefined;
-    if (count < 5)
+    if (count < 5) {
         return {
             year,
             count,
         };
+    }
     const longestBook = booksThisYear[0];
     const shortestBook = booksThisYear[count - 1];
     const categories = groupBy(booksThisYear, "categories");
     const mostReadCategory = getKeyFromBiggestValue(categories);
-    // month with most books read
-    const groupByMonth = groupBy(booksThisYear.map((b) => {
-        const match = b.dateFinished && b.dateFinished.match(/\d\d\d\d-(\d\d)-\d\d/);
-        return {
-            ...b,
-            ...(b.dateFinished &&
-                match && {
-                dateFinished: match[1],
-            }),
-        };
-    }), "dateFinished");
+    const groupByMonth = bGroupByMonth(booksThisYear);
     const mostReadMonth = getKeyFromBiggestValue(groupByMonth);
     const leastReadMonth = getKeyFromSmallestValue(groupByMonth);
-    const monthToWord = {
-        "01": "January",
-        "02": "February",
-        "03": "March",
-        "04": "April",
-        "05": "May",
-        "06": "June",
-        "07": "July",
-        "08": "August",
-        "09": "September",
-        "10": "October",
-        "11": "November",
-        "12": "December",
-    };
-    // same date start finish
     const finishedInOneDay = booksThisYear.filter((b) => b.dateStarted === b.dateFinished);
-    // popular author
     const authors = groupBy(booksThisYear, "authors");
     const popularAuthor = getKeyFromBiggestValue(authors);
-    // average finish tme
     const averageFinishTime = average(booksThisYear.filter((b) => b.finishTime).map((b) => b.finishTime));
     const bookLengths = booksThisYear.map((b) => b.pageCount).filter((f) => f);
-    // average book length
     const averageBookLength = bookLengths.length > 0 ? Math.round(average(bookLengths)) : undefined;
-    // tags
-    const tags = booksThisYear
-        .filter((book) => book.tags !== undefined)
-        .map((book) => book.tags)
-        .flat()
-        .reduce((obj, k) => {
-        if (!obj[k])
-            obj[k] = 0;
-        obj[k]++;
-        return obj;
-    }, {});
+    const tags = bTags(booksThisYear);
     return {
         year,
         count,
@@ -14403,9 +14386,55 @@ function groupBy(array, key) {
     }, {});
 }
 const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
-function and(array) {
-    const lf = new Intl.ListFormat("en");
-    return lf.format(array);
+function bBooksThisYear(books, year) {
+    return books
+        .filter((f) => f.dateFinished?.startsWith(year))
+        .map((b) => ({
+        ...b,
+        finishTime: b.dateFinished !== undefined && b.dateStarted !== undefined
+            ? Math.floor((Date.parse(b.dateFinished) - Date.parse(b.dateStarted)) /
+                86400000)
+            : undefined,
+    }))
+        .sort((a, b) => b.pageCount && a.pageCount ? b.pageCount - a.pageCount : -1);
+}
+function bGroupByMonth(booksThisYear) {
+    return groupBy(booksThisYear.map((b) => {
+        const match = b.dateFinished && b.dateFinished.match(/\d\d\d\d-(\d\d)-\d\d/);
+        return {
+            ...b,
+            ...(b.dateFinished &&
+                match && {
+                dateFinished: match[1],
+            }),
+        };
+    }), "dateFinished");
+}
+const monthToWord = {
+    "01": "January",
+    "02": "February",
+    "03": "March",
+    "04": "April",
+    "05": "May",
+    "06": "June",
+    "07": "July",
+    "08": "August",
+    "09": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December",
+};
+function bTags(booksThisYear) {
+    return booksThisYear
+        .filter((book) => book.tags !== undefined)
+        .map((book) => book.tags)
+        .flat()
+        .reduce((obj, k) => {
+        if (!obj[k])
+            obj[k] = 0;
+        obj[k]++;
+        return obj;
+    }, {});
 }
 
 ;// CONCATENATED MODULE: ./src/index.ts
@@ -14450,7 +14479,7 @@ async function read() {
 
 ${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”
 ${process.env.BookStatus === "finished"
-            ? `\n\n## ${new Date().getFullYear()} reading summary\n\n${yearReviewSummary(yearReview(library, String(new Date().getFullYear())))}`
+            ? `\n\n## ${new Date().getFullYear()} reading summary\n\n${yearReviewSummary(library, String(new Date().getFullYear()))}`
             : ""}
 `)
             .write();

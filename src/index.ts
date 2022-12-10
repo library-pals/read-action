@@ -6,7 +6,7 @@ import getBook from "./get-book";
 import { isDate } from "./utils";
 import { checkOutBook } from "./checkout-book";
 import { BookStatus } from "./clean-book";
-import yearReview, { yearReviewSummary } from "./summary";
+import yearReviewSummary from "./summary";
 
 export type Dates = {
   dateAdded: string | undefined;
@@ -84,7 +84,8 @@ ${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”
 ${
   process.env.BookStatus === "finished"
     ? `\n\n## ${new Date().getFullYear()} reading summary\n\n${yearReviewSummary(
-        yearReview(library, String(new Date().getFullYear()))
+        library,
+        String(new Date().getFullYear())
       )}`
     : ""
 }

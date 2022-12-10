@@ -1,12 +1,12 @@
-import yearReview, { yearReviewSummary } from "../summary";
+import yearReviewSummary, { yearReview } from "../summary";
 import books from "../../_data/read.json";
 import booksLots from "./library/lots.json";
 import booksNoPageCount from "./library/no-page-count.json";
 
 describe("yearReviewSummary", () => {
   it("works", () => {
-    const result = yearReview(books, "2022");
-    expect(yearReviewSummary(result)).toMatchInlineSnapshot(`
+    const result = yearReviewSummary(books, "2022");
+    expect(result).toMatchInlineSnapshot(`
       "- **Total books:** 7
       - **Average days to finish:** 2.0
       - **Month with most books:** September (2 books)
@@ -21,18 +21,18 @@ describe("yearReviewSummary", () => {
   });
 
   it("no books", () => {
-    const result = yearReview([], "2022");
-    expect(yearReviewSummary(result)).toMatchInlineSnapshot(`undefined`);
+    const result = yearReviewSummary([], "2022");
+    expect(result).toMatchInlineSnapshot(`undefined`);
   });
 
   it("no books, this year", () => {
-    const result = yearReview(booksLots, "2021");
-    expect(yearReviewSummary(result)).toMatchInlineSnapshot(`undefined`);
+    const result = yearReviewSummary(booksLots, "2021");
+    expect(result).toMatchInlineSnapshot(`undefined`);
   });
 
   it("no pagecount", () => {
-    const result = yearReview(booksNoPageCount, "2022");
-    expect(yearReviewSummary(result)).toMatchInlineSnapshot(`
+    const result = yearReviewSummary(booksNoPageCount, "2022");
+    expect(result).toMatchInlineSnapshot(`
       "- **Total books:** 5
       - **Average days to finish:** 1.0
       - **Most popular genre:** fiction
@@ -42,8 +42,8 @@ describe("yearReviewSummary", () => {
   });
 
   it("works, lots", () => {
-    const result = yearReview(booksLots, "2022");
-    expect(yearReviewSummary(result)).toMatchInlineSnapshot(`
+    const result = yearReviewSummary(booksLots, "2022");
+    expect(result).toMatchInlineSnapshot(`
       "- **Total books:** 13
       - **Month with most books:** January (12 books)
       - **Month with least books:** February (1 book)
@@ -57,17 +57,13 @@ describe("yearReviewSummary", () => {
   });
 
   it("works, 2021", () => {
-    const result = yearReview(books, "2021");
-    expect(yearReviewSummary(result)).toMatchInlineSnapshot(
-      `"- **Total books:** 2"`
-    );
+    const result = yearReviewSummary(books, "2021");
+    expect(result).toMatchInlineSnapshot(`"- **Total books:** 2"`);
   });
 
   it("works, 2020", () => {
-    const result = yearReview(books, "2020");
-    expect(yearReviewSummary(result)).toMatchInlineSnapshot(
-      `"- **Total books:** 2"`
-    );
+    const result = yearReviewSummary(books, "2020");
+    expect(result).toMatchInlineSnapshot(`"- **Total books:** 2"`);
   });
 });
 
@@ -130,37 +126,34 @@ describe("yearReview", () => {
   });
 
   it("one book", () => {
-    const result = yearReview(
-      [
-        {
-          authors: ["Raven Leilani"],
-          dateAdded: "2022-10-01",
-          dateFinished: "2022-10-05",
-          dateStarted: "2022-10-02",
-          description:
-            "Sharp, comic, disruptive, tender, Raven Leilani's debut novel, Luster, sees a young black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties--sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage--with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only black woman who young Akila knows. Razor sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make her sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
-          isbn: "9780385696005",
-          language: "en",
-          link: "https://books.google.com/books/about/Luster.html?hl=&id=eJ06zQEACAAJ",
-          pageCount: 240,
-          printType: "BOOK",
-          publishedDate: "2020-08-04",
-          status: "started",
-          thumbnail:
-            "https://books.google.com/books/content?id=eJ06zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-          title: "Luster",
-        },
-      ],
-      "2022"
-    );
-    expect(result).toMatchInlineSnapshot(`
+    const book = [
+      {
+        authors: ["Raven Leilani"],
+        dateAdded: "2022-10-01",
+        dateFinished: "2022-10-05",
+        dateStarted: "2022-10-02",
+        description:
+          "Sharp, comic, disruptive, tender, Raven Leilani's debut novel, Luster, sees a young black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties--sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage--with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only black woman who young Akila knows. Razor sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make her sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
+        isbn: "9780385696005",
+        language: "en",
+        link: "https://books.google.com/books/about/Luster.html?hl=&id=eJ06zQEACAAJ",
+        pageCount: 240,
+        printType: "BOOK",
+        publishedDate: "2020-08-04",
+        status: "started",
+        thumbnail:
+          "https://books.google.com/books/content?id=eJ06zQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        title: "Luster",
+      },
+    ];
+    expect(yearReview(book, "2022")).toMatchInlineSnapshot(`
       {
         "count": 1,
         "year": "2022",
       }
     `);
 
-    expect(yearReviewSummary(result)).toMatchInlineSnapshot(
+    expect(yearReviewSummary(book, "2022")).toMatchInlineSnapshot(
       `"- **Total books:** 1"`
     );
   });
