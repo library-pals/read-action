@@ -50,7 +50,9 @@ describe("workflow", () => {
       [
         "# Updated library
 
-      Want to read: “Luster”",
+      Want to read: “Luster”
+
+      ",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
@@ -127,7 +129,9 @@ describe("workflow", () => {
       [
         "# Updated library
 
-      Started: “Luster”",
+      Started: “Luster”
+
+      ",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
@@ -203,7 +207,13 @@ describe("workflow", () => {
       [
         "# Updated library
 
-      Finished: “Luster”",
+      Finished: “Luster”
+
+
+      ## 2022 reading summary
+
+      - **Total books:** 1
+      ",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
