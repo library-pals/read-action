@@ -145,6 +145,30 @@
     "link": "https://books.google.com/books/about/Fledgling.html?hl=&id=LIH6wAEACAAJ"
   },
   {
+    "isbn": "9780374717124",
+    "dateStarted": "2022-11-24",
+    "dateFinished": "2022-11-25",
+    "status": "finished",
+    "rating": "⭐️⭐️⭐️⭐️",
+    "tags": [
+      "recommend"
+    ],
+    "title": "Bliss Montage",
+    "authors": [
+      "Ling Ma"
+    ],
+    "publishedDate": "2022-09-13",
+    "description": "A new creation by the author of Severance, Bliss Montage crashes through our carefully built mirages. What happens when fantasy tears the screen of the everyday to wake us up? Could that waking be our end? In Bliss Montage, Ling Ma brings us eight wildly different tales of people making their way through the madness and reality of our collective delusions: love and loneliness, connection and possession, friendship, motherhood, the idea of home. A woman lives in a house with all her ex-boyfriends. A toxic friendship grows up around a drug that makes you invisible. An ancient ritual might heal you of anything—if you bury yourself alive. These and other scenarios investigate the ways that the outlandish and the ordinary are shockingly, deceptively, heartbreakingly alike.",
+    "pageCount": 145,
+    "printType": "BOOK",
+    "categories": [
+      "Fiction"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=8ABdEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=8ABdEAAAQBAJ"
+  },
+  {
     "isbn": "9781623175979",
     "dateStarted": "2022-11-30",
     "dateFinished": "2022-11-30",
