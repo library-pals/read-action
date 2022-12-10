@@ -6,11 +6,10 @@ function s(num: number) {
 
 export function yearReviewSummary(obj: YearReview | undefined) {
   if (obj === undefined) return undefined;
-  const moreThanOne = obj.count > 1;
   const summary = [
     `- **Total books:** ${obj.count}`,
 
-    ...(obj.dates && obj.dates.averageFinishTime && moreThanOne
+    ...(obj.dates && obj.dates.averageFinishTime
       ? [
           `- **Average days to finish:** ${obj.dates.averageFinishTime.toFixed(
             1
@@ -30,7 +29,7 @@ export function yearReviewSummary(obj: YearReview | undefined) {
         ]
       : []),
 
-    ...(obj.categories?.mostReadCategory && moreThanOne
+    ...(obj.categories?.mostReadCategory
       ? [
           `- **Most popular genre:** ${obj.categories.mostReadCategory.toLowerCase()}`,
         ]
@@ -47,14 +46,14 @@ export function yearReviewSummary(obj: YearReview | undefined) {
           )}`,
         ]
       : []),
-    ...(obj.length && obj.length.averageBookLength && moreThanOne
+    ...(obj.length && obj.length.averageBookLength
       ? [
           `- **Average book length:** ${obj.length.averageBookLength} pages
 - **Longest book:** ${obj.length.longestBook.pageCount} pages, ${obj.length.longestBook.title} by ${obj.length.longestBook.authors}
 - **Shortest book:** ${obj.length.shortestBook.pageCount} pages, ${obj.length.shortestBook.title} by ${obj.length.shortestBook.authors}`,
         ]
       : []),
-    ...(obj.popularAuthor && obj.popularAuthor.count > 1 && moreThanOne
+    ...(obj.popularAuthor && obj.popularAuthor.count > 1
       ? [
           `- **Most popular author:** ${obj.popularAuthor.popularAuthor} (${obj.popularAuthor.count} books)`,
         ]

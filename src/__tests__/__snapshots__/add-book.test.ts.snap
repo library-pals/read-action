@@ -171,6 +171,30 @@ exports[`addBook works 1`] = `
   },
   {
     "authors": [
+      "Da'Shaun L. Harrison",
+    ],
+    "categories": [
+      "Social Science",
+    ],
+    "dateFinished": "2022-11-30",
+    "dateStarted": "2022-11-30",
+    "description": "**The 2022 Lammy Award Winner in Transgender Nonfiction** Exploring the intersections of Blackness, gender, fatness, health, and the violence of policing. To live in a body both fat and Black is to exist at the margins of a society that creates the conditions for anti-fatness as anti-Blackness. Hyper-policed by state and society, passed over for housing and jobs, and derided and misdiagnosed by medical professionals, fat Black people in the United States are subject to sociopolitically sanctioned discrimination, abuse, condescension, and trauma. Da’Shaun Harrison--a fat, Black, disabled, and nonbinary trans writer--offers an incisive, fresh, and precise exploration of anti-fatness as anti-Blackness, foregrounding the state-sanctioned murders of fat Black men and trans and nonbinary masculine people in historical analysis. Policing, disenfranchisement, and invisibilizing of fat Black men and trans and nonbinary masculine people are pervasive, insidious ways that anti-fat anti-Blackness shows up in everyday life. Fat people can be legally fired in 49 states for being fat; they’re more likely to be houseless. Fat people die at higher rates from misdiagnosis or nontreatment; fat women are more likely to be sexually assaulted. And at the intersections of fatness, Blackness, disability, and gender, these abuses are exacerbated. Taking on desirability politics, the limitations of gender, the connection between anti-fatness and carcerality, and the incongruity of “health” and “healthiness” for the Black fat, Harrison viscerally and vividly illustrates the myriad harms of anti-fat anti-Blackness. They offer strategies for dismantling denial, unlearning the cultural programming that tells us “fat is bad,” and destroying the world as we know it, so the Black fat can inhabit a place not built on their subjugation.",
+    "isbn": "9781623175979",
+    "language": "en",
+    "link": "https://books.google.com/books/about/Belly_of_the_Beast.html?hl=&id=nvQ3EAAAQBAJ",
+    "pageCount": 148,
+    "printType": "BOOK",
+    "publishedDate": "2021-08-10",
+    "rating": "⭐️⭐️⭐️⭐️⭐️",
+    "status": "finished",
+    "tags": [
+      "recommend",
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=nvQ3EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "title": "Belly of the Beast",
+  },
+  {
+    "authors": [
       "Rob Hart",
     ],
     "categories": [
@@ -412,6 +436,30 @@ exports[`addBook works, no images 1`] = `
     "status": "want to read",
     "thumbnail": "https://books.google.com/books/content?id=LIH6wAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     "title": "Fledgling",
+  },
+  {
+    "authors": [
+      "Da'Shaun L. Harrison",
+    ],
+    "categories": [
+      "Social Science",
+    ],
+    "dateFinished": "2022-11-30",
+    "dateStarted": "2022-11-30",
+    "description": "**The 2022 Lammy Award Winner in Transgender Nonfiction** Exploring the intersections of Blackness, gender, fatness, health, and the violence of policing. To live in a body both fat and Black is to exist at the margins of a society that creates the conditions for anti-fatness as anti-Blackness. Hyper-policed by state and society, passed over for housing and jobs, and derided and misdiagnosed by medical professionals, fat Black people in the United States are subject to sociopolitically sanctioned discrimination, abuse, condescension, and trauma. Da’Shaun Harrison--a fat, Black, disabled, and nonbinary trans writer--offers an incisive, fresh, and precise exploration of anti-fatness as anti-Blackness, foregrounding the state-sanctioned murders of fat Black men and trans and nonbinary masculine people in historical analysis. Policing, disenfranchisement, and invisibilizing of fat Black men and trans and nonbinary masculine people are pervasive, insidious ways that anti-fat anti-Blackness shows up in everyday life. Fat people can be legally fired in 49 states for being fat; they’re more likely to be houseless. Fat people die at higher rates from misdiagnosis or nontreatment; fat women are more likely to be sexually assaulted. And at the intersections of fatness, Blackness, disability, and gender, these abuses are exacerbated. Taking on desirability politics, the limitations of gender, the connection between anti-fatness and carcerality, and the incongruity of “health” and “healthiness” for the Black fat, Harrison viscerally and vividly illustrates the myriad harms of anti-fat anti-Blackness. They offer strategies for dismantling denial, unlearning the cultural programming that tells us “fat is bad,” and destroying the world as we know it, so the Black fat can inhabit a place not built on their subjugation.",
+    "isbn": "9781623175979",
+    "language": "en",
+    "link": "https://books.google.com/books/about/Belly_of_the_Beast.html?hl=&id=nvQ3EAAAQBAJ",
+    "pageCount": 148,
+    "printType": "BOOK",
+    "publishedDate": "2021-08-10",
+    "rating": "⭐️⭐️⭐️⭐️⭐️",
+    "status": "finished",
+    "tags": [
+      "recommend",
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=nvQ3EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "title": "Belly of the Beast",
   },
   {
     "authors": [

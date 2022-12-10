@@ -7,15 +7,16 @@ describe("yearReviewSummary", () => {
   it("works", () => {
     const result = yearReview(books, "2022");
     expect(yearReviewSummary(result)).toMatchInlineSnapshot(`
-      "- **Total books:** 5
+      "- **Total books:** 6
       - **Average days to finish:** 2.3
       - **Month with most books:** September (2 books)
-      - **Month with least books:** January (1 book)
+      - **Month with least books:** November (1 book)
       - **Most popular genre:** fiction
-      - **Average book length:** 293 pages
+      - **Started and finished on the same day:** 1 book, “Belly of the Beast” by Da'Shaun L. Harrison
+      - **Average book length:** 269 pages
       - **Longest book:** 352 pages, “The Candy House” by Jennifer Egan
-      - **Shortest book:** 206 pages, “Ain't I a Woman” by bell hooks
-      - **Tags:** 1 book with “recommend”"
+      - **Shortest book:** 148 pages, “Belly of the Beast” by Da'Shaun L. Harrison
+      - **Tags:** 2 books with “recommend”"
     `);
   });
 
@@ -78,16 +79,23 @@ describe("yearReview", () => {
         "categories": {
           "mostReadCategory": "Fiction",
         },
-        "count": 5,
+        "count": 6,
         "dates": {
           "averageFinishTime": 2.3333333333333335,
           "finishedInOneDay": {
-            "books": [],
-            "count": 0,
+            "books": [
+              {
+                "authors": "Da'Shaun L. Harrison",
+                "isbn": "9781623175979",
+                "pageCount": 148,
+                "title": "“Belly of the Beast”",
+              },
+            ],
+            "count": 1,
           },
           "leastReadMonth": {
             "count": 1,
-            "month": "January",
+            "month": "November",
           },
           "mostReadMonth": {
             "count": 2,
@@ -95,7 +103,7 @@ describe("yearReview", () => {
           },
         },
         "length": {
-          "averageBookLength": 293,
+          "averageBookLength": 269,
           "longestBook": {
             "authors": "Jennifer Egan",
             "isbn": "9781476716763",
@@ -103,18 +111,18 @@ describe("yearReview", () => {
             "title": "“The Candy House”",
           },
           "shortestBook": {
-            "authors": "bell hooks",
-            "isbn": "9781317588610",
-            "pageCount": 206,
-            "title": "“Ain't I a Woman”",
+            "authors": "Da'Shaun L. Harrison",
+            "isbn": "9781623175979",
+            "pageCount": 148,
+            "title": "“Belly of the Beast”",
           },
         },
         "popularAuthor": {
           "count": 1,
-          "popularAuthor": "bell hooks",
+          "popularAuthor": "Da'Shaun L. Harrison",
         },
         "tags": {
-          "recommend": 1,
+          "recommend": 2,
         },
         "year": "2022",
       }

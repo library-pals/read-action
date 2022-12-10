@@ -14225,10 +14225,9 @@ function s(num) {
 function yearReviewSummary(obj) {
     if (obj === undefined)
         return undefined;
-    const moreThanOne = obj.count > 1;
     const summary = [
         `- **Total books:** ${obj.count}`,
-        ...(obj.dates && obj.dates.averageFinishTime && moreThanOne
+        ...(obj.dates && obj.dates.averageFinishTime
             ? [
                 `- **Average days to finish:** ${obj.dates.averageFinishTime.toFixed(1)}`,
             ]
@@ -14240,7 +14239,7 @@ function yearReviewSummary(obj) {
 - **Month with least books:** ${obj.dates.leastReadMonth.month} (${obj.dates.leastReadMonth.count} book${s(obj.dates.leastReadMonth.count)})`,
             ]
             : []),
-        ...(obj.categories?.mostReadCategory && moreThanOne
+        ...(obj.categories?.mostReadCategory
             ? [
                 `- **Most popular genre:** ${obj.categories.mostReadCategory.toLowerCase()}`,
             ]
@@ -14250,14 +14249,14 @@ function yearReviewSummary(obj) {
                 `- **Started and finished on the same day:** ${obj.dates.finishedInOneDay.count} book${s(obj.dates.finishedInOneDay.count)}, ${and(obj.dates.finishedInOneDay.books.map((book) => `${book.title} by ${book.authors}`))}`,
             ]
             : []),
-        ...(obj.length && obj.length.averageBookLength && moreThanOne
+        ...(obj.length && obj.length.averageBookLength
             ? [
                 `- **Average book length:** ${obj.length.averageBookLength} pages
 - **Longest book:** ${obj.length.longestBook.pageCount} pages, ${obj.length.longestBook.title} by ${obj.length.longestBook.authors}
 - **Shortest book:** ${obj.length.shortestBook.pageCount} pages, ${obj.length.shortestBook.title} by ${obj.length.shortestBook.authors}`,
             ]
             : []),
-        ...(obj.popularAuthor && obj.popularAuthor.count > 1 && moreThanOne
+        ...(obj.popularAuthor && obj.popularAuthor.count > 1
             ? [
                 `- **Most popular author:** ${obj.popularAuthor.popularAuthor} (${obj.popularAuthor.count} books)`,
             ]
@@ -14288,7 +14287,7 @@ function yearReview(books, year) {
     const count = booksThisYear.length;
     if (count === 0)
         return undefined;
-    if (count === 1)
+    if (count < 5)
         return {
             year,
             count,
@@ -14451,7 +14450,7 @@ async function read() {
 
 ${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”
 ${process.env.BookStatus === "finished"
-            ? `\n\n## Reading summary\n\n${yearReviewSummary(yearReview(library, String(new Date().getFullYear())))}`
+            ? `\n\n## ${new Date().getFullYear()} reading summary\n\n${yearReviewSummary(yearReview(library, String(new Date().getFullYear())))}`
             : ""}
 `)
             .write();
