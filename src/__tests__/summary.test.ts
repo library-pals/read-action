@@ -16,7 +16,7 @@ describe("yearReviewSummary", () => {
       - **Average book length:** 251 pages
       - **Longest book:** 352 pages, “The Candy House” by Jennifer Egan
       - **Shortest book:** 145 pages, “Bliss Montage” by Ling Ma
-      - **Tags:** 3 books with “recommend”"
+      - **Top tag:** recommend (3 books)"
     `);
   });
 
@@ -52,7 +52,7 @@ describe("yearReviewSummary", () => {
       - **Average book length:** 303 pages
       - **Longest book:** 678 pages, “Caste” by Isabel Wilkerson
       - **Shortest book:** 100 pages, “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis
-      - **Tags:** 3 books with “recommend”"
+      - **Top tag:** recommend (3 books)"
     `);
   });
 
@@ -113,18 +113,18 @@ describe("yearReview", () => {
         "tags": [
           {
             "count": 3,
-            "tag": "recommend",
+            "name": "recommend",
           },
         ],
         "topAuthors": [],
         "topGenres": [
           {
             "count": 5,
-            "genre": "fiction",
+            "name": "fiction",
           },
           {
             "count": 2,
-            "genre": "social science",
+            "name": "social science",
           },
         ],
         "year": "2022",

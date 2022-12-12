@@ -37,7 +37,9 @@ export function mGenre(obj: YearReview) {
   return obj.topGenres
     ? [
         `- **Top genre${s(obj.topGenres.length)}:** ${and(
-          obj.topGenres.map((g) => `${g.genre} (${g.count} book${s(g.count)})`)
+          obj.topGenres.map(
+            ({ name, count }) => `${name} (${count} book${s(count)})`
+          )
         )}`,
       ]
     : [];
@@ -72,7 +74,7 @@ export function mTopAuthors(obj: YearReview) {
     ? [
         `- **Top author${s(obj.topAuthors.length)}:** ${and(
           obj.topAuthors.map(
-            ({ author, count }) => `${author} (${count} book${s(count)})`
+            ({ name, count }) => `${name} (${count} book${s(count)})`
           )
         )}`,
       ]
@@ -82,9 +84,11 @@ export function mTopAuthors(obj: YearReview) {
 export function mTags(obj: YearReview) {
   return obj.tags && obj.tags.length > 0
     ? [
-        `- **Tags:** ${obj.tags
-          .map(({ tag, count }) => `${count} book${s(count)} with “${tag}”`)
-          .join(", ")}`,
+        `- **Top tag${s(obj.tags.length)}:** ${and(
+          obj.tags.map(
+            ({ name, count }) => `${name} (${count} book${s(count)})`
+          )
+        )}`,
       ]
     : [];
 }

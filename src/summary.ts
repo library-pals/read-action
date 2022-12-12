@@ -41,21 +41,21 @@ export function yearReview(
   }
   const longestBook = booksThisYear[0];
   const shortestBook = booksThisYear[count - 1];
-  const topGenres = bTopGenres(booksThisYear);
+  const topGenres = findTopItems(booksThisYear, "categories", toLowerCase);
   const groupByMonth = bGroupByMonth(booksThisYear);
   const mostReadMonth = getKeyFromBiggestValue(groupByMonth);
   const leastReadMonth = getKeyFromSmallestValue(groupByMonth);
   const finishedInOneDay = booksThisYear.filter(
     (b) => b.dateStarted === b.dateFinished
   );
-  const topAuthors = bTopAuthors(booksThisYear);
+  const topAuthors = findTopItems(booksThisYear, "authors");
   const averageFinishTime = average(
     booksThisYear.filter((b) => b.finishTime).map((b) => b.finishTime)
   );
   const bookLengths = booksThisYear.map((b) => b.pageCount).filter((f) => f);
   const averageBookLength =
     bookLengths.length > 0 ? Math.round(average(bookLengths)) : undefined;
-  const tags = bTags(booksThisYear);
+  const tags = findTopItems(booksThisYear, "tags");
 
   return {
     year,
@@ -123,7 +123,7 @@ const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
 export type YearReview = {
   year: string;
   count: number;
-  topAuthors?: { author: string; count: number }[];
+  topAuthors?: { name: string; count: number }[];
   dates?: {
     averageFinishTime: number;
     mostReadMonth: { month: string; count: number };
@@ -138,8 +138,8 @@ export type YearReview = {
       }[];
     };
   };
-  topGenres?: { genre: string; count: number }[];
-  tags?: { tag: string; count: number }[];
+  topGenres?: { name: string; count: number }[];
+  tags?: { name: string; count: number }[];
   length?: {
     longestBook: {
       title: string | undefined;
@@ -207,46 +207,27 @@ const monthToWord = {
   "12": "December",
 };
 
-function bTags(booksThisYear: CleanBook[]) {
-  const tags = booksThisYear
-    .filter((book) => book.tags !== undefined)
-    .map((book) => book.tags)
+function findTopItems(
+  booksThisYear: CleanBook[],
+  key: string,
+  valueTransform?
+): { name: string; count: number }[] {
+  const items = booksThisYear
+    .map((book) => book[key])
     .flat()
-    .reduce((obj, k: string) => {
-      if (!obj[k]) obj[k] = 0;
-      obj[k]++;
+    .filter((f) => f)
+    .map((f) => (valueTransform ? valueTransform(f) : f))
+    .reduce((obj, item: string) => {
+      if (!obj[item]) obj[item] = 0;
+      obj[item]++;
       return obj;
     }, {});
-  return Object.keys(tags).map((tag) => ({ tag: tag, count: tags[tag] }));
-}
-
-function bTopGenres(booksThisYear: CleanBook[]) {
-  const categories = booksThisYear
-    .map((book) => book.categories)
-    .flat()
-    .map((f) => f?.toLowerCase())
-    .reduce((obj, cat: string) => {
-      if (!obj[cat]) obj[cat] = 0;
-      obj[cat]++;
-      return obj;
-    }, {});
-  return Object.keys(categories)
-    .map((cat) => ({ genre: cat, count: categories[cat] }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 2);
-}
-
-function bTopAuthors(booksThisYear: CleanBook[]) {
-  const authors = booksThisYear
-    .map((book) => book.authors)
-    .flat()
-    .reduce((obj, author: string) => {
-      if (!obj[author]) obj[author] = 0;
-      obj[author]++;
-      return obj;
-    }, {});
-  const authorArr = Object.keys(authors)
-    .map((a) => ({ author: a, count: authors[a] }))
+  const itemsArr = Object.keys(items)
+    .map((a) => ({ name: a, count: items[a] }))
     .filter((f) => f.count > 1);
-  return authorArr.sort((a, b) => b.count - a.count).slice(0, 2);
+  return itemsArr.sort((a, b) => b.count - a.count).slice(0, 2);
+}
+
+function toLowerCase(s: string) {
+  return s.toLowerCase().trim();
 }

@@ -14245,7 +14245,7 @@ function mMostReadMonth(obj) {
 function mGenre(obj) {
     return obj.topGenres
         ? [
-            `- **Top genre${s(obj.topGenres.length)}:** ${and(obj.topGenres.map((g) => `${g.genre} (${g.count} book${s(g.count)})`))}`,
+            `- **Top genre${s(obj.topGenres.length)}:** ${and(obj.topGenres.map(({ name, count }) => `${name} (${count} book${s(count)})`))}`,
         ]
         : [];
 }
@@ -14268,16 +14268,14 @@ function mAverageLength(obj) {
 function mTopAuthors(obj) {
     return obj.topAuthors && obj.topAuthors.length > 0
         ? [
-            `- **Top author${s(obj.topAuthors.length)}:** ${and(obj.topAuthors.map(({ author, count }) => `${author} (${count} book${s(count)})`))}`,
+            `- **Top author${s(obj.topAuthors.length)}:** ${and(obj.topAuthors.map(({ name, count }) => `${name} (${count} book${s(count)})`))}`,
         ]
         : [];
 }
 function mTags(obj) {
     return obj.tags && obj.tags.length > 0
         ? [
-            `- **Tags:** ${obj.tags
-                .map(({ tag, count }) => `${count} book${s(count)} with “${tag}”`)
-                .join(", ")}`,
+            `- **Top tag${s(obj.tags.length)}:** ${and(obj.tags.map(({ name, count }) => `${name} (${count} book${s(count)})`))}`,
         ]
         : [];
 }
@@ -14315,16 +14313,16 @@ function yearReview(books, year) {
     }
     const longestBook = booksThisYear[0];
     const shortestBook = booksThisYear[count - 1];
-    const topGenres = bTopGenres(booksThisYear);
+    const topGenres = findTopItems(booksThisYear, "categories", toLowerCase);
     const groupByMonth = bGroupByMonth(booksThisYear);
     const mostReadMonth = getKeyFromBiggestValue(groupByMonth);
     const leastReadMonth = getKeyFromSmallestValue(groupByMonth);
     const finishedInOneDay = booksThisYear.filter((b) => b.dateStarted === b.dateFinished);
-    const topAuthors = bTopAuthors(booksThisYear);
+    const topAuthors = findTopItems(booksThisYear, "authors");
     const averageFinishTime = average(booksThisYear.filter((b) => b.finishTime).map((b) => b.finishTime));
     const bookLengths = booksThisYear.map((b) => b.pageCount).filter((f) => f);
     const averageBookLength = bookLengths.length > 0 ? Math.round(average(bookLengths)) : undefined;
-    const tags = bTags(booksThisYear);
+    const tags = findTopItems(booksThisYear, "tags");
     return {
         year,
         count,
@@ -14417,49 +14415,25 @@ const monthToWord = {
     "11": "November",
     "12": "December",
 };
-function bTags(booksThisYear) {
-    const tags = booksThisYear
-        .filter((book) => book.tags !== undefined)
-        .map((book) => book.tags)
+function findTopItems(booksThisYear, key, valueTransform) {
+    const items = booksThisYear
+        .map((book) => book[key])
         .flat()
-        .reduce((obj, k) => {
-        if (!obj[k])
-            obj[k] = 0;
-        obj[k]++;
+        .filter((f) => f)
+        .map((f) => (valueTransform ? valueTransform(f) : f))
+        .reduce((obj, item) => {
+        if (!obj[item])
+            obj[item] = 0;
+        obj[item]++;
         return obj;
     }, {});
-    return Object.keys(tags).map((tag) => ({ tag: tag, count: tags[tag] }));
-}
-function bTopGenres(booksThisYear) {
-    const categories = booksThisYear
-        .map((book) => book.categories)
-        .flat()
-        .map((f) => f?.toLowerCase())
-        .reduce((obj, cat) => {
-        if (!obj[cat])
-            obj[cat] = 0;
-        obj[cat]++;
-        return obj;
-    }, {});
-    return Object.keys(categories)
-        .map((cat) => ({ genre: cat, count: categories[cat] }))
-        .sort((a, b) => b.count - a.count)
-        .slice(0, 2);
-}
-function bTopAuthors(booksThisYear) {
-    const authors = booksThisYear
-        .map((book) => book.authors)
-        .flat()
-        .reduce((obj, author) => {
-        if (!obj[author])
-            obj[author] = 0;
-        obj[author]++;
-        return obj;
-    }, {});
-    const authorArr = Object.keys(authors)
-        .map((a) => ({ author: a, count: authors[a] }))
+    const itemsArr = Object.keys(items)
+        .map((a) => ({ name: a, count: items[a] }))
         .filter((f) => f.count > 1);
-    return authorArr.sort((a, b) => b.count - a.count).slice(0, 2);
+    return itemsArr.sort((a, b) => b.count - a.count).slice(0, 2);
+}
+function toLowerCase(s) {
+    return s.toLowerCase().trim();
 }
 
 ;// CONCATENATED MODULE: ./src/index.ts
