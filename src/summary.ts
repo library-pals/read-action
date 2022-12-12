@@ -2,7 +2,7 @@ import { CleanBook } from "./clean-book";
 import {
   mAverageDays,
   mMostReadMonth,
-  mLeastReadMonth,
+  mGenre,
   mSameDay,
   mAverageLength,
   mPopularAuthor,
@@ -16,7 +16,7 @@ export default function yearReviewSummary(books: CleanBook[], year: string) {
     `- **Total books:** ${obj.count}`,
     ...mAverageDays(obj),
     ...mMostReadMonth(obj),
-    ...mLeastReadMonth(obj),
+    ...mGenre(obj),
     ...mSameDay(obj),
     ...mAverageLength(obj),
     ...mPopularAuthor(obj),
@@ -41,8 +41,7 @@ export function yearReview(
   }
   const longestBook = booksThisYear[0];
   const shortestBook = booksThisYear[count - 1];
-  const categories = groupBy(booksThisYear, "categories");
-  const mostReadCategory = getKeyFromBiggestValue(categories);
+  const topGenres = bTopGenres(booksThisYear);
   const groupByMonth = bGroupByMonth(booksThisYear);
   const mostReadMonth = getKeyFromBiggestValue(groupByMonth);
   const leastReadMonth = getKeyFromSmallestValue(groupByMonth);
@@ -85,9 +84,7 @@ export function yearReview(
         books: finishedInOneDay.map(simpleData),
       },
     },
-    categories: {
-      mostReadCategory,
-    },
+    topGenres,
     length: {
       longestBook: simpleData(longestBook),
       shortestBook: simpleData(shortestBook),
@@ -145,9 +142,7 @@ export type YearReview = {
       }[];
     };
   };
-  categories?: {
-    mostReadCategory: string;
-  };
+  topGenres?: { genre: string; count: number }[];
   tags?: any;
   length?: {
     longestBook: {
@@ -226,4 +221,20 @@ function bTags(booksThisYear: CleanBook[]) {
       obj[k]++;
       return obj;
     }, {});
+}
+
+function bTopGenres(booksThisYear: CleanBook[]) {
+  const categories = booksThisYear
+    .map((book) => book.categories)
+    .flat()
+    .map((f) => f?.toLowerCase())
+    .reduce((obj, cat: string) => {
+      if (!obj[cat]) obj[cat] = 0;
+      obj[cat]++;
+      return obj;
+    }, {});
+  return Object.keys(categories)
+    .map((cat) => ({ genre: cat, count: categories[cat] }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 2);
 }

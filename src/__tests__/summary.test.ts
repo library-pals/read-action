@@ -11,7 +11,7 @@ describe("yearReviewSummary", () => {
       - **Average days to finish:** 2.0
       - **Month with most books:** September (2 books)
       - **Month with least books:** January (1 book)
-      - **Most popular genre:** fiction
+      - **Top genres:** fiction (5 books) and social science (2 books)
       - **Started and finished on the same day:** 1 book, “Belly of the Beast” by Da'Shaun L. Harrison
       - **Average book length:** 251 pages
       - **Longest book:** 352 pages, “The Candy House” by Jennifer Egan
@@ -35,7 +35,7 @@ describe("yearReviewSummary", () => {
     expect(result).toMatchInlineSnapshot(`
       "- **Total books:** 5
       - **Average days to finish:** 1.0
-      - **Most popular genre:** fiction
+      - **Top genre:** fiction (5 books)
       - **Started and finished on the same day:** 1 book, “Book 1” by Author Name
       - **Most popular author:** Author Name (4 books)"
     `);
@@ -47,7 +47,7 @@ describe("yearReviewSummary", () => {
       "- **Total books:** 13
       - **Month with most books:** January (12 books)
       - **Month with least books:** February (1 book)
-      - **Most popular genre:** fiction
+      - **Top genres:** fiction (9 books) and web sites (2 books)
       - **Started and finished on the same day:** 1 book, “Noor” by Nnedi Okorafor
       - **Average book length:** 303 pages
       - **Longest book:** 678 pages, “Caste” by Isabel Wilkerson
@@ -72,9 +72,6 @@ describe("yearReview", () => {
     const result = yearReview(books, "2022");
     expect(result).toMatchInlineSnapshot(`
       {
-        "categories": {
-          "mostReadCategory": "Fiction",
-        },
         "count": 7,
         "dates": {
           "averageFinishTime": 2,
@@ -120,6 +117,16 @@ describe("yearReview", () => {
         "tags": {
           "recommend": 3,
         },
+        "topGenres": [
+          {
+            "count": 5,
+            "genre": "fiction",
+          },
+          {
+            "count": 2,
+            "genre": "social science",
+          },
+        ],
         "year": "2022",
       }
     `);

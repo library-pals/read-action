@@ -1,3 +1,5 @@
+import { YearReview } from "./summary";
+
 export function s(num: number) {
   return num === 1 ? "" : "s";
 }
@@ -7,7 +9,7 @@ export function and(array: string[]) {
   return lf.format(array);
 }
 
-export function mAverageDays(obj) {
+export function mAverageDays(obj: YearReview) {
   return obj.dates && obj.dates.averageFinishTime
     ? [
         `- **Average days to finish:** ${obj.dates.averageFinishTime.toFixed(
@@ -17,7 +19,7 @@ export function mAverageDays(obj) {
     : [];
 }
 
-export function mMostReadMonth(obj) {
+export function mMostReadMonth(obj: YearReview) {
   return obj.dates &&
     obj.dates.mostReadMonth.count !== obj.dates.leastReadMonth.count
     ? [
@@ -31,15 +33,17 @@ export function mMostReadMonth(obj) {
     : [];
 }
 
-export function mLeastReadMonth(obj) {
-  return obj.categories?.mostReadCategory
+export function mGenre(obj: YearReview) {
+  return obj.topGenres
     ? [
-        `- **Most popular genre:** ${obj.categories.mostReadCategory.toLowerCase()}`,
+        `- **Top genre${s(obj.topGenres.length)}:** ${and(
+          obj.topGenres.map((g) => `${g.genre} (${g.count} book${s(g.count)})`)
+        )}`,
       ]
     : [];
 }
 
-export function mSameDay(obj) {
+export function mSameDay(obj: YearReview) {
   return obj.dates && obj.dates.finishedInOneDay.count
     ? [
         `- **Started and finished on the same day:** ${
@@ -53,7 +57,7 @@ export function mSameDay(obj) {
     : [];
 }
 
-export function mAverageLength(obj) {
+export function mAverageLength(obj: YearReview) {
   return obj.length && obj.length.averageBookLength
     ? [
         `- **Average book length:** ${obj.length.averageBookLength} pages
@@ -63,7 +67,7 @@ export function mAverageLength(obj) {
     : [];
 }
 
-export function mPopularAuthor(obj) {
+export function mPopularAuthor(obj: YearReview) {
   return obj.popularAuthor && obj.popularAuthor.count > 1
     ? [
         `- **Most popular author:** ${obj.popularAuthor.popularAuthor} (${obj.popularAuthor.count} books)`,
@@ -71,7 +75,7 @@ export function mPopularAuthor(obj) {
     : [];
 }
 
-export function mTags(obj) {
+export function mTags(obj: YearReview) {
   return obj.tags && Object.keys(obj.tags).length > 0
     ? [
         `- **Tags:** ${Object.keys(obj.tags)

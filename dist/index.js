@@ -14242,10 +14242,10 @@ function mMostReadMonth(obj) {
         ]
         : [];
 }
-function mLeastReadMonth(obj) {
-    return obj.categories?.mostReadCategory
+function mGenre(obj) {
+    return obj.topGenres
         ? [
-            `- **Most popular genre:** ${obj.categories.mostReadCategory.toLowerCase()}`,
+            `- **Top genre${s(obj.topGenres.length)}:** ${and(obj.topGenres.map((g) => `${g.genre} (${g.count} book${s(g.count)})`))}`,
         ]
         : [];
 }
@@ -14292,7 +14292,7 @@ function yearReviewSummary(books, year) {
         `- **Total books:** ${obj.count}`,
         ...mAverageDays(obj),
         ...mMostReadMonth(obj),
-        ...mLeastReadMonth(obj),
+        ...mGenre(obj),
         ...mSameDay(obj),
         ...mAverageLength(obj),
         ...mPopularAuthor(obj),
@@ -14315,8 +14315,7 @@ function yearReview(books, year) {
     }
     const longestBook = booksThisYear[0];
     const shortestBook = booksThisYear[count - 1];
-    const categories = groupBy(booksThisYear, "categories");
-    const mostReadCategory = getKeyFromBiggestValue(categories);
+    const topGenres = bTopGenres(booksThisYear);
     const groupByMonth = bGroupByMonth(booksThisYear);
     const mostReadMonth = getKeyFromBiggestValue(groupByMonth);
     const leastReadMonth = getKeyFromSmallestValue(groupByMonth);
@@ -14349,9 +14348,7 @@ function yearReview(books, year) {
                 books: finishedInOneDay.map(simpleData),
             },
         },
-        categories: {
-            mostReadCategory,
-        },
+        topGenres,
         length: {
             longestBook: simpleData(longestBook),
             shortestBook: simpleData(shortestBook),
@@ -14435,6 +14432,22 @@ function bTags(booksThisYear) {
         obj[k]++;
         return obj;
     }, {});
+}
+function bTopGenres(booksThisYear) {
+    const categories = booksThisYear
+        .map((book) => book.categories)
+        .flat()
+        .map((f) => f?.toLowerCase())
+        .reduce((obj, cat) => {
+        if (!obj[cat])
+            obj[cat] = 0;
+        obj[cat]++;
+        return obj;
+    }, {});
+    return Object.keys(categories)
+        .map((cat) => ({ genre: cat, count: categories[cat] }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 2);
 }
 
 ;// CONCATENATED MODULE: ./src/index.ts
