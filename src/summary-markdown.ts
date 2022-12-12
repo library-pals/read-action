@@ -67,10 +67,14 @@ export function mAverageLength(obj: YearReview) {
     : [];
 }
 
-export function mPopularAuthor(obj: YearReview) {
-  return obj.popularAuthor && obj.popularAuthor.count > 1
+export function mTopAuthors(obj: YearReview) {
+  return obj.topAuthors && obj.topAuthors.length > 0
     ? [
-        `- **Most popular author:** ${obj.popularAuthor.popularAuthor} (${obj.popularAuthor.count} books)`,
+        `- **Top author${s(obj.topAuthors.length)}:** ${and(
+          obj.topAuthors.map(
+            ({ author, count }) => `${author} (${count} book${s(count)})`
+          )
+        )}`,
       ]
     : [];
 }

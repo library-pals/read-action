@@ -36,8 +36,8 @@ describe("yearReviewSummary", () => {
       "- **Total books:** 5
       - **Average days to finish:** 1.0
       - **Top genre:** fiction (5 books)
-      - **Started and finished on the same day:** 1 book, “Book 1” by Author Name
-      - **Most popular author:** Author Name (4 books)"
+      - **Started and finished on the same day:** 1 book, “Book 1” by Other Author Name
+      - **Top authors:** Author Name (3 books) and Other Author Name (2 books)"
     `);
   });
 
@@ -110,16 +110,13 @@ describe("yearReview", () => {
             "title": "“Bliss Montage”",
           },
         },
-        "popularAuthor": {
-          "count": 1,
-          "popularAuthor": "Ling Ma",
-        },
         "tags": [
           {
             "count": 3,
             "tag": "recommend",
           },
         ],
+        "topAuthors": [],
         "topGenres": [
           {
             "count": 5,

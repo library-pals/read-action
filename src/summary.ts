@@ -5,7 +5,7 @@ import {
   mGenre,
   mSameDay,
   mAverageLength,
-  mPopularAuthor,
+  mTopAuthors,
   mTags,
 } from "./summary-markdown";
 
@@ -19,7 +19,7 @@ export default function yearReviewSummary(books: CleanBook[], year: string) {
     ...mGenre(obj),
     ...mSameDay(obj),
     ...mAverageLength(obj),
-    ...mPopularAuthor(obj),
+    ...mTopAuthors(obj),
     ...mTags(obj),
   ];
   return summary.join("\n");
@@ -48,8 +48,7 @@ export function yearReview(
   const finishedInOneDay = booksThisYear.filter(
     (b) => b.dateStarted === b.dateFinished
   );
-  const authors = groupBy(booksThisYear, "authors");
-  const popularAuthor = getKeyFromBiggestValue(authors);
+  const topAuthors = bTopAuthors(booksThisYear);
   const averageFinishTime = average(
     booksThisYear.filter((b) => b.finishTime).map((b) => b.finishTime)
   );
@@ -61,10 +60,7 @@ export function yearReview(
   return {
     year,
     count,
-    popularAuthor: {
-      popularAuthor,
-      count: authors[popularAuthor],
-    },
+    topAuthors,
     dates: {
       averageFinishTime,
       mostReadMonth: {
@@ -127,7 +123,7 @@ const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
 export type YearReview = {
   year: string;
   count: number;
-  popularAuthor?: { popularAuthor: string; count: number };
+  topAuthors?: { author: string; count: number }[];
   dates?: {
     averageFinishTime: number;
     mostReadMonth: { month: string; count: number };
@@ -238,4 +234,19 @@ function bTopGenres(booksThisYear: CleanBook[]) {
     .map((cat) => ({ genre: cat, count: categories[cat] }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 2);
+}
+
+function bTopAuthors(booksThisYear: CleanBook[]) {
+  const authors = booksThisYear
+    .map((book) => book.authors)
+    .flat()
+    .reduce((obj, author: string) => {
+      if (!obj[author]) obj[author] = 0;
+      obj[author]++;
+      return obj;
+    }, {});
+  const authorArr = Object.keys(authors)
+    .map((a) => ({ author: a, count: authors[a] }))
+    .filter((f) => f.count > 1);
+  return authorArr.sort((a, b) => b.count - a.count).slice(0, 2);
 }
