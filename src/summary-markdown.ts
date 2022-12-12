@@ -76,12 +76,10 @@ export function mPopularAuthor(obj: YearReview) {
 }
 
 export function mTags(obj: YearReview) {
-  return obj.tags && Object.keys(obj.tags).length > 0
+  return obj.tags && obj.tags.length > 0
     ? [
-        `- **Tags:** ${Object.keys(obj.tags)
-          .map(
-            (tag) => `${obj.tags[tag]} book${s(obj.tags[tag])} with “${tag}”`
-          )
+        `- **Tags:** ${obj.tags
+          .map(({ tag, count }) => `${count} book${s(count)} with “${tag}”`)
           .join(", ")}`,
       ]
     : [];

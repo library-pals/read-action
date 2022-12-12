@@ -127,11 +127,11 @@ const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
 export type YearReview = {
   year: string;
   count: number;
-  popularAuthor?: { popularAuthor: string; count: any };
+  popularAuthor?: { popularAuthor: string; count: number };
   dates?: {
     averageFinishTime: number;
-    mostReadMonth: { month: any; count: number };
-    leastReadMonth: { month: any; count: number };
+    mostReadMonth: { month: string; count: number };
+    leastReadMonth: { month: string; count: number };
     finishedInOneDay: {
       count: number;
       books: {
@@ -143,7 +143,7 @@ export type YearReview = {
     };
   };
   topGenres?: { genre: string; count: number }[];
-  tags?: any;
+  tags?: { tag: string; count: number }[];
   length?: {
     longestBook: {
       title: string | undefined;
@@ -212,7 +212,7 @@ const monthToWord = {
 };
 
 function bTags(booksThisYear: CleanBook[]) {
-  return booksThisYear
+  const tags = booksThisYear
     .filter((book) => book.tags !== undefined)
     .map((book) => book.tags)
     .flat()
@@ -221,6 +221,7 @@ function bTags(booksThisYear: CleanBook[]) {
       obj[k]++;
       return obj;
     }, {});
+  return Object.keys(tags).map((tag) => ({ tag: tag, count: tags[tag] }));
 }
 
 function bTopGenres(booksThisYear: CleanBook[]) {

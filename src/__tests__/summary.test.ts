@@ -114,9 +114,12 @@ describe("yearReview", () => {
           "count": 1,
           "popularAuthor": "Ling Ma",
         },
-        "tags": {
-          "recommend": 3,
-        },
+        "tags": [
+          {
+            "count": 3,
+            "tag": "recommend",
+          },
+        ],
         "topGenres": [
           {
             "count": 5,
