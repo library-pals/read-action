@@ -14265,10 +14265,10 @@ function mAverageLength(obj) {
         ]
         : [];
 }
-function mPopularAuthor(obj) {
-    return obj.popularAuthor && obj.popularAuthor.count > 1
+function mTopAuthors(obj) {
+    return obj.topAuthors && obj.topAuthors.length > 0
         ? [
-            `- **Most popular author:** ${obj.popularAuthor.popularAuthor} (${obj.popularAuthor.count} books)`,
+            `- **Top author${s(obj.topAuthors.length)}:** ${and(obj.topAuthors.map(({ author, count }) => `${author} (${count} book${s(count)})`))}`,
         ]
         : [];
 }
@@ -14295,7 +14295,7 @@ function yearReviewSummary(books, year) {
         ...mGenre(obj),
         ...mSameDay(obj),
         ...mAverageLength(obj),
-        ...mPopularAuthor(obj),
+        ...mTopAuthors(obj),
         ...mTags(obj),
     ];
     return summary.join("\n");
@@ -14320,8 +14320,7 @@ function yearReview(books, year) {
     const mostReadMonth = getKeyFromBiggestValue(groupByMonth);
     const leastReadMonth = getKeyFromSmallestValue(groupByMonth);
     const finishedInOneDay = booksThisYear.filter((b) => b.dateStarted === b.dateFinished);
-    const authors = groupBy(booksThisYear, "authors");
-    const popularAuthor = getKeyFromBiggestValue(authors);
+    const topAuthors = bTopAuthors(booksThisYear);
     const averageFinishTime = average(booksThisYear.filter((b) => b.finishTime).map((b) => b.finishTime));
     const bookLengths = booksThisYear.map((b) => b.pageCount).filter((f) => f);
     const averageBookLength = bookLengths.length > 0 ? Math.round(average(bookLengths)) : undefined;
@@ -14329,10 +14328,7 @@ function yearReview(books, year) {
     return {
         year,
         count,
-        popularAuthor: {
-            popularAuthor,
-            count: authors[popularAuthor],
-        },
+        topAuthors,
         dates: {
             averageFinishTime,
             mostReadMonth: {
@@ -14432,7 +14428,7 @@ function bTags(booksThisYear) {
         obj[k]++;
         return obj;
     }, {});
-    return Object.keys(tags).map(tag => ({ tag: tag, count: tags[tag] }));
+    return Object.keys(tags).map((tag) => ({ tag: tag, count: tags[tag] }));
 }
 function bTopGenres(booksThisYear) {
     const categories = booksThisYear
@@ -14449,6 +14445,21 @@ function bTopGenres(booksThisYear) {
         .map((cat) => ({ genre: cat, count: categories[cat] }))
         .sort((a, b) => b.count - a.count)
         .slice(0, 2);
+}
+function bTopAuthors(booksThisYear) {
+    const authors = booksThisYear
+        .map((book) => book.authors)
+        .flat()
+        .reduce((obj, author) => {
+        if (!obj[author])
+            obj[author] = 0;
+        obj[author]++;
+        return obj;
+    }, {});
+    const authorArr = Object.keys(authors)
+        .map((a) => ({ author: a, count: authors[a] }))
+        .filter((f) => f.count > 1);
+    return authorArr.sort((a, b) => b.count - a.count).slice(0, 2);
 }
 
 ;// CONCATENATED MODULE: ./src/index.ts
