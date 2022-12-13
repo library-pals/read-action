@@ -14230,7 +14230,7 @@ function mAverageDays({ dates }) {
     if (!dates || !dates.averageFinishTime)
         return [];
     return [
-        `- **Average days to finish:** ${dates.averageFinishTime.toFixed(1)}`,
+        `- **Average read time:** ${dates.averageFinishTime.toFixed(1)} days`,
     ];
 }
 function mMostReadMonth({ dates }) {
@@ -14263,8 +14263,8 @@ function mAverageLength({ length }) {
     const { averageBookLength, longestBook, shortestBook } = length;
     return [
         `- **Average book length:** ${averageBookLength} pages`,
-        `- **Longest book:** ${longestBook.pageCount} pages, ${longestBook.title} by ${longestBook.authors}`,
-        `- **Shortest book:** ${shortestBook.pageCount} pages, ${shortestBook.title} by ${shortestBook.authors}`,
+        `- **Longest book:** ${longestBook.title} by ${longestBook.authors} (${longestBook.pageCount} pages)`,
+        `- **Shortest book:** ${shortestBook.title} by ${shortestBook.authors} (${shortestBook.pageCount} pages)`,
     ];
 }
 function mTopAuthors({ topAuthors }) {

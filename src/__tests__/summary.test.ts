@@ -8,14 +8,14 @@ describe("yearReviewSummary", () => {
     const result = yearReviewSummary(books, "2022");
     expect(result).toMatchInlineSnapshot(`
       "- **Total books:** 7
-      - **Average days to finish:** 2.0
+      - **Average read time:** 2.0 days
       - **Month with most books:** September (2 books)
       - **Month with least books:** January (1 book)
       - **Top genres:** fiction (5 books) and social science (2 books)
       - **Started and finished on the same day:** 1 book, “Belly of the Beast” by Da'Shaun L. Harrison
       - **Average book length:** 251 pages
-      - **Longest book:** 352 pages, “The Candy House” by Jennifer Egan
-      - **Shortest book:** 145 pages, “Bliss Montage” by Ling Ma
+      - **Longest book:** “The Candy House” by Jennifer Egan (352 pages)
+      - **Shortest book:** “Bliss Montage” by Ling Ma (145 pages)
       - **Top tag:** recommend (3 books)"
     `);
   });
@@ -34,7 +34,7 @@ describe("yearReviewSummary", () => {
     const result = yearReviewSummary(booksNoPageCount, "2022");
     expect(result).toMatchInlineSnapshot(`
       "- **Total books:** 5
-      - **Average days to finish:** 1.0
+      - **Average read time:** 1.0 days
       - **Top genre:** fiction (5 books)
       - **Started and finished on the same day:** 1 book, “Book 1” by Other Author Name
       - **Top authors:** Author Name (3 books) and Other Author Name (2 books)"
@@ -50,8 +50,8 @@ describe("yearReviewSummary", () => {
       - **Top genres:** fiction (9 books) and web sites (2 books)
       - **Started and finished on the same day:** 1 book, “Noor” by Nnedi Okorafor
       - **Average book length:** 303 pages
-      - **Longest book:** 678 pages, “Caste” by Isabel Wilkerson
-      - **Shortest book:** 100 pages, “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis
+      - **Longest book:** “Caste” by Isabel Wilkerson (678 pages)
+      - **Shortest book:** “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis (100 pages)
       - **Top tag:** recommend (3 books)"
     `);
   });
