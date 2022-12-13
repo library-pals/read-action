@@ -14254,7 +14254,7 @@ function mSameDay({ dates }) {
         return [];
     const { count, books } = dates.finishedInOneDay;
     return [
-        `- **Read in a day:** ${count} book${s(count)}, ${and(books.map((book) => `${book.title} by ${book.authors}`))}`,
+        `- **Read in a day:** ${and(books.map((book) => `${book.title} by ${book.authors}`))} (${count} book${s(count)})`,
     ];
 }
 function mAverageLength({ length }) {
