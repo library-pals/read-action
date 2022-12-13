@@ -55,6 +55,10 @@ export function yearReview(
   const bookLengths = booksThisYear.map((b) => b.pageCount).filter((f) => f);
   const averageBookLength =
     bookLengths.length > 0 ? Math.round(average(bookLengths)) : undefined;
+  const totalPages = bookLengths.reduce(
+    (total: number, book: number) => book + total,
+    0
+  );
   const tags = findTopItems(booksThisYear, "tags");
 
   return {
@@ -85,6 +89,7 @@ export function yearReview(
       longestBook: simpleData(longestBook),
       shortestBook: simpleData(shortestBook),
       averageBookLength,
+      totalPages,
     },
     tags,
   };
@@ -154,6 +159,7 @@ export type YearReview = {
       pageCount: number | undefined;
     };
     averageBookLength: number | undefined;
+    totalPages: number | undefined;
   };
 };
 

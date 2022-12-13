@@ -14260,11 +14260,12 @@ function mSameDay({ dates }) {
 function mAverageLength({ length }) {
     if (!length || !length.averageBookLength)
         return [];
-    const { averageBookLength, longestBook, shortestBook } = length;
+    const { averageBookLength, longestBook, shortestBook, totalPages } = length;
     return [
         `- **Average book length:** ${averageBookLength} pages`,
         `- **Longest book:** ${longestBook.title} by ${longestBook.authors} (${longestBook.pageCount} pages)`,
         `- **Shortest book:** ${shortestBook.title} by ${shortestBook.authors} (${shortestBook.pageCount} pages)`,
+        `- **Total pages read:** ${totalPages}`,
     ];
 }
 function mTopAuthors({ topAuthors }) {
@@ -14324,6 +14325,7 @@ function yearReview(books, year) {
     const averageFinishTime = average(booksThisYear.filter((b) => b.finishTime).map((b) => b.finishTime));
     const bookLengths = booksThisYear.map((b) => b.pageCount).filter((f) => f);
     const averageBookLength = bookLengths.length > 0 ? Math.round(average(bookLengths)) : undefined;
+    const totalPages = bookLengths.reduce((total, book) => book + total, 0);
     const tags = findTopItems(booksThisYear, "tags");
     return {
         year,
@@ -14349,6 +14351,7 @@ function yearReview(books, year) {
             longestBook: simpleData(longestBook),
             shortestBook: simpleData(shortestBook),
             averageBookLength,
+            totalPages,
         },
         tags,
     };

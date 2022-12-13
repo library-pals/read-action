@@ -16,6 +16,7 @@ describe("yearReviewSummary", () => {
       - **Average book length:** 251 pages
       - **Longest book:** “The Candy House” by Jennifer Egan (352 pages)
       - **Shortest book:** “Bliss Montage” by Ling Ma (145 pages)
+      - **Total pages read:** 1756
       - **Top tag:** recommend (3 books)"
     `);
   });
@@ -52,6 +53,7 @@ describe("yearReviewSummary", () => {
       - **Average book length:** 303 pages
       - **Longest book:** “Caste” by Isabel Wilkerson (678 pages)
       - **Shortest book:** “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis (100 pages)
+      - **Total pages read:** 3938
       - **Top tag:** recommend (3 books)"
     `);
   });
@@ -109,6 +111,7 @@ describe("yearReview", () => {
             "pageCount": 145,
             "title": "“Bliss Montage”",
           },
+          "totalPages": 1756,
         },
         "tags": [
           {
