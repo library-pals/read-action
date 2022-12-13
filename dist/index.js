@@ -14254,7 +14254,7 @@ function mSameDay({ dates }) {
         return [];
     const { count, books } = dates.finishedInOneDay;
     return [
-        `- **Started and finished on the same day:** ${count} book${s(count)}, ${and(books.map((book) => `${book.title} by ${book.authors}`))}`,
+        `- **Read in a day:** ${count} book${s(count)}, ${and(books.map((book) => `${book.title} by ${book.authors}`))}`,
     ];
 }
 function mAverageLength({ length }) {
@@ -14435,7 +14435,7 @@ function findTopItems(booksThisYear, key, valueTransform) {
     const itemsArr = Object.keys(items)
         .map((a) => ({ name: a, count: items[a] }))
         .filter((f) => f.count > 1);
-    return itemsArr.sort((a, b) => b.count - a.count).slice(0, 2);
+    return itemsArr.sort((a, b) => b.count - a.count).slice(0, 3);
 }
 function toLowerCase(s) {
     return s.toLowerCase().trim();

@@ -43,9 +43,9 @@ export function mSameDay({ dates }: YearReview) {
   if (!dates || !dates.finishedInOneDay.count) return [];
   const { count, books } = dates.finishedInOneDay;
   return [
-    `- **Started and finished on the same day:** ${count} book${s(
-      count
-    )}, ${and(books.map((book) => `${book.title} by ${book.authors}`))}`,
+    `- **Read in a day:** ${count} book${s(count)}, ${and(
+      books.map((book) => `${book.title} by ${book.authors}`)
+    )}`,
   ];
 }
 

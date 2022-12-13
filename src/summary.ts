@@ -231,7 +231,7 @@ function findTopItems(
   const itemsArr = Object.keys(items)
     .map((a) => ({ name: a, count: items[a] }))
     .filter((f) => f.count > 1);
-  return itemsArr.sort((a, b) => b.count - a.count).slice(0, 2);
+  return itemsArr.sort((a, b) => b.count - a.count).slice(0, 3);
 }
 
 function toLowerCase(s: string) {
