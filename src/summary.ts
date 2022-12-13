@@ -13,6 +13,7 @@ export default function yearReviewSummary(books: CleanBook[], year: string) {
   const obj = yearReview(books, year);
   if (obj === undefined) return undefined;
   const summary = [
+    `## ${year} reading summary`,
     `- **Total books:** ${obj.count}`,
     ...mAverageDays(obj),
     ...mMostReadMonth(obj),

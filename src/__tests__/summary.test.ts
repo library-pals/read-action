@@ -7,7 +7,8 @@ describe("yearReviewSummary", () => {
   it("works", () => {
     const result = yearReviewSummary(books, "2022");
     expect(result).toMatchInlineSnapshot(`
-      "- **Total books:** 7
+      "## 2022 reading summary
+      - **Total books:** 7
       - **Average read time:** 2.0 days
       - **Month with most books:** September (2 books)
       - **Month with least books:** January (1 book)
@@ -34,7 +35,8 @@ describe("yearReviewSummary", () => {
   it("no pagecount", () => {
     const result = yearReviewSummary(booksNoPageCount, "2022");
     expect(result).toMatchInlineSnapshot(`
-      "- **Total books:** 5
+      "## 2022 reading summary
+      - **Total books:** 5
       - **Average read time:** 1.0 days
       - **Top genre:** fiction (5 books)
       - **Read in a day:** “Book 1” by Other Author Name (1 book)
@@ -45,7 +47,8 @@ describe("yearReviewSummary", () => {
   it("works, lots", () => {
     const result = yearReviewSummary(booksLots, "2022");
     expect(result).toMatchInlineSnapshot(`
-      "- **Total books:** 13
+      "## 2022 reading summary
+      - **Total books:** 13
       - **Month with most books:** January (12 books)
       - **Month with least books:** February (1 book)
       - **Top genres:** fiction (9 books) and web sites (2 books)
@@ -60,12 +63,18 @@ describe("yearReviewSummary", () => {
 
   it("works, 2021", () => {
     const result = yearReviewSummary(books, "2021");
-    expect(result).toMatchInlineSnapshot(`"- **Total books:** 2"`);
+    expect(result).toMatchInlineSnapshot(`
+      "## 2021 reading summary
+      - **Total books:** 2"
+    `);
   });
 
   it("works, 2020", () => {
     const result = yearReviewSummary(books, "2020");
-    expect(result).toMatchInlineSnapshot(`"- **Total books:** 2"`);
+    expect(result).toMatchInlineSnapshot(`
+      "## 2020 reading summary
+      - **Total books:** 2"
+    `);
   });
 });
 
@@ -163,8 +172,9 @@ describe("yearReview", () => {
       }
     `);
 
-    expect(yearReviewSummary(book, "2022")).toMatchInlineSnapshot(
-      `"- **Total books:** 1"`
-    );
+    expect(yearReviewSummary(book, "2022")).toMatchInlineSnapshot(`
+      "## 2022 reading summary
+      - **Total books:** 1"
+    `);
   });
 });

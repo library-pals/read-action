@@ -52,6 +52,7 @@ describe("workflow", () => {
 
       Want to read: “Luster”
 
+
       ",
       ]
     `);
@@ -131,6 +132,7 @@ describe("workflow", () => {
 
       Started: “Luster”
 
+
       ",
       ]
     `);
@@ -209,9 +211,7 @@ describe("workflow", () => {
 
       Finished: “Luster”
 
-
       ## 2022 reading summary
-
       - **Total books:** 1
       ",
       ]
