@@ -7,7 +7,9 @@ describe("yearReviewSummary", () => {
   it("works", () => {
     const result = yearReviewSummary(books, "2022");
     expect(result).toMatchInlineSnapshot(`
-      "## 2022 reading summary
+      "
+      ## 2022 reading summary
+
       - **Total books:** 7
       - **Average read time:** 2.0 days
       - **Month with most books:** September (2 books)
@@ -35,7 +37,9 @@ describe("yearReviewSummary", () => {
   it("no pagecount", () => {
     const result = yearReviewSummary(booksNoPageCount, "2022");
     expect(result).toMatchInlineSnapshot(`
-      "## 2022 reading summary
+      "
+      ## 2022 reading summary
+
       - **Total books:** 5
       - **Average read time:** 1.0 days
       - **Top genre:** fiction (5 books)
@@ -47,7 +51,9 @@ describe("yearReviewSummary", () => {
   it("works, lots", () => {
     const result = yearReviewSummary(booksLots, "2022");
     expect(result).toMatchInlineSnapshot(`
-      "## 2022 reading summary
+      "
+      ## 2022 reading summary
+
       - **Total books:** 13
       - **Month with most books:** January (12 books)
       - **Month with least books:** February (1 book)
@@ -64,7 +70,9 @@ describe("yearReviewSummary", () => {
   it("works, 2021", () => {
     const result = yearReviewSummary(books, "2021");
     expect(result).toMatchInlineSnapshot(`
-      "## 2021 reading summary
+      "
+      ## 2021 reading summary
+
       - **Total books:** 2"
     `);
   });
@@ -72,7 +80,9 @@ describe("yearReviewSummary", () => {
   it("works, 2020", () => {
     const result = yearReviewSummary(books, "2020");
     expect(result).toMatchInlineSnapshot(`
-      "## 2020 reading summary
+      "
+      ## 2020 reading summary
+
       - **Total books:** 2"
     `);
   });
@@ -173,7 +183,9 @@ describe("yearReview", () => {
     `);
 
     expect(yearReviewSummary(book, "2022")).toMatchInlineSnapshot(`
-      "## 2022 reading summary
+      "
+      ## 2022 reading summary
+
       - **Total books:** 1"
     `);
   });

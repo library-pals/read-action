@@ -14290,7 +14290,9 @@ function yearReviewSummary(books, year) {
     if (obj === undefined)
         return undefined;
     const summary = [
+        "",
         `## ${year} reading summary`,
+        "",
         `- **Total books:** ${obj.count}`,
         ...mAverageDays(obj),
         ...mMostReadMonth(obj),
@@ -14483,9 +14485,8 @@ async function read() {
         await core.summary.addRaw(`# Updated library
 
 ${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”
-
-${process.env.BookStatus === "finished"
-            ? yearReviewSummary(library, String(new Date().getFullYear()))
+${process.env.BookStatus === "finished" && dateFinished
+            ? yearReviewSummary(library, dateFinished.slice(0, 4))
             : ""}
 `)
             .write();
