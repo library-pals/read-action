@@ -53,10 +53,14 @@ export function mAverageLength({ length }: YearReview) {
   if (!length || !length.averageBookLength) return [];
   const { averageBookLength, longestBook, shortestBook, totalPages } = length;
   return [
-    `- **Average book length:** ${averageBookLength} pages`,
-    `- **Longest book:** ${longestBook.title} by ${longestBook.authors} (${longestBook.pageCount} pages)`,
-    `- **Shortest book:** ${shortestBook.title} by ${shortestBook.authors} (${shortestBook.pageCount} pages)`,
-    `- **Total pages read:** ${totalPages}`,
+    `- **Average book length:** ${averageBookLength?.toLocaleString()} pages`,
+    `- **Longest book:** ${longestBook.title} by ${
+      longestBook.authors
+    } (${longestBook.pageCount?.toLocaleString()} pages)`,
+    `- **Shortest book:** ${shortestBook.title} by ${
+      shortestBook.authors
+    } (${shortestBook.pageCount?.toLocaleString()} pages)`,
+    `- **Total pages read:** ${totalPages?.toLocaleString()}`,
   ];
 }
 
