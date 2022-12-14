@@ -7,16 +7,20 @@ describe("yearReviewSummary", () => {
   it("works", () => {
     const result = yearReviewSummary(books, "2022");
     expect(result).toMatchInlineSnapshot(`
-      "- **Total books:** 7
-      - **Average days to finish:** 2.0
+      "
+      ## 2022 reading summary
+
+      - **Total books:** 7
+      - **Average read time:** 2.0 days
       - **Month with most books:** September (2 books)
       - **Month with least books:** January (1 book)
-      - **Most popular genre:** fiction
-      - **Started and finished on the same day:** 1 book, “Belly of the Beast” by Da'Shaun L. Harrison
+      - **Top genres:** fiction (5 books) and social science (2 books)
+      - **Read in a day:** “Belly of the Beast” by Da'Shaun L. Harrison (1 book)
       - **Average book length:** 251 pages
-      - **Longest book:** 352 pages, “The Candy House” by Jennifer Egan
-      - **Shortest book:** 145 pages, “Bliss Montage” by Ling Ma
-      - **Tags:** 3 books with “recommend”"
+      - **Longest book:** “The Candy House” by Jennifer Egan (352 pages)
+      - **Shortest book:** “Bliss Montage” by Ling Ma (145 pages)
+      - **Total pages read:** 1,756
+      - **Top tag:** recommend (3 books)"
     `);
   });
 
@@ -33,37 +37,54 @@ describe("yearReviewSummary", () => {
   it("no pagecount", () => {
     const result = yearReviewSummary(booksNoPageCount, "2022");
     expect(result).toMatchInlineSnapshot(`
-      "- **Total books:** 5
-      - **Average days to finish:** 1.0
-      - **Most popular genre:** fiction
-      - **Started and finished on the same day:** 1 book, “Book 1” by Author Name
-      - **Most popular author:** Author Name (4 books)"
+      "
+      ## 2022 reading summary
+
+      - **Total books:** 5
+      - **Average read time:** 1.0 days
+      - **Top genre:** fiction (5 books)
+      - **Read in a day:** “Book 1” by Other Author Name (1 book)
+      - **Top authors:** Author Name (3 books) and Other Author Name (2 books)"
     `);
   });
 
   it("works, lots", () => {
     const result = yearReviewSummary(booksLots, "2022");
     expect(result).toMatchInlineSnapshot(`
-      "- **Total books:** 13
+      "
+      ## 2022 reading summary
+
+      - **Total books:** 13
       - **Month with most books:** January (12 books)
       - **Month with least books:** February (1 book)
-      - **Most popular genre:** fiction
-      - **Started and finished on the same day:** 1 book, “Noor” by Nnedi Okorafor
+      - **Top genres:** fiction (9 books) and web sites (2 books)
+      - **Read in a day:** “Noor” by Nnedi Okorafor (1 book)
       - **Average book length:** 303 pages
-      - **Longest book:** 678 pages, “Caste” by Isabel Wilkerson
-      - **Shortest book:** 100 pages, “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis
-      - **Tags:** 3 books with “recommend”"
+      - **Longest book:** “Caste” by Isabel Wilkerson (678 pages)
+      - **Shortest book:** “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis (100 pages)
+      - **Total pages read:** 3,938
+      - **Top tag:** recommend (3 books)"
     `);
   });
 
   it("works, 2021", () => {
     const result = yearReviewSummary(books, "2021");
-    expect(result).toMatchInlineSnapshot(`"- **Total books:** 2"`);
+    expect(result).toMatchInlineSnapshot(`
+      "
+      ## 2021 reading summary
+
+      - **Total books:** 2"
+    `);
   });
 
   it("works, 2020", () => {
     const result = yearReviewSummary(books, "2020");
-    expect(result).toMatchInlineSnapshot(`"- **Total books:** 2"`);
+    expect(result).toMatchInlineSnapshot(`
+      "
+      ## 2020 reading summary
+
+      - **Total books:** 2"
+    `);
   });
 });
 
@@ -72,9 +93,6 @@ describe("yearReview", () => {
     const result = yearReview(books, "2022");
     expect(result).toMatchInlineSnapshot(`
       {
-        "categories": {
-          "mostReadCategory": "Fiction",
-        },
         "count": 7,
         "dates": {
           "averageFinishTime": 2,
@@ -112,14 +130,25 @@ describe("yearReview", () => {
             "pageCount": 145,
             "title": "“Bliss Montage”",
           },
+          "totalPages": 1756,
         },
-        "popularAuthor": {
-          "count": 1,
-          "popularAuthor": "Ling Ma",
-        },
-        "tags": {
-          "recommend": 3,
-        },
+        "tags": [
+          {
+            "count": 3,
+            "name": "recommend",
+          },
+        ],
+        "topAuthors": [],
+        "topGenres": [
+          {
+            "count": 5,
+            "name": "fiction",
+          },
+          {
+            "count": 2,
+            "name": "social science",
+          },
+        ],
         "year": "2022",
       }
     `);
@@ -153,8 +182,11 @@ describe("yearReview", () => {
       }
     `);
 
-    expect(yearReviewSummary(book, "2022")).toMatchInlineSnapshot(
-      `"- **Total books:** 1"`
-    );
+    expect(yearReviewSummary(book, "2022")).toMatchInlineSnapshot(`
+      "
+      ## 2022 reading summary
+
+      - **Total books:** 1"
+    `);
   });
 });

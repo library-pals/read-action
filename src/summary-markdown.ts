@@ -1,3 +1,5 @@
+import { YearReview } from "./summary";
+
 export function s(num: number) {
   return num === 1 ? "" : "s";
 }
@@ -7,78 +9,75 @@ export function and(array: string[]) {
   return lf.format(array);
 }
 
-export function mAverageDays(obj) {
-  return obj.dates && obj.dates.averageFinishTime
-    ? [
-        `- **Average days to finish:** ${obj.dates.averageFinishTime.toFixed(
-          1
-        )}`,
-      ]
-    : [];
+export function mAverageDays({ dates }: YearReview) {
+  if (!dates || !dates.averageFinishTime) return [];
+  return [
+    `- **Average read time:** ${dates.averageFinishTime.toFixed(1)} days`,
+  ];
 }
 
-export function mMostReadMonth(obj) {
-  return obj.dates &&
-    obj.dates.mostReadMonth.count !== obj.dates.leastReadMonth.count
-    ? [
-        `- **Month with most books:** ${obj.dates.mostReadMonth.month} (${
-          obj.dates.mostReadMonth.count
-        } book${s(obj.dates.mostReadMonth.count)})
-- **Month with least books:** ${obj.dates.leastReadMonth.month} (${
-          obj.dates.leastReadMonth.count
-        } book${s(obj.dates.leastReadMonth.count)})`,
-      ]
-    : [];
+export function mMostReadMonth({ dates }: YearReview) {
+  if (!dates || dates.mostReadMonth.count == dates.leastReadMonth.count)
+    return [];
+  const { mostReadMonth, leastReadMonth } = dates;
+  return [
+    `- **Month with most books:** ${mostReadMonth.month} (${
+      mostReadMonth.count
+    } book${s(mostReadMonth.count)})`,
+    `- **Month with least books:** ${leastReadMonth.month} (${
+      leastReadMonth.count
+    } book${s(leastReadMonth.count)})`,
+  ];
 }
 
-export function mLeastReadMonth(obj) {
-  return obj.categories?.mostReadCategory
-    ? [
-        `- **Most popular genre:** ${obj.categories.mostReadCategory.toLowerCase()}`,
-      ]
-    : [];
+export function mGenre({ topGenres }: YearReview) {
+  if (!topGenres || topGenres.length === 0) return [];
+  return [
+    `- **Top genre${s(topGenres.length)}:** ${and(
+      topGenres.map(({ name, count }) => `${name} (${count} book${s(count)})`)
+    )}`,
+  ];
 }
 
-export function mSameDay(obj) {
-  return obj.dates && obj.dates.finishedInOneDay.count
-    ? [
-        `- **Started and finished on the same day:** ${
-          obj.dates.finishedInOneDay.count
-        } book${s(obj.dates.finishedInOneDay.count)}, ${and(
-          obj.dates.finishedInOneDay.books.map(
-            (book) => `${book.title} by ${book.authors}`
-          )
-        )}`,
-      ]
-    : [];
+export function mSameDay({ dates }: YearReview) {
+  if (!dates || !dates.finishedInOneDay.count) return [];
+  const { count, books } = dates.finishedInOneDay;
+  return [
+    `- **Read in a day:** ${and(
+      books.map((book) => `${book.title} by ${book.authors}`)
+    )} (${count} book${s(count)})`,
+  ];
 }
 
-export function mAverageLength(obj) {
-  return obj.length && obj.length.averageBookLength
-    ? [
-        `- **Average book length:** ${obj.length.averageBookLength} pages
-- **Longest book:** ${obj.length.longestBook.pageCount} pages, ${obj.length.longestBook.title} by ${obj.length.longestBook.authors}
-- **Shortest book:** ${obj.length.shortestBook.pageCount} pages, ${obj.length.shortestBook.title} by ${obj.length.shortestBook.authors}`,
-      ]
-    : [];
+export function mAverageLength({ length }: YearReview) {
+  if (!length || !length.averageBookLength) return [];
+  const { averageBookLength, longestBook, shortestBook, totalPages } = length;
+  return [
+    `- **Average book length:** ${averageBookLength?.toLocaleString()} pages`,
+    `- **Longest book:** ${longestBook.title} by ${
+      longestBook.authors
+    } (${longestBook.pageCount?.toLocaleString()} pages)`,
+    `- **Shortest book:** ${shortestBook.title} by ${
+      shortestBook.authors
+    } (${shortestBook.pageCount?.toLocaleString()} pages)`,
+    `- **Total pages read:** ${totalPages?.toLocaleString()}`,
+  ];
 }
 
-export function mPopularAuthor(obj) {
-  return obj.popularAuthor && obj.popularAuthor.count > 1
-    ? [
-        `- **Most popular author:** ${obj.popularAuthor.popularAuthor} (${obj.popularAuthor.count} books)`,
-      ]
-    : [];
+export function mTopAuthors({ topAuthors }: YearReview) {
+  if (!topAuthors || topAuthors.length === 0) return [];
+  return [
+    `- **Top author${s(topAuthors.length)}:** ${and(
+      topAuthors.map(({ name, count }) => `${name} (${count} book${s(count)})`)
+    )}`,
+  ];
 }
 
-export function mTags(obj) {
-  return obj.tags && Object.keys(obj.tags).length > 0
-    ? [
-        `- **Tags:** ${Object.keys(obj.tags)
-          .map(
-            (tag) => `${obj.tags[tag]} book${s(obj.tags[tag])} with “${tag}”`
-          )
-          .join(", ")}`,
-      ]
-    : [];
+export function mTags({ tags }: YearReview) {
+  if (!tags || tags.length === 0) return [];
+  return [
+    `- **Top tag${s(tags.length)}:** ${and(
+      tags.map(({ name, count }) => `${name} (${count} book${s(count)})`)
+    )}`,
+  ];
 }

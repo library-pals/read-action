@@ -209,7 +209,6 @@ describe("workflow", () => {
 
       Finished: “Luster”
 
-
       ## 2022 reading summary
 
       - **Total books:** 1
