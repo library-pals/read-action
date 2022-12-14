@@ -237,5 +237,26 @@
     "thumbnail": "https://books.google.com/books/content?id=WB9oEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "language": "en",
     "link": "https://books.google.com/books/about/The_Candy_House.html?hl=&id=WB9oEAAAQBAJ"
+  },
+  {
+    "isbn": "9781479886753",
+    "dateStarted": "2022-12-10",
+    "dateFinished": "2022-12-13",
+    "status": "finished",
+    "rating": "unrated",
+    "title": "Fearing the Black Body",
+    "authors": [
+      "Sabrina Strings"
+    ],
+    "publishedDate": "2019-05-07",
+    "description": "How the female body has been racialized for over two hundred years There is an obesity epidemic in this country and poor black women are particularly stigmatized as “diseased” and a burden on the public health care system. This is only the most recent incarnation of the fear of fat black women, which Sabrina Strings shows took root more than two hundred years ago. Strings weaves together an eye-opening historical narrative ranging from the Renaissance to the current moment, analyzing important works of art, newspaper and magazine articles, and scientific literature and medical journals—where fat bodies were once praised—showing that fat phobia, as it relates to black women, did not originate with medical findings, but with the Enlightenment era belief that fatness was evidence of “savagery” and racial inferiority. The author argues that the contemporary ideal of slenderness is, at its very core, racialized and racist. Indeed, it was not until the early twentieth century, when racialized attitudes against fatness were already entrenched in the culture, that the medical establishment began its crusade against obesity. An important and original work, Fearing the Black Body argues convincingly that fat phobia isn’t about health at all, but rather a means of using the body to validate race, class, and gender prejudice.",
+    "pageCount": 292,
+    "printType": "BOOK",
+    "categories": [
+      "Social Science"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=j1ZxDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://books.google.com/books/about/Fearing_the_Black_Body.html?hl=&id=j1ZxDwAAQBAJ"
   }
 ]
