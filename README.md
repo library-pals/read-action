@@ -26,6 +26,10 @@ To use this action, create a new workflow in `.github/workflows` and modify it a
 name: Read
 run-name: Book (${{ inputs.bookIsbn }})
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   workflow_dispatch:
     inputs:
