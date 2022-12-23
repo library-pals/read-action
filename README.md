@@ -94,6 +94,7 @@ jobs:
         if: env.BookNeedsReview == 'true'
         run: |
           git checkout -b review-book-${{env.BookIsbn}}
+          git pull origin review-book-${{env.BookIsbn}}
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})" -m "Missing pageCount"
