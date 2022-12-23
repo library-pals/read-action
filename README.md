@@ -95,10 +95,10 @@ jobs:
         run: |
           git config pull.rebase true
           git checkout -b review-book-${{env.BookIsbn}}
-          git pull origin review-book-${{env.BookIsbn}}
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})" -m "Missing pageCount"
+          git pull origin review-book-${{env.BookIsbn}}
           git push --set-upstream origin review-book-${{env.BookIsbn}}
           gh pr create -B main -H review-book-${{env.BookIsbn}} -f
         env:
