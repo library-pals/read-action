@@ -14106,6 +14106,8 @@ function cleanBook(options, book) {
     const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
     if (!book.pageCount || book.pageCount === 0) {
         (0,core.warning)("Book does not have `pageCount`.");
+        (0,core.exportVariable)("BookNeedsReview", true);
+        (0,core.exportVariable)("BookIsbn", bookIsbn);
     }
     return {
         isbn: bookIsbn,

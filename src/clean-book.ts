@@ -1,7 +1,7 @@
 import { removeWrappedQuotes } from "./utils";
 import { Book } from "./get-book";
 import { BookParams } from ".";
-import { warning } from "@actions/core";
+import { exportVariable, warning } from "@actions/core";
 
 export type CleanBook = {
   dateAdded: string | undefined;
@@ -30,6 +30,8 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
   const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
   if (!book.pageCount || book.pageCount === 0) {
     warning("Book does not have `pageCount`.");
+    exportVariable("BookNeedsReview", true);
+    exportVariable("BookIsbn", bookIsbn);
   }
   return {
     isbn: bookIsbn,

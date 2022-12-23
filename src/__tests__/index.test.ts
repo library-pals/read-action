@@ -74,6 +74,14 @@ describe("index", () => {
           "Luster",
         ],
         [
+          "BookNeedsReview",
+          true,
+        ],
+        [
+          "BookIsbn",
+          "9780385696005",
+        ],
+        [
           "BookThumbOutput",
           "book-9780385696005.png",
         ],
@@ -386,6 +394,14 @@ describe("index", () => {
         [
           "BookTitle",
           "Luster",
+        ],
+        [
+          "BookNeedsReview",
+          true,
+        ],
+        [
+          "BookIsbn",
+          "9780385696005",
         ],
         [
           "BookThumbOutput",
