@@ -99,7 +99,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})" -m "Missing pageCount"
           git push --set-upstream origin review-book-${{env.BookIsbn}}
-          gh pr create -B main -H review-book-${{env.BookIsbn}} -f
+          gh pr create -B main -H "review-book-${{env.BookIsbn}}" -f
         env:
           GH_TOKEN: ${{ github.token }}
 ```
