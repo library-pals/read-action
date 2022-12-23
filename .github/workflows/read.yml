@@ -1,6 +1,10 @@
 name: Read
 run-name: Book (${{ inputs.bookIsbn }})
 
+permissions:
+  contents: write
+  pull-requests: write
+
 on:
   workflow_dispatch:
     inputs:
