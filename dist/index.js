@@ -14101,8 +14101,12 @@ function removeWrappedQuotes(str) {
 
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
+
 function cleanBook(options, book) {
     const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
+    if (!book.pageCount || book.pageCount === 0) {
+        (0,core.warning)("Book does not have `pageCount`.");
+    }
     return {
         isbn: bookIsbn,
         ...dates,
@@ -14118,7 +14122,8 @@ function cleanBook(options, book) {
         ...("description" in book && {
             description: removeWrappedQuotes(book.description),
         }),
-        ...("pageCount" in book && { pageCount: book.pageCount }),
+        ...("pageCount" in book &&
+            book.pageCount > 0 && { pageCount: book.pageCount }),
         ...("printType" in book && { printType: book.printType }),
         ...("categories" in book && { categories: book.categories }),
         ...("imageLinks" in book &&

@@ -9,6 +9,7 @@ jest.mock("@actions/core", () => {
     ...jest.requireActual("@actions/core"),
     setFailed: jest.fn(),
     getInput: jest.fn(),
+    warning: jest.fn(),
     summary: {
       addRaw: () => ({
         write: jest.fn(),
@@ -29,6 +30,7 @@ describe("workflow", () => {
     const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest.useFakeTimers().setSystemTime(new Date("2022-10-01T12:00:00"));
     const setFailedSpy = jest.spyOn(core, "setFailed");
+    const warningSpy = jest.spyOn(core, "warning");
     jest
       .spyOn(core, "getInput")
       .mockImplementationOnce(() => "my-library.json");
@@ -46,6 +48,11 @@ describe("workflow", () => {
     });
     await read();
     expect(setFailedSpy).not.toHaveBeenCalled();
+    expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
+      [
+        "Book does not have \`pageCount\`.",
+      ]
+    `);
     expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "# Updated library
@@ -73,7 +80,6 @@ describe("workflow", () => {
             "isbn": "9780385696005",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=pUmNEAAAQBAJ",
-            "pageCount": 0,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
             "status": "want to read",

@@ -27,6 +27,7 @@ jest.mock("@actions/core", () => {
     setFailed: jest.fn(),
     exportVariable: jest.fn(),
     getInput: jest.fn(),
+    warning: jest.fn(),
     summary: {
       addRaw: () => ({
         write: jest.fn(),
@@ -119,7 +120,6 @@ describe("index", () => {
             "isbn": "9780385696005",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=pUmNEAAAQBAJ",
-            "pageCount": 0,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
             "status": "started",
@@ -434,7 +434,6 @@ describe("index", () => {
             "isbn": "9780385696005",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=pUmNEAAAQBAJ",
-            "pageCount": 0,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
             "status": "want to read",
@@ -541,7 +540,6 @@ describe("index", () => {
             "isbn": "9780385696005",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=pUmNEAAAQBAJ",
-            "pageCount": 0,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
             "status": "want to read",
