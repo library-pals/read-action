@@ -26,6 +26,11 @@ To use this action, create a new workflow in `.github/workflows` and modify it a
 name: Read
 run-name: Book (${{ inputs.bookIsbn }})
 
+# Grant the action permission to write to the repository
+permissions:
+  contents: write
+
+# Trigger the action
 on:
   workflow_dispatch:
     inputs:
@@ -62,6 +67,7 @@ on:
         description: Date you finished the book (YYYY-MM-DD). Optional.
         type: string
 
+# Set up the steps to run the action
 jobs:
   update_library:
     runs-on: macOS-latest
