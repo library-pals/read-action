@@ -44,12 +44,13 @@ export default async function getBook(
   options: BookParams
 ): Promise<CleanBook[]> {
   const { bookIsbn, providers, fileName } = options;
-  try {
-    const book = (await isbn.provider(providers).resolve(bookIsbn)) as Book;
-    exportVariable("BookTitle", book.title);
-    const books = (await addBook(options, book, fileName)) as CleanBook[];
-    return books;
-  } catch (error) {
-    throw new Error(error.message);
-  }
+  const book: Book = await isbn
+    .provider(providers)
+    .resolve(bookIsbn)
+    .catch((error: Error) => {
+      throw new Error(`Book (${bookIsbn}) not found. ${error.message}`);
+    });
+  exportVariable("BookTitle", book.title);
+  const books = (await addBook(options, book, fileName)) as CleanBook[];
+  return books;
 }
