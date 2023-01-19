@@ -55,7 +55,9 @@ describe("getBook", () => {
     ).toMatchSnapshot();
   });
   test("fails", async () => {
-    jest.spyOn(isbn, "resolve").mockRejectedValue({ message: "Error!" });
+    jest
+      .spyOn(isbn, "resolve")
+      .mockRejectedValue(new Error("Request failed with status code 401"));
     await expect(
       getBook({
         dates: {
@@ -68,6 +70,8 @@ describe("getBook", () => {
         bookStatus: "finished",
         fileName: "_data/read.json",
       })
-    ).rejects.toMatchInlineSnapshot(`[Error: Error!]`);
+    ).rejects.toMatchInlineSnapshot(
+      `[Error: Book (9780525658184) not found. Request failed with status code 401]`
+    );
   });
 });

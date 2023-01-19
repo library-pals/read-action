@@ -14171,15 +14171,14 @@ async function addBook(options, book, fileName) {
 
 async function getBook(options) {
     const { bookIsbn, providers, fileName } = options;
-    try {
-        const book = (await node_isbn_default().provider(providers).resolve(bookIsbn));
-        (0,core.exportVariable)("BookTitle", book.title);
-        const books = (await addBook(options, book, fileName));
-        return books;
-    }
-    catch (error) {
-        throw new Error(error.message);
-    }
+    const book = await node_isbn_default().provider(providers)
+        .resolve(bookIsbn)
+        .catch((error) => {
+        throw new Error(`Book (${bookIsbn}) not found. ${error.message}`);
+    });
+    (0,core.exportVariable)("BookTitle", book.title);
+    const books = (await addBook(options, book, fileName));
+    return books;
 }
 
 ;// CONCATENATED MODULE: ./src/checkout-book.ts
