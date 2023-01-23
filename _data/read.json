@@ -237,5 +237,24 @@
     "thumbnail": "https://books.google.com/books/content?id=WB9oEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "language": "en",
     "link": "https://books.google.com/books/about/The_Candy_House.html?hl=&id=WB9oEAAAQBAJ"
+  },
+  {
+    "isbn": "9780593356173",
+    "dateAdded": "2023-01-23",
+    "status": "want to read",
+    "rating": "unrated",
+    "title": "The Maid",
+    "authors": [
+      "Nita Prose"
+    ],
+    "publishedDate": "2023-01-03",
+    "description": "#1 NEW YORK TIMES BESTSELLER • GOOD MORNING AMERICA BOOK CLUB PICK • “A heartwarming mystery with a lovable oddball at its center” (Real Simple), this cozy whodunit introduces a one-of-a-kind heroine who will steal your heart. “The reader comes to understand Molly’s worldview, and to sympathize with her longing to be accepted—a quest that gives The Maid real emotional heft.”—The New York Times Book Review (Editors’ Choice) “Think Clue. Think page-turner.”—Glamour In development as a major motion picture produced by and starring Florence Pugh Molly Gray is not like everyone else. She struggles with social skills and misreads the intentions of others. Her gran used to interpret the world for her, codifying it into simple rules that Molly could live by. Since Gran died a few months ago, twenty-five-year-old Molly has been navigating life’s complexities all by herself. No matter—she throws herself with gusto into her work as a hotel maid. Her unique character, along with her obsessive love of cleaning and proper etiquette, make her an ideal fit for the job. She delights in donning her crisp uniform each morning, stocking her cart with miniature soaps and bottles, and returning guest rooms at the Regency Grand Hotel to a state of perfection. But Molly’s orderly life is upended the day she enters the suite of the infamous and wealthy Charles Black, only to find it in a state of disarray and Mr. Black himself dead in his bed. Before she knows what’s happening, Molly’s unusual demeanor has the police targeting her as their lead suspect. She quickly finds herself caught in a web of deception, one she has no idea how to untangle. Fortunately for Molly, friends she never knew she had unite with her in a search for clues to what really happened to Mr. Black—but will they be able to find the real killer before it’s too late? A Clue-like, locked-room mystery and a heartwarming journey of the spirit, The Maid explores what it means to be the same as everyone else and yet entirely different—and reveals that all mysteries can be solved through connection to the human heart.",
+    "printType": "BOOK",
+    "categories": [
+      "Fiction"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=-zCUEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    "language": "en",
+    "link": "https://books.google.com/books/about/The_Maid.html?hl=&id=-zCUEAAAQBAJ"
   }
 ]
