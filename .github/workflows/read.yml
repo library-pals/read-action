@@ -4,6 +4,7 @@ run-name: Book (${{ inputs.bookIsbn }})
 # Grant the action permission to write to the repository
 permissions:
   contents: write
+  pull-requests: write
 
 # Trigger the action
 on:
@@ -71,12 +72,13 @@ jobs:
         if: env.BookNeedsReview == 'true'
         run: |
           git config pull.rebase true
-          git checkout -b review-book-${{env.BookIsbn}}
+          git fetch origin
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git checkout -b review-book-${{env.BookIsbn}}
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})" -m "Missing pageCount"
           git push --set-upstream origin review-book-${{env.BookIsbn}}
-          gh pr create -B main -H "review-book-${{env.BookIsbn}}" -f
+          gh pr create -B main -H "review-book-${{env.BookIsbn}}" --fill
         env:
           GH_TOKEN: ${{ github.token }}
