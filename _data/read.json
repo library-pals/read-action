@@ -237,5 +237,20 @@
     "thumbnail": "https://books.google.com/books/content?id=WB9oEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "language": "en",
     "link": "https://books.google.com/books/about/The_Candy_House.html?hl=&id=WB9oEAAAQBAJ"
+  },
+  {
+    "isbn": "9780987434739",
+    "dateAdded": "2023-01-23",
+    "status": "want to read",
+    "rating": "unrated",
+    "title": "Mothership",
+    "authors": [
+      "Stephen Renneberg"
+    ],
+    "publishedDate": "2013",
+    "pageCount": 585,
+    "printType": "BOOK",
+    "categories": [],
+    "language": "en"
   }
 ]
