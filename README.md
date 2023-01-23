@@ -78,6 +78,7 @@ jobs:
 
       - name: Read
         uses: katydecorah/read-action@v6.6.2
+
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
         run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
@@ -105,6 +106,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 ```
 
+
 ## Action options
 
 - `readFileName`: The file where you want to save your books. Default: `_data/read.json`.
@@ -116,7 +118,7 @@ jobs:
 To trigger the action, [create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with the following body parameters:
 
 ```js
-{
+{ 
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
     "bookIsbn": "", // Required. The book's ISBN. Required.
@@ -128,5 +130,4 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
-
 <!-- END GENERATED DOCUMENTATION -->
