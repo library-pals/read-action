@@ -71,6 +71,7 @@ jobs:
         if: env.BookNeedsReview == 'true'
         run: |
           git config pull.rebase true
+          git fetch upstream
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git checkout -b review-book-${{env.BookIsbn}}
