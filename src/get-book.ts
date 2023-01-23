@@ -9,7 +9,7 @@ export type Book = {
   authors: string[];
   publisher: string;
   publishedDate: string;
-  description: string;
+  description?: string;
   industryIdentifiers: {
     type: string;
     identifier: string;
@@ -31,8 +31,8 @@ export type Book = {
     containsImageBubbles: boolean;
   };
   imageLinks: {
-    smallThumbnail: string;
-    thumbnail: string;
+    smallThumbnail?: string;
+    thumbnail?: string;
   };
   language: string;
   previewLink: string;

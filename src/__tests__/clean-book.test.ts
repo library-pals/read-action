@@ -1,5 +1,6 @@
 import cleanBook from "../clean-book";
 import book from "./fixture.json";
+import bookSomeMetadata from "./fixture-some-metadata.json";
 
 const dateFinished = "2020-09-12";
 
@@ -62,6 +63,24 @@ describe("cleanBook", () => {
           fileName: "_data/read.yml",
         },
         book
+      )
+    ).toMatchSnapshot());
+
+  it("cleanBook, some metadata", () =>
+    expect(
+      cleanBook(
+        {
+          dates: {
+            dateAdded: undefined,
+            dateStarted: "2022-01-01",
+            dateFinished: undefined,
+          },
+          bookIsbn: "1234597890",
+          providers: [],
+          bookStatus: "started",
+          fileName: "_data/read.yml",
+        },
+        bookSomeMetadata
       )
     ).toMatchSnapshot());
 });

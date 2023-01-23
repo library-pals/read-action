@@ -27,6 +27,18 @@ export type BookStatus = "want to read" | "started" | "finished";
 
 export default function cleanBook(options: BookParams, book: Book): CleanBook {
   const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
+  const {
+    title,
+    authors,
+    publishedDate,
+    description,
+    categories,
+    pageCount,
+    printType,
+    imageLinks,
+    language,
+    canonicalVolumeLink,
+  } = book;
   return {
     isbn: bookIsbn,
     ...dates,
@@ -34,24 +46,24 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     ...(rating && { rating }),
     ...(notes && { notes }),
     ...(tags && { tags }),
-    ...("title" in book && { title: book.title }),
-    ...("authors" in book && {
-      authors: book.authors,
+    ...(title && { title }),
+    ...(authors && {
+      authors: authors,
     }),
-    ...("publishedDate" in book && { publishedDate: book.publishedDate }),
-    ...("description" in book && {
-      description: removeWrappedQuotes(book.description),
+    ...(publishedDate && { publishedDate }),
+    ...(description && {
+      description: removeWrappedQuotes(description),
     }),
-    ...("pageCount" in book && { pageCount: book.pageCount }),
-    ...("printType" in book && { printType: book.printType }),
-    ...("categories" in book && { categories: book.categories }),
-    ...("imageLinks" in book &&
-      "thumbnail" in book.imageLinks && {
-        thumbnail: book.imageLinks.thumbnail.replace("http:", "https:"),
+    ...(pageCount && { pageCount }),
+    ...(printType && { printType }),
+    ...(categories && { categories }),
+    ...(imageLinks &&
+      imageLinks.thumbnail && {
+        thumbnail: imageLinks.thumbnail.replace("http:", "https:"),
       }),
-    ...("language" in book && { language: book.language }),
-    ...("canonicalVolumeLink" in book && {
-      link: book.canonicalVolumeLink,
+    ...(language && { language }),
+    ...(canonicalVolumeLink && {
+      link: canonicalVolumeLink,
     }),
   };
 }
