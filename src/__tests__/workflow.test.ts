@@ -73,7 +73,6 @@ describe("workflow", () => {
             "isbn": "9780385696005",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=pUmNEAAAQBAJ",
-            "pageCount": 0,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
             "status": "want to read",

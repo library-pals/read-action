@@ -31,7 +31,6 @@ exports[`getBook works 1`] = `
     "isbn": "9780525658184",
     "language": "en",
     "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=RmKTEAAAQBAJ",
-    "pageCount": 0,
     "printType": "BOOK",
     "publishedDate": "2020-09-01",
     "status": "finished",
