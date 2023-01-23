@@ -70,7 +70,8 @@ jobs:
       - name: If book needs review, commit new book and create a pull request
         if: env.BookNeedsReview == 'true'
         run: |
-          git config pull.rebase true
+          git fetch origin main
+          git pull origin main
           git checkout -b review-book-${{env.BookIsbn}}
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
