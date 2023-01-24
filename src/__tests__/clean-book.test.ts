@@ -118,6 +118,59 @@ describe("cleanBook", () => {
     `);
   });
 
+  it("cleanBook, missing `title`", () => {
+    const warningSpy = jest.spyOn(core, "warning");
+    const exportVariableSpy = jest.spyOn(core, "exportVariable");
+    cleanBook(
+      {
+        dates: {
+          dateAdded: undefined,
+          dateStarted: "2022-01-01",
+          dateFinished: undefined,
+        },
+        bookIsbn: "1234597890",
+        providers: [],
+        bookStatus: "started",
+        fileName: "_data/read.yml",
+      },
+      {
+        authors: ["Author Name"],
+        description: "Book description",
+        publishedDate: "2013",
+        industryIdentifiers: [],
+        pageCount: 584,
+        printType: "BOOK",
+        categories: [],
+        imageLinks: {},
+        previewLink: "https://openlibrary.org/books/BookTitle",
+        infoLink: "https://openlibrary.org/books/BookTitle",
+        publisher: "Publisher Name",
+        language: "en",
+      }
+    );
+    expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
+      [
+        "Book does not have title",
+      ]
+    `);
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookNeedsReview",
+          true,
+        ],
+        [
+          "BookMissingMetadata",
+          "title",
+        ],
+        [
+          "BookIsbn",
+          "1234597890",
+        ],
+      ]
+    `);
+  });
+
   it("cleanBook, missing `description`", () => {
     const warningSpy = jest.spyOn(core, "warning");
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
@@ -171,7 +224,7 @@ describe("cleanBook", () => {
     `);
   });
 
-  it("cleanBook, missing authors, pageCount, description", () => {
+  it("cleanBook, missing authors, pageCount, description, title", () => {
     const warningSpy = jest.spyOn(core, "warning");
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     cleanBook(
@@ -187,7 +240,6 @@ describe("cleanBook", () => {
         fileName: "_data/read.yml",
       },
       {
-        title: "Book Title",
         publishedDate: "2013",
         industryIdentifiers: [],
         pageCount: 0,
@@ -202,7 +254,7 @@ describe("cleanBook", () => {
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have pageCount, authors, description",
+        "Book does not have title, pageCount, authors, description",
       ]
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
@@ -213,7 +265,7 @@ describe("cleanBook", () => {
         ],
         [
           "BookMissingMetadata",
-          "pageCount, authors, description",
+          "title, pageCount, authors, description",
         ],
         [
           "BookIsbn",

@@ -14136,6 +14136,9 @@ function cleanBook(options, book) {
 }
 function checkMetadata(book, bookIsbn) {
     const missingMetadata = [];
+    if (!book.title) {
+        missingMetadata.push("title");
+    }
     if (!book.pageCount || book.pageCount === 0) {
         missingMetadata.push("pageCount");
     }

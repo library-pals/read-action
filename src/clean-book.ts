@@ -72,6 +72,9 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
 
 function checkMetadata(book: Book, bookIsbn: string) {
   const missingMetadata: string[] = [];
+  if (!book.title) {
+    missingMetadata.push("title");
+  }
   if (!book.pageCount || book.pageCount === 0) {
     missingMetadata.push("pageCount");
   }
