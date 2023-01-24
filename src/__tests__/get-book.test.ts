@@ -24,10 +24,20 @@ describe("getBook", () => {
       bookStatus: "finished",
       fileName: "_data/read.yml",
     });
-    expect(exportVariable.mock.calls[0]).toMatchInlineSnapshot(`
+    expect(exportVariable.mock.calls).toMatchInlineSnapshot(`
       [
-        "BookTitle",
-        "Transcendent Kingdom",
+        [
+          "BookTitle",
+          "Transcendent Kingdom",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780525658184.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        ],
       ]
     `);
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
