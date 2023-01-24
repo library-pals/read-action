@@ -50,7 +50,7 @@ describe("workflow", () => {
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have \`pageCount\`.",
+        "Book does not have pageCount",
       ]
     `);
     expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`

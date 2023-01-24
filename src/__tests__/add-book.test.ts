@@ -28,16 +28,18 @@ describe("addBook", () => {
         "_data/read.yml"
       )
     ).toMatchSnapshot();
-    expect(exportVariable).toHaveBeenNthCalledWith(
-      1,
-      "BookThumbOutput",
-      "book-0525658181.png"
-    );
-    expect(exportVariable).toHaveBeenNthCalledWith(
-      2,
-      "BookThumb",
-      "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-    );
+    expect(exportVariable.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "BookThumbOutput",
+          "book-0525658181.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        ],
+      ]
+    `);
   });
 
   test("works, no images", async () => {

@@ -28,11 +28,7 @@ export type BookStatus = "want to read" | "started" | "finished";
 
 export default function cleanBook(options: BookParams, book: Book): CleanBook {
   const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
-  if (!book.pageCount || book.pageCount === 0) {
-    warning("Book does not have `pageCount`.");
-    exportVariable("BookNeedsReview", true);
-    exportVariable("BookIsbn", bookIsbn);
-  }
+  checkMetadata(book, bookIsbn);
   const {
     title,
     authors,
@@ -72,4 +68,23 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
       link: canonicalVolumeLink,
     }),
   };
+}
+
+function checkMetadata(book: Book, bookIsbn: string) {
+  const missingMetadata: string[] = [];
+  if (!book.pageCount || book.pageCount === 0) {
+    missingMetadata.push("pageCount");
+  }
+  if (!book.authors || book.authors.length === 0) {
+    missingMetadata.push("authors");
+  }
+  if (!book.description) {
+    missingMetadata.push("description");
+  }
+  if (missingMetadata.length > 0) {
+    warning(`Book does not have ${missingMetadata.join(", ")}`);
+    exportVariable("BookNeedsReview", true);
+    exportVariable("BookMissingMetadata", missingMetadata.join(", "));
+    exportVariable("BookIsbn", bookIsbn);
+  }
 }

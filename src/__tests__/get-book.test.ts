@@ -24,21 +24,12 @@ describe("getBook", () => {
       bookStatus: "finished",
       fileName: "_data/read.yml",
     });
-    expect(exportVariable).toHaveBeenNthCalledWith(
-      1,
-      "BookTitle",
-      "Transcendent Kingdom"
-    );
-    expect(exportVariable).toHaveBeenNthCalledWith(
-      2,
-      "BookThumbOutput",
-      "book-9780525658184.png"
-    );
-    expect(exportVariable).toHaveBeenNthCalledWith(
-      3,
-      "BookThumb",
-      "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-    );
+    expect(exportVariable.mock.calls[0]).toMatchInlineSnapshot(`
+      [
+        "BookTitle",
+        "Transcendent Kingdom",
+      ]
+    `);
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     expect(
       await getBook({

@@ -78,6 +78,10 @@ describe("index", () => {
           true,
         ],
         [
+          "BookMissingMetadata",
+          "pageCount",
+        ],
+        [
           "BookIsbn",
           "9780385696005",
         ],
@@ -398,6 +402,10 @@ describe("index", () => {
         [
           "BookNeedsReview",
           true,
+        ],
+        [
+          "BookMissingMetadata",
+          "pageCount",
         ],
         [
           "BookIsbn",

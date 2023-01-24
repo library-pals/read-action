@@ -14104,11 +14104,7 @@ function removeWrappedQuotes(str) {
 
 function cleanBook(options, book) {
     const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
-    if (!book.pageCount || book.pageCount === 0) {
-        (0,core.warning)("Book does not have `pageCount`.");
-        (0,core.exportVariable)("BookNeedsReview", true);
-        (0,core.exportVariable)("BookIsbn", bookIsbn);
-    }
+    checkMetadata(book, bookIsbn);
     const { title, authors, publishedDate, description, categories, pageCount, printType, imageLinks, language, canonicalVolumeLink, } = book;
     return {
         isbn: bookIsbn,
@@ -14137,6 +14133,24 @@ function cleanBook(options, book) {
             link: canonicalVolumeLink,
         }),
     };
+}
+function checkMetadata(book, bookIsbn) {
+    const missingMetadata = [];
+    if (!book.pageCount || book.pageCount === 0) {
+        missingMetadata.push("pageCount");
+    }
+    if (!book.authors || book.authors.length === 0) {
+        missingMetadata.push("authors");
+    }
+    if (!book.description) {
+        missingMetadata.push("description");
+    }
+    if (missingMetadata.length > 0) {
+        (0,core.warning)(`Book does not have ${missingMetadata.join(", ")}`);
+        (0,core.exportVariable)("BookNeedsReview", true);
+        (0,core.exportVariable)("BookMissingMetadata", missingMetadata.join(", "));
+        (0,core.exportVariable)("BookIsbn", bookIsbn);
+    }
 }
 
 ;// CONCATENATED MODULE: ./src/read-file.ts

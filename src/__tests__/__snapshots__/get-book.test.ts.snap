@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getBook works 1`] = `
+exports[`getBook works 2`] = `
 [
   {
     "authors": [
