@@ -85,7 +85,7 @@ jobs:
         run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
 
       - name: Commit updated read file
-        if: env.BookNeedsReview != 'true'
+        if: env.BookNeedsReview != 'true' # Optional
         run: |
           git pull
           git config --local user.email "action@github.com"
@@ -93,6 +93,7 @@ jobs:
           git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})"
           git push
 
+      # Optional: Create pull request instead of directly committing if book is missing metadata
       - name: If book needs review, commit new book and create a pull request
         if: env.BookNeedsReview == 'true'
         run: |
