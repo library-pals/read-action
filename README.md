@@ -103,7 +103,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git checkout -b review-book-${{env.BookIsbn}}
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})" -m "Missing pageCount"
+          git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})" -m "“${{ env.BookTitle }}” is missing the following properties: ${{env.BookMissingMetadata}}. Edit this pull request to add them or merge it in."
           git push --set-upstream origin review-book-${{env.BookIsbn}}
           gh pr create -B main -H "review-book-${{env.BookIsbn}}" --fill
         env:
