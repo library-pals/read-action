@@ -151,7 +151,6 @@ describe("index", () => {
 
   test("works, finished a previous book", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
-    jest.spyOn(core, "getInput").mockImplementationOnce(() => "my-library.yml");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -177,7 +176,7 @@ describe("index", () => {
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "my-library.yml",
+        "my-library.json",
         [
           {
             "authors": [
@@ -208,7 +207,6 @@ describe("index", () => {
   test("works, finished a book (new, not started)", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    jest.spyOn(core, "getInput").mockImplementationOnce(() => "my-library.yml");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -243,7 +241,7 @@ describe("index", () => {
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "my-library.yml",
+        "my-library.json",
         [
           {
             "authors": [
@@ -292,7 +290,6 @@ describe("index", () => {
   test("works, finished a book (new, not started) (with dateStarted)", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    jest.spyOn(core, "getInput").mockImplementationOnce(() => "my-library.yml");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -328,7 +325,7 @@ describe("index", () => {
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "my-library.yml",
+        "my-library.json",
         [
           {
             "authors": [
@@ -379,9 +376,6 @@ describe("index", () => {
 
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    jest
-      .spyOn(core, "getInput")
-      .mockImplementation((v) => (v === "timeZone" ? "America/New_York" : ""));
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -403,6 +397,18 @@ describe("index", () => {
           "Luster",
         ],
         [
+          "BookNeedsReview",
+          true,
+        ],
+        [
+          "BookMissingMetadata",
+          "pageCount",
+        ],
+        [
+          "BookIsbn",
+          "9780385696005",
+        ],
+        [
           "BookThumbOutput",
           "book-9780385696005.png",
         ],
@@ -415,7 +421,7 @@ describe("index", () => {
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "",
+        "my-library.json",
         [
           {
             "authors": [
