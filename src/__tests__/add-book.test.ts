@@ -2,13 +2,26 @@ import addBook from "../add-book";
 import { promises, readFileSync } from "fs";
 import book from "./fixture.json";
 import { exportVariable } from "@actions/core";
+import * as core from "@actions/core";
 
 const books = readFileSync("./_data/read.json", "utf-8");
 const dateFinished = "2020-09-12";
 
 jest.mock("@actions/core");
 
+const defaultOptions = {
+  readFileName: "_data/read.yml",
+  requiredMetadata: "title,pageCount,authors,description",
+  timeZone: "America/New_York",
+};
+
 describe("addBook", () => {
+  beforeEach(() => {
+    jest
+      .spyOn(core, "getInput")
+      .mockImplementation((v) => defaultOptions[v] || undefined);
+  });
+
   test("works", async () => {
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     expect(

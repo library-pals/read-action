@@ -1,7 +1,7 @@
 import { removeWrappedQuotes } from "./utils";
 import { Book } from "./get-book";
 import { BookParams } from ".";
-import { exportVariable, warning } from "@actions/core";
+import { exportVariable, getInput, warning } from "@actions/core";
 
 export type CleanBook = {
   dateAdded: string | undefined;
@@ -72,16 +72,25 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
 
 function checkMetadata(book: Book, bookIsbn: string) {
   const missingMetadata: string[] = [];
-  if (!book.title) {
+  const requiredMetadata = getInput("requiredMetadata")
+    .split(",")
+    .map((s) => s.trim());
+  if (!book.title && requiredMetadata.includes("title")) {
     missingMetadata.push("title");
   }
-  if (!book.pageCount || book.pageCount === 0) {
+  if (
+    (!book.pageCount || book.pageCount === 0) &&
+    requiredMetadata.includes("pageCount")
+  ) {
     missingMetadata.push("pageCount");
   }
-  if (!book.authors || book.authors.length === 0) {
+  if (
+    (!book.authors || book.authors.length === 0) &&
+    requiredMetadata.includes("authors")
+  ) {
     missingMetadata.push("authors");
   }
-  if (!book.description) {
+  if (!book.description && requiredMetadata.includes("description")) {
     missingMetadata.push("description");
   }
   if (missingMetadata.length > 0) {

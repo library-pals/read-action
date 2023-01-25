@@ -14136,16 +14136,21 @@ function cleanBook(options, book) {
 }
 function checkMetadata(book, bookIsbn) {
     const missingMetadata = [];
-    if (!book.title) {
+    const requiredMetadata = (0,core.getInput)("requiredMetadata")
+        .split(",")
+        .map((s) => s.trim());
+    if (!book.title && requiredMetadata.includes("title")) {
         missingMetadata.push("title");
     }
-    if (!book.pageCount || book.pageCount === 0) {
+    if ((!book.pageCount || book.pageCount === 0) &&
+        requiredMetadata.includes("pageCount")) {
         missingMetadata.push("pageCount");
     }
-    if (!book.authors || book.authors.length === 0) {
+    if ((!book.authors || book.authors.length === 0) &&
+        requiredMetadata.includes("authors")) {
         missingMetadata.push("authors");
     }
-    if (!book.description) {
+    if (!book.description && requiredMetadata.includes("description")) {
         missingMetadata.push("description");
     }
     if (missingMetadata.length > 0) {

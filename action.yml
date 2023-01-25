@@ -20,3 +20,6 @@ inputs:
   timeZone:
     description: Your timezone.
     default: America/New_York
+  requiredMetadata:
+    description: Required metadata properties. This can be used to make the action open a pull request if one of these values is missing data in the desired book instead of committing directly to a repository.
+    default: title,pageCount,authors,description

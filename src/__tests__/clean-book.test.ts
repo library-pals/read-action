@@ -4,7 +4,18 @@ import * as core from "@actions/core";
 
 const dateFinished = "2020-09-12";
 
+const defaultOptions = {
+  readFileName: "my-library.json",
+  requiredMetadata: "title,pageCount,authors,description",
+  timeZone: "America/New_York",
+};
+
 describe("cleanBook", () => {
+  beforeEach(() => {
+    jest
+      .spyOn(core, "getInput")
+      .mockImplementation((v) => defaultOptions[v] || undefined);
+  });
   afterEach(() => {
     jest.resetAllMocks();
   });
@@ -273,5 +284,42 @@ describe("cleanBook", () => {
         ],
       ]
     `);
+  });
+
+  it("cleanBook, ignore missing", () => {
+    const warningSpy = jest.spyOn(core, "warning");
+    const exportVariableSpy = jest.spyOn(core, "exportVariable");
+    jest
+      .spyOn(core, "getInput")
+      .mockImplementation((v) =>
+        v === "requiredMetadata" ? "" : defaultOptions[v] || undefined
+      );
+    cleanBook(
+      {
+        dates: {
+          dateAdded: undefined,
+          dateStarted: "2022-01-01",
+          dateFinished: undefined,
+        },
+        bookIsbn: "1234597890",
+        providers: [],
+        bookStatus: "started",
+        fileName: "_data/read.yml",
+      },
+      {
+        publishedDate: "2013",
+        industryIdentifiers: [],
+        pageCount: 0,
+        printType: "BOOK",
+        categories: [],
+        imageLinks: {},
+        previewLink: "https://openlibrary.org/books/BookTitle",
+        infoLink: "https://openlibrary.org/books/BookTitle",
+        publisher: "Publisher Name",
+        language: "en",
+      }
+    );
+    expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`undefined`);
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`[]`);
   });
 });
