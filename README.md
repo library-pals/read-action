@@ -78,7 +78,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Read
-        uses: katydecorah/read-action@v6.6.2
+        uses: katydecorah/read-action@v6.7.0
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
