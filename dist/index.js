@@ -14101,8 +14101,10 @@ function removeWrappedQuotes(str) {
 
 ;// CONCATENATED MODULE: ./src/clean-book.ts
 
+
 function cleanBook(options, book) {
     const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
+    checkMetadata(book, bookIsbn);
     const { title, authors, publishedDate, description, categories, pageCount, printType, imageLinks, language, canonicalVolumeLink, } = book;
     return {
         isbn: bookIsbn,
@@ -14119,7 +14121,7 @@ function cleanBook(options, book) {
         ...(description && {
             description: removeWrappedQuotes(description),
         }),
-        ...(pageCount && { pageCount }),
+        ...(pageCount && pageCount > 0 && { pageCount }),
         ...(printType && { printType }),
         ...(categories && { categories }),
         ...(imageLinks &&
@@ -14131,6 +14133,32 @@ function cleanBook(options, book) {
             link: canonicalVolumeLink,
         }),
     };
+}
+function checkMetadata(book, bookIsbn) {
+    const missingMetadata = [];
+    const requiredMetadata = (0,core.getInput)("requiredMetadata")
+        .split(",")
+        .map((s) => s.trim());
+    if (!book.title && requiredMetadata.includes("title")) {
+        missingMetadata.push("title");
+    }
+    if ((!book.pageCount || book.pageCount === 0) &&
+        requiredMetadata.includes("pageCount")) {
+        missingMetadata.push("pageCount");
+    }
+    if ((!book.authors || book.authors.length === 0) &&
+        requiredMetadata.includes("authors")) {
+        missingMetadata.push("authors");
+    }
+    if (!book.description && requiredMetadata.includes("description")) {
+        missingMetadata.push("description");
+    }
+    if (missingMetadata.length > 0) {
+        (0,core.warning)(`Book does not have ${missingMetadata.join(", ")}`);
+        (0,core.exportVariable)("BookNeedsReview", true);
+        (0,core.exportVariable)("BookMissingMetadata", missingMetadata.join(", "));
+        (0,core.exportVariable)("BookIsbn", bookIsbn);
+    }
 }
 
 ;// CONCATENATED MODULE: ./src/read-file.ts

@@ -27,6 +27,7 @@ jest.mock("@actions/core", () => {
     setFailed: jest.fn(),
     exportVariable: jest.fn(),
     getInput: jest.fn(),
+    warning: jest.fn(),
     summary: {
       addRaw: () => ({
         write: jest.fn(),
@@ -36,6 +37,12 @@ jest.mock("@actions/core", () => {
 });
 jest.mock("../write-file");
 
+const defaultOptions = {
+  readFileName: "my-library.json",
+  requiredMetadata: "title,pageCount,authors,description",
+  timeZone: "America/New_York",
+};
+
 describe("index", () => {
   afterEach(() => {
     jest.restoreAllMocks();
@@ -43,14 +50,14 @@ describe("index", () => {
 
   beforeEach(() => {
     jest.spyOn(promises, "readFile").mockResolvedValue(mockReadFile);
+    jest
+      .spyOn(core, "getInput")
+      .mockImplementation((v) => defaultOptions[v] || undefined);
   });
 
   test("works, started a new book", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    jest
-      .spyOn(core, "getInput")
-      .mockImplementationOnce(() => "my-library.json");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -71,6 +78,18 @@ describe("index", () => {
         [
           "BookTitle",
           "Luster",
+        ],
+        [
+          "BookNeedsReview",
+          true,
+        ],
+        [
+          "BookMissingMetadata",
+          "pageCount",
+        ],
+        [
+          "BookIsbn",
+          "9780385696005",
         ],
         [
           "BookThumbOutput",
@@ -132,7 +151,6 @@ describe("index", () => {
 
   test("works, finished a previous book", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
-    jest.spyOn(core, "getInput").mockImplementationOnce(() => "my-library.yml");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -158,7 +176,7 @@ describe("index", () => {
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "my-library.yml",
+        "my-library.json",
         [
           {
             "authors": [
@@ -189,7 +207,6 @@ describe("index", () => {
   test("works, finished a book (new, not started)", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    jest.spyOn(core, "getInput").mockImplementationOnce(() => "my-library.yml");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -224,7 +241,7 @@ describe("index", () => {
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "my-library.yml",
+        "my-library.json",
         [
           {
             "authors": [
@@ -273,7 +290,6 @@ describe("index", () => {
   test("works, finished a book (new, not started) (with dateStarted)", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    jest.spyOn(core, "getInput").mockImplementationOnce(() => "my-library.yml");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -309,7 +325,7 @@ describe("index", () => {
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "my-library.yml",
+        "my-library.json",
         [
           {
             "authors": [
@@ -360,12 +376,6 @@ describe("index", () => {
 
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    jest
-      .spyOn(core, "getInput")
-      .mockImplementationOnce(() => "my-library.json");
-    jest
-      .spyOn(core, "getInput")
-      .mockImplementation((v) => (v === "timeZone" ? "America/New_York" : ""));
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -385,6 +395,18 @@ describe("index", () => {
         [
           "BookTitle",
           "Luster",
+        ],
+        [
+          "BookNeedsReview",
+          true,
+        ],
+        [
+          "BookMissingMetadata",
+          "pageCount",
+        ],
+        [
+          "BookIsbn",
+          "9780385696005",
         ],
         [
           "BookThumbOutput",
@@ -489,9 +511,6 @@ describe("index", () => {
   });
 
   test("tags", async () => {
-    jest
-      .spyOn(core, "getInput")
-      .mockImplementationOnce(() => "my-library.json");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -552,25 +571,6 @@ describe("index", () => {
         ],
       ]
     `);
-  });
-
-  test("providers", async () => {
-    jest
-      .spyOn(core, "getInput")
-      .mockImplementationOnce(() => "my-library.json");
-    jest.spyOn(core, "getInput").mockImplementationOnce(() => "google");
-    const inputSpy = jest.spyOn(core, "getInput");
-    Object.defineProperty(github, "context", {
-      value: {
-        payload: {
-          inputs: {
-            bookIsbn: "9780385696005",
-          },
-        },
-      },
-    });
-    await read();
-    expect(inputSpy).toHaveNthReturnedWith(2, "google");
   });
 
   test("good dateFinished", async () => {

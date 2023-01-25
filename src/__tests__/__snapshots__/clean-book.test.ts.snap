@@ -75,22 +75,3 @@ exports[`cleanBook cleanBook, no date 1`] = `
   "title": "Transcendent Kingdom",
 }
 `;
-
-exports[`cleanBook cleanBook, some metadata 1`] = `
-{
-  "authors": [
-    "Author Name",
-  ],
-  "categories": [],
-  "dateAdded": undefined,
-  "dateFinished": undefined,
-  "dateStarted": "2022-01-01",
-  "isbn": "1234597890",
-  "language": "en",
-  "pageCount": 584,
-  "printType": "BOOK",
-  "publishedDate": "2013",
-  "status": "started",
-  "title": "Book Title",
-}
-`;

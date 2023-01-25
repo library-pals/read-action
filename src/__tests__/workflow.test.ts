@@ -9,6 +9,7 @@ jest.mock("@actions/core", () => {
     ...jest.requireActual("@actions/core"),
     setFailed: jest.fn(),
     getInput: jest.fn(),
+    warning: jest.fn(),
     summary: {
       addRaw: () => ({
         write: jest.fn(),
@@ -19,7 +20,19 @@ jest.mock("@actions/core", () => {
 
 jest.mock("../write-file");
 
+const defaultOptions = {
+  readFileName: "my-library.json",
+  requiredMetadata: "title,pageCount,authors,description",
+  timeZone: "America/New_York",
+  providers: "google",
+};
+
 describe("workflow", () => {
+  beforeEach(() => {
+    jest
+      .spyOn(core, "getInput")
+      .mockImplementation((v) => defaultOptions[v] || undefined);
+  });
   afterEach(() => {
     jest.restoreAllMocks();
   });
@@ -29,12 +42,6 @@ describe("workflow", () => {
     const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest.useFakeTimers().setSystemTime(new Date("2022-10-01T12:00:00"));
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    jest
-      .spyOn(core, "getInput")
-      .mockImplementationOnce(() => "my-library.json");
-    jest
-      .spyOn(core, "getInput")
-      .mockImplementation((v) => (v === "timeZone" ? "America/New_York" : ""));
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -109,9 +116,6 @@ describe("workflow", () => {
     );
     const setFailedSpy = jest.spyOn(core, "setFailed");
     const summarySpy = jest.spyOn(core.summary, "addRaw");
-    jest
-      .spyOn(core, "getInput")
-      .mockImplementationOnce(() => "my-library.json");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -185,9 +189,6 @@ describe("workflow", () => {
     );
     const setFailedSpy = jest.spyOn(core, "setFailed");
     const summarySpy = jest.spyOn(core.summary, "addRaw");
-    jest
-      .spyOn(core, "getInput")
-      .mockImplementationOnce(() => "my-library.json");
     Object.defineProperty(github, "context", {
       value: {
         payload: {

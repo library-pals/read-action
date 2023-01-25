@@ -1,6 +1,7 @@
 import { removeWrappedQuotes } from "./utils";
 import { Book } from "./get-book";
 import { BookParams } from ".";
+import { exportVariable, getInput, warning } from "@actions/core";
 
 export type CleanBook = {
   dateAdded: string | undefined;
@@ -27,6 +28,7 @@ export type BookStatus = "want to read" | "started" | "finished";
 
 export default function cleanBook(options: BookParams, book: Book): CleanBook {
   const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
+  checkMetadata(book, bookIsbn);
   const {
     title,
     authors,
@@ -54,7 +56,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     ...(description && {
       description: removeWrappedQuotes(description),
     }),
-    ...(pageCount && { pageCount }),
+    ...(pageCount && pageCount > 0 && { pageCount }),
     ...(printType && { printType }),
     ...(categories && { categories }),
     ...(imageLinks &&
@@ -66,4 +68,35 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
       link: canonicalVolumeLink,
     }),
   };
+}
+
+function checkMetadata(book: Book, bookIsbn: string) {
+  const missingMetadata: string[] = [];
+  const requiredMetadata = getInput("requiredMetadata")
+    .split(",")
+    .map((s) => s.trim());
+  if (!book.title && requiredMetadata.includes("title")) {
+    missingMetadata.push("title");
+  }
+  if (
+    (!book.pageCount || book.pageCount === 0) &&
+    requiredMetadata.includes("pageCount")
+  ) {
+    missingMetadata.push("pageCount");
+  }
+  if (
+    (!book.authors || book.authors.length === 0) &&
+    requiredMetadata.includes("authors")
+  ) {
+    missingMetadata.push("authors");
+  }
+  if (!book.description && requiredMetadata.includes("description")) {
+    missingMetadata.push("description");
+  }
+  if (missingMetadata.length > 0) {
+    warning(`Book does not have ${missingMetadata.join(", ")}`);
+    exportVariable("BookNeedsReview", true);
+    exportVariable("BookMissingMetadata", missingMetadata.join(", "));
+    exportVariable("BookIsbn", bookIsbn);
+  }
 }

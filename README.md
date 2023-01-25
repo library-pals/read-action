@@ -29,6 +29,7 @@ run-name: Book (${{ inputs.bookIsbn }})
 # Grant the action permission to write to the repository
 permissions:
   contents: write
+  pull-requests: write
 
 # Trigger the action
 on:
@@ -75,18 +76,42 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Read
         uses: katydecorah/read-action@v6.6.2
+
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
         run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
-      - name: Commit files
+
+      - name: Commit updated read file
+        if: env.BookNeedsReview != 'true' # Optional, remove this line if you do not add the next step.
         run: |
           git pull
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})"
           git push
+
+      # OPTIONAL:
+      # Create pull request instead of directly committing if book is missing metadata
+      # Occasionally, some books returned from node-isbn may be missing a few properties.
+      # Add this step to your workflow if you want the ability to fix the missing data by making the action open a new pull request.
+      # You can customize the properties that will trigger a pull request with the `requiredMetadata` input.
+      - name: If book needs review, create a pull request to review book metadata
+        if: env.BookNeedsReview == 'true'
+        run: |
+          git config pull.rebase true
+          git fetch origin
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git checkout -b review-book-${{env.BookIsbn}}
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})" -m "“${{ env.BookTitle }}” is missing the following properties: ${{env.BookMissingMetadata}}. Edit this pull request to add them or merge it in."
+          git push --set-upstream origin review-book-${{env.BookIsbn}}
+          gh pr create -B main -H "review-book-${{env.BookIsbn}}" --fill
+        env:
+          GH_TOKEN: ${{ github.token }}
 ```
 
 
@@ -95,6 +120,7 @@ jobs:
 - `readFileName`: The file where you want to save your books. Default: `_data/read.json`.
 - `providers`: Specify the [ISBN providers](https://github.com/palmerabollo/node-isbn#setting-backend-providers) that you want to use, in the order you need them to be invoked. If setting more than one provider, separate each with a comma.
 - `timeZone`: Your timezone. Default: `America/New_York`.
+- `requiredMetadata`: Required metadata properties. This can be used to make the action open a pull request if one of these values is missing data in the desired book instead of committing directly to a repository. Default: `title,pageCount,authors,description`.
 
 ## Trigger the action
 
