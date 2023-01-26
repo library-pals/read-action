@@ -1,8 +1,12 @@
 name: Document GitHub action
 on:
+  workflow_dispatch:
   push:
     paths:
       - ".github/workflows/read.yml"
+      - ".github/workflows/read-advanced.yml"
+      - ".github/workflows/read-thumbnail.yml"
+      - ".github/workflows/documentation.yml"
       - "action.yml"
       - "package.json"
       - "README.md"
@@ -15,9 +19,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Documentation action
-        uses: katydecorah/documentation-action@v0.2.0
+        uses: katydecorah/documentation-action@v0.3.0
         with:
           exampleWorkflowFile: "read.yml"
+          additionalWorkflowFilePrefix: "read"
       - name: Commit files
         if: env.UpdateDocumentation == 'true'
         run: |

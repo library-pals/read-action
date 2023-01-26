@@ -1,4 +1,4 @@
-name: read action
+name: Download the book thumbnail
 run-name: Book (${{ inputs.bookIsbn }})
 
 # Grant the action permission to write to the repository
@@ -54,6 +54,10 @@ jobs:
 
       - name: Read
         uses: ./
+
+      - name: Download the book thumbnail
+        if: env.BookThumbOutput != ''
+        run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
 
       - name: Commit updated read file
         run: |
