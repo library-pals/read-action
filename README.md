@@ -42,6 +42,24 @@ on:
       notes:
         description: Notes about the book. Optional.
         type: string
+      # Adding a rating is optional.
+      # You can change the options to whatever you want to use.
+      # For example, you can use numbers, other emoji, or words.
+      rating:
+        description: Rate the book. Optional.
+        type: choice
+        default: "unrated"
+        options:
+          - "unrated"
+          - ⭐️
+          - ⭐️⭐️
+          - ⭐️⭐️⭐️
+          - ⭐️⭐️⭐️⭐️
+          - ⭐️⭐️⭐️⭐️⭐️
+      # Tags are optional.
+      tags:
+        description: Add tags to categorize the book. Separate each tag with a comma. Optional.
+        type: string
       # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
       dateStarted:
         description: Date you started the book (YYYY-MM-DD). Optional.
@@ -74,10 +92,10 @@ jobs:
  ### Additional example workflows
 
 <details>
-<summary>read action (advanced, create pull request when missing metdata)</summary>
+<summary>Create pull request when book is missing metdata</summary>
 
 ```yml
-name: read action (advanced, create pull request when missing metdata)
+name: Create pull request when book is missing metdata
 run-name: Book (${{ inputs.bookIsbn }})
 
 # Grant the action permission to write to the repository
@@ -188,6 +206,8 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   "inputs": {
     "bookIsbn": "", // Required. The book's ISBN. Required.
     "notes": "", // Notes about the book. Optional.
+    "rating": "", // Rate the book. Optional. Default: `unrated`.
+    "tags": "", // Add tags to categorize the book. Separate each tag with a comma. Optional.
     "dateStarted": "", // Date you started the book (YYYY-MM-DD). Optional.
     "dateFinished": "", // Date you finished the book (YYYY-MM-DD). Optional.
   }
