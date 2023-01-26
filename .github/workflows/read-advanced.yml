@@ -1,4 +1,4 @@
-name: read action (advanced, create pull request when missing metdata)
+name: Create pull request when book is missing metdata
 run-name: Book (${{ inputs.bookIsbn }})
 
 # Grant the action permission to write to the repository
