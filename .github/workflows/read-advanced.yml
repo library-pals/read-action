@@ -1,4 +1,4 @@
-name: Create pull request when book is missing metdata
+name: When book is missing metadata, create a pull request
 run-name: Book (${{ inputs.bookIsbn }})
 
 # Grant the action permission to write to the repository
@@ -60,7 +60,7 @@ jobs:
         run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
 
       - name: Commit updated read file
-        if: env.BookNeedsReview != 'true' # Optional, remove this line if you do not add the next step.
+        if: env.BookNeedsReview != 'true' # Do not commit book if it needs review
         run: |
           git pull
           git config --local user.email "action@github.com"
@@ -68,7 +68,6 @@ jobs:
           git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})"
           git push
 
-      # OPTIONAL:
       # Create pull request instead of directly committing if book is missing metadata
       # Occasionally, some books returned from node-isbn may be missing a few properties.
       # Add this step to your workflow if you want the ability to fix the missing data by making the action open a new pull request.

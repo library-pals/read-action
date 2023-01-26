@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/read.yml"
       - ".github/workflows/read-advanced.yml"
+      - ".github/workflows/read-thumbnail.yml"
       - "action.yml"
       - "package.json"
       - "README.md"
