@@ -92,10 +92,10 @@ jobs:
  ### Additional example workflows
 
 <details>
-<summary>Create pull request when book is missing metdata</summary>
+<summary>When book is missing metadata, create a pull request</summary>
 
 ```yml
-name: Create pull request when book is missing metdata
+name: When book is missing metadata, create a pull request
 run-name: Book (${{ inputs.bookIsbn }})
 
 # Grant the action permission to write to the repository
@@ -157,7 +157,7 @@ jobs:
         run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
 
       - name: Commit updated read file
-        if: env.BookNeedsReview != 'true' # Optional, remove this line if you do not add the next step.
+        if: env.BookNeedsReview != 'true' # Do not commit book if it needs review
         run: |
           git pull
           git config --local user.email "action@github.com"
@@ -165,7 +165,6 @@ jobs:
           git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})"
           git push
 
-      # OPTIONAL:
       # Create pull request instead of directly committing if book is missing metadata
       # Occasionally, some books returned from node-isbn may be missing a few properties.
       # Add this step to your workflow if you want the ability to fix the missing data by making the action open a new pull request.
@@ -184,6 +183,82 @@ jobs:
           gh pr create -B main -H "review-book-${{env.BookIsbn}}" --fill
         env:
           GH_TOKEN: ${{ github.token }}
+```
+
+</details>
+
+<details>
+<summary>Download the book thumbnail</summary>
+
+```yml
+name: Download the book thumbnail
+run-name: Book (${{ inputs.bookIsbn }})
+
+# Grant the action permission to write to the repository
+permissions:
+  contents: write
+  pull-requests: write
+
+# Trigger the action
+on:
+  workflow_dispatch:
+    inputs:
+      bookIsbn:
+        description: The book's ISBN. Required.
+        required: true
+        type: string
+      notes:
+        description: Notes about the book. Optional.
+        type: string
+      # Adding a rating is optional.
+      # You can change the options to whatever you want to use.
+      # For example, you can use numbers, other emoji, or words.
+      rating:
+        description: Rate the book. Optional.
+        type: choice
+        default: "unrated"
+        options:
+          - "unrated"
+          - ⭐️
+          - ⭐️⭐️
+          - ⭐️⭐️⭐️
+          - ⭐️⭐️⭐️⭐️
+          - ⭐️⭐️⭐️⭐️⭐️
+      # Tags are optional.
+      tags:
+        description: Add tags to categorize the book. Separate each tag with a comma. Optional.
+        type: string
+      # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
+      dateStarted:
+        description: Date you started the book (YYYY-MM-DD). Optional.
+        type: string
+      dateFinished:
+        description: Date you finished the book (YYYY-MM-DD). Optional.
+        type: string
+
+# Set up the steps to run the action
+jobs:
+  update_library:
+    runs-on: macOS-latest
+    name: Read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Read
+        uses: katydecorah/read-action@v6.7.0
+
+      - name: Download the book thumbnail
+        if: env.BookThumbOutput != ''
+        run: curl "${{ env.BookThumb }}" -o "img/${{ env.BookThumbOutput }}"
+
+      - name: Commit updated read file
+        run: |
+          git pull
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})"
+          git push
 ```
 
 </details>
