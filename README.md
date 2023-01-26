@@ -23,7 +23,61 @@ If you mark a book as "want to read" you can update it to "started" by sending a
 To use this action, create a new workflow in `.github/workflows` and modify it as needed:
 
 ```yml
-name: Read
+name: read action
+run-name: Book (${{ inputs.bookIsbn }})
+
+# Grant the action permission to write to the repository
+permissions:
+  contents: write
+  pull-requests: write
+
+# Trigger the action
+on:
+  workflow_dispatch:
+    inputs:
+      bookIsbn:
+        description: The book's ISBN. Required.
+        required: true
+        type: string
+      notes:
+        description: Notes about the book. Optional.
+        type: string
+      # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
+      dateStarted:
+        description: Date you started the book (YYYY-MM-DD). Optional.
+        type: string
+      dateFinished:
+        description: Date you finished the book (YYYY-MM-DD). Optional.
+        type: string
+
+# Set up the steps to run the action
+jobs:
+  update_library:
+    runs-on: macOS-latest
+    name: Read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Read
+        uses: katydecorah/read-action@v6.7.0
+
+      - name: Commit updated read file
+        run: |
+          git pull
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A && git commit -m "📚 “${{ env.BookTitle }}” (${{ env.BookStatus }})"
+          git push
+```
+
+ ### Additional example workflows
+
+<details>
+<summary>read action (advanced, create pull request when missing metdata)</summary>
+
+```yml
+name: read action (advanced, create pull request when missing metdata)
 run-name: Book (${{ inputs.bookIsbn }})
 
 # Grant the action permission to write to the repository
@@ -114,6 +168,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 ```
 
+</details>
+
 
 ## Action options
 
@@ -132,8 +188,6 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   "inputs": {
     "bookIsbn": "", // Required. The book's ISBN. Required.
     "notes": "", // Notes about the book. Optional.
-    "rating": "", // Rate the book. Optional. Default: `unrated`.
-    "tags": "", // Add tags to categorize the book. Separate each tag with a comma. Optional.
     "dateStarted": "", // Date you started the book (YYYY-MM-DD). Optional.
     "dateFinished": "", // Date you finished the book (YYYY-MM-DD). Optional.
   }
