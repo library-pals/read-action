@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - ".github/workflows/read.yml"
+      - ".github/workflows/read-advanced.yml"
       - "action.yml"
       - "package.json"
       - "README.md"
