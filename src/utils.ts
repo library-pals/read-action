@@ -1,6 +1,6 @@
 import { BookParams, Dates } from ".";
 import { getInput } from "@actions/core";
-import { BookStatus } from "./clean-book";
+import { BookStatus, CleanBook } from "./clean-book";
 
 /** make sure date is in YYYY-MM-DD format */
 export function dateFormat(date: string) {
@@ -15,6 +15,17 @@ export function isDate(date: string) {
 /** make sure ISBN has 10 or 13 characters */
 export function isIsbn(isbn: string) {
   return isbn.length === 10 || isbn.length === 13;
+}
+
+/** sort array of objects by `dateFinished` */
+export function sortByDate(array: CleanBook[]): CleanBook[] {
+  return array.sort((a, b) => {
+    if (a.dateFinished && b.dateFinished) {
+      return (
+        new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf()
+      );
+    } else return 0;
+  });
 }
 
 /** remove wrapped quotes */

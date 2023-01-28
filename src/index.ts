@@ -3,7 +3,7 @@ import * as github from "@actions/github";
 import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
 import getBook from "./get-book";
-import { getBookStatus, getDates, toArray } from "./utils";
+import { getBookStatus, getDates, sortByDate, toArray } from "./utils";
 import { checkOutBook } from "./checkout-book";
 import { BookStatus } from "./clean-book";
 import { summaryMarkown } from "./summary";
@@ -86,6 +86,8 @@ export async function read() {
       exportVariable(`BookThumbOutput`, `book-${newBook.isbn}.png`);
       exportVariable(`BookThumb`, newBook.thumbnail);
     }
+
+    library = sortByDate(library);
 
     await returnWriteFile(fileName, library);
     await summary.addRaw(summaryMarkown(library, dateFinished)).write();
