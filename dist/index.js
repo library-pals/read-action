@@ -14560,7 +14560,7 @@ async function read() {
         await core.summary.addRaw(summaryMarkown(library, dateFinished)).write();
     }
     catch (error) {
-        (0,core.setFailed)(error.message);
+        (0,core.setFailed)(error);
     }
 }
 /* harmony default export */ const src = (read());

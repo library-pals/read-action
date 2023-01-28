@@ -507,7 +507,9 @@ describe("index", () => {
       throw new Error("test error");
     });
     await read();
-    expect(setFailedSpy).toHaveBeenCalledWith("test error");
+    expect(setFailedSpy.mock.calls[0][0]).toMatchInlineSnapshot(
+      `[Error: test error]`
+    );
   });
 
   test("tags", async () => {
