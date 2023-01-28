@@ -1,4 +1,7 @@
 import { CleanBook } from "./clean-book";
+import { BookParams, Dates } from ".";
+import { getInput } from "@actions/core";
+import { BookStatus } from "./clean-book";
 
 /** make sure date is in YYYY-MM-DD format */
 export function dateFormat(date: string) {
@@ -34,4 +37,47 @@ export function removeWrappedQuotes(str: string) {
   if (str.startsWith('"') && str.endsWith('"--')) {
     return `${str.substring(1, str.length - 3)}…`;
   } else return str;
+}
+
+function localDate() {
+  // "fr-ca" will result YYYY-MM-DD formatting
+  const dateFormat = new Intl.DateTimeFormat("fr-ca", {
+    dateStyle: "short",
+    timeZone: getInput("timeZone"),
+  });
+  return dateFormat.format(new Date());
+}
+
+export function getBookStatus(
+  dateStarted: Dates["dateStarted"],
+  dateFinished: Dates["dateFinished"]
+): BookStatus {
+  // Set book status
+  if (dateStarted && !dateFinished) return "started";
+  if (dateFinished) return "finished";
+  return "want to read";
+}
+
+export function getDates(
+  bookStatus: BookStatus,
+  dateStarted: Dates["dateStarted"],
+  dateFinished: Dates["dateFinished"]
+): {
+  dateAdded: string | undefined;
+  dateStarted: string | undefined;
+  dateFinished: string | undefined;
+} {
+  return {
+    dateAdded: bookStatus === "want to read" ? localDate() : undefined,
+    dateStarted: dateStarted || undefined,
+    dateFinished: dateFinished || undefined,
+  };
+}
+
+export function toArray(tags: string): BookParams["tags"] {
+  return tags.split(",").map((f) => f.trim());
+}
+
+export function capitalize(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }

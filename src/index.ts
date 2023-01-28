@@ -3,12 +3,13 @@ import * as github from "@actions/github";
 import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
 import getBook from "./get-book";
-import { isDate } from "./utils";
+import { getBookStatus, getDates, toArray, capitalize } from "./utils";
 import { checkOutBook } from "./checkout-book";
 import { BookStatus } from "./clean-book";
 import yearReviewSummary from "./summary";
 import returnReadFile from "./read-file";
 import { updateBook } from "./update-book";
+import { validatePayload } from "./validate-payload";
 
 export type Dates = {
   dateAdded: string | undefined;
@@ -107,59 +108,3 @@ ${
 }
 
 export default read();
-
-function localDate() {
-  // "fr-ca" will result YYYY-MM-DD formatting
-  const dateFormat = new Intl.DateTimeFormat("fr-ca", {
-    dateStyle: "short",
-    timeZone: getInput("timeZone"),
-  });
-  return dateFormat.format(new Date());
-}
-
-function getBookStatus(
-  dateStarted: Dates["dateStarted"],
-  dateFinished: Dates["dateFinished"]
-): BookStatus {
-  // Set book status
-  if (dateStarted && !dateFinished) return "started";
-  if (dateFinished) return "finished";
-  return "want to read";
-}
-
-function getDates(
-  bookStatus: BookStatus,
-  dateStarted: Dates["dateStarted"],
-  dateFinished: Dates["dateFinished"]
-): {
-  dateAdded: string | undefined;
-  dateStarted: string | undefined;
-  dateFinished: string | undefined;
-} {
-  return {
-    dateAdded: bookStatus === "want to read" ? localDate() : undefined,
-    dateStarted: dateStarted || undefined,
-    dateFinished: dateFinished || undefined,
-  };
-}
-
-function validatePayload(payload: BookPayload): void {
-  if (!payload) return setFailed("Missing `inputs`");
-  if (!payload.bookIsbn) return setFailed("Missing `bookIsbn` in payload");
-  if (payload.dateFinished && !isDate(payload.dateFinished))
-    return setFailed(
-      `Invalid \`dateFinished\` in payload: ${payload.dateFinished}`
-    );
-  if (payload.dateStarted && !isDate(payload.dateStarted))
-    return setFailed(
-      `Invalid \`dateStarted\` in payload: ${payload.dateStarted}`
-    );
-}
-
-function toArray(tags: string): BookParams["tags"] {
-  return tags.split(",").map((f) => f.trim());
-}
-
-function capitalize(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
