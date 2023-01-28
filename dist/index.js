@@ -14283,6 +14283,17 @@ function mTags({ tags }) {
 
 ;// CONCATENATED MODULE: ./src/summary.ts
 
+
+function summaryMarkown(library, dateFinished) {
+    const { BookStatus, BookTitle } = process.env;
+    return `# Updated library
+
+${capitalize(`${BookStatus}`)}: “${BookTitle}”
+${BookStatus === "finished" && dateFinished
+        ? yearReviewSummary(library, dateFinished.slice(0, 4))
+        : ""}
+`;
+}
 function yearReviewSummary(books, year) {
     const obj = yearReview(books, year);
     if (obj === undefined)
@@ -14546,14 +14557,7 @@ async function read() {
             (0,core.exportVariable)(`BookThumb`, newBook.thumbnail);
         }
         await returnWriteFile(fileName, library);
-        await core.summary.addRaw(`# Updated library
-
-${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”
-${process.env.BookStatus === "finished" && dateFinished
-            ? yearReviewSummary(library, dateFinished.slice(0, 4))
-            : ""}
-`)
-            .write();
+        await core.summary.addRaw(summaryMarkown(library, dateFinished)).write();
     }
     catch (error) {
         (0,core.setFailed)(error.message);

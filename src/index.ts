@@ -6,7 +6,7 @@ import getBook from "./get-book";
 import { getBookStatus, getDates, toArray, capitalize } from "./utils";
 import { checkOutBook } from "./checkout-book";
 import { BookStatus } from "./clean-book";
-import yearReviewSummary from "./summary";
+import { summaryMarkown } from "./summary";
 import returnReadFile from "./read-file";
 import { updateBook } from "./update-book";
 import { validatePayload } from "./validate-payload";
@@ -88,20 +88,7 @@ export async function read() {
     }
 
     await returnWriteFile(fileName, library);
-
-    await summary
-      .addRaw(
-        `# Updated library
-
-${capitalize(`${process.env.BookStatus}`)}: “${process.env.BookTitle}”
-${
-  process.env.BookStatus === "finished" && dateFinished
-    ? yearReviewSummary(library, dateFinished.slice(0, 4))
-    : ""
-}
-`
-      )
-      .write();
+    await summary.addRaw(summaryMarkown(library, dateFinished)).write();
   } catch (error) {
     setFailed(error.message);
   }
