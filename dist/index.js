@@ -14078,16 +14078,6 @@ function isDate(date) {
 function isIsbn(isbn) {
     return isbn.length === 10 || isbn.length === 13;
 }
-/** sort array of objects by `dateFinished` */
-function sortByDate(array) {
-    return array.sort((a, b) => {
-        if (a.dateFinished && b.dateFinished) {
-            return (new Date(a.dateFinished).valueOf() - new Date(b.dateFinished).valueOf());
-        }
-        else
-            return 0;
-    });
-}
 /** remove wrapped quotes */
 function removeWrappedQuotes(str) {
     if (str.startsWith('"') && str.endsWith('"')) {

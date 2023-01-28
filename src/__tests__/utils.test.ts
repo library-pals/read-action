@@ -1,4 +1,4 @@
-import { removeWrappedQuotes, isIsbn, sortByDate, isDate } from "../utils";
+import { removeWrappedQuotes, isIsbn, isDate } from "../utils";
 
 jest.mock("@actions/core");
 
@@ -23,18 +23,4 @@ it("isDate", () => {
   expect(isDate("abcde")).toEqual(false);
   expect(isDate("2020-09-12")).toEqual(true);
   expect(isDate("2020")).toEqual(false);
-});
-
-it("sortByDate", () => {
-  expect(
-    sortByDate([
-      { dateFinished: "2020-01-01" },
-      { dateFinished: "1900-01-01" },
-      { dateFinished: "2020-11-01" },
-    ])
-  ).toEqual([
-    { dateFinished: "1900-01-01" },
-    { dateFinished: "2020-01-01" },
-    { dateFinished: "2020-11-01" },
-  ]);
 });
