@@ -76,10 +76,6 @@ describe("index", () => {
           "started",
         ],
         [
-          "BookTitle",
-          "Luster",
-        ],
-        [
           "BookNeedsReview",
           true,
         ],
@@ -90,6 +86,10 @@ describe("index", () => {
         [
           "BookIsbn",
           "9780385696005",
+        ],
+        [
+          "BookTitle",
+          "Luster",
         ],
         [
           "BookThumbOutput",
@@ -393,10 +393,6 @@ describe("index", () => {
           "want to read",
         ],
         [
-          "BookTitle",
-          "Luster",
-        ],
-        [
           "BookNeedsReview",
           true,
         ],
@@ -407,6 +403,10 @@ describe("index", () => {
         [
           "BookIsbn",
           "9780385696005",
+        ],
+        [
+          "BookTitle",
+          "Luster",
         ],
         [
           "BookThumbOutput",

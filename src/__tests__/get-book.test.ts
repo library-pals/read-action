@@ -1,5 +1,4 @@
 import getBook from "../get-book";
-import { exportVariable } from "@actions/core";
 import { promises, readFileSync } from "fs";
 import book from "./fixture.json";
 import isbn from "node-isbn";
@@ -26,34 +25,6 @@ describe("getBook", () => {
   test("works", async () => {
     jest.spyOn(isbn, "resolve").mockResolvedValueOnce(book);
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
-    await getBook({
-      dates: {
-        dateAdded: undefined,
-        dateStarted: undefined,
-        dateFinished,
-      },
-      bookIsbn: "9780525658184",
-      providers: ["google"],
-      bookStatus: "finished",
-      fileName: "_data/read.yml",
-    });
-    expect(exportVariable.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "BookTitle",
-          "Transcendent Kingdom",
-        ],
-        [
-          "BookThumbOutput",
-          "book-9780525658184.png",
-        ],
-        [
-          "BookThumb",
-          "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-        ],
-      ]
-    `);
-    jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     expect(
       await getBook({
         dates: {
@@ -66,7 +37,29 @@ describe("getBook", () => {
         bookStatus: "finished",
         fileName: "_data/read.yml",
       })
-    ).toMatchSnapshot();
+    ).toMatchInlineSnapshot(`
+      {
+        "authors": [
+          "Yaa Gyasi",
+        ],
+        "categories": [
+          "Fiction",
+        ],
+        "dateAdded": undefined,
+        "dateFinished": "2020-09-12",
+        "dateStarted": undefined,
+        "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
+        "isbn": "9780525658184",
+        "language": "en",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "pageCount": 288,
+        "printType": "BOOK",
+        "publishedDate": "2020",
+        "status": "finished",
+        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "title": "Transcendent Kingdom",
+      }
+    `);
   });
   test("fails", async () => {
     jest

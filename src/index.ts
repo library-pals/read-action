@@ -7,6 +7,8 @@ import { isDate } from "./utils";
 import { checkOutBook } from "./checkout-book";
 import { BookStatus } from "./clean-book";
 import yearReviewSummary from "./summary";
+import returnReadFile from "./read-file";
+import { updateBook } from "./update-book";
 
 export type Dates = {
   dateAdded: string | undefined;
@@ -58,21 +60,31 @@ export async function read() {
     const bookStatus = getBookStatus(dateStarted, dateFinished);
     exportVariable("BookStatus", bookStatus);
     const dates = getDates(bookStatus, dateStarted, dateFinished);
+
+    let library = await returnReadFile(fileName);
+
     const bookParams: BookParams = {
       fileName,
-      bookIsbn,
       dates,
       notes,
+      bookIsbn,
       bookStatus,
       rating,
       providers,
       ...(tags && { tags: toArray(tags) }),
     };
 
-    // Check if book already exists in library
-    const bookExists = await checkOutBook(bookParams);
-    const library =
-      bookExists == false ? await getBook(bookParams) : bookExists;
+    const bookExists = checkOutBook(bookParams, library);
+
+    if (bookExists) {
+      library = await updateBook(bookParams, library);
+    } else {
+      const newBook = await getBook(bookParams);
+      library.push(newBook);
+      exportVariable(`BookTitle`, newBook.title);
+      exportVariable(`BookThumbOutput`, `book-${newBook.isbn}.png`);
+      exportVariable(`BookThumb`, newBook.thumbnail);
+    }
 
     await returnWriteFile(fileName, library);
 

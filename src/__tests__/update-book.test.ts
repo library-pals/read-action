@@ -1,9 +1,8 @@
-import { checkOutBook } from "../checkout-book";
-import { promises } from "fs";
+import { updateBook } from "../update-book";
 
 jest.mock("@actions/core");
 
-const mockReadFile = JSON.stringify([
+const library = [
   {
     isbn: "9780374719760",
     dateStarted: "2020-11-20",
@@ -16,23 +15,24 @@ const mockReadFile = JSON.stringify([
     title: "Mexican Gothic",
     notes: "Recommended by my sister.",
   },
-]);
+];
 
-describe("checkOutBook", () => {
+describe("updateBook", () => {
   it("works", async () => {
-    jest.spyOn(promises, "readFile").mockResolvedValue(mockReadFile);
     return expect(
-      checkOutBook({
-        fileName: "my-library.yml",
-        bookIsbn: "9780525620792",
-        dates: {
-          dateAdded: undefined,
-          dateStarted: undefined,
-          dateFinished: "2022-02-02",
+      updateBook(
+        {
+          fileName: "my-library.yml",
+          bookIsbn: "9780525620792",
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished: "2022-02-02",
+          },
+          bookStatus: "finished",
         },
-
-        bookStatus: "finished",
-      })
+        library
+      )
     ).resolves.toMatchInlineSnapshot(`
               [
                 {
@@ -55,29 +55,29 @@ describe("checkOutBook", () => {
   });
 
   it("works, notes", async () => {
-    jest.spyOn(promises, "readFile").mockResolvedValue(
-      JSON.stringify([
-        {
-          isbn: "9780525620792",
-          dateStarted: "2021-09-26",
-          title: "Mexican Gothic",
-          tags: ["recommend"],
-        },
-      ])
-    );
+    const library = [
+      {
+        isbn: "9780525620792",
+        dateStarted: "2021-09-26",
+        title: "Mexican Gothic",
+        tags: ["recommend"],
+      },
+    ];
     return expect(
-      checkOutBook({
-        fileName: "my-library.yml",
-        bookIsbn: "9780525620792",
-        dates: {
-          dateAdded: undefined,
-          dateStarted: undefined,
-          dateFinished: "2022-02-02",
+      updateBook(
+        {
+          fileName: "my-library.yml",
+          bookIsbn: "9780525620792",
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished: "2022-02-02",
+          },
+          notes: "Great read",
+          bookStatus: "finished",
         },
-
-        notes: "Great read",
-        bookStatus: "finished",
-      })
+        library
+      )
     ).resolves.toMatchInlineSnapshot(`
               [
                 {
@@ -97,21 +97,22 @@ describe("checkOutBook", () => {
   });
 
   it("works, append notes", async () => {
-    jest.spyOn(promises, "readFile").mockResolvedValue(mockReadFile);
     return expect(
-      checkOutBook({
-        fileName: "my-library.yml",
-        bookIsbn: "9780525620792",
-        tags: [""],
-        dates: {
-          dateAdded: undefined,
-          dateStarted: undefined,
-          dateFinished: "2022-02-02",
+      updateBook(
+        {
+          fileName: "my-library.yml",
+          bookIsbn: "9780525620792",
+          tags: [""],
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished: "2022-02-02",
+          },
+          notes: "Great read",
+          bookStatus: "finished",
         },
-
-        notes: "Great read",
-        bookStatus: "finished",
-      })
+        library
+      )
     ).resolves.toMatchInlineSnapshot(`
               [
                 {
@@ -139,34 +140,54 @@ describe("checkOutBook", () => {
   });
 
   it("does not find book", async () => {
-    jest.spyOn(promises, "readFile").mockResolvedValue(mockReadFile);
     return expect(
-      checkOutBook({
-        fileName: "my-library.yml",
-        bookIsbn: "12345",
-        dates: {
-          dateAdded: undefined,
-          dateStarted: undefined,
-          dateFinished: "2022-02-02",
+      updateBook(
+        {
+          fileName: "my-library.yml",
+          bookIsbn: "12345",
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished: "2022-02-02",
+          },
+          bookStatus: "finished",
         },
-        bookStatus: "finished",
-      })
-    ).resolves.toBe(false);
+        library
+      )
+    ).resolves.toMatchInlineSnapshot(`
+              [
+                {
+                  "dateFinished": "2020-11-22",
+                  "dateStarted": "2020-11-20",
+                  "isbn": "9780374719760",
+                  "title": "Uncanny Valley",
+                },
+                {
+                  "dateStarted": "2021-09-26",
+                  "isbn": "9780525620792",
+                  "notes": "Recommended by my sister.",
+                  "title": "Mexican Gothic",
+                },
+              ]
+            `);
   });
 
   it("no library", async () => {
-    jest.spyOn(promises, "readFile").mockResolvedValue(`[]`);
+    const library = [];
     return expect(
-      checkOutBook({
-        fileName: "my-library.yml",
-        bookIsbn: "12345",
-        dates: {
-          dateAdded: undefined,
-          dateStarted: undefined,
-          dateFinished: "2022-02-02",
+      updateBook(
+        {
+          fileName: "my-library.yml",
+          bookIsbn: "12345",
+          dates: {
+            dateAdded: undefined,
+            dateStarted: undefined,
+            dateFinished: "2022-02-02",
+          },
+          bookStatus: "finished",
         },
-        bookStatus: "finished",
-      })
-    ).resolves.toBe(false);
+        library
+      )
+    ).resolves.toMatchInlineSnapshot(`[]`);
   });
 });

@@ -1,8 +1,6 @@
-import { exportVariable } from "@actions/core";
 import isbn from "node-isbn";
 import { BookParams } from ".";
-import addBook from "./add-book";
-import { CleanBook } from "./clean-book";
+import cleanBook, { CleanBook } from "./clean-book";
 
 export type Book = {
   title: string;
@@ -40,17 +38,14 @@ export type Book = {
   canonicalVolumeLink: string;
 };
 
-export default async function getBook(
-  options: BookParams
-): Promise<CleanBook[]> {
-  const { bookIsbn, providers, fileName } = options;
-  const book: Book = await isbn
+export default async function getBook(options: BookParams): Promise<CleanBook> {
+  const { bookIsbn, providers } = options;
+  const book = await isbn
     .provider(providers)
     .resolve(bookIsbn)
     .catch((error: Error) => {
       throw new Error(`Book (${bookIsbn}) not found. ${error.message}`);
     });
-  exportVariable("BookTitle", book.title);
-  const books = (await addBook(options, book, fileName)) as CleanBook[];
-  return books;
+  const newBook: CleanBook = cleanBook(options, book);
+  return newBook;
 }
