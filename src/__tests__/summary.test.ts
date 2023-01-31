@@ -1,4 +1,4 @@
-import yearReviewSummary, { yearReview } from "../summary";
+import { yearReviewSummary, yearReview } from "../summary";
 import books from "../../_data/read.json";
 import booksLots from "./library/lots.json";
 import booksNoPageCount from "./library/no-page-count.json";

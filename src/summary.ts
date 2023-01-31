@@ -1,3 +1,4 @@
+import { BookPayload } from ".";
 import { CleanBook } from "./clean-book";
 import {
   mAverageDays,
@@ -8,8 +9,25 @@ import {
   mTopAuthors,
   mTags,
 } from "./summary-markdown";
+import { capitalize } from "./utils";
 
-export default function yearReviewSummary(books: CleanBook[], year: string) {
+export function summaryMarkown(
+  library: CleanBook[],
+  dateFinished: BookPayload["dateFinished"]
+): string {
+  const { BookStatus, BookTitle } = process.env;
+  return `# Updated library
+
+${capitalize(`${BookStatus}`)}: “${BookTitle}”
+${
+  BookStatus === "finished" && dateFinished
+    ? yearReviewSummary(library, dateFinished.slice(0, 4))
+    : ""
+}
+`;
+}
+
+export function yearReviewSummary(books: CleanBook[], year: string) {
   const obj = yearReview(books, year);
   if (obj === undefined) return undefined;
   const summary = [
