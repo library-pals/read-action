@@ -14537,9 +14537,9 @@ async function read() {
         let library = await returnReadFile(fileName);
         const bookParams = {
             fileName,
+            bookIsbn,
             dates,
             notes,
-            bookIsbn,
             bookStatus,
             rating,
             providers,

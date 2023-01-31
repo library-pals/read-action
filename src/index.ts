@@ -66,9 +66,9 @@ export async function read() {
 
     const bookParams: BookParams = {
       fileName,
+      bookIsbn,
       dates,
       notes,
-      bookIsbn,
       bookStatus,
       rating,
       providers,
