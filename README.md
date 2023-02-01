@@ -29,7 +29,6 @@ run-name: Book (${{ inputs.bookIsbn }})
 # Grant the action permission to write to the repository
 permissions:
   contents: write
-  pull-requests: write
 
 # Trigger the action
 on:
@@ -197,7 +196,6 @@ run-name: Book (${{ inputs.bookIsbn }})
 # Grant the action permission to write to the repository
 permissions:
   contents: write
-  pull-requests: write
 
 # Trigger the action
 on:
