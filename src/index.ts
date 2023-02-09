@@ -27,10 +27,10 @@ export type BookPayload = {
 };
 
 export type ActionInputs = {
-  readFileName: string;
+  filename: string;
   providers: string[];
   rating?: string;
-  timeZone: string;
+  "time-zone": string;
 };
 
 export type BookParams = {
@@ -53,7 +53,7 @@ export async function read() {
     const { bookIsbn, dateFinished, dateStarted, notes, rating, tags } =
       payload;
     // Set inputs
-    const fileName: ActionInputs["readFileName"] = getInput("readFileName");
+    const fileName: ActionInputs["filename"] = getInput("filename");
     const providers: ActionInputs["providers"] = getInput("providers")
       ? getInput("providers").split(",")
       : isbn._providers;

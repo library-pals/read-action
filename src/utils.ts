@@ -42,7 +42,7 @@ function localDate() {
   // "fr-ca" will result YYYY-MM-DD formatting
   const dateFormat = new Intl.DateTimeFormat("fr-ca", {
     dateStyle: "short",
-    timeZone: getInput("timeZone"),
+    timeZone: getInput("time-zone"),
   });
   return dateFormat.format(new Date());
 }

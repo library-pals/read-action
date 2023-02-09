@@ -10,9 +10,9 @@ const dateFinished = "2020-09-12";
 jest.mock("@actions/core");
 
 const defaultOptions = {
-  readFileName: "_data/read.yml",
-  requiredMetadata: "title,pageCount,authors,description",
-  timeZone: "America/New_York",
+  filename: "_data/read.yml",
+  "required-metadata": "title,pageCount,authors,description",
+  "time-zone": "America/New_York",
 };
 
 describe("getBook", () => {

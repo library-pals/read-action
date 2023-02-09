@@ -14103,7 +14103,7 @@ function localDate() {
     // "fr-ca" will result YYYY-MM-DD formatting
     const dateFormat = new Intl.DateTimeFormat("fr-ca", {
         dateStyle: "short",
-        timeZone: (0,core.getInput)("timeZone"),
+        timeZone: (0,core.getInput)("time-zone"),
     });
     return dateFormat.format(new Date());
 }
@@ -14166,7 +14166,7 @@ function cleanBook(options, book) {
 }
 function checkMetadata(book, bookIsbn) {
     const missingMetadata = [];
-    const requiredMetadata = (0,core.getInput)("requiredMetadata")
+    const requiredMetadata = (0,core.getInput)("required-metadata")
         .split(",")
         .map((s) => s.trim());
     if (!book.title && requiredMetadata.includes("title")) {
@@ -14527,7 +14527,7 @@ async function read() {
         validatePayload(payload);
         const { bookIsbn, dateFinished, dateStarted, notes, rating, tags } = payload;
         // Set inputs
-        const fileName = (0,core.getInput)("readFileName");
+        const fileName = (0,core.getInput)("filename");
         const providers = (0,core.getInput)("providers")
             ? (0,core.getInput)("providers").split(",")
             : (node_isbn_default())._providers;
