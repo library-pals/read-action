@@ -69,7 +69,7 @@ on:
 
 # Set up the steps to run the action
 jobs:
-  update_library:
+  update-library:
     runs-on: macOS-latest
     name: Read
     steps:
@@ -141,7 +141,7 @@ on:
 
 # Set up the steps to run the action
 jobs:
-  update_library:
+  update-library:
     runs-on: macOS-latest
     name: Read
     steps:
@@ -236,7 +236,7 @@ on:
 
 # Set up the steps to run the action
 jobs:
-  update_library:
+  update-library:
     runs-on: macOS-latest
     name: Read
     steps:
