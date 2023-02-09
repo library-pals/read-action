@@ -72,7 +72,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
 
 function checkMetadata(book: Book, bookIsbn: string) {
   const missingMetadata: string[] = [];
-  const requiredMetadata = getInput("requiredMetadata")
+  const requiredMetadata = getInput("required-metadata")
     .split(",")
     .map((s) => s.trim());
   if (!book.title && requiredMetadata.includes("title")) {

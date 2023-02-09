@@ -8,7 +8,7 @@ branding:
   icon: book
   color: yellow
 inputs:
-  readFileName:
+  filename:
     description: The file where you want to save your books.
     default: _data/read.json
   providers:
@@ -17,9 +17,9 @@ inputs:
       providers](https://github.com/palmerabollo/node-isbn#setting-backend-providers)
       that you want to use, in the order you need them to be invoked. If setting
       more than one provider, separate each with a comma.
-  timeZone:
-    description: Your timezone.
+  time-zone:
+    description: Your time zone.
     default: America/New_York
-  requiredMetadata:
+  required-metadata:
     description: Required metadata properties. This can be used to make the action open a pull request if one of these values is missing data in the desired book instead of committing directly to a repository.
     default: title,pageCount,authors,description

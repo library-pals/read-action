@@ -5,9 +5,9 @@ import * as core from "@actions/core";
 const dateFinished = "2020-09-12";
 
 const defaultOptions = {
-  readFileName: "my-library.json",
-  requiredMetadata: "title,pageCount,authors,description",
-  timeZone: "America/New_York",
+  filename: "my-library.json",
+  "required-metadata": "title,pageCount,authors,description",
+  "time-zone": "America/New_York",
 };
 
 describe("cleanBook", () => {
@@ -362,7 +362,7 @@ describe("cleanBook", () => {
     jest
       .spyOn(core, "getInput")
       .mockImplementation((v) =>
-        v === "requiredMetadata" ? "" : defaultOptions[v] || undefined
+        v === "required-metadata" ? "" : defaultOptions[v] || undefined
       );
     cleanBook(
       {

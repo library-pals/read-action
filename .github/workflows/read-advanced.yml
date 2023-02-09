@@ -45,7 +45,7 @@ on:
 
 # Set up the steps to run the action
 jobs:
-  update_library:
+  update-library:
     runs-on: macOS-latest
     name: Read
     steps:
@@ -71,7 +71,7 @@ jobs:
       # Create pull request instead of directly committing if book is missing metadata
       # Occasionally, some books returned from node-isbn may be missing a few properties.
       # Add this step to your workflow if you want the ability to fix the missing data by making the action open a new pull request.
-      # You can customize the properties that will trigger a pull request with the `requiredMetadata` input.
+      # You can customize the properties that will trigger a pull request with the `required-metadata` input.
       - name: If book needs review, create a pull request to review book metadata
         if: env.BookNeedsReview == 'true'
         run: |
