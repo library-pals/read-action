@@ -18,10 +18,10 @@ export type Dates = {
 };
 
 export type BookPayload = {
-  dateStarted: string | undefined;
-  dateFinished: string | undefined;
+  "date-started": string | undefined;
+  "date-finished": string | undefined;
   notes?: string;
-  bookIsbn: string;
+  isbn: string;
   rating?: string;
   tags?: string;
 };
@@ -34,8 +34,8 @@ export type ActionInputs = {
 };
 
 export type BookParams = {
-  fileName: string;
-  bookIsbn: BookPayload["bookIsbn"];
+  filename: string;
+  bookIsbn: BookPayload["isbn"];
   dates: Dates;
   notes?: BookPayload["notes"];
   bookStatus: BookStatus;
@@ -50,10 +50,16 @@ export async function read() {
     const payload = github.context.payload.inputs as BookPayload;
     // Validate payload
     validatePayload(payload);
-    const { bookIsbn, dateFinished, dateStarted, notes, rating, tags } =
-      payload;
+    const {
+      isbn: bookIsbn,
+      "date-finished": dateFinished,
+      "date-started": dateStarted,
+      notes,
+      rating,
+      tags,
+    } = payload;
     // Set inputs
-    const fileName: ActionInputs["filename"] = getInput("filename");
+    const filename: ActionInputs["filename"] = getInput("filename");
     const providers: ActionInputs["providers"] = getInput("providers")
       ? getInput("providers").split(",")
       : isbn._providers;
@@ -62,10 +68,10 @@ export async function read() {
     exportVariable("BookStatus", bookStatus);
     const dates = getDates(bookStatus, dateStarted, dateFinished);
 
-    let library = await returnReadFile(fileName);
+    let library = await returnReadFile(filename);
 
     const bookParams: BookParams = {
-      fileName,
+      filename,
       bookIsbn,
       dates,
       notes,
@@ -89,7 +95,7 @@ export async function read() {
 
     library = sortByDate(library);
 
-    await returnWriteFile(fileName, library);
+    await returnWriteFile(filename, library);
     await summary.addRaw(summaryMarkown(library, dateFinished)).write();
   } catch (error) {
     setFailed(error);

@@ -10,7 +10,7 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      bookIsbn:
+      isbn:
         description: The book's ISBN. Required.
         required: true
         type: string
@@ -35,11 +35,11 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
         type: string
-      # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
-      dateStarted:
+      # If you do not submit date-started or date-finished, the book status will be set to "want to read"
+      date-started:
         description: Date you started the book (YYYY-MM-DD). Optional.
         type: string
-      dateFinished:
+      date-finished:
         description: Date you finished the book (YYYY-MM-DD). Optional.
         type: string
 

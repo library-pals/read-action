@@ -34,7 +34,7 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      bookIsbn:
+      isbn:
         description: The book's ISBN. Required.
         required: true
         type: string
@@ -59,11 +59,11 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
         type: string
-      # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
-      dateStarted:
+      # If you do not submit date-started or date-finished, the book status will be set to "want to read"
+      date-started:
         description: Date you started the book (YYYY-MM-DD). Optional.
         type: string
-      dateFinished:
+      date-finished:
         description: Date you finished the book (YYYY-MM-DD). Optional.
         type: string
 
@@ -106,7 +106,7 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      bookIsbn:
+      isbn:
         description: The book's ISBN. Required.
         required: true
         type: string
@@ -131,11 +131,11 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
         type: string
-      # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
-      dateStarted:
+      # If you do not submit date-started or date-finished, the book status will be set to "want to read"
+      date-started:
         description: Date you started the book (YYYY-MM-DD). Optional.
         type: string
-      dateFinished:
+      date-finished:
         description: Date you finished the book (YYYY-MM-DD). Optional.
         type: string
 
@@ -201,7 +201,7 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      bookIsbn:
+      isbn:
         description: The book's ISBN. Required.
         required: true
         type: string
@@ -226,11 +226,11 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
         type: string
-      # If you do not submit dateStarted or dateFinished, the book status will be set to "want to read"
-      dateStarted:
+      # If you do not submit date-started or date-finished, the book status will be set to "want to read"
+      date-started:
         description: Date you started the book (YYYY-MM-DD). Optional.
         type: string
-      dateFinished:
+      date-finished:
         description: Date you finished the book (YYYY-MM-DD). Optional.
         type: string
 
@@ -280,12 +280,12 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
 { 
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
-    "bookIsbn": "", // Required. The book's ISBN. Required.
+    "isbn": "", // Required. The book's ISBN. Required.
     "notes": "", // Notes about the book. Optional.
     "rating": "", // Rate the book. Optional. Default: `unrated`.
     "tags": "", // Add tags to categorize the book. Separate each tag with a comma. Optional.
-    "dateStarted": "", // Date you started the book (YYYY-MM-DD). Optional.
-    "dateFinished": "", // Date you finished the book (YYYY-MM-DD). Optional.
+    "date-started": "", // Date you started the book (YYYY-MM-DD). Optional.
+    "date-finished": "", // Date you finished the book (YYYY-MM-DD). Optional.
   }
 }
 ```

@@ -46,7 +46,7 @@ describe("workflow", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780385696005",
+            isbn: "9780385696005",
           },
         },
       },
@@ -120,8 +120,8 @@ describe("workflow", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780385696005",
-            dateStarted: "2022-10-02",
+            isbn: "9780385696005",
+            "date-started": "2022-10-02",
           },
         },
       },
@@ -193,8 +193,8 @@ describe("workflow", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780385696005",
-            dateFinished: "2022-10-03",
+            isbn: "9780385696005",
+            "date-finished": "2022-10-03",
             rating: "⭐️⭐️⭐️⭐️⭐️",
           },
         },

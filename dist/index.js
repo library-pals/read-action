@@ -14499,12 +14499,12 @@ function addNotes(notes, bookNotes) {
 function validatePayload(payload) {
     if (!payload)
         return (0,core.setFailed)("Missing `inputs`");
-    if (!payload.bookIsbn)
+    if (!payload["isbn"])
         return (0,core.setFailed)("Missing `bookIsbn` in payload");
-    if (payload.dateFinished && !isDate(payload.dateFinished))
-        return (0,core.setFailed)(`Invalid \`dateFinished\` in payload: ${payload.dateFinished}`);
-    if (payload.dateStarted && !isDate(payload.dateStarted))
-        return (0,core.setFailed)(`Invalid \`dateStarted\` in payload: ${payload.dateStarted}`);
+    if (payload["date-finished"] && !isDate(payload["date-finished"]))
+        return (0,core.setFailed)(`Invalid \`dateFinished\` in payload: ${payload["date-finished"]}`);
+    if (payload["date-started"] && !isDate(payload["date-started"]))
+        return (0,core.setFailed)(`Invalid \`dateStarted\` in payload: ${payload["date-started"]}`);
 }
 
 ;// CONCATENATED MODULE: ./src/index.ts
@@ -14525,18 +14525,18 @@ async function read() {
         const payload = github.context.payload.inputs;
         // Validate payload
         validatePayload(payload);
-        const { bookIsbn, dateFinished, dateStarted, notes, rating, tags } = payload;
+        const { isbn: bookIsbn, "date-finished": dateFinished, "date-started": dateStarted, notes, rating, tags, } = payload;
         // Set inputs
-        const fileName = (0,core.getInput)("filename");
+        const filename = (0,core.getInput)("filename");
         const providers = (0,core.getInput)("providers")
             ? (0,core.getInput)("providers").split(",")
             : (node_isbn_default())._providers;
         const bookStatus = getBookStatus(dateStarted, dateFinished);
         (0,core.exportVariable)("BookStatus", bookStatus);
         const dates = getDates(bookStatus, dateStarted, dateFinished);
-        let library = await returnReadFile(fileName);
+        let library = await returnReadFile(filename);
         const bookParams = {
-            fileName,
+            filename,
             bookIsbn,
             dates,
             notes,
@@ -14557,7 +14557,7 @@ async function read() {
             (0,core.exportVariable)(`BookThumb`, newBook.thumbnail);
         }
         library = sortByDate(library);
-        await returnWriteFile(fileName, library);
+        await returnWriteFile(filename, library);
         await core.summary.addRaw(summaryMarkown(library, dateFinished)).write();
     }
     catch (error) {

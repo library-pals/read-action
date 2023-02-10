@@ -62,8 +62,8 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780385696005",
-            dateStarted: "2022-01-02",
+            isbn: "9780385696005",
+            "date-started": "2022-01-02",
           },
         },
       },
@@ -155,8 +155,8 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780525620792",
-            dateFinished: "2021-09-30",
+            isbn: "9780525620792",
+            "date-finished": "2021-09-30",
           },
         },
       },
@@ -211,8 +211,8 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780525511342",
-            dateFinished: "2022-08-02",
+            isbn: "9780525511342",
+            "date-finished": "2022-08-02",
           },
         },
       },
@@ -294,9 +294,9 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780525511342",
-            dateStarted: "2022-08-01",
-            dateFinished: "2022-08-02",
+            isbn: "9780525511342",
+            "date-started": "2022-08-01",
+            "date-finished": "2022-08-02",
           },
         },
       },
@@ -380,7 +380,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780385696005",
+            isbn: "9780385696005",
           },
         },
       },
@@ -483,7 +483,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            dateFinished: "2021-09-26",
+            "date-finished": "2021-09-26",
           },
         },
       },
@@ -498,7 +498,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780385696005",
+            isbn: "9780385696005",
           },
         },
       },
@@ -517,7 +517,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780385696005",
+            isbn: "9780385696005",
             tags: "new, recommend",
           },
         },
@@ -581,8 +581,8 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780385696005",
-            dateFinished: "2022-02-02",
+            isbn: "9780385696005",
+            "date-finished": "2022-02-02",
           },
         },
       },
@@ -597,8 +597,8 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780385696005",
-            dateFinished: "1234",
+            isbn: "9780385696005",
+            "date-finished": "1234",
           },
         },
       },
@@ -615,8 +615,8 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            bookIsbn: "9780385696005",
-            dateStarted: "1234",
+            isbn: "9780385696005",
+            "date-started": "1234",
           },
         },
       },
