@@ -19,12 +19,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Documentation action
-        uses: katydecorah/documentation-action@v0.3.0
+        id: documentation
+        uses: katydecorah/documentation-action@v1.1.0
         with:
-          exampleWorkflowFile: "read.yml"
-          additionalWorkflowFilePrefix: "read"
+          example-workflow-file: "read.yml"
+          additional-workflow-file-prefix: "read"
       - name: Commit files
-        if: env.UpdateDocumentation == 'true'
+        if: steps.documentation.outputs.update == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"

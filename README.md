@@ -88,7 +88,7 @@ jobs:
           git push
 ```
 
- ### Additional example workflows
+### Additional example workflows
 
 <details>
 <summary>When book is missing metadata, create a pull request</summary>
@@ -260,7 +260,6 @@ jobs:
 ```
 
 </details>
-
 
 ## Action options
 
