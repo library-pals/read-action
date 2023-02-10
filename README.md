@@ -10,11 +10,11 @@ This GitHub action tracks the books that you read by updating a JSON file in you
 
 There are three statuses a book can have:
 
-1. `want to read` - to mark a book as one that you want to read, do not send a `dateStarted` or `dateFinished` in your payload.
-2. `started` - to mark a book as started, add `dateStarted` in your payload.
-3. `finished` - to mark a book as finished, add `dateFinished` in your payload.
+1. **want to read** - to mark a book as one that you want to read, do not send a `date-started` or `date-finished` in your payload.
+2. **started** - to mark a book as started, add `date-started` in your payload.
+3. **finished** - to mark a book as finished, add `date-finished` in your payload.
 
-If you mark a book as "want to read" you can update it to "started" by sending another payload with the same ISBN and `dateStarted`. Similarily, if you marked a book as "want to read" or "started", send a new payload with the same book ISBN and `dateFinished` to mark the book as finished.
+If you mark a book as "want to read" you can update it to "started" by sending another payload with the same ISBN and `date-started`. Similarily, if you marked a book as "want to read" or "started", send a new payload with the same book ISBN and `date-finished` to mark the book as finished.
 
 <!-- START GENERATED DOCUMENTATION -->
 
@@ -276,7 +276,7 @@ jobs:
 To trigger the action, [create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with the following body parameters:
 
 ```js
-{ 
+{
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
     "isbn": "", // Required. The book's ISBN. Required.
@@ -288,4 +288,5 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
+
 <!-- END GENERATED DOCUMENTATION -->
