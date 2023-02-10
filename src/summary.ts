@@ -13,7 +13,7 @@ import { capitalize } from "./utils";
 
 export function summaryMarkown(
   library: CleanBook[],
-  dateFinished: BookPayload["dateFinished"]
+  dateFinished: BookPayload["date-finished"]
 ): string {
   const { BookStatus, BookTitle } = process.env;
   return `# Updated library
