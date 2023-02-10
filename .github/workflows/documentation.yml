@@ -23,7 +23,7 @@ jobs:
         uses: katydecorah/documentation-action@v1.1.0
         with:
           example-workflow-file: "read.yml"
-          additional-workflow-file: "read"
+          additional-workflow-file-prefix: "read"
       - name: Commit files
         if: steps.documentation.outputs.update == 'true'
         run: |
