@@ -14497,14 +14497,15 @@ function addNotes(notes, bookNotes) {
 
 
 function validatePayload(payload) {
-    if (!payload)
-        return (0,core.setFailed)("Missing `inputs`");
-    if (!payload["isbn"])
-        return (0,core.setFailed)("Missing `bookIsbn` in payload");
-    if (payload["date-finished"] && !isDate(payload["date-finished"]))
-        return (0,core.setFailed)(`Invalid \`dateFinished\` in payload: ${payload["date-finished"]}`);
-    if (payload["date-started"] && !isDate(payload["date-started"]))
-        return (0,core.setFailed)(`Invalid \`dateStarted\` in payload: ${payload["date-started"]}`);
+    if (!payload || !payload["isbn"]) {
+        (0,core.setFailed)("Missing `isbn` in payload");
+    }
+    if (payload["date-finished"] && !isDate(payload["date-finished"])) {
+        (0,core.setFailed)(`Invalid \`date-finished\` in payload: ${payload["date-finished"]}`);
+    }
+    if (payload["date-started"] && !isDate(payload["date-started"])) {
+        (0,core.setFailed)(`Invalid \`date-started\` in payload: ${payload["date-started"]}`);
+    }
 }
 
 ;// CONCATENATED MODULE: ./src/index.ts

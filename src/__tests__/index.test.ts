@@ -473,8 +473,9 @@ describe("index", () => {
         payload: {},
       },
     });
+
     await read();
-    expect(setFailedSpy).toHaveBeenCalledWith("Missing `inputs`");
+    expect(setFailedSpy).toHaveBeenCalledWith("Missing `isbn` in payload");
   });
 
   test("error, missing isbn", async () => {
@@ -489,7 +490,7 @@ describe("index", () => {
       },
     });
     await read();
-    expect(setFailedSpy).toHaveBeenCalledWith("Missing `bookIsbn` in payload");
+    expect(setFailedSpy).toHaveBeenCalledWith("Missing `isbn` in payload");
   });
 
   test("error, setFailed", async () => {
@@ -605,7 +606,7 @@ describe("index", () => {
     });
     await read();
     expect(setFailedSpy).toHaveBeenCalledWith(
-      "Invalid `dateFinished` in payload: 1234"
+      "Invalid `date-finished` in payload: 1234"
     );
   });
 
@@ -623,7 +624,7 @@ describe("index", () => {
     });
     await read();
     expect(setFailedSpy).toHaveBeenCalledWith(
-      "Invalid `dateStarted` in payload: 1234"
+      "Invalid `date-started` in payload: 1234"
     );
   });
 });
