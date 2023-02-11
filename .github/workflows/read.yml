@@ -1,5 +1,5 @@
 name: read action
-run-name: Book (${{ inputs.bookIsbn }})
+run-name: Book (${{ inputs.isbn }})
 
 # Grant the action permission to write to the repository
 permissions:
