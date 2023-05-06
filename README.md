@@ -271,6 +271,8 @@ jobs:
 
 - `required-metadata`: Required metadata properties. This can be used to make the action open a pull request if one of these values is missing data in the desired book instead of committing directly to a repository. Default: `title,pageCount,authors,description`.
 
+- `thumbnail-width`: The width of the thumbnail image for books sources from Google Books.
+
 ## Trigger the action
 
 To trigger the action, [create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with the following body parameters:
