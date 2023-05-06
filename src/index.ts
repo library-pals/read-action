@@ -31,6 +31,7 @@ export type ActionInputs = {
   providers: string[];
   rating?: string;
   "time-zone": string;
+  "thumbnail-width"?: number;
 };
 
 export type BookParams = {
@@ -42,6 +43,7 @@ export type BookParams = {
   providers?: ActionInputs["providers"];
   rating?: ActionInputs["rating"];
   tags?: string[];
+  thumbnailWidth?: number;
 };
 
 export async function read() {
@@ -63,6 +65,11 @@ export async function read() {
     const providers: ActionInputs["providers"] = getInput("providers")
       ? getInput("providers").split(",")
       : isbn._providers;
+    const thumbnailWidth: ActionInputs["thumbnail-width"] = getInput(
+      "thumbnail-width"
+    )
+      ? Number.parseInt(getInput("thumbnail-width"))
+      : undefined;
 
     const bookStatus = getBookStatus(dateStarted, dateFinished);
     exportVariable("BookStatus", bookStatus);
@@ -78,6 +85,7 @@ export async function read() {
       bookStatus,
       rating,
       providers,
+      thumbnailWidth,
       ...(tags && { tags: toArray(tags) }),
     };
 

@@ -25,6 +25,7 @@ const defaultOptions = {
   "required-metadata": "title,pageCount,authors,description",
   "time-zone": "America/New_York",
   providers: "google",
+  "thumbnail-width": "128",
 };
 
 describe("workflow", () => {
@@ -83,7 +84,7 @@ describe("workflow", () => {
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
             "status": "want to read",
-            "thumbnail": "https://books.google.com/books/content?id=NFeTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+            "thumbnail": "https://books.google.com/books/content?id=NFeTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&w=128",
             "title": "Luster",
           },
         ],

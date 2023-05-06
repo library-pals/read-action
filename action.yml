@@ -23,3 +23,5 @@ inputs:
   required-metadata:
     description: Required metadata properties. This can be used to make the action open a pull request if one of these values is missing data in the desired book instead of committing directly to a repository.
     default: title,pageCount,authors,description
+  thumbnail-width:
+    description: The width of the thumbnail image for books sources from Google Books.
