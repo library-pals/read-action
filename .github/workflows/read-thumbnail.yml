@@ -53,6 +53,8 @@ jobs:
 
       - name: Read
         uses: ./
+        with:
+          thumbnail-width: 1280
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''

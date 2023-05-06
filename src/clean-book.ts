@@ -27,7 +27,8 @@ export type CleanBook = {
 export type BookStatus = "want to read" | "started" | "finished";
 
 export default function cleanBook(options: BookParams, book: Book): CleanBook {
-  const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
+  const { notes, bookIsbn, dates, bookStatus, rating, tags, thumbnailWidth } =
+    options;
   checkMetadata(book, bookIsbn);
   const {
     title,
@@ -41,6 +42,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     language,
     canonicalVolumeLink,
   } = book;
+
   return {
     isbn: bookIsbn,
     ...dates,
@@ -61,13 +63,27 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     ...(categories && { categories }),
     ...(imageLinks &&
       imageLinks.thumbnail && {
-        thumbnail: imageLinks.thumbnail.replace("http:", "https:"),
+        thumbnail: handleThumbnail(thumbnailWidth, imageLinks.thumbnail),
       }),
     ...(language && { language }),
     ...(canonicalVolumeLink && {
       link: canonicalVolumeLink,
     }),
   };
+}
+
+function handleThumbnail(
+  thumbnailWidth: number | undefined,
+  thumbnail: string
+) {
+  if (thumbnail.startsWith("http:")) {
+    thumbnail = thumbnail.replace("http:", "https:");
+  }
+  const url = new URL(thumbnail);
+  if (url.host === "books.google.com" && thumbnailWidth) {
+    thumbnail = `${thumbnail}&w=${thumbnailWidth}`;
+  }
+  return thumbnail;
 }
 
 function checkMetadata(book: Book, bookIsbn: string) {

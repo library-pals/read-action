@@ -14133,7 +14133,7 @@ function capitalize(string) {
 
 
 function cleanBook(options, book) {
-    const { notes, bookIsbn, dates, bookStatus, rating, tags } = options;
+    const { notes, bookIsbn, dates, bookStatus, rating, tags, thumbnailWidth } = options;
     checkMetadata(book, bookIsbn);
     const { title, authors, publishedDate, description, categories, pageCount, printType, imageLinks, language, canonicalVolumeLink, } = book;
     return {
@@ -14156,13 +14156,23 @@ function cleanBook(options, book) {
         ...(categories && { categories }),
         ...(imageLinks &&
             imageLinks.thumbnail && {
-            thumbnail: imageLinks.thumbnail.replace("http:", "https:"),
+            thumbnail: handleThumbnail(thumbnailWidth, imageLinks.thumbnail),
         }),
         ...(language && { language }),
         ...(canonicalVolumeLink && {
             link: canonicalVolumeLink,
         }),
     };
+}
+function handleThumbnail(thumbnailWidth, thumbnail) {
+    if (thumbnail.startsWith("http:")) {
+        thumbnail = thumbnail.replace("http:", "https:");
+    }
+    const url = new URL(thumbnail);
+    if (url.host === "books.google.com" && thumbnailWidth) {
+        thumbnail = `${thumbnail}&w=${thumbnailWidth}`;
+    }
+    return thumbnail;
 }
 function checkMetadata(book, bookIsbn) {
     const missingMetadata = [];
@@ -14532,6 +14542,9 @@ async function read() {
         const providers = (0,core.getInput)("providers")
             ? (0,core.getInput)("providers").split(",")
             : (node_isbn_default())._providers;
+        const thumbnailWidth = (0,core.getInput)("thumbnail-width")
+            ? Number.parseInt((0,core.getInput)("thumbnail-width"))
+            : undefined;
         const bookStatus = getBookStatus(dateStarted, dateFinished);
         (0,core.exportVariable)("BookStatus", bookStatus);
         const dates = getDates(bookStatus, dateStarted, dateFinished);
@@ -14544,6 +14557,7 @@ async function read() {
             bookStatus,
             rating,
             providers,
+            thumbnailWidth,
             ...(tags && { tags: toArray(tags) }),
         };
         const bookExists = checkOutBook(bookParams, library);
