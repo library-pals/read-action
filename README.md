@@ -245,6 +245,8 @@ jobs:
 
       - name: Read
         uses: katydecorah/read-action@v7.0.1
+        with:
+          thumbnail-width: 1280
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
@@ -271,7 +273,7 @@ jobs:
 
 - `required-metadata`: Required metadata properties. This can be used to make the action open a pull request if one of these values is missing data in the desired book instead of committing directly to a repository. Default: `title,pageCount,authors,description`.
 
-- `thumbnail-width`: The width of the thumbnail image (for books sourced from Google Books). The default size is 128px.
+- `thumbnail-width`: The width of the thumbnail image (for books sourced from Google Books). The default size is 128.
 
 ## Trigger the action
 
