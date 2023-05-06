@@ -79,7 +79,7 @@ function handleThumbnail(
   if (thumbnail.startsWith("http:")) {
     thumbnail = thumbnail.replace("http:", "https:");
   }
-  if (thumbnail.includes("books.google.com") && thumbnailWidth) {
+  if (thumbnail.startsWith("https://books.google.com") && thumbnailWidth) {
     thumbnail = `${thumbnail}&w=${thumbnailWidth}`;
   }
   return thumbnail;
