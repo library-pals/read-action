@@ -14168,7 +14168,8 @@ function handleThumbnail(thumbnailWidth, thumbnail) {
     if (thumbnail.startsWith("http:")) {
         thumbnail = thumbnail.replace("http:", "https:");
     }
-    if (thumbnail.startsWith("https://books.google.com") && thumbnailWidth) {
+    const url = new URL(thumbnail);
+    if (url.host === "books.google.com" && thumbnailWidth) {
         thumbnail = `${thumbnail}&w=${thumbnailWidth}`;
     }
     return thumbnail;
