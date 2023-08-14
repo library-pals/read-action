@@ -14151,7 +14151,7 @@ function cleanBook(options, book) {
         ...(description && {
             description: removeWrappedQuotes(description),
         }),
-        ...(pageCount && pageCount > 0 ? { pageCount } : { pageCount: 0 }),
+        ...(pageCount ? { pageCount } : { pageCount: 0 }),
         ...(printType && { printType }),
         ...(categories && { categories }),
         ...(imageLinks &&
