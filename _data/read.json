@@ -277,22 +277,5 @@
     "thumbnail": "https://books.google.com/books/content?id=cVBTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&w=1280",
     "language": "en",
     "link": "https://play.google.com/store/books/details?id=cVBTEAAAQBAJ"
-  },
-  {
-    "isbn": "1529431980",
-    "dateStarted": "2023-08-14",
-    "status": "started",
-    "rating": "unrated",
-    "title": "Banyan Moon",
-    "authors": [
-      "Thao Thai"
-    ],
-    "publishedDate": "2023-06-27",
-    "description": "A sweeping, evocative debut novel following three generations of Vietnamese American women reeling from the death of their matriarch, revealing the family's inherited burdens and buried secrets.When Ann Tran gets the call that her beloved grandmother, Minh, has passed away, her life is already at a crossroads. Ann has built a seemingly perfect life. She lives in a beautiful lake house and has a charming professor boyfriend, but it all crumbles away with one positive pregnancy test. With both her relationship and carefully planned future now in question, Ann returns home to Florida to face her estranged mother, Hu'o'ng. Under the same roof for the first time in years, mother and daughter must face the simmering questions of their past, while trying to rebuild their relationship without the one person who's always held them together. Running parallel to this is Minh's story, as she goes from a lovestruck teenager living in the shadow of the Vietnam War to a determined young mother immigrating to America in search of a better life. And when Ann makes a shocking discovery in the Banyan House's attic, long-buried secrets come to light as it becomes clear how decisions Minh made in her youth affected the rest of her life and her family.Spanning decades and continents, from 1960s Vietnam to the wild swamplands of the Florida coast, Banyan Moon is a stunning and deeply moving story of mothers and daughters, the things we inherit, and the lives we choose to make out of that inheritance.",
-    "pageCount": 0,
-    "printType": "BOOK",
-    "thumbnail": "https://books.google.com/books/content?id=AhGpzwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-    "language": "en",
-    "link": "https://books.google.com/books/about/Banyan_Moon.html?hl=&id=AhGpzwEACAAJ"
   }
 ]
