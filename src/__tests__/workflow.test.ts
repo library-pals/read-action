@@ -22,7 +22,7 @@ jest.mock("../write-file");
 
 const defaultOptions = {
   filename: "my-library.json",
-  "required-metadata": "title,pageCount,authors,description",
+  "required-metadata": "title,pageCount,authors,description,thumbnail",
   "time-zone": "America/New_York",
   providers: "google",
   "thumbnail-width": "128",
@@ -243,5 +243,62 @@ describe("workflow", () => {
         ],
       ]
     `);
+  });
+
+  test("missing thumbnail", async () => {
+    jest.spyOn(promises, "readFile").mockResolvedValue(JSON.stringify([]));
+    const setFailedSpy = jest.spyOn(core, "setFailed");
+    const summarySpy = jest.spyOn(core.summary, "addRaw");
+    const exportVariableSpy = jest.spyOn(core, "exportVariable");
+
+    Object.defineProperty(github, "context", {
+      value: {
+        payload: {
+          inputs: {
+            isbn: "9798374567144",
+          },
+        },
+      },
+    });
+    await read();
+
+    expect(setFailedSpy).not.toHaveBeenCalled();
+    expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
+[
+  "# Updated library
+
+Want to read: “Don't Let Her Stay”
+
+",
+]
+`);
+    expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
+[
+  "my-library.json",
+  [
+    {
+      "authors": [
+        "Nicola Sanders",
+      ],
+      "categories": [
+        "Estranged families",
+      ],
+      "dateAdded": "2022-10-01",
+      "dateFinished": undefined,
+      "dateStarted": undefined,
+      "description": "Someone inside your house wants you dead, but no one believes you...",
+      "isbn": "9798374567144",
+      "language": "en",
+      "link": "https://books.google.com/books/about/Don_t_Let_Her_Stay.html?hl=&id=sR_LzwEACAAJ",
+      "pageCount": 0,
+      "printType": "BOOK",
+      "publishedDate": "2023",
+      "status": "want to read",
+      "title": "Don't Let Her Stay",
+    },
+  ],
+]
+`);
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`[]`);
   });
 });
