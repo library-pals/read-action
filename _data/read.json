@@ -277,5 +277,25 @@
     "thumbnail": "https://books.google.com/books/content?id=cVBTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&w=1280",
     "language": "en",
     "link": "https://play.google.com/store/books/details?id=cVBTEAAAQBAJ"
+  },
+  {
+    "isbn": "9780593241837",
+    "dateAdded": "2023-12-04",
+    "status": "want to read",
+    "rating": "unrated",
+    "title": "Unmasking AI",
+    "authors": [
+      "Joy Buolamwini"
+    ],
+    "publishedDate": "2023-10-31",
+    "description": "“The conscience of the AI revolution” (Fortune) explains how we’ve arrived at an era of AI harms and oppression, and what we can do to avoid its pitfalls. “Dr. Joy Buolamwini has been an essential figure in bringing irresponsible, profit-hungry tech giants to their knees. If you’re going to read only one book about AI, this should be it.”—Darren Walker, president of the Ford Foundation To most of us, it seems like recent developments in artificial intelligence emerged out of nowhere to pose unprecedented threats to humankind. But to Dr. Joy Buolamwini, who has been at the forefront of AI research, this moment has been a long time in the making. After tinkering with robotics as a high school student in Memphis and then developing mobile apps in Zambia as a Fulbright fellow, Buolamwini followed her lifelong passion for computer science, engineering, and art to MIT in 2015. As a graduate student at the “Future Factory,” she did groundbreaking research that exposed widespread racial and gender bias in AI services from tech giants across the world. Unmasking AI goes beyond the headlines about existential risks produced by Big Tech. It is the remarkable story of how Buolamwini uncovered what she calls “the coded gaze”—the evidence of encoded discrimination and exclusion in tech products—and how she galvanized the movement to prevent AI harms by founding the Algorithmic Justice League. Applying an intersectional lens to both the tech industry and the research sector, she shows how racism, sexism, colorism, and ableism can overlap and render broad swaths of humanity “excoded” and therefore vulnerable in a world rapidly adopting AI tools. Computers, she reminds us, are reflections of both the aspirations and the limitations of the people who create them. Encouraging experts and non-experts alike to join this fight, Buolamwini writes, “The rising frontier for civil rights will require algorithmic justice. AI should be for the people and by the people, not just the privileged few.”",
+    "pageCount": 337,
+    "printType": "BOOK",
+    "categories": [
+      "Biography & Autobiography"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=rT7REAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://books.google.com/books/about/Unmasking_AI.html?hl=&id=rT7REAAAQBAJ"
   }
 ]
