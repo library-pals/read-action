@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Documentation action
         id: documentation
-        uses: katydecorah/documentation-action@v1.2.0
+        uses: katydecorah/documentation-action@v1.3.0
         with:
           example-workflow-file: "read.yml"
           additional-workflow-file-prefix: "read"
