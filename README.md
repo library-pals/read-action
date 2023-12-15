@@ -149,6 +149,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Read
+        id: read_action
         uses: katydecorah/read-action@v7.3.0
 
       - name: Download the book thumbnail
@@ -182,6 +183,11 @@ jobs:
           gh pr create -B main -H "review-book-${{env.BookIsbn}}" --fill
         env:
           GH_TOKEN: ${{ github.token }}
+
+      - name: Now reading
+        if: steps.read_action.outputs.nowReading != ''
+        run: |
+          echo "Now reading: ${{ steps.read_action.outputs.nowReading }}"
 ```
 
 </details>
