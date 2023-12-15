@@ -35665,6 +35665,9 @@ async function read() {
             const newBook = await getBook(bookParams);
             library.push(newBook);
             (0,core.exportVariable)(`BookTitle`, newBook.title);
+            if (bookStatus === "started") {
+                (0,core.setOutput)("nowReading", newBook);
+            }
             if (newBook.thumbnail) {
                 (0,core.exportVariable)(`BookThumbOutput`, `book-${newBook.isbn}.png`);
                 (0,core.exportVariable)(`BookThumb`, newBook.thumbnail);

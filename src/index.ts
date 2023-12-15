@@ -1,4 +1,10 @@
-import { exportVariable, getInput, setFailed, summary } from "@actions/core";
+import {
+  exportVariable,
+  getInput,
+  setFailed,
+  setOutput,
+  summary,
+} from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
@@ -97,6 +103,11 @@ export async function read() {
       const newBook = await getBook(bookParams);
       library.push(newBook);
       exportVariable(`BookTitle`, newBook.title);
+
+      if (bookStatus === "started") {
+        setOutput("nowReading", newBook);
+      }
+
       if (newBook.thumbnail) {
         exportVariable(`BookThumbOutput`, `book-${newBook.isbn}.png`);
         exportVariable(`BookThumb`, newBook.thumbnail);

@@ -25,3 +25,6 @@ inputs:
     default: title,pageCount,authors,description,thumbnail
   thumbnail-width:
     description: The width of the thumbnail image (for books sourced from Google Books). The default size is 128.
+outputs:
+  nowReading:
+    description: The book that is currently being read.
