@@ -27,4 +27,4 @@ inputs:
     description: The width of the thumbnail image (for books sourced from Google Books). The default size is 128.
 outputs:
   nowReading:
-    description: The book that is currently being read.
+    description: "When a new book is started this output will contain an object with the book's: title, description, thumbnail, and isbn."
