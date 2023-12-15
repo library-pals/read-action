@@ -105,7 +105,12 @@ export async function read() {
       exportVariable(`BookTitle`, newBook.title);
 
       if (bookStatus === "started") {
-        setOutput("nowReading", newBook);
+        setOutput("nowReading", {
+          title: newBook.title,
+          description: newBook.description,
+          isbn: newBook.isbn,
+          thumbnail: newBook.thumbnail,
+        });
       }
 
       if (newBook.thumbnail) {
