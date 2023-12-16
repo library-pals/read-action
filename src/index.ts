@@ -107,6 +107,7 @@ export async function read() {
       if (bookStatus === "started") {
         setOutput("nowReading", {
           title: newBook.title,
+          authors: newBook.authors,
           description: newBook.description,
           isbn: newBook.isbn,
           thumbnail: newBook.thumbnail,

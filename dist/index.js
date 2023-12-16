@@ -35666,7 +35666,13 @@ async function read() {
             library.push(newBook);
             (0,core.exportVariable)(`BookTitle`, newBook.title);
             if (bookStatus === "started") {
-                (0,core.setOutput)("nowReading", newBook);
+                (0,core.setOutput)("nowReading", {
+                    title: newBook.title,
+                    authors: newBook.authors,
+                    description: newBook.description,
+                    isbn: newBook.isbn,
+                    thumbnail: newBook.thumbnail,
+                });
             }
             if (newBook.thumbnail) {
                 (0,core.exportVariable)(`BookThumbOutput`, `book-${newBook.isbn}.png`);
