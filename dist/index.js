@@ -35391,7 +35391,7 @@ function mTags({ tags }) {
 ;// CONCATENATED MODULE: ./src/summary.ts
 
 
-function summaryMarkown(library, dateFinished) {
+function summaryMarkdown(library, dateFinished) {
     const { BookStatus, BookTitle } = process.env;
     return `# Updated library
 
@@ -35681,7 +35681,7 @@ async function read() {
         }
         library = sortByDate(library);
         await returnWriteFile(filename, library);
-        await core.summary.addRaw(summaryMarkown(library, dateFinished)).write();
+        await core.summary.addRaw(summaryMarkdown(library, dateFinished)).write();
     }
     catch (error) {
         (0,core.setFailed)(error);

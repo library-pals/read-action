@@ -11,7 +11,7 @@ import {
 } from "./summary-markdown";
 import { capitalize } from "./utils";
 
-export function summaryMarkown(
+export function summaryMarkdown(
   library: CleanBook[],
   dateFinished: BookPayload["date-finished"]
 ): string {
