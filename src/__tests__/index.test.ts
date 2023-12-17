@@ -147,6 +147,7 @@ describe("index", () => {
       "categories": [
         "Fiction",
       ],
+      "dateAbandoned": undefined,
       "dateAdded": undefined,
       "dateFinished": undefined,
       "dateStarted": "2022-01-02",
@@ -257,51 +258,52 @@ describe("index", () => {
     `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
-      [
-        "my-library.json",
-        [
-          {
-            "authors": [
-              "Silvia Moreno-Garcia",
-            ],
-            "categories": [
-              "Fiction",
-            ],
-            "dateStarted": "2021-09-26",
-            "description": "NEW YORK TIMES BESTSELLER",
-            "isbn": "9780525620792",
-            "language": "en",
-            "link": "https://play.google.com/store/books/details?id=ksKyDwAAQBAJ",
-            "pageCount": 320,
-            "printType": "BOOK",
-            "publishedDate": "2020-06-30",
-            "thumbnail": "https://books.google.com/books/content?id=ksKyDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-            "title": "Mexican Gothic",
-          },
-          {
-            "authors": [
-              "Kali Fajardo-Anstine",
-            ],
-            "categories": [
-              "Fiction",
-            ],
-            "dateAdded": undefined,
-            "dateFinished": "2022-08-02",
-            "dateStarted": undefined,
-            "description": "NATIONAL BESTSELLER • A “dazzling, cinematic, intimate, lyrical” (Roxane Gay) epic of betrayal, love, and fate that spans five generations of an Indigenous Chicano family in the American West, from the author of the National Book Award finalist Sabrina & Corina “Sometimes you just step into a book and let it wash over you, like you’re swimming under a big, sparkling night sky.”—Celeste Ng, author of Little Fires Everywhere and Everything I Never Told You A PHENOMENAL BOOK CLUB PICK AND AN AUDACIOUS BOOK CLUB PICK • ONE OF THE BEST BOOKS OF THE YEAR: Book Riot There is one every generation, a seer who keeps the stories. Luz “Little Light” Lopez, a tea leaf reader and laundress, is left to fend for herself after her older brother, Diego, a snake charmer and factory worker, is run out of town by a violent white mob. As Luz navigates 1930s Denver, she begins to have visions that transport her to her Indigenous homeland in the nearby Lost Territory. Luz recollects her ancestors’ origins, how her family flourished, and how they were threatened. She bears witness to the sinister forces that have devastated her people and their homelands for generations. In the end, it is up to Luz to save her family stories from disappearing into oblivion. Written in Kali Fajardo-Anstine’s singular voice, the wildly entertaining and complex lives of the Lopez family fill the pages of this multigenerational western saga. Woman of Light is a transfixing novel about survival, family secrets, and love—filled with an unforgettable cast of characters, all of whom are just as special, memorable, and complicated as our beloved heroine, Luz. LONGLISTED FOR THE JOYCE CAROL OATES PRIZE • LONGLISTED FOR THE CAROL SHIELDS PRIZE FOR FICTION",
-            "isbn": "9780525511342",
-            "language": "en",
-            "link": "https://play.google.com/store/books/details?id=5LhBEAAAQBAJ",
-            "pageCount": 353,
-            "printType": "BOOK",
-            "publishedDate": "2022-06-07",
-            "status": "finished",
-            "thumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-            "title": "Woman of Light",
-          },
-        ],
-      ]
-    `);
+[
+  "my-library.json",
+  [
+    {
+      "authors": [
+        "Silvia Moreno-Garcia",
+      ],
+      "categories": [
+        "Fiction",
+      ],
+      "dateStarted": "2021-09-26",
+      "description": "NEW YORK TIMES BESTSELLER",
+      "isbn": "9780525620792",
+      "language": "en",
+      "link": "https://play.google.com/store/books/details?id=ksKyDwAAQBAJ",
+      "pageCount": 320,
+      "printType": "BOOK",
+      "publishedDate": "2020-06-30",
+      "thumbnail": "https://books.google.com/books/content?id=ksKyDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Mexican Gothic",
+    },
+    {
+      "authors": [
+        "Kali Fajardo-Anstine",
+      ],
+      "categories": [
+        "Fiction",
+      ],
+      "dateAbandoned": undefined,
+      "dateAdded": undefined,
+      "dateFinished": "2022-08-02",
+      "dateStarted": undefined,
+      "description": "NATIONAL BESTSELLER • A “dazzling, cinematic, intimate, lyrical” (Roxane Gay) epic of betrayal, love, and fate that spans five generations of an Indigenous Chicano family in the American West, from the author of the National Book Award finalist Sabrina & Corina “Sometimes you just step into a book and let it wash over you, like you’re swimming under a big, sparkling night sky.”—Celeste Ng, author of Little Fires Everywhere and Everything I Never Told You A PHENOMENAL BOOK CLUB PICK AND AN AUDACIOUS BOOK CLUB PICK • ONE OF THE BEST BOOKS OF THE YEAR: Book Riot There is one every generation, a seer who keeps the stories. Luz “Little Light” Lopez, a tea leaf reader and laundress, is left to fend for herself after her older brother, Diego, a snake charmer and factory worker, is run out of town by a violent white mob. As Luz navigates 1930s Denver, she begins to have visions that transport her to her Indigenous homeland in the nearby Lost Territory. Luz recollects her ancestors’ origins, how her family flourished, and how they were threatened. She bears witness to the sinister forces that have devastated her people and their homelands for generations. In the end, it is up to Luz to save her family stories from disappearing into oblivion. Written in Kali Fajardo-Anstine’s singular voice, the wildly entertaining and complex lives of the Lopez family fill the pages of this multigenerational western saga. Woman of Light is a transfixing novel about survival, family secrets, and love—filled with an unforgettable cast of characters, all of whom are just as special, memorable, and complicated as our beloved heroine, Luz. LONGLISTED FOR THE JOYCE CAROL OATES PRIZE • LONGLISTED FOR THE CAROL SHIELDS PRIZE FOR FICTION",
+      "isbn": "9780525511342",
+      "language": "en",
+      "link": "https://play.google.com/store/books/details?id=5LhBEAAAQBAJ",
+      "pageCount": 353,
+      "printType": "BOOK",
+      "publishedDate": "2022-06-07",
+      "status": "finished",
+      "thumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Woman of Light",
+    },
+  ],
+]
+`);
   });
 
   test("works, finished a book (new, not started) (with dateStarted)", async () => {
@@ -341,51 +343,52 @@ describe("index", () => {
     `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
-      [
-        "my-library.json",
-        [
-          {
-            "authors": [
-              "Silvia Moreno-Garcia",
-            ],
-            "categories": [
-              "Fiction",
-            ],
-            "dateStarted": "2021-09-26",
-            "description": "NEW YORK TIMES BESTSELLER",
-            "isbn": "9780525620792",
-            "language": "en",
-            "link": "https://play.google.com/store/books/details?id=ksKyDwAAQBAJ",
-            "pageCount": 320,
-            "printType": "BOOK",
-            "publishedDate": "2020-06-30",
-            "thumbnail": "https://books.google.com/books/content?id=ksKyDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-            "title": "Mexican Gothic",
-          },
-          {
-            "authors": [
-              "Kali Fajardo-Anstine",
-            ],
-            "categories": [
-              "Fiction",
-            ],
-            "dateAdded": undefined,
-            "dateFinished": "2022-08-02",
-            "dateStarted": "2022-08-01",
-            "description": "NATIONAL BESTSELLER • A “dazzling, cinematic, intimate, lyrical” (Roxane Gay) epic of betrayal, love, and fate that spans five generations of an Indigenous Chicano family in the American West, from the author of the National Book Award finalist Sabrina & Corina “Sometimes you just step into a book and let it wash over you, like you’re swimming under a big, sparkling night sky.”—Celeste Ng, author of Little Fires Everywhere and Everything I Never Told You A PHENOMENAL BOOK CLUB PICK AND AN AUDACIOUS BOOK CLUB PICK • ONE OF THE BEST BOOKS OF THE YEAR: Book Riot There is one every generation, a seer who keeps the stories. Luz “Little Light” Lopez, a tea leaf reader and laundress, is left to fend for herself after her older brother, Diego, a snake charmer and factory worker, is run out of town by a violent white mob. As Luz navigates 1930s Denver, she begins to have visions that transport her to her Indigenous homeland in the nearby Lost Territory. Luz recollects her ancestors’ origins, how her family flourished, and how they were threatened. She bears witness to the sinister forces that have devastated her people and their homelands for generations. In the end, it is up to Luz to save her family stories from disappearing into oblivion. Written in Kali Fajardo-Anstine’s singular voice, the wildly entertaining and complex lives of the Lopez family fill the pages of this multigenerational western saga. Woman of Light is a transfixing novel about survival, family secrets, and love—filled with an unforgettable cast of characters, all of whom are just as special, memorable, and complicated as our beloved heroine, Luz. LONGLISTED FOR THE JOYCE CAROL OATES PRIZE • LONGLISTED FOR THE CAROL SHIELDS PRIZE FOR FICTION",
-            "isbn": "9780525511342",
-            "language": "en",
-            "link": "https://play.google.com/store/books/details?id=5LhBEAAAQBAJ",
-            "pageCount": 353,
-            "printType": "BOOK",
-            "publishedDate": "2022-06-07",
-            "status": "finished",
-            "thumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-            "title": "Woman of Light",
-          },
-        ],
-      ]
-    `);
+[
+  "my-library.json",
+  [
+    {
+      "authors": [
+        "Silvia Moreno-Garcia",
+      ],
+      "categories": [
+        "Fiction",
+      ],
+      "dateStarted": "2021-09-26",
+      "description": "NEW YORK TIMES BESTSELLER",
+      "isbn": "9780525620792",
+      "language": "en",
+      "link": "https://play.google.com/store/books/details?id=ksKyDwAAQBAJ",
+      "pageCount": 320,
+      "printType": "BOOK",
+      "publishedDate": "2020-06-30",
+      "thumbnail": "https://books.google.com/books/content?id=ksKyDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Mexican Gothic",
+    },
+    {
+      "authors": [
+        "Kali Fajardo-Anstine",
+      ],
+      "categories": [
+        "Fiction",
+      ],
+      "dateAbandoned": undefined,
+      "dateAdded": undefined,
+      "dateFinished": "2022-08-02",
+      "dateStarted": "2022-08-01",
+      "description": "NATIONAL BESTSELLER • A “dazzling, cinematic, intimate, lyrical” (Roxane Gay) epic of betrayal, love, and fate that spans five generations of an Indigenous Chicano family in the American West, from the author of the National Book Award finalist Sabrina & Corina “Sometimes you just step into a book and let it wash over you, like you’re swimming under a big, sparkling night sky.”—Celeste Ng, author of Little Fires Everywhere and Everything I Never Told You A PHENOMENAL BOOK CLUB PICK AND AN AUDACIOUS BOOK CLUB PICK • ONE OF THE BEST BOOKS OF THE YEAR: Book Riot There is one every generation, a seer who keeps the stories. Luz “Little Light” Lopez, a tea leaf reader and laundress, is left to fend for herself after her older brother, Diego, a snake charmer and factory worker, is run out of town by a violent white mob. As Luz navigates 1930s Denver, she begins to have visions that transport her to her Indigenous homeland in the nearby Lost Territory. Luz recollects her ancestors’ origins, how her family flourished, and how they were threatened. She bears witness to the sinister forces that have devastated her people and their homelands for generations. In the end, it is up to Luz to save her family stories from disappearing into oblivion. Written in Kali Fajardo-Anstine’s singular voice, the wildly entertaining and complex lives of the Lopez family fill the pages of this multigenerational western saga. Woman of Light is a transfixing novel about survival, family secrets, and love—filled with an unforgettable cast of characters, all of whom are just as special, memorable, and complicated as our beloved heroine, Luz. LONGLISTED FOR THE JOYCE CAROL OATES PRIZE • LONGLISTED FOR THE CAROL SHIELDS PRIZE FOR FICTION",
+      "isbn": "9780525511342",
+      "language": "en",
+      "link": "https://play.google.com/store/books/details?id=5LhBEAAAQBAJ",
+      "pageCount": 353,
+      "printType": "BOOK",
+      "publishedDate": "2022-06-07",
+      "status": "finished",
+      "thumbnail": "https://books.google.com/books/content?id=5LhBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Woman of Light",
+    },
+  ],
+]
+`);
   });
 
   test("works, want to read/queue", async () => {
@@ -465,6 +468,7 @@ describe("index", () => {
       "categories": [
         "Fiction",
       ],
+      "dateAbandoned": undefined,
       "dateAdded": "2022-10-01",
       "dateFinished": undefined,
       "dateStarted": undefined,
@@ -572,6 +576,7 @@ describe("index", () => {
       "categories": [
         "Fiction",
       ],
+      "dateAbandoned": undefined,
       "dateAdded": "2022-10-01",
       "dateFinished": undefined,
       "dateStarted": undefined,

@@ -47,11 +47,17 @@ function localDate() {
   return dateFormat.format(new Date());
 }
 
-export function getBookStatus(
-  dateStarted: Dates["dateStarted"],
-  dateFinished: Dates["dateFinished"]
-): BookStatus {
+export function getBookStatus({
+  dateStarted,
+  dateFinished,
+  dateAbandoned,
+}: {
+  dateStarted?: Dates["dateStarted"];
+  dateFinished?: Dates["dateFinished"];
+  dateAbandoned?: Dates["dateAbandoned"];
+}): BookStatus {
   // Set book status
+  if (dateAbandoned) return "abandoned";
   if (dateStarted && !dateFinished) return "started";
   if (dateFinished) return "finished";
   return "want to read";
@@ -60,16 +66,19 @@ export function getBookStatus(
 export function getDates(
   bookStatus: BookStatus,
   dateStarted: Dates["dateStarted"],
-  dateFinished: Dates["dateFinished"]
+  dateFinished: Dates["dateFinished"],
+  dateAbandoned: Dates["dateAbandoned"]
 ): {
   dateAdded: string | undefined;
   dateStarted: string | undefined;
   dateFinished: string | undefined;
+  dateAbandoned: string | undefined;
 } {
   return {
     dateAdded: bookStatus === "want to read" ? localDate() : undefined,
     dateStarted: dateStarted || undefined,
     dateFinished: dateFinished || undefined,
+    dateAbandoned: dateAbandoned || undefined,
   };
 }
 

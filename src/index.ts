@@ -21,11 +21,13 @@ export type Dates = {
   dateAdded: string | undefined;
   dateStarted: string | undefined;
   dateFinished: string | undefined;
+  dateAbandoned: string | undefined;
 };
 
 export type BookPayload = {
   "date-started": string | undefined;
   "date-finished": string | undefined;
+  "date-abandoned": string | undefined;
   notes?: string;
   isbn: string;
   rating?: string;
@@ -62,6 +64,7 @@ export async function read() {
       isbn: bookIsbn,
       "date-finished": dateFinished,
       "date-started": dateStarted,
+      "date-abandoned": dateAbandoned,
       notes,
       rating,
       tags,
@@ -77,9 +80,18 @@ export async function read() {
       ? Number.parseInt(getInput("thumbnail-width"))
       : undefined;
 
-    const bookStatus = getBookStatus(dateStarted, dateFinished);
+    const bookStatus = getBookStatus({
+      dateStarted,
+      dateFinished,
+      dateAbandoned,
+    });
     exportVariable("BookStatus", bookStatus);
-    const dates = getDates(bookStatus, dateStarted, dateFinished);
+    const dates = getDates(
+      bookStatus,
+      dateStarted,
+      dateFinished,
+      dateAbandoned
+    );
 
     let library = await returnReadFile(filename);
 

@@ -1,4 +1,10 @@
-import { removeWrappedQuotes, isIsbn, sortByDate, isDate } from "../utils";
+import {
+  removeWrappedQuotes,
+  isIsbn,
+  sortByDate,
+  isDate,
+  getBookStatus,
+} from "../utils";
 
 jest.mock("@actions/core");
 
@@ -37,4 +43,25 @@ it("sortByDate", () => {
     { dateFinished: "2020-01-01" },
     { dateFinished: "2020-11-01" },
   ]);
+});
+
+it("getBookStatus", () => {
+  expect(
+    getBookStatus({
+      dateStarted: "2020-01-01",
+      dateAbandoned: "2020-01-03",
+    })
+  ).toEqual("abandoned");
+  expect(
+    getBookStatus({
+      dateStarted: "2020-01-01",
+      dateFinished: "2020-01-02",
+    })
+  ).toEqual("finished");
+  expect(
+    getBookStatus({
+      dateStarted: "2020-01-01",
+    })
+  ).toEqual("started");
+  expect(getBookStatus({})).toEqual("want to read");
 });

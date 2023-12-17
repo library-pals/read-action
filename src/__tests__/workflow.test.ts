@@ -74,6 +74,7 @@ describe("workflow", () => {
       "categories": [
         "Fiction",
       ],
+      "dateAbandoned": undefined,
       "dateAdded": "2022-10-01",
       "dateFinished": undefined,
       "dateStarted": undefined,
@@ -283,6 +284,7 @@ Want to read: “Don't Let Her Stay”
       "categories": [
         "Estranged families",
       ],
+      "dateAbandoned": undefined,
       "dateAdded": "2022-10-01",
       "dateFinished": undefined,
       "dateStarted": undefined,

@@ -24,7 +24,7 @@ export type CleanBook = {
   tags?: BookParams["tags"];
 };
 
-export type BookStatus = "want to read" | "started" | "finished";
+export type BookStatus = "want to read" | "started" | "finished" | "abandoned";
 
 export default function cleanBook(options: BookParams, book: Book): CleanBook {
   const { notes, bookIsbn, dates, bookStatus, rating, tags, thumbnailWidth } =

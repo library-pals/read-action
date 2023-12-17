@@ -35201,19 +35201,22 @@ function localDate() {
     });
     return dateFormat.format(new Date());
 }
-function getBookStatus(dateStarted, dateFinished) {
+function getBookStatus(dateStarted, dateFinished, dateAbandoned) {
     // Set book status
+    if (dateAbandoned)
+        return "abandoned";
     if (dateStarted && !dateFinished)
         return "started";
     if (dateFinished)
         return "finished";
     return "want to read";
 }
-function getDates(bookStatus, dateStarted, dateFinished) {
+function getDates(bookStatus, dateStarted, dateFinished, dateAbandoned) {
     return {
         dateAdded: bookStatus === "want to read" ? localDate() : undefined,
         dateStarted: dateStarted || undefined,
         dateFinished: dateFinished || undefined,
+        dateAbandoned: dateAbandoned || undefined,
     };
 }
 function toArray(tags) {
@@ -35633,7 +35636,7 @@ async function read() {
         const payload = github.context.payload.inputs;
         // Validate payload
         validatePayload(payload);
-        const { isbn: bookIsbn, "date-finished": dateFinished, "date-started": dateStarted, notes, rating, tags, } = payload;
+        const { isbn: bookIsbn, "date-finished": dateFinished, "date-started": dateStarted, "date-abandoned": dateAbandoned, notes, rating, tags, } = payload;
         // Set inputs
         const filename = (0,core.getInput)("filename");
         const providers = (0,core.getInput)("providers")
@@ -35642,9 +35645,9 @@ async function read() {
         const thumbnailWidth = (0,core.getInput)("thumbnail-width")
             ? Number.parseInt((0,core.getInput)("thumbnail-width"))
             : undefined;
-        const bookStatus = getBookStatus(dateStarted, dateFinished);
+        const bookStatus = getBookStatus(dateStarted, dateFinished, dateAbandoned);
         (0,core.exportVariable)("BookStatus", bookStatus);
-        const dates = getDates(bookStatus, dateStarted, dateFinished);
+        const dates = getDates(bookStatus, dateStarted, dateFinished, dateAbandoned);
         let library = await returnReadFile(filename);
         const bookParams = {
             filename,
