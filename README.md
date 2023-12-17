@@ -15,7 +15,7 @@ There are three statuses a book can have:
 3. **finished** - to mark a book as finished, add `date-finished` in your payload.
 4. **abandoned** - to mark a book as abandoned, add `date-abandoned` in your payload.
 
-If you mark a book as "want to read" you can update it to "started" by sending another payload with the same ISBN and `date-started`. Similarily, if you marked a book as "want to read" or "started", send a new payload with the same book ISBN and `date-finished` to mark the book as finished.
+If you mark a book as "want to read" you can update it to "started" by sending another payload with the same ISBN and `date-started`. Similarly, if you marked a book as "want to read" or "started", send a new payload with the same book ISBN and `date-finished` to mark the book as finished.
 
 <!-- START GENERATED DOCUMENTATION -->
 
