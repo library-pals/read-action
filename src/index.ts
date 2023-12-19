@@ -9,7 +9,7 @@ import * as github from "@actions/github";
 import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
 import getBook from "./get-book";
-import { getBookStatus, getDates, sortByDate, toArray } from "./utils";
+import { getBookStatus, sortByDate, toArray } from "./utils";
 import { checkOutBook } from "./checkout-book";
 import { BookStatus } from "./clean-book";
 import { summaryMarkown } from "./summary";
@@ -17,17 +17,9 @@ import returnReadFile from "./read-file";
 import { updateBook } from "./update-book";
 import { validatePayload } from "./validate-payload";
 
-export type Dates = {
-  dateAdded: string | undefined;
-  dateStarted: string | undefined;
-  dateFinished: string | undefined;
-  dateAbandoned: string | undefined;
-};
-
 export type BookPayload = {
-  "date-started": string | undefined;
-  "date-finished": string | undefined;
-  "date-abandoned": string | undefined;
+  date: string | undefined;
+  "book-status": BookStatus;
   notes?: string;
   isbn: string;
   rating?: string;
@@ -45,7 +37,12 @@ export type ActionInputs = {
 export type BookParams = {
   filename: string;
   bookIsbn: BookPayload["isbn"];
-  dates: Dates;
+  dateType: {
+    "date-added"?: string;
+    "date-started"?: string;
+    "date-finished"?: string;
+    "date-abandoned"?: string;
+  };
   notes?: BookPayload["notes"];
   bookStatus: BookStatus;
   providers?: ActionInputs["providers"];
@@ -62,9 +59,8 @@ export async function read() {
     validatePayload(payload);
     const {
       isbn: bookIsbn,
-      "date-finished": dateFinished,
-      "date-started": dateStarted,
-      "date-abandoned": dateAbandoned,
+      date,
+      "book-status": bookStatus,
       notes,
       rating,
       tags,
@@ -80,25 +76,18 @@ export async function read() {
       ? Number.parseInt(getInput("thumbnail-width"))
       : undefined;
 
-    const bookStatus = getBookStatus({
-      dateStarted,
-      dateFinished,
-      dateAbandoned,
+    const dateType = getBookStatus({
+      date,
+      bookStatus,
     });
     exportVariable("BookStatus", bookStatus);
-    const dates = getDates(
-      bookStatus,
-      dateStarted,
-      dateFinished,
-      dateAbandoned
-    );
 
     let library = await returnReadFile(filename);
 
     const bookParams: BookParams = {
       filename,
       bookIsbn,
-      dates,
+      dateType,
       notes,
       bookStatus,
       rating,
@@ -135,7 +124,7 @@ export async function read() {
     library = sortByDate(library);
 
     await returnWriteFile(filename, library);
-    await summary.addRaw(summaryMarkown(library, dateFinished)).write();
+    await summary.addRaw(summaryMarkown(library, date, bookStatus)).write();
   } catch (error) {
     setFailed(error);
   }

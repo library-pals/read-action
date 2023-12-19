@@ -6,15 +6,13 @@ export async function updateBook(
   bookParams: BookParams,
   currentBooks: CleanBook[]
 ): Promise<CleanBook[]> {
-  const { bookIsbn, dates, bookStatus, notes, rating, tags } = bookParams;
+  const { bookIsbn, dateType, bookStatus, notes, rating, tags } = bookParams;
   return currentBooks.reduce((arr: CleanBook[], book) => {
     if (book.isbn === bookIsbn) {
       exportVariable("BookTitle", book.title);
       book = {
         ...book,
-        dateAdded: book.dateAdded || dates.dateAdded,
-        dateStarted: book.dateStarted || dates.dateStarted,
-        dateFinished: book.dateFinished || dates.dateFinished,
+        ...dateType,
         status: bookStatus,
         ...(rating && { rating }),
         ...(notes && { notes: addNotes(notes, book.notes) }),

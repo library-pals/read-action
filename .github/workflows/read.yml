@@ -34,15 +34,17 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
         type: string
-      # If you do not submit date-started, date-finished, or date-abanonded, the book status will be set to "want to read"
-      date-started:
-        description: Date you started the book (YYYY-MM-DD). Optional.
-        type: string
-      date-finished:
-        description: Date you finished the book (YYYY-MM-DD). Optional.
-        type: string
-      date-abandoned:
-        description: Date you abandoned the book (YYYY-MM-DD). Optional.
+      bookStatus:
+        description: What is the status of the book? Required.
+        required: true
+        type: choice
+        options:
+          - "want to read"
+          - "started"
+          - "finished"
+          - "abandoned"
+      date:
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
 
 # Set up the steps to run the action
