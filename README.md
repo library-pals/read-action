@@ -8,14 +8,12 @@ This GitHub action tracks the books that you read by updating a JSON file in you
 
 ## Book status
 
-There are three statuses a book can have:
+There are four statuses a book can have:
 
-1. **want to read** - to mark a book as one that you want to read, do not send a `date-started` or `date-finished` in your payload.
-2. **started** - to mark a book as started, add `date-started` in your payload.
-3. **finished** - to mark a book as finished, add `date-finished` in your payload.
-4. **abandoned** - to mark a book as abandoned, add `date-abandoned` in your payload.
-
-If you mark a book as "want to read" you can update it to "started" by sending another payload with the same ISBN and `date-started`. Similarly, if you marked a book as "want to read" or "started", send a new payload with the same book ISBN and `date-finished` to mark the book as finished.
+1. want to read
+2. started
+3. finished
+4. abandoned
 
 <!-- START GENERATED DOCUMENTATION -->
 
