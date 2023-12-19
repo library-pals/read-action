@@ -48,57 +48,57 @@ it("sortByDate", () => {
 
 it("getBookStatus", () => {
   expect(
-    getBookStatus({
-      date: "2020-01-01",
-      bookStatus: "abandoned",
-    })
-  ).toMatchInlineSnapshot(`
+  getBookStatus({
+    date: "2020-01-01",
+    bookStatus: "abandoned"
+  })
+).toMatchInlineSnapshot(`
 {
-  "date-abandoned": "2020-01-01",
+  "dateAbandoned": "2020-01-01",
 }
 `);
   expect(
-    getBookStatus({
-      date: "2020-01-01",
-      bookStatus: "finished",
-    })
-  ).toMatchInlineSnapshot(`
+  getBookStatus({
+    date: "2020-01-01",
+    bookStatus: "finished"
+  })
+).toMatchInlineSnapshot(`
 {
-  "date-finished": "2020-01-01",
+  "dateFinished": "2020-01-01",
 }
 `);
   expect(
-    getBookStatus({
-      date: "2020-01-01",
-      bookStatus: "started",
-    })
-  ).toMatchInlineSnapshot(`
+  getBookStatus({
+    date: "2020-01-01",
+    bookStatus: "started"
+  })
+).toMatchInlineSnapshot(`
 {
-  "date-started": "2020-01-01",
+  "dateStarted": "2020-01-01",
 }
 `);
   expect(
-    getBookStatus({
-      date: "2020-01-01",
-      bookStatus: "want to read",
-    })
-  ).toMatchInlineSnapshot(`
+  getBookStatus({
+    date: "2020-01-01",
+    bookStatus: "want to read"
+  })
+).toMatchInlineSnapshot(`
 {
-  "date-added": "2020-01-01",
+  "dateAdded": "2020-01-01",
 }
 `);
   expect(
-    getBookStatus({
-      date: "2020-01-01",
-    })
-  ).toMatchInlineSnapshot(`
+  getBookStatus({
+    date: "2020-01-01"
+  })
+).toMatchInlineSnapshot(`
 {
-  "date-added": "2020-01-01",
+  "dateAdded": "2020-01-01",
 }
 `);
   expect(getBookStatus({})).toMatchInlineSnapshot(`
 {
-  "date-added": "2023-12-01",
+  "dateAdded": "2023-12-01",
 }
 `);
 });

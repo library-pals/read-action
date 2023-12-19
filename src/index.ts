@@ -38,10 +38,10 @@ export type BookParams = {
   filename: string;
   bookIsbn: BookPayload["isbn"];
   dateType: {
-    "date-added"?: string;
-    "date-started"?: string;
-    "date-finished"?: string;
-    "date-abandoned"?: string;
+    dateAdded?: string;
+    dateStarted?: string;
+    dateFinished?: string;
+    dateAbandoned?: string;
   };
   notes?: BookPayload["notes"];
   bookStatus: BookStatus;

@@ -24,7 +24,7 @@ describe("cleanBook", () => {
     expect(
       cleanBook(
         {
-          dateType: { "date-finished": dateFinished },
+          dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
@@ -41,7 +41,7 @@ describe("cleanBook", () => {
   "categories": [
     "Fiction",
   ],
-  "date-finished": "2020-09-12",
+  "dateFinished": "2020-09-12",
   "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
   "isbn": "0525658181",
   "language": "en",
@@ -60,7 +60,7 @@ describe("cleanBook", () => {
     expect(
       cleanBook(
         {
-          dateType: { "date-finished": dateFinished },
+          dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
@@ -78,7 +78,7 @@ describe("cleanBook", () => {
   "categories": [
     "Fiction",
   ],
-  "date-finished": "2020-09-12",
+  "dateFinished": "2020-09-12",
   "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
   "isbn": "0525658181",
   "language": "en",
@@ -133,7 +133,7 @@ describe("cleanBook", () => {
     const warningSpy = jest.spyOn(core, "warning");
     cleanBook(
       {
-        dateType: { "date-started": "2022-01-01" },
+        dateType: { dateStarted: "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
@@ -181,7 +181,7 @@ describe("cleanBook", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     cleanBook(
       {
-        dateType: { "date-started": "2022-01-01" },
+        dateType: { dateStarted: "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
@@ -230,7 +230,7 @@ describe("cleanBook", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     cleanBook(
       {
-        dateType: { "date-started": "2022-01-01" },
+        dateType: { dateStarted: "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
@@ -279,7 +279,7 @@ describe("cleanBook", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     cleanBook(
       {
-        dateType: { "date-started": "2022-01-01" },
+        dateType: { dateStarted: "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
@@ -331,7 +331,7 @@ describe("cleanBook", () => {
       );
     cleanBook(
       {
-        dateType: { "date-started": "2022-01-01" },
+        dateType: { dateStarted: "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
@@ -358,7 +358,7 @@ describe("cleanBook", () => {
     expect(
       cleanBook(
         {
-          dateType: { "date-finished": dateFinished },
+          dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
@@ -376,7 +376,7 @@ describe("cleanBook", () => {
   "categories": [
     "Fiction",
   ],
-  "date-finished": "2020-09-12",
+  "dateFinished": "2020-09-12",
   "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
   "isbn": "0525658181",
   "language": "en",
@@ -398,7 +398,7 @@ describe("cleanBook", () => {
     expect(
       cleanBook(
         {
-          dateType: { "date-finished": dateFinished },
+          dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
@@ -416,7 +416,7 @@ describe("cleanBook", () => {
   "categories": [
     "Fiction",
   ],
-  "date-finished": "2020-09-12",
+  "dateFinished": "2020-09-12",
   "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
   "isbn": "0525658181",
   "language": "en",

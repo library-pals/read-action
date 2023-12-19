@@ -35206,20 +35206,20 @@ function getBookStatus({ date, bookStatus, }) {
     switch (bookStatus) {
         case "abandoned":
             return {
-                "date-abandoned": dateValue,
+                dateAbandoned: dateValue,
             };
         case "started":
             return {
-                "date-started": dateValue,
+                dateStarted: dateValue,
             };
         case "finished":
             return {
-                "date-finished": dateValue,
+                dateFinished: dateValue,
             };
         case "want to read":
         default: {
             return {
-                "date-added": dateValue,
+                dateAdded: dateValue,
             };
         }
     }

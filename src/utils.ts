@@ -54,29 +54,29 @@ export function getBookStatus({
   date?: string;
   bookStatus?: BookStatus;
 }): {
-  "date-abandoned"?: string;
-  "date-started"?: string;
-  "date-finished"?: string;
-  "date-added"?: string;
+  dateAbandoned?: string;
+  dateStarted?: string;
+  dateFinished?: string;
+  dateAdded?: string;
 } {
   const dateValue = date ?? localDate();
   switch (bookStatus) {
     case "abandoned":
       return {
-        "date-abandoned": dateValue,
+        dateAbandoned: dateValue,
       };
     case "started":
       return {
-        "date-started": dateValue,
+        dateStarted: dateValue,
       };
     case "finished":
       return {
-        "date-finished": dateValue,
+        dateFinished: dateValue,
       };
     case "want to read":
     default: {
       return {
-        "date-added": dateValue,
+        dateAdded: dateValue,
       };
     }
   }
