@@ -80,7 +80,7 @@ export async function read() {
       date,
       bookStatus,
     });
-    exportVariable("BookStatus", bookStatus);
+    exportVariable("BookStatus", bookStatus ?? "want to read");
 
     let library = await returnReadFile(filename);
 
