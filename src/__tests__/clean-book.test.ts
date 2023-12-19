@@ -22,22 +22,18 @@ describe("cleanBook", () => {
 
   it("cleanBook", () =>
     expect(
-  cleanBook(
-    {
-      dates: {
-        dateAdded: undefined,
-        dateStarted: undefined,
-        dateFinished
-      },
-      notes: "I loved it!",
-      bookIsbn: "0525658181",
-      providers: [],
-      bookStatus: "finished",
-      fileName: "_data/read.yml"
-    },
-    book
-  )
-).toMatchInlineSnapshot(`
+      cleanBook(
+        {
+          dateType: { "date-finished": dateFinished },
+          notes: "I loved it!",
+          bookIsbn: "0525658181",
+          providers: [],
+          bookStatus: "finished",
+          filename: "_data/read.yml",
+        },
+        book
+      )
+    ).toMatchInlineSnapshot(`
 {
   "authors": [
     "Yaa Gyasi",
@@ -45,6 +41,7 @@ describe("cleanBook", () => {
   "categories": [
     "Fiction",
   ],
+  "date-finished": "2020-09-12",
   "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
   "isbn": "0525658181",
   "language": "en",
@@ -61,22 +58,19 @@ describe("cleanBook", () => {
 
   it("cleanBook with rating", () =>
     expect(
-  cleanBook(
-    {
-      dates: {
-        dateAdded: undefined,
-        dateStarted: undefined,
-        dateFinished
-      },
-      notes: "I loved it!",
-      bookIsbn: "0525658181",
-      providers: [],
-      bookStatus: "finished",
-      rating: "⭐️⭐️⭐️⭐️⭐️"
-    },
-    book
-  )
-).toMatchInlineSnapshot(`
+      cleanBook(
+        {
+          dateType: { "date-finished": dateFinished },
+          notes: "I loved it!",
+          bookIsbn: "0525658181",
+          providers: [],
+          bookStatus: "finished",
+          rating: "⭐️⭐️⭐️⭐️⭐️",
+          filename: "_data/read.yml",
+        },
+        book
+      )
+    ).toMatchInlineSnapshot(`
 {
   "authors": [
     "Yaa Gyasi",
@@ -84,6 +78,7 @@ describe("cleanBook", () => {
   "categories": [
     "Fiction",
   ],
+  "date-finished": "2020-09-12",
   "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
   "isbn": "0525658181",
   "language": "en",
@@ -101,22 +96,17 @@ describe("cleanBook", () => {
 
   it("cleanBook, no date", () =>
     expect(
-  cleanBook(
-    {
-      dates: {
-        dateAdded: undefined,
-        dateStarted: undefined,
-        dateFinished: undefined
-      },
-      notes: "I loved it!",
-      bookIsbn: "0525658181",
-      providers: [],
-      bookStatus: "finished",
-      fileName: "_data/read.yml"
-    },
-    book
-  )
-).toMatchInlineSnapshot(`
+      cleanBook(
+        {
+          notes: "I loved it!",
+          bookIsbn: "0525658181",
+          providers: [],
+          bookStatus: "finished",
+          filename: "_data/read.yml",
+        },
+        book
+      )
+    ).toMatchInlineSnapshot(`
 {
   "authors": [
     "Yaa Gyasi",
@@ -143,15 +133,11 @@ describe("cleanBook", () => {
     const warningSpy = jest.spyOn(core, "warning");
     cleanBook(
       {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: "2022-01-01",
-          dateFinished: undefined,
-        },
+        dateType: { "date-started": "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
-        fileName: "_data/read.yml",
+        filename: "_data/read.yml",
       },
       {
         title: "Book Title",
@@ -195,15 +181,11 @@ describe("cleanBook", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     cleanBook(
       {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: "2022-01-01",
-          dateFinished: undefined,
-        },
+        dateType: { "date-started": "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
-        fileName: "_data/read.yml",
+        filename: "_data/read.yml",
       },
       {
         authors: ["Author Name"],
@@ -248,15 +230,11 @@ describe("cleanBook", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     cleanBook(
       {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: "2022-01-01",
-          dateFinished: undefined,
-        },
+        dateType: { "date-started": "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
-        fileName: "_data/read.yml",
+        filename: "_data/read.yml",
       },
       {
         title: "Book Title",
@@ -301,15 +279,11 @@ describe("cleanBook", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     cleanBook(
       {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: "2022-01-01",
-          dateFinished: undefined,
-        },
+        dateType: { "date-started": "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
-        fileName: "_data/read.yml",
+        filename: "_data/read.yml",
       },
       {
         publishedDate: "2013",
@@ -357,15 +331,11 @@ describe("cleanBook", () => {
       );
     cleanBook(
       {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: "2022-01-01",
-          dateFinished: undefined,
-        },
+        dateType: { "date-started": "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
-        fileName: "_data/read.yml",
+        filename: "_data/read.yml",
       },
       {
         publishedDate: "2013",
@@ -386,23 +356,19 @@ describe("cleanBook", () => {
 
   it("cleanBook, change thumbnail image width", () => {
     expect(
-  cleanBook(
-    {
-      dates: {
-        dateAdded: undefined,
-        dateStarted: undefined,
-        dateFinished
-      },
-      notes: "I loved it!",
-      bookIsbn: "0525658181",
-      providers: [],
-      bookStatus: "finished",
-      fileName: "_data/read.yml",
-      thumbnailWidth: 10000
-    },
-    book
-  )
-).toMatchInlineSnapshot(`
+      cleanBook(
+        {
+          dateType: { "date-finished": dateFinished },
+          notes: "I loved it!",
+          bookIsbn: "0525658181",
+          providers: [],
+          bookStatus: "finished",
+          filename: "_data/read.yml",
+          thumbnailWidth: 10000,
+        },
+        book
+      )
+    ).toMatchInlineSnapshot(`
 {
   "authors": [
     "Yaa Gyasi",
@@ -410,6 +376,7 @@ describe("cleanBook", () => {
   "categories": [
     "Fiction",
   ],
+  "date-finished": "2020-09-12",
   "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
   "isbn": "0525658181",
   "language": "en",
@@ -429,23 +396,19 @@ describe("cleanBook", () => {
     const newBook = book;
     newBook.imageLinks.thumbnail = "https://site.com/image.jpg";
     expect(
-  cleanBook(
-    {
-      dates: {
-        dateAdded: undefined,
-        dateStarted: undefined,
-        dateFinished
-      },
-      notes: "I loved it!",
-      bookIsbn: "0525658181",
-      providers: [],
-      bookStatus: "finished",
-      fileName: "_data/read.yml",
-      thumbnailWidth: 10000
-    },
-    newBook
-  )
-).toMatchInlineSnapshot(`
+      cleanBook(
+        {
+          dateType: { "date-finished": dateFinished },
+          notes: "I loved it!",
+          bookIsbn: "0525658181",
+          providers: [],
+          bookStatus: "finished",
+          filename: "_data/read.yml",
+          thumbnailWidth: 10000,
+        },
+        newBook
+      )
+    ).toMatchInlineSnapshot(`
 {
   "authors": [
     "Yaa Gyasi",
@@ -453,6 +416,7 @@ describe("cleanBook", () => {
   "categories": [
     "Fiction",
   ],
+  "date-finished": "2020-09-12",
   "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
   "isbn": "0525658181",
   "language": "en",

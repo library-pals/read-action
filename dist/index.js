@@ -35655,7 +35655,7 @@ async function read() {
             date,
             bookStatus,
         });
-        (0,core.exportVariable)("BookStatus", bookStatus);
+        (0,core.exportVariable)("BookStatus", bookStatus ?? "want to read");
         let library = await returnReadFile(filename);
         const bookParams = {
             filename,
