@@ -20,7 +20,7 @@ describe("cleanBook", () => {
     jest.resetAllMocks();
   });
 
-  it("cleanBook", () =>
+  it("cleanBook", () => {
     expect(
       cleanBook(
         {
@@ -34,29 +34,30 @@ describe("cleanBook", () => {
         book
       )
     ).toMatchInlineSnapshot(`
-{
-  "authors": [
-    "Yaa Gyasi",
-  ],
-  "categories": [
-    "Fiction",
-  ],
-  "dateFinished": "2020-09-12",
-  "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
-  "isbn": "0525658181",
-  "language": "en",
-  "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
-  "notes": "I loved it!",
-  "pageCount": 288,
-  "printType": "BOOK",
-  "publishedDate": "2020",
-  "status": "finished",
-  "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-  "title": "Transcendent Kingdom",
-}
-`));
+      {
+        "authors": [
+          "Yaa Gyasi",
+        ],
+        "categories": [
+          "Fiction",
+        ],
+        "dateFinished": "2020-09-12",
+        "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
+        "isbn": "0525658181",
+        "language": "en",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "notes": "I loved it!",
+        "pageCount": 288,
+        "printType": "BOOK",
+        "publishedDate": "2020",
+        "status": "finished",
+        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "title": "Transcendent Kingdom",
+      }
+    `);
+  });
 
-  it("cleanBook with rating", () =>
+  it("cleanBook with rating", () => {
     expect(
       cleanBook(
         {
@@ -71,30 +72,31 @@ describe("cleanBook", () => {
         book
       )
     ).toMatchInlineSnapshot(`
-{
-  "authors": [
-    "Yaa Gyasi",
-  ],
-  "categories": [
-    "Fiction",
-  ],
-  "dateFinished": "2020-09-12",
-  "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
-  "isbn": "0525658181",
-  "language": "en",
-  "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
-  "notes": "I loved it!",
-  "pageCount": 288,
-  "printType": "BOOK",
-  "publishedDate": "2020",
-  "rating": "⭐️⭐️⭐️⭐️⭐️",
-  "status": "finished",
-  "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-  "title": "Transcendent Kingdom",
-}
-`));
+      {
+        "authors": [
+          "Yaa Gyasi",
+        ],
+        "categories": [
+          "Fiction",
+        ],
+        "dateFinished": "2020-09-12",
+        "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
+        "isbn": "0525658181",
+        "language": "en",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "notes": "I loved it!",
+        "pageCount": 288,
+        "printType": "BOOK",
+        "publishedDate": "2020",
+        "rating": "⭐️⭐️⭐️⭐️⭐️",
+        "status": "finished",
+        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "title": "Transcendent Kingdom",
+      }
+    `);
+  });
 
-  it("cleanBook, no date", () =>
+  it("cleanBook, no date", () => {
     expect(
       cleanBook(
         {
@@ -107,26 +109,27 @@ describe("cleanBook", () => {
         book
       )
     ).toMatchInlineSnapshot(`
-{
-  "authors": [
-    "Yaa Gyasi",
-  ],
-  "categories": [
-    "Fiction",
-  ],
-  "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
-  "isbn": "0525658181",
-  "language": "en",
-  "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
-  "notes": "I loved it!",
-  "pageCount": 288,
-  "printType": "BOOK",
-  "publishedDate": "2020",
-  "status": "finished",
-  "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-  "title": "Transcendent Kingdom",
-}
-`));
+      {
+        "authors": [
+          "Yaa Gyasi",
+        ],
+        "categories": [
+          "Fiction",
+        ],
+        "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
+        "isbn": "0525658181",
+        "language": "en",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "notes": "I loved it!",
+        "pageCount": 288,
+        "printType": "BOOK",
+        "publishedDate": "2020",
+        "status": "finished",
+        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "title": "Transcendent Kingdom",
+      }
+    `);
+  });
 
   it("cleanBook, missing `authors`", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
@@ -369,27 +372,27 @@ describe("cleanBook", () => {
         book
       )
     ).toMatchInlineSnapshot(`
-{
-  "authors": [
-    "Yaa Gyasi",
-  ],
-  "categories": [
-    "Fiction",
-  ],
-  "dateFinished": "2020-09-12",
-  "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
-  "isbn": "0525658181",
-  "language": "en",
-  "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
-  "notes": "I loved it!",
-  "pageCount": 288,
-  "printType": "BOOK",
-  "publishedDate": "2020",
-  "status": "finished",
-  "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&w=10000",
-  "title": "Transcendent Kingdom",
-}
-`);
+      {
+        "authors": [
+          "Yaa Gyasi",
+        ],
+        "categories": [
+          "Fiction",
+        ],
+        "dateFinished": "2020-09-12",
+        "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
+        "isbn": "0525658181",
+        "language": "en",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "notes": "I loved it!",
+        "pageCount": 288,
+        "printType": "BOOK",
+        "publishedDate": "2020",
+        "status": "finished",
+        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&w=10000",
+        "title": "Transcendent Kingdom",
+      }
+    `);
   });
 
   it("cleanBook, already https thumbnail, doesn't set thumbnailWidth", () => {
@@ -409,26 +412,26 @@ describe("cleanBook", () => {
         newBook
       )
     ).toMatchInlineSnapshot(`
-{
-  "authors": [
-    "Yaa Gyasi",
-  ],
-  "categories": [
-    "Fiction",
-  ],
-  "dateFinished": "2020-09-12",
-  "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
-  "isbn": "0525658181",
-  "language": "en",
-  "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
-  "notes": "I loved it!",
-  "pageCount": 288,
-  "printType": "BOOK",
-  "publishedDate": "2020",
-  "status": "finished",
-  "thumbnail": "https://site.com/image.jpg",
-  "title": "Transcendent Kingdom",
-}
-`);
+      {
+        "authors": [
+          "Yaa Gyasi",
+        ],
+        "categories": [
+          "Fiction",
+        ],
+        "dateFinished": "2020-09-12",
+        "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
+        "isbn": "0525658181",
+        "language": "en",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "notes": "I loved it!",
+        "pageCount": 288,
+        "printType": "BOOK",
+        "publishedDate": "2020",
+        "status": "finished",
+        "thumbnail": "https://site.com/image.jpg",
+        "title": "Transcendent Kingdom",
+      }
+    `);
   });
 });
