@@ -60,7 +60,7 @@ export async function read() {
     const {
       isbn: bookIsbn,
       date,
-      "book-status": bookStatus,
+      "book-status": bookStatus = "want to read",
       notes,
       rating,
       tags,
@@ -80,7 +80,7 @@ export async function read() {
       date,
       bookStatus,
     });
-    exportVariable("BookStatus", bookStatus ?? "want to read");
+    exportVariable("BookStatus", bookStatus);
 
     let library = await returnReadFile(filename);
 

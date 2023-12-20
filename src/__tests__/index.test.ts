@@ -387,7 +387,7 @@ describe("index", () => {
             "pageCount": 0,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
-            "status": undefined,
+            "status": "want to read",
             "thumbnail": "https://books.google.com/books/content?id=NFeTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
             "title": "Luster",
           },
@@ -493,7 +493,7 @@ describe("index", () => {
             "pageCount": 0,
             "printType": "BOOK",
             "publishedDate": "2020-08-04",
-            "status": undefined,
+            "status": "want to read",
             "tags": [
               "new",
               "recommend",

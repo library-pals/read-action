@@ -35642,7 +35642,7 @@ async function read() {
         const payload = github.context.payload.inputs;
         // Validate payload
         validatePayload(payload);
-        const { isbn: bookIsbn, date, "book-status": bookStatus, notes, rating, tags, } = payload;
+        const { isbn: bookIsbn, date, "book-status": bookStatus = "want to read", notes, rating, tags, } = payload;
         // Set inputs
         const filename = (0,core.getInput)("filename");
         const providers = (0,core.getInput)("providers")
@@ -35655,7 +35655,7 @@ async function read() {
             date,
             bookStatus,
         });
-        (0,core.exportVariable)("BookStatus", bookStatus ?? "want to read");
+        (0,core.exportVariable)("BookStatus", bookStatus);
         let library = await returnReadFile(filename);
         const bookParams = {
             filename,
