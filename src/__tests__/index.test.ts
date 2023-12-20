@@ -202,6 +202,8 @@ describe("index", () => {
             "categories": [
               "Fiction",
             ],
+            "dateAbandoned": undefined,
+            "dateAdded": undefined,
             "dateFinished": "2021-09-30",
             "dateStarted": "2021-09-26",
             "description": "NEW YORK TIMES BESTSELLER",
