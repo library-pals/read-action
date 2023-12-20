@@ -23,7 +23,7 @@ To use this action, create a new workflow in `.github/workflows` and modify it a
 
 ```yml
 name: read action
-run-name: Book (${{ inputs.isbn }} - ${{ inputs.bookStatus }})
+run-name: Book (${{ inputs.isbn }} - ${{ inputs['book-status'] }})
 
 # Grant the action permission to write to the repository
 permissions:
