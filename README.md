@@ -62,6 +62,7 @@ on:
         description: What is the status of the book? Required.
         required: true
         type: choice
+        default: "want to read"
         options:
           - "want to read"
           - "started"
@@ -139,6 +140,7 @@ on:
         description: What is the status of the book? Required.
         required: true
         type: choice
+        default: "want to read"
         options:
           - "want to read"
           - "started"
@@ -245,6 +247,7 @@ on:
         description: What is the status of the book? Required.
         required: true
         type: choice
+        default: "want to read"
         options:
           - "want to read"
           - "started"
@@ -307,7 +310,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
     "notes": "", // Notes about the book. Optional.
     "rating": "", // Rate the book. Optional. Default: `unrated`.
     "tags": "", // Add tags to categorize the book. Separate each tag with a comma. Optional.
-    "bookStatus": "", // Required. What is the status of the book? Required.
+    "bookStatus": "", // Required. What is the status of the book? Required. Default: `want to read`.
     "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
   }
 }
