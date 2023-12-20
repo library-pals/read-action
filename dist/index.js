@@ -35619,7 +35619,7 @@ function validatePayload(payload) {
     if (payload["date"] && !isDate(payload["date"])) {
         (0,core.setFailed)(`Invalid \`date\` in payload: ${payload["date"]}`);
     }
-    if (payload["book-status"] && !isBookStatus(payload["book-status"])) {
+    if (!payload["book-status"] || !isBookStatus(payload["book-status"])) {
         (0,core.setFailed)(`Invalid \`book-status\` in payload: "${payload["book-status"]}". Choose from: "want to read", "started", "finished", "abandoned"`);
     }
 }
@@ -35645,7 +35645,7 @@ async function read() {
         const payload = github.context.payload.inputs;
         // Validate payload
         validatePayload(payload);
-        const { isbn: bookIsbn, date, "book-status": bookStatus = "want to read", notes, rating, tags, } = payload;
+        const { isbn: bookIsbn, date, "book-status": bookStatus, notes, rating, tags, } = payload;
         // Set inputs
         const filename = (0,core.getInput)("filename");
         const providers = (0,core.getInput)("providers")

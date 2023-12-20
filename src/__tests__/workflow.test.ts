@@ -48,6 +48,7 @@ describe("workflow", () => {
         payload: {
           inputs: {
             isbn: "9780385696005",
+            "book-status": "want to read",
           },
         },
       },
@@ -258,6 +259,7 @@ describe("workflow", () => {
         payload: {
           inputs: {
             isbn: "9798374567144",
+            "book-status": "want to read",
           },
         },
       },

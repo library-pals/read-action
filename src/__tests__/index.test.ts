@@ -314,6 +314,7 @@ describe("index", () => {
         payload: {
           inputs: {
             isbn: "9780385696005",
+            "book-status": "want to read",
           },
         },
       },
@@ -433,6 +434,7 @@ describe("index", () => {
         payload: {
           inputs: {
             isbn: "9780385696005",
+            "book-status": "want to read",
           },
         },
       },
@@ -453,6 +455,7 @@ describe("index", () => {
           inputs: {
             isbn: "9780385696005",
             tags: "new, recommend",
+            "book-status": "want to read",
           },
         },
       },

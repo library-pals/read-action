@@ -60,7 +60,7 @@ export async function read() {
     const {
       isbn: bookIsbn,
       date,
-      "book-status": bookStatus = "want to read",
+      "book-status": bookStatus,
       notes,
       rating,
       tags,
