@@ -24,7 +24,6 @@ on:
         description: Rate the book. Optional.
         type: choice
         default: "unrated"
-        default: "want to read"
         options:
           - "unrated"
           - ⭐️
@@ -40,6 +39,7 @@ on:
         description: What is the status of the book? Required.
         required: true
         type: choice
+        default: "want to read"
         options:
           - "want to read"
           - "started"
