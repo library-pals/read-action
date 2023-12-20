@@ -6,7 +6,8 @@
   "scripts": {
     "pretest": "eslint . --ext .js,.ts",
     "test": "jest --coverage",
-    "build": "ncc build src/index.ts"
+    "build": "ncc build src/index.ts",
+    "format": "prettier . --write"
   },
   "author": "Katy DeCorah",
   "license": "MIT",
@@ -16,18 +17,21 @@
     "node-isbn": "^1.6.1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.23.5",
+    "@babel/preset-env": "^7.23.6",
     "@babel/preset-typescript": "^7.23.3",
-    "@types/jest": "^29.5.10",
-    "@types/node": "^20.10.3",
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.5",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
     "@vercel/ncc": "^0.38.1",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jest": "^27.6.0",
     "jest": "^29.7.0",
-    "typescript": "^5.3.2"
+    "prettier": "^3.1.1",
+    "prettier-2": "npm:prettier@^2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   },
   "directories": {
     "test": "tests"
@@ -43,16 +47,5 @@
   "description": "This GitHub action tracks the books that you've read by updating the `_data/read.json` file in your repository.",
   "keywords": [
     "github-actions"
-  ],
-  "jest": {
-    "resetMocks": true,
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    }
-  }
+  ]
 }

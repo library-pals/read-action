@@ -318,37 +318,37 @@ describe("index", () => {
     });
     await read();
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
-[
-  [
-    "BookStatus",
-    "want to read",
-  ],
-  [
-    "BookNeedsReview",
-    true,
-  ],
-  [
-    "BookMissingMetadata",
-    "pageCount",
-  ],
-  [
-    "BookIsbn",
-    "9780385696005",
-  ],
-  [
-    "BookTitle",
-    "Luster",
-  ],
-  [
-    "BookThumbOutput",
-    "book-9780385696005.png",
-  ],
-  [
-    "BookThumb",
-    "https://books.google.com/books/content?id=NFeTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-  ],
-]
-`);
+      [
+        [
+          "BookStatus",
+          "want to read",
+        ],
+        [
+          "BookNeedsReview",
+          true,
+        ],
+        [
+          "BookMissingMetadata",
+          "pageCount",
+        ],
+        [
+          "BookIsbn",
+          "9780385696005",
+        ],
+        [
+          "BookTitle",
+          "Luster",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780385696005.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/content?id=NFeTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
 [
