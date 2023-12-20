@@ -35,7 +35,7 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
         type: string
-      bookStatus:
+      book-status:
         description: What is the status of the book? Required.
         required: true
         type: choice
