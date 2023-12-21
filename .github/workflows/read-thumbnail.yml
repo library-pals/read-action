@@ -13,6 +13,19 @@ on:
         description: The book's ISBN. Required.
         required: true
         type: string
+      book-status:
+        description: What is the status of the book? Required.
+        required: true
+        type: choice
+        default: "want to read"
+        options:
+          - "want to read"
+          - "started"
+          - "finished"
+          - "abandoned"
+      date:
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
+        type: string
       notes:
         description: Notes about the book. Optional.
         type: string
@@ -33,19 +46,6 @@ on:
       # Tags are optional.
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
-        type: string
-      book-status:
-        description: What is the status of the book? Required.
-        required: true
-        type: choice
-        default: "want to read"
-        options:
-          - "want to read"
-          - "started"
-          - "finished"
-          - "abandoned"
-      date:
-        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
 
 # Set up the steps to run the action
