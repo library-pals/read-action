@@ -1,5 +1,5 @@
 name: Download the book thumbnail
-run-name: Book (${{ inputs.isbn }})
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
 
 # Grant the action permission to write to the repository
 permissions:
