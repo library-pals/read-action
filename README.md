@@ -6,15 +6,9 @@ This GitHub action tracks the books that you read by updating a JSON file in you
 
 [Create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with information about the book. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
 
-## Book status
+## Book lifecycle
 
-There are three statuses a book can have:
-
-1. **want to read** - to mark a book as one that you want to read, do not send a `date-started` or `date-finished` in your payload.
-2. **started** - to mark a book as started, add `date-started` in your payload.
-3. **finished** - to mark a book as finished, add `date-finished` in your payload.
-
-If you mark a book as "want to read" you can update it to "started" by sending another payload with the same ISBN and `date-started`. Similarily, if you marked a book as "want to read" or "started", send a new payload with the same book ISBN and `date-finished` to mark the book as finished.
+When you add or update a book, you can set it as: want to read, started, finished, or abandoned. This will set the value as `bookStatus` and will add an accompanying date for the status.
 
 <!-- START GENERATED DOCUMENTATION -->
 
@@ -24,7 +18,7 @@ To use this action, create a new workflow in `.github/workflows` and modify it a
 
 ```yml
 name: read action
-run-name: Book (${{ inputs.isbn }})
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
 
 # Grant the action permission to write to the repository
 permissions:
@@ -59,12 +53,18 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
         type: string
-      # If you do not submit date-started or date-finished, the book status will be set to "want to read"
-      date-started:
-        description: Date you started the book (YYYY-MM-DD). Optional.
-        type: string
-      date-finished:
-        description: Date you finished the book (YYYY-MM-DD). Optional.
+      book-status:
+        description: What is the status of the book? Required.
+        required: true
+        type: choice
+        default: "want to read"
+        options:
+          - "want to read"
+          - "started"
+          - "finished"
+          - "abandoned"
+      date:
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
 
 # Set up the steps to run the action
@@ -95,7 +95,7 @@ jobs:
 
 ```yml
 name: When book is missing metadata, create a pull request
-run-name: Book (${{ inputs.isbn }})
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
 
 # Grant the action permission to write to the repository
 permissions:
@@ -131,12 +131,18 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
         type: string
-      # If you do not submit date-started or date-finished, the book status will be set to "want to read"
-      date-started:
-        description: Date you started the book (YYYY-MM-DD). Optional.
-        type: string
-      date-finished:
-        description: Date you finished the book (YYYY-MM-DD). Optional.
+      book-status:
+        description: What is the status of the book? Required.
+        required: true
+        type: choice
+        default: "want to read"
+        options:
+          - "want to read"
+          - "started"
+          - "finished"
+          - "abandoned"
+      date:
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
 
 # Set up the steps to run the action
@@ -197,7 +203,7 @@ jobs:
 
 ```yml
 name: Download the book thumbnail
-run-name: Book (${{ inputs.isbn }})
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
 
 # Grant the action permission to write to the repository
 permissions:
@@ -232,12 +238,18 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
         type: string
-      # If you do not submit date-started or date-finished, the book status will be set to "want to read"
-      date-started:
-        description: Date you started the book (YYYY-MM-DD). Optional.
-        type: string
-      date-finished:
-        description: Date you finished the book (YYYY-MM-DD). Optional.
+      book-status:
+        description: What is the status of the book? Required.
+        required: true
+        type: choice
+        default: "want to read"
+        options:
+          - "want to read"
+          - "started"
+          - "finished"
+          - "abandoned"
+      date:
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
 
 # Set up the steps to run the action
@@ -293,8 +305,8 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
     "notes": "", // Notes about the book. Optional.
     "rating": "", // Rate the book. Optional. Default: `unrated`.
     "tags": "", // Add tags to categorize the book. Separate each tag with a comma. Optional.
-    "date-started": "", // Date you started the book (YYYY-MM-DD). Optional.
-    "date-finished": "", // Date you finished the book (YYYY-MM-DD). Optional.
+    "book-status": "", // Required. What is the status of the book? Required. Default: `want to read`.
+    "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
   }
 }
 ```

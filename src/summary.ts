@@ -1,5 +1,5 @@
 import { BookPayload } from ".";
-import { CleanBook } from "./clean-book";
+import { BookStatus, CleanBook } from "./clean-book";
 import {
   mAverageDays,
   mMostReadMonth,
@@ -13,15 +13,16 @@ import { capitalize } from "./utils";
 
 export function summaryMarkdown(
   library: CleanBook[],
-  dateFinished: BookPayload["date-finished"]
+  date: BookPayload["date"],
+  bookStatus: BookStatus
 ): string {
-  const { BookStatus, BookTitle } = process.env;
+  const { BookTitle } = process.env;
   return `# Updated library
 
-${capitalize(`${BookStatus}`)}: “${BookTitle}”
+${capitalize(`${bookStatus}`)}: “${BookTitle}”
 ${
-  BookStatus === "finished" && dateFinished
-    ? yearReviewSummary(library, dateFinished.slice(0, 4))
+  bookStatus === "finished" && date
+    ? yearReviewSummary(library, date.slice(0, 4))
     : ""
 }
 `;

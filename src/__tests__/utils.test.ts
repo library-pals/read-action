@@ -1,6 +1,13 @@
-import { removeWrappedQuotes, isIsbn, sortByDate, isDate } from "../utils";
+import {
+  removeWrappedQuotes,
+  isIsbn,
+  sortByDate,
+  isDate,
+  getBookStatus,
+} from "../utils";
 
 jest.mock("@actions/core");
+jest.useFakeTimers().setSystemTime(new Date("2023-12-01T12:00:00"));
 
 it("removeWrappedQuotes", () => {
   expect(removeWrappedQuotes("hello")).toBe("hello");
@@ -37,4 +44,61 @@ it("sortByDate", () => {
     { dateFinished: "2020-01-01" },
     { dateFinished: "2020-11-01" },
   ]);
+});
+
+it("getBookStatus", () => {
+  expect(
+  getBookStatus({
+    date: "2020-01-01",
+    bookStatus: "abandoned"
+  })
+).toMatchInlineSnapshot(`
+{
+  "dateAbandoned": "2020-01-01",
+}
+`);
+  expect(
+  getBookStatus({
+    date: "2020-01-01",
+    bookStatus: "finished"
+  })
+).toMatchInlineSnapshot(`
+{
+  "dateFinished": "2020-01-01",
+}
+`);
+  expect(
+  getBookStatus({
+    date: "2020-01-01",
+    bookStatus: "started"
+  })
+).toMatchInlineSnapshot(`
+{
+  "dateStarted": "2020-01-01",
+}
+`);
+  expect(
+  getBookStatus({
+    date: "2020-01-01",
+    bookStatus: "want to read"
+  })
+).toMatchInlineSnapshot(`
+{
+  "dateAdded": "2020-01-01",
+}
+`);
+  expect(
+  getBookStatus({
+    date: "2020-01-01"
+  })
+).toMatchInlineSnapshot(`
+{
+  "dateAdded": "2020-01-01",
+}
+`);
+  expect(getBookStatus({})).toMatchInlineSnapshot(`
+{
+  "dateAdded": "2023-12-01",
+}
+`);
 });

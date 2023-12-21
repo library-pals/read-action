@@ -1,4 +1,4 @@
-import { BookParams, Dates } from ".";
+import { BookParams } from ".";
 import { getInput } from "@actions/core";
 import { BookStatus, CleanBook } from "./clean-book";
 
@@ -47,30 +47,39 @@ function localDate() {
   return dateFormat.format(new Date());
 }
 
-export function getBookStatus(
-  dateStarted: Dates["dateStarted"],
-  dateFinished: Dates["dateFinished"]
-): BookStatus {
-  // Set book status
-  if (dateStarted && !dateFinished) return "started";
-  if (dateFinished) return "finished";
-  return "want to read";
-}
-
-export function getDates(
-  bookStatus: BookStatus,
-  dateStarted: Dates["dateStarted"],
-  dateFinished: Dates["dateFinished"]
-): {
-  dateAdded: string | undefined;
-  dateStarted: string | undefined;
-  dateFinished: string | undefined;
+export function getBookStatus({
+  date,
+  bookStatus,
+}: {
+  date?: string;
+  bookStatus?: BookStatus;
+}): {
+  dateAbandoned?: string;
+  dateStarted?: string;
+  dateFinished?: string;
+  dateAdded?: string;
 } {
-  return {
-    dateAdded: bookStatus === "want to read" ? localDate() : undefined,
-    dateStarted: dateStarted || undefined,
-    dateFinished: dateFinished || undefined,
-  };
+  const dateValue = date ?? localDate();
+  switch (bookStatus) {
+    case "abandoned":
+      return {
+        dateAbandoned: dateValue,
+      };
+    case "started":
+      return {
+        dateStarted: dateValue,
+      };
+    case "finished":
+      return {
+        dateFinished: dateValue,
+      };
+    case "want to read":
+    default: {
+      return {
+        dateAdded: dateValue,
+      };
+    }
+  }
 }
 
 export function toArray(tags: string): BookParams["tags"] {

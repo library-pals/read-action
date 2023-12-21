@@ -4,9 +4,10 @@ import { BookParams } from ".";
 import { exportVariable, getInput, warning } from "@actions/core";
 
 export type CleanBook = {
-  dateAdded: string | undefined;
-  dateStarted: string | undefined;
-  dateFinished: string | undefined;
+  dateAdded?: string | undefined;
+  dateStarted?: string | undefined;
+  dateFinished?: string | undefined;
+  dateAbandoned?: string | undefined;
   title?: string;
   authors?: string[];
   publishedDate?: string;
@@ -24,11 +25,18 @@ export type CleanBook = {
   tags?: BookParams["tags"];
 };
 
-export type BookStatus = "want to read" | "started" | "finished";
+export type BookStatus = "want to read" | "started" | "finished" | "abandoned";
 
 export default function cleanBook(options: BookParams, book: Book): CleanBook {
-  const { notes, bookIsbn, dates, bookStatus, rating, tags, thumbnailWidth } =
-    options;
+  const {
+    notes,
+    bookIsbn,
+    dateType,
+    bookStatus,
+    rating,
+    tags,
+    thumbnailWidth,
+  } = options;
   checkMetadata(book, bookIsbn);
   const {
     title,
@@ -45,7 +53,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
 
   return {
     isbn: bookIsbn,
-    ...dates,
+    ...dateType,
     status: bookStatus,
     ...(rating && { rating }),
     ...(notes && { notes }),

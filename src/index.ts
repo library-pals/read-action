@@ -9,7 +9,7 @@ import * as github from "@actions/github";
 import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
 import getBook from "./get-book";
-import { getBookStatus, getDates, sortByDate, toArray } from "./utils";
+import { getBookStatus, sortByDate, toArray } from "./utils";
 import { checkOutBook } from "./checkout-book";
 import { BookStatus } from "./clean-book";
 import { summaryMarkdown } from "./summary";
@@ -17,15 +17,9 @@ import returnReadFile from "./read-file";
 import { updateBook } from "./update-book";
 import { validatePayload } from "./validate-payload";
 
-export type Dates = {
-  dateAdded: string | undefined;
-  dateStarted: string | undefined;
-  dateFinished: string | undefined;
-};
-
 export type BookPayload = {
-  "date-started": string | undefined;
-  "date-finished": string | undefined;
+  date: string | undefined;
+  "book-status": BookStatus;
   notes?: string;
   isbn: string;
   rating?: string;
@@ -43,7 +37,12 @@ export type ActionInputs = {
 export type BookParams = {
   filename: string;
   bookIsbn: BookPayload["isbn"];
-  dates: Dates;
+  dateType: {
+    dateAdded?: string;
+    dateStarted?: string;
+    dateFinished?: string;
+    dateAbandoned?: string;
+  };
   notes?: BookPayload["notes"];
   bookStatus: BookStatus;
   providers?: ActionInputs["providers"];
@@ -60,8 +59,8 @@ export async function read() {
     validatePayload(payload);
     const {
       isbn: bookIsbn,
-      "date-finished": dateFinished,
-      "date-started": dateStarted,
+      date,
+      "book-status": bookStatus,
       notes,
       rating,
       tags,
@@ -77,16 +76,18 @@ export async function read() {
       ? Number.parseInt(getInput("thumbnail-width"))
       : undefined;
 
-    const bookStatus = getBookStatus(dateStarted, dateFinished);
+    const dateType = getBookStatus({
+      date,
+      bookStatus,
+    });
     exportVariable("BookStatus", bookStatus);
-    const dates = getDates(bookStatus, dateStarted, dateFinished);
 
     let library = await returnReadFile(filename);
 
     const bookParams: BookParams = {
       filename,
       bookIsbn,
-      dates,
+      dateType,
       notes,
       bookStatus,
       rating,
@@ -123,7 +124,7 @@ export async function read() {
     library = sortByDate(library);
 
     await returnWriteFile(filename, library);
-    await summary.addRaw(summaryMarkdown(library, dateFinished)).write();
+    await summary.addRaw(summaryMarkdown(library, date, bookStatus)).write();
   } catch (error) {
     setFailed(error);
   }

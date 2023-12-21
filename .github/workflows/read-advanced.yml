@@ -1,5 +1,5 @@
 name: When book is missing metadata, create a pull request
-run-name: Book (${{ inputs.isbn }})
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
 
 # Grant the action permission to write to the repository
 permissions:
@@ -35,12 +35,18 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
         type: string
-      # If you do not submit date-started or date-finished, the book status will be set to "want to read"
-      date-started:
-        description: Date you started the book (YYYY-MM-DD). Optional.
-        type: string
-      date-finished:
-        description: Date you finished the book (YYYY-MM-DD). Optional.
+      book-status:
+        description: What is the status of the book? Required.
+        required: true
+        type: choice
+        default: "want to read"
+        options:
+          - "want to read"
+          - "started"
+          - "finished"
+          - "abandoned"
+      date:
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
 
 # Set up the steps to run the action

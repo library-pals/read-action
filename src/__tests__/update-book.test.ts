@@ -22,11 +22,9 @@ describe("updateBook", () => {
     return expect(
       updateBook(
         {
-          fileName: "my-library.yml",
+          filename: "my-library.yml",
           bookIsbn: "9780525620792",
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
+          dateType: {
             dateFinished: "2022-02-02",
           },
           bookStatus: "finished",
@@ -42,6 +40,7 @@ describe("updateBook", () => {
                   "title": "Uncanny Valley",
                 },
                 {
+                  "dateAbandoned": undefined,
                   "dateAdded": undefined,
                   "dateFinished": "2022-02-02",
                   "dateStarted": "2021-09-26",
@@ -66,11 +65,9 @@ describe("updateBook", () => {
     return expect(
       updateBook(
         {
-          fileName: "my-library.yml",
+          filename: "my-library.yml",
           bookIsbn: "9780525620792",
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
+          dateType: {
             dateFinished: "2022-02-02",
           },
           notes: "Great read",
@@ -81,6 +78,7 @@ describe("updateBook", () => {
     ).resolves.toMatchInlineSnapshot(`
               [
                 {
+                  "dateAbandoned": undefined,
                   "dateAdded": undefined,
                   "dateFinished": "2022-02-02",
                   "dateStarted": "2021-09-26",
@@ -100,12 +98,10 @@ describe("updateBook", () => {
     return expect(
       updateBook(
         {
-          fileName: "my-library.yml",
+          filename: "my-library.yml",
           bookIsbn: "9780525620792",
           tags: [""],
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
+          dateType: {
             dateFinished: "2022-02-02",
           },
           notes: "Great read",
@@ -122,6 +118,7 @@ describe("updateBook", () => {
                   "title": "Uncanny Valley",
                 },
                 {
+                  "dateAbandoned": undefined,
                   "dateAdded": undefined,
                   "dateFinished": "2022-02-02",
                   "dateStarted": "2021-09-26",
@@ -143,11 +140,9 @@ describe("updateBook", () => {
     return expect(
       updateBook(
         {
-          fileName: "my-library.yml",
+          filename: "my-library.yml",
           bookIsbn: "12345",
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
+          dateType: {
             dateFinished: "2022-02-02",
           },
           bookStatus: "finished",
@@ -177,11 +172,9 @@ describe("updateBook", () => {
     return expect(
       updateBook(
         {
-          fileName: "my-library.yml",
+          filename: "my-library.yml",
           bookIsbn: "12345",
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
+          dateType: {
             dateFinished: "2022-02-02",
           },
           bookStatus: "finished",

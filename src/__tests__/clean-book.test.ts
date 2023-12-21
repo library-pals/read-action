@@ -20,20 +20,16 @@ describe("cleanBook", () => {
     jest.resetAllMocks();
   });
 
-  it("cleanBook", () =>
+  it("cleanBook", () => {
     expect(
       cleanBook(
         {
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
-            dateFinished,
-          },
+          dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
           bookStatus: "finished",
-          fileName: "_data/read.yml",
+          filename: "_data/read.yml",
         },
         book
       )
@@ -45,9 +41,7 @@ describe("cleanBook", () => {
         "categories": [
           "Fiction",
         ],
-        "dateAdded": undefined,
         "dateFinished": "2020-09-12",
-        "dateStarted": undefined,
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
         "language": "en",
@@ -60,22 +54,20 @@ describe("cleanBook", () => {
         "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
-    `));
+    `);
+  });
 
-  it("cleanBook with rating", () =>
+  it("cleanBook with rating", () => {
     expect(
       cleanBook(
         {
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
-            dateFinished,
-          },
+          dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
           bookStatus: "finished",
           rating: "⭐️⭐️⭐️⭐️⭐️",
+          filename: "_data/read.yml",
         },
         book
       )
@@ -87,9 +79,7 @@ describe("cleanBook", () => {
         "categories": [
           "Fiction",
         ],
-        "dateAdded": undefined,
         "dateFinished": "2020-09-12",
-        "dateStarted": undefined,
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
         "language": "en",
@@ -103,22 +93,18 @@ describe("cleanBook", () => {
         "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
-    `));
+    `);
+  });
 
-  it("cleanBook, no date", () =>
+  it("cleanBook, no date", () => {
     expect(
       cleanBook(
         {
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
-            dateFinished: undefined,
-          },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
           bookStatus: "finished",
-          fileName: "_data/read.yml",
+          filename: "_data/read.yml",
         },
         book
       )
@@ -130,9 +116,6 @@ describe("cleanBook", () => {
         "categories": [
           "Fiction",
         ],
-        "dateAdded": undefined,
-        "dateFinished": undefined,
-        "dateStarted": undefined,
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
         "language": "en",
@@ -145,22 +128,19 @@ describe("cleanBook", () => {
         "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
-    `));
+    `);
+  });
 
   it("cleanBook, missing `authors`", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const warningSpy = jest.spyOn(core, "warning");
     cleanBook(
       {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: "2022-01-01",
-          dateFinished: undefined,
-        },
+        dateType: { dateStarted: "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
-        fileName: "_data/read.yml",
+        filename: "_data/read.yml",
       },
       {
         title: "Book Title",
@@ -204,15 +184,11 @@ describe("cleanBook", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     cleanBook(
       {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: "2022-01-01",
-          dateFinished: undefined,
-        },
+        dateType: { dateStarted: "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
-        fileName: "_data/read.yml",
+        filename: "_data/read.yml",
       },
       {
         authors: ["Author Name"],
@@ -257,15 +233,11 @@ describe("cleanBook", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     cleanBook(
       {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: "2022-01-01",
-          dateFinished: undefined,
-        },
+        dateType: { dateStarted: "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
-        fileName: "_data/read.yml",
+        filename: "_data/read.yml",
       },
       {
         title: "Book Title",
@@ -310,15 +282,11 @@ describe("cleanBook", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     cleanBook(
       {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: "2022-01-01",
-          dateFinished: undefined,
-        },
+        dateType: { dateStarted: "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
-        fileName: "_data/read.yml",
+        filename: "_data/read.yml",
       },
       {
         publishedDate: "2013",
@@ -366,15 +334,11 @@ describe("cleanBook", () => {
       );
     cleanBook(
       {
-        dates: {
-          dateAdded: undefined,
-          dateStarted: "2022-01-01",
-          dateFinished: undefined,
-        },
+        dateType: { dateStarted: "2022-01-01" },
         bookIsbn: "1234597890",
         providers: [],
         bookStatus: "started",
-        fileName: "_data/read.yml",
+        filename: "_data/read.yml",
       },
       {
         publishedDate: "2013",
@@ -397,16 +361,12 @@ describe("cleanBook", () => {
     expect(
       cleanBook(
         {
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
-            dateFinished,
-          },
+          dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
           bookStatus: "finished",
-          fileName: "_data/read.yml",
+          filename: "_data/read.yml",
           thumbnailWidth: 10000,
         },
         book
@@ -419,9 +379,7 @@ describe("cleanBook", () => {
         "categories": [
           "Fiction",
         ],
-        "dateAdded": undefined,
         "dateFinished": "2020-09-12",
-        "dateStarted": undefined,
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
         "language": "en",
@@ -443,16 +401,12 @@ describe("cleanBook", () => {
     expect(
       cleanBook(
         {
-          dates: {
-            dateAdded: undefined,
-            dateStarted: undefined,
-            dateFinished,
-          },
+          dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
           bookIsbn: "0525658181",
           providers: [],
           bookStatus: "finished",
-          fileName: "_data/read.yml",
+          filename: "_data/read.yml",
           thumbnailWidth: 10000,
         },
         newBook
@@ -465,9 +419,7 @@ describe("cleanBook", () => {
         "categories": [
           "Fiction",
         ],
-        "dateAdded": undefined,
         "dateFinished": "2020-09-12",
-        "dateStarted": undefined,
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
         "language": "en",

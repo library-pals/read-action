@@ -317,5 +317,28 @@
     "thumbnail": "https://books.google.com/books/content?id=E-kdBQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "language": "en",
     "link": "https://play.google.com/store/books/details?id=E-kdBQAAQBAJ"
+  },
+  {
+    "isbn": "9781984825469",
+    "dateAdded": "2023-12-06",
+    "status": "finished",
+    "rating": "unrated",
+    "title": "The Shame Machine",
+    "authors": [
+      "Cathy O'Neil"
+    ],
+    "publishedDate": "2022-03-22",
+    "description": "NEW YORK TIMES EDITORS’ CHOICE • A clear-eyed warning about the increasingly destructive influence of America’s “shame industrial complex” in the age of social media and hyperpartisan politics—from the New York Times bestselling author of Weapons of Math Destruction “O’Neil reminds us that we must resist the urge to judge, belittle, and oversimplify, and instead allow always for complexity and lead always with empathy.”—Dave Eggers, author of The Every Shame is a powerful and sometimes useful tool: When we publicly shame corrupt politicians, abusive celebrities, or predatory corporations, we reinforce values of fairness and justice. But as Cathy O’Neil argues in this revelatory book, shaming has taken a new and dangerous turn. It is increasingly being weaponized—used as a way to shift responsibility for social problems from institutions to individuals. Shaming children for not being able to afford school lunches or adults for not being able to find work lets us off the hook as a society. After all, why pay higher taxes to fund programs for people who are fundamentally unworthy? O’Neil explores the machinery behind all this shame, showing how governments, corporations, and the healthcare system capitalize on it. There are damning stories of rehab clinics, reentry programs, drug and diet companies, and social media platforms—all of which profit from “punching down” on the vulnerable. Woven throughout The Shame Machine is the story of O’Neil’s own struggle with body image and her recent weight-loss surgery, which awakened her to the systematic shaming of fat people seeking medical care. With clarity and nuance, O’Neil dissects the relationship between shame and power. Whom does the system serve? Is it counter-productive to call out racists, misogynists, and vaccine skeptics? If so, when should someone be “canceled”? How do current incentive structures perpetuate the shaming cycle? And, most important, how can we all fight back?",
+    "pageCount": 272,
+    "printType": "BOOK",
+    "categories": [
+      "Social Science"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=vWQ0EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=vWQ0EAAAQBAJ",
+    "dateStarted": "2023-12-25",
+    "dateAbandoned": "2023-12-25",
+    "dateFinished": "2023-12-20"
   }
 ]

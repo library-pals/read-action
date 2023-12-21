@@ -35201,20 +35201,28 @@ function localDate() {
     });
     return dateFormat.format(new Date());
 }
-function getBookStatus(dateStarted, dateFinished) {
-    // Set book status
-    if (dateStarted && !dateFinished)
-        return "started";
-    if (dateFinished)
-        return "finished";
-    return "want to read";
-}
-function getDates(bookStatus, dateStarted, dateFinished) {
-    return {
-        dateAdded: bookStatus === "want to read" ? localDate() : undefined,
-        dateStarted: dateStarted || undefined,
-        dateFinished: dateFinished || undefined,
-    };
+function getBookStatus({ date, bookStatus, }) {
+    const dateValue = date ?? localDate();
+    switch (bookStatus) {
+        case "abandoned":
+            return {
+                dateAbandoned: dateValue,
+            };
+        case "started":
+            return {
+                dateStarted: dateValue,
+            };
+        case "finished":
+            return {
+                dateFinished: dateValue,
+            };
+        case "want to read":
+        default: {
+            return {
+                dateAdded: dateValue,
+            };
+        }
+    }
 }
 function toArray(tags) {
     return tags.split(",").map((f) => f.trim());
@@ -35227,12 +35235,12 @@ function capitalize(string) {
 
 
 function cleanBook(options, book) {
-    const { notes, bookIsbn, dates, bookStatus, rating, tags, thumbnailWidth } = options;
+    const { notes, bookIsbn, dateType, bookStatus, rating, tags, thumbnailWidth, } = options;
     checkMetadata(book, bookIsbn);
     const { title, authors, publishedDate, description, categories, pageCount, printType, imageLinks, language, canonicalVolumeLink, } = book;
     return {
         isbn: bookIsbn,
-        ...dates,
+        ...dateType,
         status: bookStatus,
         ...(rating && { rating }),
         ...(notes && { notes }),
@@ -35391,13 +35399,13 @@ function mTags({ tags }) {
 ;// CONCATENATED MODULE: ./src/summary.ts
 
 
-function summaryMarkdown(library, dateFinished) {
-    const { BookStatus, BookTitle } = process.env;
+function summaryMarkdown(library, date, bookStatus) {
+    const { BookTitle } = process.env;
     return `# Updated library
 
-${capitalize(`${BookStatus}`)}: “${BookTitle}”
-${BookStatus === "finished" && dateFinished
-        ? yearReviewSummary(library, dateFinished.slice(0, 4))
+${capitalize(`${bookStatus}`)}: “${BookTitle}”
+${bookStatus === "finished" && date
+        ? yearReviewSummary(library, date.slice(0, 4))
         : ""}
 `;
 }
@@ -35577,15 +35585,16 @@ async function returnReadFile(fileName) {
 ;// CONCATENATED MODULE: ./src/update-book.ts
 
 async function updateBook(bookParams, currentBooks) {
-    const { bookIsbn, dates, bookStatus, notes, rating, tags } = bookParams;
+    const { bookIsbn, dateType, bookStatus, notes, rating, tags } = bookParams;
     return currentBooks.reduce((arr, book) => {
         if (book.isbn === bookIsbn) {
             (0,core.exportVariable)("BookTitle", book.title);
             book = {
                 ...book,
-                dateAdded: book.dateAdded || dates.dateAdded,
-                dateStarted: book.dateStarted || dates.dateStarted,
-                dateFinished: book.dateFinished || dates.dateFinished,
+                dateAdded: dateType?.dateAdded || book.dateAdded,
+                dateStarted: dateType?.dateStarted || book.dateStarted,
+                dateFinished: dateType?.dateFinished || book.dateFinished,
+                dateAbandoned: dateType?.dateAbandoned || book.dateAbandoned,
                 status: bookStatus,
                 ...(rating && { rating }),
                 ...(notes && { notes: addNotes(notes, book.notes) }),
@@ -35607,12 +35616,15 @@ function validatePayload(payload) {
     if (!payload || !payload["isbn"]) {
         (0,core.setFailed)("Missing `isbn` in payload");
     }
-    if (payload["date-finished"] && !isDate(payload["date-finished"])) {
-        (0,core.setFailed)(`Invalid \`date-finished\` in payload: ${payload["date-finished"]}`);
+    if (payload["date"] && !isDate(payload["date"])) {
+        (0,core.setFailed)(`Invalid \`date\` in payload: ${payload["date"]}`);
     }
-    if (payload["date-started"] && !isDate(payload["date-started"])) {
-        (0,core.setFailed)(`Invalid \`date-started\` in payload: ${payload["date-started"]}`);
+    if (!payload["book-status"] || !isBookStatus(payload["book-status"])) {
+        (0,core.setFailed)(`Invalid \`book-status\` in payload: "${payload["book-status"]}". Choose from: "want to read", "started", "finished", "abandoned"`);
     }
+}
+function isBookStatus(status) {
+    return ["want to read", "started", "finished", "abandoned"].includes(status);
 }
 
 ;// CONCATENATED MODULE: ./src/index.ts
@@ -35633,7 +35645,7 @@ async function read() {
         const payload = github.context.payload.inputs;
         // Validate payload
         validatePayload(payload);
-        const { isbn: bookIsbn, "date-finished": dateFinished, "date-started": dateStarted, notes, rating, tags, } = payload;
+        const { isbn: bookIsbn, date, "book-status": bookStatus, notes, rating, tags, } = payload;
         // Set inputs
         const filename = (0,core.getInput)("filename");
         const providers = (0,core.getInput)("providers")
@@ -35642,14 +35654,16 @@ async function read() {
         const thumbnailWidth = (0,core.getInput)("thumbnail-width")
             ? Number.parseInt((0,core.getInput)("thumbnail-width"))
             : undefined;
-        const bookStatus = getBookStatus(dateStarted, dateFinished);
+        const dateType = getBookStatus({
+            date,
+            bookStatus,
+        });
         (0,core.exportVariable)("BookStatus", bookStatus);
-        const dates = getDates(bookStatus, dateStarted, dateFinished);
         let library = await returnReadFile(filename);
         const bookParams = {
             filename,
             bookIsbn,
-            dates,
+            dateType,
             notes,
             bookStatus,
             rating,
@@ -35681,7 +35695,7 @@ async function read() {
         }
         library = sortByDate(library);
         await returnWriteFile(filename, library);
-        await core.summary.addRaw(summaryMarkdown(library, dateFinished)).write();
+        await core.summary.addRaw(summaryMarkdown(library, date, bookStatus)).write();
     }
     catch (error) {
         (0,core.setFailed)(error);
