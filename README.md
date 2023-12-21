@@ -32,6 +32,19 @@ on:
         description: The book's ISBN. Required.
         required: true
         type: string
+      book-status:
+        description: What is the status of the book? Required.
+        required: true
+        type: choice
+        default: "want to read"
+        options:
+          - "want to read"
+          - "started"
+          - "finished"
+          - "abandoned"
+      date:
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
+        type: string
       notes:
         description: Notes about the book. Optional.
         type: string
@@ -52,19 +65,6 @@ on:
       # Tags are optional.
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
-        type: string
-      book-status:
-        description: What is the status of the book? Required.
-        required: true
-        type: choice
-        default: "want to read"
-        options:
-          - "want to read"
-          - "started"
-          - "finished"
-          - "abandoned"
-      date:
-        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
 
 # Set up the steps to run the action
@@ -106,6 +106,19 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
+      book-status:
+        description: What is the status of the book? Required.
+        required: true
+        type: choice
+        default: "want to read"
+        options:
+          - "want to read"
+          - "started"
+          - "finished"
+          - "abandoned"
+      date:
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
+        type: string
       isbn:
         description: The book's ISBN. Required.
         required: true
@@ -130,19 +143,6 @@ on:
       # Tags are optional.
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
-        type: string
-      book-status:
-        description: What is the status of the book? Required.
-        required: true
-        type: choice
-        default: "want to read"
-        options:
-          - "want to read"
-          - "started"
-          - "finished"
-          - "abandoned"
-      date:
-        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
 
 # Set up the steps to run the action
@@ -217,6 +217,19 @@ on:
         description: The book's ISBN. Required.
         required: true
         type: string
+      book-status:
+        description: What is the status of the book? Required.
+        required: true
+        type: choice
+        default: "want to read"
+        options:
+          - "want to read"
+          - "started"
+          - "finished"
+          - "abandoned"
+      date:
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
+        type: string
       notes:
         description: Notes about the book. Optional.
         type: string
@@ -237,19 +250,6 @@ on:
       # Tags are optional.
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma. Optional.
-        type: string
-      book-status:
-        description: What is the status of the book? Required.
-        required: true
-        type: choice
-        default: "want to read"
-        options:
-          - "want to read"
-          - "started"
-          - "finished"
-          - "abandoned"
-      date:
-        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
 
 # Set up the steps to run the action
@@ -302,11 +302,11 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
     "isbn": "", // Required. The book's ISBN. Required.
+    "book-status": "", // Required. What is the status of the book? Required. Default: `want to read`.
+    "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
     "notes": "", // Notes about the book. Optional.
     "rating": "", // Rate the book. Optional. Default: `unrated`.
     "tags": "", // Add tags to categorize the book. Separate each tag with a comma. Optional.
-    "book-status": "", // Required. What is the status of the book? Required. Default: `want to read`.
-    "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
   }
 }
 ```
