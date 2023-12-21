@@ -18,7 +18,7 @@ To use this action, create a new workflow in `.github/workflows` and modify it a
 
 ```yml
 name: read action
-run-name: Book (${{ inputs.isbn }} - ${{ inputs['book-status'] }})
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
 
 # Grant the action permission to write to the repository
 permissions:
@@ -95,7 +95,7 @@ jobs:
 
 ```yml
 name: When book is missing metadata, create a pull request
-run-name: Book (${{ inputs.isbn }})
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
 
 # Grant the action permission to write to the repository
 permissions:
@@ -203,7 +203,7 @@ jobs:
 
 ```yml
 name: Download the book thumbnail
-run-name: Book (${{ inputs.isbn }})
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
 
 # Grant the action permission to write to the repository
 permissions:
