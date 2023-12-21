@@ -6,14 +6,9 @@ This GitHub action tracks the books that you read by updating a JSON file in you
 
 [Create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with information about the book. The action will then fetch the book's metadata using [node-isbn](https://www.npmjs.com/package/node-isbn) and commit the change in your repository, always sorting by the date you finished the book.
 
-## Book status
+## Book lifecycle
 
-There are four statuses a book can have:
-
-1. want to read
-2. started
-3. finished
-4. abandoned
+When you add or update a book, you can set it as: want to read, started, finished, or abandoned. This will set the value as `bookStatus` and will add an accompanying date for the status.
 
 <!-- START GENERATED DOCUMENTATION -->
 
@@ -315,8 +310,6 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
-
-
 
 ## Action outputs
 
