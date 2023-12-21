@@ -321,7 +321,7 @@
   {
     "isbn": "9781984825469",
     "dateAdded": "2023-12-21",
-    "status": "started",
+    "status": "abandoned",
     "rating": "unrated",
     "title": "The Shame Machine",
     "authors": [
@@ -337,6 +337,7 @@
     "thumbnail": "https://books.google.com/books/content?id=vWQ0EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     "language": "en",
     "link": "https://play.google.com/store/books/details?id=vWQ0EAAAQBAJ",
-    "dateStarted": "2023-12-25"
+    "dateStarted": "2023-12-25",
+    "dateAbandoned": "2023-12-25"
   }
 ]
