@@ -35591,10 +35591,10 @@ async function updateBook(bookParams, currentBooks) {
             (0,core.exportVariable)("BookTitle", book.title);
             book = {
                 ...book,
-                dateAdded: book.dateAdded || dateType?.dateAdded,
-                dateStarted: book.dateStarted || dateType?.dateStarted,
-                dateFinished: book.dateFinished || dateType?.dateFinished,
-                dateAbandoned: book.dateAbandoned || dateType?.dateAbandoned,
+                dateAdded: dateType?.dateAdded || book.dateAdded,
+                dateStarted: dateType?.dateStarted || book.dateStarted,
+                dateFinished: dateType?.dateFinished || book.dateFinished,
+                dateAbandoned: dateType?.dateAbandoned || book.dateAbandoned,
                 status: bookStatus,
                 ...(rating && { rating }),
                 ...(notes && { notes: addNotes(notes, book.notes) }),
