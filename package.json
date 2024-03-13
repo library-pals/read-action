@@ -17,21 +17,21 @@
     "node-isbn": "^1.6.1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.23.6",
+    "@babel/preset-env": "^7.24.0",
     "@babel/preset-typescript": "^7.23.3",
-    "@types/jest": "^29.5.11",
-    "@types/node": "^20.10.5",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.26",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
     "@vercel/ncc": "^0.38.1",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jest": "^27.6.0",
+    "eslint-plugin-jest": "^27.9.0",
     "jest": "^29.7.0",
-    "prettier": "^3.1.1",
+    "prettier": "^3.2.5",
     "prettier-2": "npm:prettier@^2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "directories": {
     "test": "tests"
