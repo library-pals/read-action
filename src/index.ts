@@ -1,14 +1,7 @@
-import {
-  exportVariable,
-  getInput,
-  setFailed,
-  setOutput,
-  summary,
-} from "@actions/core";
+import { exportVariable, getInput, setFailed, summary } from "@actions/core";
 import * as github from "@actions/github";
 import isbn from "node-isbn";
 import returnWriteFile from "./write-file";
-import getBook from "./get-book";
 import { getBookStatus, sortByDate, toArray } from "./utils";
 import { checkOutBook } from "./checkout-book";
 import { BookStatus } from "./clean-book";
@@ -16,6 +9,7 @@ import { summaryMarkdown } from "./summary";
 import returnReadFile from "./read-file";
 import { updateBook } from "./update-book";
 import { validatePayload } from "./validate-payload";
+import { handleNewBook } from "./new-book";
 
 export type BookPayload = {
   date: string | undefined;
@@ -32,6 +26,7 @@ export type ActionInputs = {
   rating?: string;
   "time-zone": string;
   "thumbnail-width"?: number;
+  "set-image": boolean;
 };
 
 export type BookParams = {
@@ -49,6 +44,7 @@ export type BookParams = {
   rating?: ActionInputs["rating"];
   tags?: string[];
   thumbnailWidth?: number;
+  setImage: boolean;
 };
 
 export async function read() {
@@ -67,6 +63,8 @@ export async function read() {
     } = payload;
     // Set inputs
     const filename: ActionInputs["filename"] = getInput("filename");
+    const setImage: ActionInputs["set-image"] =
+      getInput("set-image") === "true";
     const providers: ActionInputs["providers"] = getInput("providers")
       ? getInput("providers").split(",")
       : isbn._providers;
@@ -93,6 +91,7 @@ export async function read() {
       rating,
       providers,
       thumbnailWidth,
+      setImage,
       ...(tags && { tags: toArray(tags) }),
     };
 
@@ -101,24 +100,7 @@ export async function read() {
     if (bookExists) {
       library = await updateBook(bookParams, library);
     } else {
-      const newBook = await getBook(bookParams);
-      library.push(newBook);
-      exportVariable(`BookTitle`, newBook.title);
-
-      if (bookStatus === "started") {
-        setOutput("nowReading", {
-          title: newBook.title,
-          authors: newBook.authors,
-          description: newBook.description,
-          isbn: newBook.isbn,
-          thumbnail: newBook.thumbnail,
-        });
-      }
-
-      if (newBook.thumbnail) {
-        exportVariable(`BookThumbOutput`, `book-${newBook.isbn}.png`);
-        exportVariable(`BookThumb`, newBook.thumbnail);
-      }
+      await handleNewBook({ bookParams, library, bookStatus, setImage });
     }
 
     library = sortByDate(library);
