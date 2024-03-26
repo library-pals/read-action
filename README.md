@@ -156,6 +156,8 @@ jobs:
 
       - name: Read
         id: read_action
+        with:
+          set-image: true
         uses: katydecorah/read-action@v8.0.0
 
       - name: Download the book thumbnail
@@ -265,6 +267,7 @@ jobs:
         uses: katydecorah/read-action@v8.0.0
         with:
           thumbnail-width: 1280
+          set-image: true
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
