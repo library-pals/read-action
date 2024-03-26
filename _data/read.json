@@ -340,5 +340,26 @@
     "dateStarted": "2023-12-25",
     "dateAbandoned": "2023-12-25",
     "dateFinished": "2023-12-20"
+  },
+  {
+    "isbn": "9780593422946",
+    "dateStarted": "2024-03-26",
+    "status": "started",
+    "rating": "unrated",
+    "title": "The Heaven & Earth Grocery Store",
+    "authors": [
+      "James McBride"
+    ],
+    "publishedDate": "2023-08-08",
+    "description": "AN INSTANT NEW YORK TIMES BESTSELLER A NEW YORK TIMES NOTABLE BOOK NAMED A BEST BOOK OF THE YEAR BY NPR/FRESH AIR, WASHINGTON POST, THE NEW YORKER, AND TIME MAGAZINE ONE OF BARACK OBAMA'S FAVORITE BOOKS OF 2023 “A murder mystery locked inside a Great American Novel . . . Charming, smart, heart-blistering, and heart-healing.” —Danez Smith, The New York Times Book Review “We all need—we all deserve—this vibrant, love-affirming novel that bounds over any difference that claims to separate us.” —Ron Charles, The Washington Post From James McBride, author of the bestselling Oprah’s Book Club pick Deacon King Kong and the National Book Award–winning The Good Lord Bird, a novel about small-town secrets and the people who keep them In 1972, when workers in Pottstown, Pennsylvania, were digging the foundations for a new development, the last thing they expected to find was a skeleton at the bottom of a well. Who the skeleton was and how it got there were two of the long-held secrets kept by the residents of Chicken Hill, the dilapidated neighborhood where immigrant Jews and African Americans lived side by side and shared ambitions and sorrows. Chicken Hill was where Moshe and Chona Ludlow lived when Moshe integrated his theater and where Chona ran the Heaven & Earth Grocery Store. When the state came looking for a deaf boy to institutionalize him, it was Chona and Nate Timblin, the Black janitor at Moshe’s theater and the unofficial leader of the Black community on Chicken Hill, who worked together to keep the boy safe. As these characters’ stories overlap and deepen, it becomes clear how much the people who live on the margins of white, Christian America struggle and what they must do to survive. When the truth is finally revealed about what happened on Chicken Hill and the part the town’s white establishment played in it, McBride shows us that even in dark times, it is love and community—heaven and earth—that sustain us. Bringing his masterly storytelling skills and his deep faith in humanity to The Heaven & Earth Grocery Store, James McBride has written a novel as compassionate as Deacon King Kong and as inventive as The Good Lord Bird.",
+    "pageCount": 401,
+    "printType": "BOOK",
+    "categories": [
+      "Fiction"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=ieOgEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api&w=1280",
+    "language": "en",
+    "link": "https://books.google.com/books/about/The_Heaven_Earth_Grocery_Store.html?hl=&id=ieOgEAAAQBAJ",
+    "image": "book-9780593422946.png"
   }
 ]
