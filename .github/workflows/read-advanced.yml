@@ -60,6 +60,8 @@ jobs:
 
       - name: Read
         id: read_action
+        with:
+          set-image: true
         uses: ./
 
       - name: Download the book thumbnail

@@ -61,6 +61,7 @@ jobs:
         uses: ./
         with:
           thumbnail-width: 1280
+          set-image: true
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
