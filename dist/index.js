@@ -35333,95 +35333,6 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-;// CONCATENATED MODULE: ./src/clean-book.ts
-
-
-function cleanBook(options, book) {
-    const { notes, bookIsbn, dateType, bookStatus, rating, tags, thumbnailWidth, } = options;
-    checkMetadata(book, bookIsbn);
-    const { title, authors, publishedDate, description, categories, pageCount, printType, imageLinks, language, canonicalVolumeLink, } = book;
-    return {
-        isbn: bookIsbn,
-        ...dateType,
-        status: bookStatus,
-        ...(rating && { rating }),
-        ...(notes && { notes }),
-        ...(tags && { tags }),
-        ...(title && { title }),
-        ...(authors && {
-            authors: authors,
-        }),
-        ...(publishedDate && { publishedDate }),
-        ...(description && {
-            description: removeWrappedQuotes(description),
-        }),
-        ...(pageCount ? { pageCount } : { pageCount: 0 }),
-        ...(printType && { printType }),
-        ...(categories && { categories }),
-        ...(imageLinks &&
-            imageLinks.thumbnail && {
-            thumbnail: handleThumbnail(thumbnailWidth, imageLinks.thumbnail),
-        }),
-        ...(language && { language }),
-        ...(canonicalVolumeLink && {
-            link: canonicalVolumeLink,
-        }),
-    };
-}
-function handleThumbnail(thumbnailWidth, thumbnail) {
-    if (thumbnail.startsWith("http:")) {
-        thumbnail = thumbnail.replace("http:", "https:");
-    }
-    const url = new URL(thumbnail);
-    if (url.host === "books.google.com" && thumbnailWidth) {
-        thumbnail = `${thumbnail}&w=${thumbnailWidth}`;
-    }
-    return thumbnail;
-}
-function checkMetadata(book, bookIsbn) {
-    const missingMetadata = [];
-    const requiredMetadata = (0,core.getInput)("required-metadata")
-        .split(",")
-        .map((s) => s.trim());
-    if (!book.title && requiredMetadata.includes("title")) {
-        missingMetadata.push("title");
-    }
-    if ((!book.pageCount || book.pageCount === 0) &&
-        requiredMetadata.includes("pageCount")) {
-        missingMetadata.push("pageCount");
-    }
-    if ((!book.authors || book.authors.length === 0) &&
-        requiredMetadata.includes("authors")) {
-        missingMetadata.push("authors");
-    }
-    if (!book.description && requiredMetadata.includes("description")) {
-        missingMetadata.push("description");
-    }
-    if (!book.imageLinks?.thumbnail && requiredMetadata.includes("thumbnail")) {
-        missingMetadata.push("thumbnail");
-    }
-    if (missingMetadata.length > 0) {
-        (0,core.warning)(`Book does not have ${missingMetadata.join(", ")}`);
-        (0,core.exportVariable)("BookNeedsReview", true);
-        (0,core.exportVariable)("BookMissingMetadata", missingMetadata.join(", "));
-        (0,core.exportVariable)("BookIsbn", bookIsbn);
-    }
-}
-
-;// CONCATENATED MODULE: ./src/get-book.ts
-
-
-async function getBook(options) {
-    const { bookIsbn, providers } = options;
-    const book = await node_isbn_default().provider(providers)
-        .resolve(bookIsbn)
-        .catch((error) => {
-        throw new Error(`Book (${bookIsbn}) not found. ${error.message}`);
-    });
-    const newBook = cleanBook(options, book);
-    return newBook;
-}
-
 ;// CONCATENATED MODULE: ./src/checkout-book.ts
 function checkOutBook(bookParams, library) {
     const { bookIsbn } = bookParams;
@@ -35729,6 +35640,124 @@ function isBookStatus(status) {
     return ["want to read", "started", "finished", "abandoned"].includes(status);
 }
 
+;// CONCATENATED MODULE: ./src/clean-book.ts
+
+
+function cleanBook(options, book) {
+    const { notes, bookIsbn, dateType, bookStatus, rating, tags, thumbnailWidth, setImage, } = options;
+    checkMetadata(book, bookIsbn);
+    const { title, authors, publishedDate, description, categories, pageCount, printType, imageLinks, language, canonicalVolumeLink, } = book;
+    return {
+        isbn: bookIsbn,
+        ...dateType,
+        status: bookStatus,
+        ...(rating && { rating }),
+        ...(notes && { notes }),
+        ...(tags && { tags }),
+        ...(title && { title }),
+        ...(authors && {
+            authors: authors,
+        }),
+        ...(publishedDate && { publishedDate }),
+        ...(description && {
+            description: removeWrappedQuotes(description),
+        }),
+        ...(pageCount ? { pageCount } : { pageCount: 0 }),
+        ...(printType && { printType }),
+        ...(categories && { categories }),
+        ...(imageLinks &&
+            imageLinks.thumbnail && {
+            thumbnail: handleThumbnail(thumbnailWidth, imageLinks.thumbnail),
+        }),
+        ...(language && { language }),
+        ...(canonicalVolumeLink && {
+            link: canonicalVolumeLink,
+        }),
+        ...(setImage && {
+            image: `book-${bookIsbn}.png`,
+        }),
+    };
+}
+function handleThumbnail(thumbnailWidth, thumbnail) {
+    if (thumbnail.startsWith("http:")) {
+        thumbnail = thumbnail.replace("http:", "https:");
+    }
+    const url = new URL(thumbnail);
+    if (url.host === "books.google.com" && thumbnailWidth) {
+        thumbnail = `${thumbnail}&w=${thumbnailWidth}`;
+    }
+    return thumbnail;
+}
+function checkMetadata(book, bookIsbn) {
+    const missingMetadata = [];
+    const requiredMetadata = (0,core.getInput)("required-metadata")
+        .split(",")
+        .map((s) => s.trim());
+    if (!book.title && requiredMetadata.includes("title")) {
+        missingMetadata.push("title");
+    }
+    if ((!book.pageCount || book.pageCount === 0) &&
+        requiredMetadata.includes("pageCount")) {
+        missingMetadata.push("pageCount");
+    }
+    if ((!book.authors || book.authors.length === 0) &&
+        requiredMetadata.includes("authors")) {
+        missingMetadata.push("authors");
+    }
+    if (!book.description && requiredMetadata.includes("description")) {
+        missingMetadata.push("description");
+    }
+    if (!book.imageLinks?.thumbnail && requiredMetadata.includes("thumbnail")) {
+        missingMetadata.push("thumbnail");
+    }
+    if (missingMetadata.length > 0) {
+        (0,core.warning)(`Book does not have ${missingMetadata.join(", ")}`);
+        (0,core.exportVariable)("BookNeedsReview", true);
+        (0,core.exportVariable)("BookMissingMetadata", missingMetadata.join(", "));
+        (0,core.exportVariable)("BookIsbn", bookIsbn);
+    }
+}
+
+;// CONCATENATED MODULE: ./src/get-book.ts
+
+
+async function getBook(options) {
+    const { bookIsbn, providers } = options;
+    const book = await node_isbn_default().provider(providers)
+        .resolve(bookIsbn)
+        .catch((error) => {
+        throw new Error(`Book (${bookIsbn}) not found. ${error.message}`);
+    });
+    const newBook = cleanBook(options, book);
+    return newBook;
+}
+
+;// CONCATENATED MODULE: ./src/new-book.ts
+
+
+async function handleNewBook({ bookParams, library, bookStatus, setImage, }) {
+    const newBook = await getBook(bookParams);
+    library.push(newBook);
+    (0,core.exportVariable)(`BookTitle`, newBook.title);
+    const image = `book-${newBook.isbn}.png`;
+    if (bookStatus === "started") {
+        (0,core.setOutput)("nowReading", {
+            title: newBook.title,
+            authors: newBook.authors,
+            description: newBook.description,
+            isbn: newBook.isbn,
+            thumbnail: newBook.thumbnail,
+            ...(setImage && {
+                image,
+            }),
+        });
+    }
+    if (newBook.thumbnail) {
+        (0,core.exportVariable)(`BookThumbOutput`, image);
+        (0,core.exportVariable)(`BookThumb`, newBook.thumbnail);
+    }
+}
+
 ;// CONCATENATED MODULE: ./src/index.ts
 
 
@@ -35750,6 +35779,7 @@ async function read() {
         const { isbn: bookIsbn, date, "book-status": bookStatus, notes, rating, tags, } = payload;
         // Set inputs
         const filename = (0,core.getInput)("filename");
+        const setImage = (0,core.getInput)("set-image") === "true";
         const providers = (0,core.getInput)("providers")
             ? (0,core.getInput)("providers").split(",")
             : (node_isbn_default())._providers;
@@ -35771,6 +35801,7 @@ async function read() {
             rating,
             providers,
             thumbnailWidth,
+            setImage,
             ...(tags && { tags: toArray(tags) }),
         };
         const bookExists = checkOutBook(bookParams, library);
@@ -35778,22 +35809,7 @@ async function read() {
             library = await updateBook(bookParams, library);
         }
         else {
-            const newBook = await getBook(bookParams);
-            library.push(newBook);
-            (0,core.exportVariable)(`BookTitle`, newBook.title);
-            if (bookStatus === "started") {
-                (0,core.setOutput)("nowReading", {
-                    title: newBook.title,
-                    authors: newBook.authors,
-                    description: newBook.description,
-                    isbn: newBook.isbn,
-                    thumbnail: newBook.thumbnail,
-                });
-            }
-            if (newBook.thumbnail) {
-                (0,core.exportVariable)(`BookThumbOutput`, `book-${newBook.isbn}.png`);
-                (0,core.exportVariable)(`BookThumb`, newBook.thumbnail);
-            }
+            await handleNewBook({ bookParams, library, bookStatus, setImage });
         }
         library = sortByDate(library);
         await returnWriteFile(filename, library);

@@ -156,6 +156,8 @@ jobs:
 
       - name: Read
         id: read_action
+        with:
+          set-image: true
         uses: katydecorah/read-action@v8.0.0
 
       - name: Download the book thumbnail
@@ -265,6 +267,7 @@ jobs:
         uses: katydecorah/read-action@v8.0.0
         with:
           thumbnail-width: 1280
+          set-image: true
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
@@ -290,6 +293,8 @@ jobs:
 - `time-zone`: Your time zone. Default: `America/New_York`.
 
 - `required-metadata`: Required metadata properties. This can be used to make the action open a pull request if one of these values is missing data in the desired book instead of committing directly to a repository. Default: `title,pageCount,authors,description,thumbnail`.
+
+- `set-image`: If true, the action will set the `image` for the book. This is helpful if you add an extra step to download this image.
 
 - `thumbnail-width`: The width of the thumbnail image (for books sourced from Google Books). The default size is 128.
 

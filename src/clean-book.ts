@@ -23,6 +23,7 @@ export type CleanBook = {
   status: BookStatus;
   rating?: string;
   tags?: BookParams["tags"];
+  image?: string;
 };
 
 export type BookStatus = "want to read" | "started" | "finished" | "abandoned";
@@ -36,6 +37,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     rating,
     tags,
     thumbnailWidth,
+    setImage,
   } = options;
   checkMetadata(book, bookIsbn);
   const {
@@ -76,6 +78,9 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     ...(language && { language }),
     ...(canonicalVolumeLink && {
       link: canonicalVolumeLink,
+    }),
+    ...(setImage && {
+      image: `book-${bookIsbn}.png`,
     }),
   };
 }
