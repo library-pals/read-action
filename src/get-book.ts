@@ -1,4 +1,4 @@
-import isbn from "node-isbn";
+import isbn from "@library-pals/isbn";
 import { BookParams } from ".";
 import cleanBook, { CleanBook } from "./clean-book";
 
@@ -40,12 +40,12 @@ export type Book = {
 
 export default async function getBook(options: BookParams): Promise<CleanBook> {
   const { bookIsbn, providers } = options;
-  const book = await isbn
-    .provider(providers)
-    .resolve(bookIsbn)
-    .catch((error: Error) => {
-      throw new Error(`Book (${bookIsbn}) not found. ${error.message}`);
-    });
+  let book;
+  try {
+    book = await isbn.provider(providers).resolve(bookIsbn);
+  } catch (error) {
+    throw new Error(`Book (${bookIsbn}) not found. ${error.message}`);
+  }
   const newBook: CleanBook = cleanBook(options, book);
   return newBook;
 }

@@ -11,6 +11,7 @@ const config: Config = {
     },
   },
   prettierPath: "<rootDir>/node_modules/prettier-2/index.js",
+  transformIgnorePatterns: ["/node_modules/(?!@library-pals/isbn)"],
 };
 
 export default config;

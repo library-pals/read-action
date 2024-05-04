@@ -1,6 +1,6 @@
 import { exportVariable, getInput, setFailed, summary } from "@actions/core";
 import * as github from "@actions/github";
-import isbn from "node-isbn";
+import isbn from "@library-pals/isbn";
 import returnWriteFile from "./write-file";
 import { getBookStatus, sortByDate, toArray } from "./utils";
 import { checkOutBook } from "./checkout-book";
