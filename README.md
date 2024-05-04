@@ -174,7 +174,7 @@ jobs:
           git push
 
       # Create pull request instead of directly committing if book is missing metadata
-      # Occasionally, some books returned from node-isbn may be missing a few properties.
+      # Occasionally, some books returned from @library-pals/isbn may be missing a few properties.
       # Add this step to your workflow if you want the ability to fix the missing data by making the action open a new pull request.
       # You can customize the properties that will trigger a pull request with the `required-metadata` input.
       - name: If book needs review, create a pull request to review book metadata
@@ -288,7 +288,7 @@ jobs:
 
 - `filename`: The file where you want to save your books. Default: `_data/read.json`.
 
-- `providers`: Specify the [ISBN providers](https://github.com/palmerabollo/node-isbn#setting-backend-providers) that you want to use, in the order you need them to be invoked. If setting more than one provider, separate each with a comma.
+- `providers`: Specify the [ISBN providers](https://github.com/library-pals/isbn?tab=readme-ov-file#setting-backend-providers) that you want to use, in the order you need them to be invoked. If setting more than one provider, separate each with a comma.
 
 - `time-zone`: Your time zone. Default: `America/New_York`.
 
@@ -315,6 +315,8 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
+
+
 
 ## Action outputs
 
