@@ -1,7 +1,7 @@
 import getBook from "../get-book";
 import { promises, readFileSync } from "fs";
 import book from "./fixture.json";
-import isbn from "node-isbn";
+import isbn from "@library-pals/isbn";
 import * as core from "@actions/core";
 
 const books = readFileSync("./_data/read.json", "utf-8");
