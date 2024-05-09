@@ -1,4 +1,7 @@
 name: Document GitHub action
+
+permissions: write-all
+
 on:
   workflow_dispatch:
   push:
