@@ -1,4 +1,8 @@
 name: Document GitHub action
+
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   push:
@@ -13,7 +17,7 @@ on:
 
 jobs:
   documentation:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     name: Write documentation
     steps:
       - name: Checkout
