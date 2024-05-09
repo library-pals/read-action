@@ -70,7 +70,7 @@ on:
 # Set up the steps to run the action
 jobs:
   update-library:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     name: Read
     steps:
       - name: Checkout
@@ -148,7 +148,7 @@ on:
 # Set up the steps to run the action
 jobs:
   update-library:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     name: Read
     steps:
       - name: Checkout
@@ -257,7 +257,7 @@ on:
 # Set up the steps to run the action
 jobs:
   update-library:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     name: Read
     steps:
       - name: Checkout
