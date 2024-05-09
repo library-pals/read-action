@@ -1,6 +1,6 @@
 # read-action
 
-![Test](https://github.com/katydecorah/read-action/workflows/Test/badge.svg?branch=main) [![Read](https://github.com/katydecorah/read-action/actions/workflows/read.yml/badge.svg)](https://github.com/katydecorah/read-action/actions/workflows/read.yml)
+![Test](https://github.com/library-pals/read-action/workflows/Test/badge.svg?branch=main) [![Read](https://github.com/library-pals/read-action/actions/workflows/read.yml/badge.svg)](https://github.com/library-pals/read-action/actions/workflows/read.yml)
 
 This GitHub action tracks the books that you read by updating a JSON file in your repository. Pair it with the [iOS Shortcut](shortcut/README.md) to automatically trigger the action or click **Run workflow** from the Actions tab to submit details about the book.
 
@@ -77,7 +77,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Read
-        uses: katydecorah/read-action@v8.1.0
+        uses: library-pals/read-action@v8.1.0
 
       - name: Commit updated read file
         run: |
@@ -158,7 +158,7 @@ jobs:
         id: read_action
         with:
           set-image: true
-        uses: katydecorah/read-action@v8.1.0
+        uses: library-pals/read-action@v8.1.0
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
@@ -264,7 +264,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Read
-        uses: katydecorah/read-action@v8.1.0
+        uses: library-pals/read-action@v8.1.0
         with:
           thumbnail-width: 1280
           set-image: true
@@ -315,8 +315,6 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
-
-
 
 ## Action outputs
 

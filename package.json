@@ -38,12 +38,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/katydecorah/read.git"
+    "url": "git+https://github.com/library-pals/read-action.git"
   },
   "bugs": {
-    "url": "https://github.com/katydecorah/read/issues"
+    "url": "https://github.com/library-pals/read-action/issues"
   },
-  "homepage": "https://github.com/katydecorah/read#readme",
+  "homepage": "https://github.com/library-pals/read-action#readme",
   "description": "This GitHub action tracks the books that you've read by updating the `_data/read.json` file in your repository.",
   "keywords": [
     "github-actions"
