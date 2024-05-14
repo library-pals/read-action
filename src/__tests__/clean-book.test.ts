@@ -394,4 +394,42 @@ describe("cleanBook", () => {
       }
     `);
   });
+
+  it("cleanBook, https thumbnail", () => {
+    const newBook = book;
+    newBook.thumbnail = "https://site.com/image.jpg";
+    expect(
+      cleanBook(
+        {
+          dateType: { dateFinished },
+          notes: "I loved it!",
+          bookIsbn: "0525658181",
+          providers: [],
+          bookStatus: "finished",
+          filename: "_data/read.yml",
+          setImage: false,
+        },
+        newBook
+      )
+    ).toMatchInlineSnapshot(`
+      {
+        "authors": [
+          "Yaa Gyasi",
+        ],
+        "categories": [
+          "Fiction",
+        ],
+        "dateFinished": "2020-09-12",
+        "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
+        "isbn": "0525658181",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=MvaNEAAAQBAJ",
+        "notes": "I loved it!",
+        "pageCount": 288,
+        "printType": "BOOK",
+        "status": "finished",
+        "thumbnail": "https://site.com/image.jpg",
+        "title": "Transcendent Kingdom",
+      }
+    `);
+  });
 });
