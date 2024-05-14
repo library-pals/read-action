@@ -6,7 +6,7 @@ const dateFinished = "2020-09-12";
 
 const defaultOptions = {
   filename: "my-library.json",
-  "required-metadata": "title,pageCount,authors,description,thumbnail",
+  "required-metadata": "title,pageCount,authors,description",
   "time-zone": "America/New_York",
 };
 
@@ -146,7 +146,7 @@ describe("cleanBook", () => {
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have authors, description, thumbnail",
+        "Book does not have authors, description",
       ]
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
@@ -157,7 +157,7 @@ describe("cleanBook", () => {
         ],
         [
           "BookMissingMetadata",
-          "authors, description, thumbnail",
+          "authors, description",
         ],
         [
           "BookIsbn",
@@ -188,7 +188,7 @@ describe("cleanBook", () => {
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have title, thumbnail",
+        "Book does not have title",
       ]
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
@@ -199,7 +199,7 @@ describe("cleanBook", () => {
         ],
         [
           "BookMissingMetadata",
-          "title, thumbnail",
+          "title",
         ],
         [
           "BookIsbn",
@@ -232,7 +232,7 @@ describe("cleanBook", () => {
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have description, thumbnail",
+        "Book does not have description",
       ]
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
@@ -243,7 +243,7 @@ describe("cleanBook", () => {
         ],
         [
           "BookMissingMetadata",
-          "description, thumbnail",
+          "description",
         ],
         [
           "BookIsbn",
@@ -273,7 +273,7 @@ describe("cleanBook", () => {
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have title, pageCount, authors, description, thumbnail",
+        "Book does not have title, pageCount, authors, description",
       ]
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
@@ -284,7 +284,7 @@ describe("cleanBook", () => {
         ],
         [
           "BookMissingMetadata",
-          "title, pageCount, authors, description, thumbnail",
+          "title, pageCount, authors, description",
         ],
         [
           "BookIsbn",
