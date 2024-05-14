@@ -55,7 +55,7 @@ describe("getBook", () => {
         "pageCount": 0,
         "printType": "BOOK",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books?id=MvaNEAAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&source=gbs_api",
+        "thumbnail": "https://books.google.com/books/content?id=MvaNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
     `);
