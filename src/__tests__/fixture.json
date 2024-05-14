@@ -5,7 +5,7 @@
   "pageCount": 288,
   "printType": "BOOK",
   "categories": ["Fiction"],
-  "thumbnail": "https://books.google.com/books?id=MvaNEAAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&source=gbs_api",
-  "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+  "thumbnail": "http://books.google.com/books/content?id=MvaNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+  "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=MvaNEAAAQBAJ",
   "isbn": "9780525658184"
 }
