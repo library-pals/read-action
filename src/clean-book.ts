@@ -1,5 +1,5 @@
 import { removeWrappedQuotes } from "./utils";
-import { Book } from "./get-book";
+import { Book } from "@library-pals/isbn";
 import { BookParams } from ".";
 import { exportVariable, getInput, warning } from "@actions/core";
 
@@ -43,14 +43,12 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
   const {
     title,
     authors,
-    publishedDate,
     description,
     categories,
     pageCount,
     printType,
-    imageLinks,
-    language,
-    canonicalVolumeLink,
+    thumbnail,
+    link,
   } = book;
 
   return {
@@ -64,20 +62,17 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     ...(authors && {
       authors: authors,
     }),
-    ...(publishedDate && { publishedDate }),
     ...(description && {
       description: removeWrappedQuotes(description),
     }),
     ...(pageCount ? { pageCount } : { pageCount: 0 }),
     ...(printType && { printType }),
     ...(categories && { categories }),
-    ...(imageLinks &&
-      imageLinks.thumbnail && {
-        thumbnail: handleThumbnail(thumbnailWidth, imageLinks.thumbnail),
-      }),
-    ...(language && { language }),
-    ...(canonicalVolumeLink && {
-      link: canonicalVolumeLink,
+    ...(thumbnail && {
+      thumbnail: handleThumbnail(thumbnailWidth, thumbnail),
+    }),
+    ...(link && {
+      link,
     }),
     ...(setImage && {
       image: `book-${bookIsbn}.png`,
@@ -122,7 +117,7 @@ function checkMetadata(book: Book, bookIsbn: string) {
   if (!book.description && requiredMetadata.includes("description")) {
     missingMetadata.push("description");
   }
-  if (!book.imageLinks?.thumbnail && requiredMetadata.includes("thumbnail")) {
+  if (!book.thumbnail && requiredMetadata.includes("thumbnail")) {
     missingMetadata.push("thumbnail");
   }
   if (missingMetadata.length > 0) {

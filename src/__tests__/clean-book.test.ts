@@ -6,7 +6,7 @@ const dateFinished = "2020-09-12";
 
 const defaultOptions = {
   filename: "my-library.json",
-  "required-metadata": "title,pageCount,authors,description",
+  "required-metadata": "title,pageCount,authors,description,thumbnail",
   "time-zone": "America/New_York",
 };
 
@@ -44,14 +44,12 @@ describe("cleanBook", () => {
         "dateFinished": "2020-09-12",
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
-        "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
         "notes": "I loved it!",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "thumbnail": "https://books.google.com/books?id=MvaNEAAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
     `);
@@ -82,15 +80,13 @@ describe("cleanBook", () => {
         "dateFinished": "2020-09-12",
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
-        "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
         "notes": "I loved it!",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
         "rating": "⭐️⭐️⭐️⭐️⭐️",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "thumbnail": "https://books.google.com/books?id=MvaNEAAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
     `);
@@ -118,14 +114,12 @@ describe("cleanBook", () => {
         ],
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
-        "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
         "notes": "I loved it!",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "thumbnail": "https://books.google.com/books?id=MvaNEAAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
     `);
@@ -144,21 +138,15 @@ describe("cleanBook", () => {
       },
       {
         title: "Book Title",
-        publishedDate: "2013",
-        industryIdentifiers: [],
         pageCount: 584,
         printType: "BOOK",
         categories: [],
-        imageLinks: {},
-        previewLink: "https://openlibrary.org/books/BookTitle",
-        infoLink: "https://openlibrary.org/books/BookTitle",
-        publisher: "Publisher Name",
-        language: "en",
+        link: "https://openlibrary.org/books/BookTitle",
       }
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have authors, description",
+        "Book does not have authors, description, thumbnail",
       ]
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
@@ -169,7 +157,7 @@ describe("cleanBook", () => {
         ],
         [
           "BookMissingMetadata",
-          "authors, description",
+          "authors, description, thumbnail",
         ],
         [
           "BookIsbn",
@@ -193,21 +181,14 @@ describe("cleanBook", () => {
       {
         authors: ["Author Name"],
         description: "Book description",
-        publishedDate: "2013",
-        industryIdentifiers: [],
         pageCount: 584,
         printType: "BOOK",
-        categories: [],
-        imageLinks: {},
-        previewLink: "https://openlibrary.org/books/BookTitle",
-        infoLink: "https://openlibrary.org/books/BookTitle",
-        publisher: "Publisher Name",
-        language: "en",
+        link: "https://openlibrary.org/books/BookTitle",
       }
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have title",
+        "Book does not have title, thumbnail",
       ]
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
@@ -218,7 +199,7 @@ describe("cleanBook", () => {
         ],
         [
           "BookMissingMetadata",
-          "title",
+          "title, thumbnail",
         ],
         [
           "BookIsbn",
@@ -242,21 +223,16 @@ describe("cleanBook", () => {
       {
         title: "Book Title",
         authors: ["Author Name"],
-        publishedDate: "2013",
-        industryIdentifiers: [],
         pageCount: 584,
         printType: "BOOK",
         categories: [],
-        imageLinks: {},
         previewLink: "https://openlibrary.org/books/BookTitle",
-        infoLink: "https://openlibrary.org/books/BookTitle",
-        publisher: "Publisher Name",
-        language: "en",
+        link: "https://openlibrary.org/books/BookTitle",
       }
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have description",
+        "Book does not have description, thumbnail",
       ]
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
@@ -267,7 +243,7 @@ describe("cleanBook", () => {
         ],
         [
           "BookMissingMetadata",
-          "description",
+          "description, thumbnail",
         ],
         [
           "BookIsbn",
@@ -289,21 +265,15 @@ describe("cleanBook", () => {
         filename: "_data/read.yml",
       },
       {
-        publishedDate: "2013",
-        industryIdentifiers: [],
         pageCount: 0,
         printType: "BOOK",
         categories: [],
-        imageLinks: {},
-        previewLink: "https://openlibrary.org/books/BookTitle",
-        infoLink: "https://openlibrary.org/books/BookTitle",
-        publisher: "Publisher Name",
-        language: "en",
+        linke: "https://openlibrary.org/books/BookTitle",
       }
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have title, pageCount, authors, description",
+        "Book does not have title, pageCount, authors, description, thumbnail",
       ]
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
@@ -314,7 +284,7 @@ describe("cleanBook", () => {
         ],
         [
           "BookMissingMetadata",
-          "title, pageCount, authors, description",
+          "title, pageCount, authors, description, thumbnail",
         ],
         [
           "BookIsbn",
@@ -341,16 +311,10 @@ describe("cleanBook", () => {
         filename: "_data/read.yml",
       },
       {
-        publishedDate: "2013",
-        industryIdentifiers: [],
         pageCount: 0,
         printType: "BOOK",
         categories: [],
-        imageLinks: {},
-        previewLink: "https://openlibrary.org/books/BookTitle",
-        infoLink: "https://openlibrary.org/books/BookTitle",
-        publisher: "Publisher Name",
-        language: "en",
+        link: "https://openlibrary.org/books/BookTitle",
       }
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`undefined`);
@@ -382,22 +346,20 @@ describe("cleanBook", () => {
         "dateFinished": "2020-09-12",
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
-        "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
         "notes": "I loved it!",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&w=10000",
+        "thumbnail": "https://books.google.com/books?id=MvaNEAAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&source=gbs_api&w=10000",
         "title": "Transcendent Kingdom",
       }
     `);
   });
 
-  it("cleanBook, already https thumbnail, doesn't set thumbnailWidth", () => {
+  it("cleanBook, http thumbnail, doesn't set thumbnailWidth", () => {
     const newBook = book;
-    newBook.imageLinks.thumbnail = "https://site.com/image.jpg";
+    newBook.thumbnail = "http://site.com/image.jpg";
     expect(
       cleanBook(
         {
@@ -422,12 +384,10 @@ describe("cleanBook", () => {
         "dateFinished": "2020-09-12",
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
-        "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
         "notes": "I loved it!",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
         "status": "finished",
         "thumbnail": "https://site.com/image.jpg",
         "title": "Transcendent Kingdom",
