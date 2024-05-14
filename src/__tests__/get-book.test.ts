@@ -24,7 +24,6 @@ describe("getBook", () => {
   });
 
   test("works", async () => {
-    // Mock the implementation of the resolve method
     (Isbn.prototype.resolve as jest.Mock).mockResolvedValue(book);
 
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
@@ -37,6 +36,7 @@ describe("getBook", () => {
         providers: ["google"],
         bookStatus: "finished",
         filename: "_data/read.yml",
+        setImage: false,
       })
     ).toMatchInlineSnapshot(`
       {
@@ -57,5 +57,26 @@ describe("getBook", () => {
         "title": "Transcendent Kingdom",
       }
     `);
+  });
+  test("fails", async () => {
+    (Isbn.prototype.resolve as jest.Mock).mockRejectedValue(
+      new Error("Request failed with status")
+    );
+    await expect(
+      getBook({
+        dateType: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished,
+        },
+        bookIsbn: "9780525658184",
+        providers: ["google"],
+        bookStatus: "finished",
+        filename: "_data/read.json",
+        setImage: false,
+      })
+    ).rejects.toMatchInlineSnapshot(
+      `[Error: Book (9780525658184) not found. Request failed with status]`
+    );
   });
 });
