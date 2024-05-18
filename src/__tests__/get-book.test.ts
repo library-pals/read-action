@@ -45,15 +45,20 @@ describe("getBook", () => {
         ],
         "categories": [
           "Fiction",
+          "Fiction / Literary",
+          "Fiction / Family Life / Siblings",
+          "Fiction / African American & Black / General",
         ],
         "dateFinished": "2020-09-12",
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "9780525658184",
+        "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=MvaNEAAAQBAJ",
         "pageCount": 288,
         "printType": "BOOK",
+        "publishedDate": "2020-09-01",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books/content?id=MvaNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "thumbnail": "https://books.google.com/books/publisher/content?id=MvaNEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
     `);
