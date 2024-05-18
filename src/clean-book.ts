@@ -43,11 +43,13 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
   const {
     title,
     authors,
+    publishedDate,
     description,
     categories,
     pageCount,
     printType,
     thumbnail,
+    language,
     link,
   } = book;
 
@@ -62,6 +64,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     ...(authors && {
       authors: authors,
     }),
+    ...(publishedDate && { publishedDate }),
     ...(description && {
       description: removeWrappedQuotes(description),
     }),
@@ -71,6 +74,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     ...(thumbnail && {
       thumbnail: handleThumbnail(thumbnailWidth, thumbnail),
     }),
+    ...(language && { language }),
     ...(link && {
       link,
     }),
