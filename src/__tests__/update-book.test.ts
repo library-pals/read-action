@@ -28,6 +28,8 @@ describe("updateBook", () => {
             dateFinished: "2022-02-02",
           },
           bookStatus: "finished",
+          setImage: false,
+          providers: [],
         },
         library
       )
@@ -72,6 +74,8 @@ describe("updateBook", () => {
           },
           notes: "Great read",
           bookStatus: "finished",
+          setImage: false,
+          providers: [],
         },
         library
       )
@@ -106,6 +110,8 @@ describe("updateBook", () => {
           },
           notes: "Great read",
           bookStatus: "finished",
+          setImage: false,
+          providers: [],
         },
         library
       )
@@ -146,6 +152,8 @@ describe("updateBook", () => {
             dateFinished: "2022-02-02",
           },
           bookStatus: "finished",
+          setImage: false,
+          providers: [],
         },
         library
       )
@@ -178,6 +186,8 @@ describe("updateBook", () => {
             dateFinished: "2022-02-02",
           },
           bookStatus: "finished",
+          setImage: false,
+          providers: [],
         },
         library
       )
