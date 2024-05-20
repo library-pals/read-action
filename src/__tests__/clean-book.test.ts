@@ -260,7 +260,7 @@ describe("cleanBook", () => {
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
-        "Book does not have description",
+        "Book does not have title",
       ]
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
@@ -271,7 +271,7 @@ describe("cleanBook", () => {
         ],
         [
           "BookMissingMetadata",
-          "description",
+          "title",
         ],
         [
           "BookIsbn",
