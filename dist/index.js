@@ -34392,11 +34392,11 @@ var __webpack_exports__ = {};
 
 // EXPORTS
 __nccwpck_require__.d(__webpack_exports__, {
-  "Z": () => (/* binding */ src_0),
+  "Z": () => (/* binding */ src),
   "i": () => (/* binding */ read)
 });
 
-// NAMESPACE OBJECT: ./node_modules/@library-pals/isbn/node_modules/axios/lib/platform/common/utils.js
+// NAMESPACE OBJECT: ./node_modules/axios/lib/platform/common/utils.js
 var common_utils_namespaceObject = {};
 __nccwpck_require__.r(common_utils_namespaceObject);
 __nccwpck_require__.d(common_utils_namespaceObject, {
@@ -34409,7 +34409,7 @@ __nccwpck_require__.d(common_utils_namespaceObject, {
 var core = __nccwpck_require__(2186);
 // EXTERNAL MODULE: ./node_modules/@actions/github/lib/github.js
 var github = __nccwpck_require__(5438);
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/bind.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/bind.js
 
 
 function bind(fn, thisArg) {
@@ -34418,7 +34418,7 @@ function bind(fn, thisArg) {
   };
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/utils.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/utils.js
 
 
 
@@ -35143,7 +35143,7 @@ const isThenable = (thing) =>
   isThenable
 });
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/core/AxiosError.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/core/AxiosError.js
 
 
 
@@ -35247,12 +35247,12 @@ AxiosError.from = (error, code, config, request, response, customProps) => {
 
 // EXTERNAL MODULE: ./node_modules/form-data/lib/form_data.js
 var form_data = __nccwpck_require__(4334);
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/platform/node/classes/FormData.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/platform/node/classes/FormData.js
 
 
 /* harmony default export */ const classes_FormData = (form_data);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/toFormData.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/toFormData.js
 
 
 
@@ -35473,7 +35473,7 @@ function toFormData(obj, formData, options) {
 
 /* harmony default export */ const helpers_toFormData = (toFormData);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/AxiosURLSearchParams.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/AxiosURLSearchParams.js
 
 
 
@@ -35533,7 +35533,7 @@ AxiosURLSearchParams_prototype.toString = function toString(encoder) {
 
 /* harmony default export */ const helpers_AxiosURLSearchParams = (AxiosURLSearchParams);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/buildURL.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/buildURL.js
 
 
 
@@ -35598,7 +35598,7 @@ function buildURL(url, params, options) {
   return url;
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/core/InterceptorManager.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/core/InterceptorManager.js
 
 
 
@@ -35671,7 +35671,7 @@ class InterceptorManager {
 
 /* harmony default export */ const core_InterceptorManager = (InterceptorManager);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/defaults/transitional.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/defaults/transitional.js
 
 
 /* harmony default export */ const defaults_transitional = ({
@@ -35682,13 +35682,13 @@ class InterceptorManager {
 
 // EXTERNAL MODULE: external "url"
 var external_url_ = __nccwpck_require__(7310);
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/platform/node/classes/URLSearchParams.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/platform/node/classes/URLSearchParams.js
 
 
 
 /* harmony default export */ const URLSearchParams = (external_url_.URLSearchParams);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/platform/node/index.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/platform/node/index.js
 
 
 
@@ -35702,7 +35702,7 @@ var external_url_ = __nccwpck_require__(7310);
   protocols: [ 'http', 'https', 'file', 'data' ]
 });
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/platform/common/utils.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/platform/common/utils.js
 const hasBrowserEnv = typeof window !== 'undefined' && typeof document !== 'undefined';
 
 /**
@@ -35747,7 +35747,7 @@ const hasStandardBrowserWebWorkerEnv = (() => {
 
 
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/platform/index.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/platform/index.js
 
 
 
@@ -35756,7 +35756,7 @@ const hasStandardBrowserWebWorkerEnv = (() => {
   ...node
 });
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/toURLEncodedForm.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/toURLEncodedForm.js
 
 
 
@@ -35776,7 +35776,7 @@ function toURLEncodedForm(data, options) {
   }, options));
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/formDataToJSON.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/formDataToJSON.js
 
 
 
@@ -35873,7 +35873,7 @@ function formDataToJSON(formData) {
 
 /* harmony default export */ const helpers_formDataToJSON = (formDataToJSON);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/defaults/index.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/defaults/index.js
 
 
 
@@ -36031,7 +36031,7 @@ utils.forEach(['delete', 'get', 'head', 'post', 'put', 'patch'], (method) => {
 
 /* harmony default export */ const lib_defaults = (defaults);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/parseHeaders.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/parseHeaders.js
 
 
 
@@ -36088,7 +36088,7 @@ const ignoreDuplicateOf = utils.toObjectSet([
   return parsed;
 });
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/core/AxiosHeaders.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/core/AxiosHeaders.js
 
 
 
@@ -36388,7 +36388,7 @@ utils.freezeMethods(AxiosHeaders);
 
 /* harmony default export */ const core_AxiosHeaders = (AxiosHeaders);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/core/transformData.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/core/transformData.js
 
 
 
@@ -36418,14 +36418,14 @@ function transformData(fns, response) {
   return data;
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/cancel/isCancel.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/cancel/isCancel.js
 
 
 function isCancel(value) {
   return !!(value && value.__CANCEL__);
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/cancel/CanceledError.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/cancel/CanceledError.js
 
 
 
@@ -36452,7 +36452,7 @@ utils.inherits(CanceledError, core_AxiosError, {
 
 /* harmony default export */ const cancel_CanceledError = (CanceledError);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/core/settle.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/core/settle.js
 
 
 
@@ -36481,7 +36481,7 @@ function settle(resolve, reject, response) {
   }
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/isAbsoluteURL.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/isAbsoluteURL.js
 
 
 /**
@@ -36498,7 +36498,7 @@ function isAbsoluteURL(url) {
   return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/combineURLs.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/combineURLs.js
 
 
 /**
@@ -36515,7 +36515,7 @@ function combineURLs(baseURL, relativeURL) {
     : baseURL;
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/core/buildFullPath.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/core/buildFullPath.js
 
 
 
@@ -36550,9 +36550,9 @@ var external_util_ = __nccwpck_require__(3837);
 var follow_redirects = __nccwpck_require__(7707);
 // EXTERNAL MODULE: external "zlib"
 var external_zlib_ = __nccwpck_require__(9796);
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/env/data.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/env/data.js
 const VERSION = "1.6.8";
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/parseProtocol.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/parseProtocol.js
 
 
 function parseProtocol(url) {
@@ -36560,7 +36560,7 @@ function parseProtocol(url) {
   return match && match[1] || '';
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/fromDataURI.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/fromDataURI.js
 
 
 
@@ -36617,7 +36617,7 @@ function fromDataURI(uri, asBlob, options) {
 
 // EXTERNAL MODULE: external "stream"
 var external_stream_ = __nccwpck_require__(2781);
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/throttle.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/throttle.js
 
 
 /**
@@ -36652,7 +36652,7 @@ function throttle(fn, freq) {
 
 /* harmony default export */ const helpers_throttle = (throttle);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/speedometer.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/speedometer.js
 
 
 /**
@@ -36709,7 +36709,7 @@ function speedometer(samplesCount, min) {
 
 /* harmony default export */ const helpers_speedometer = (speedometer);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/AxiosTransformStream.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/AxiosTransformStream.js
 
 
 
@@ -36904,7 +36904,7 @@ class AxiosTransformStream extends external_stream_.Transform{
 
 // EXTERNAL MODULE: external "events"
 var external_events_ = __nccwpck_require__(2361);
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/readBlob.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/readBlob.js
 const {asyncIterator} = Symbol;
 
 const readBlob = async function* (blob) {
@@ -36921,7 +36921,7 @@ const readBlob = async function* (blob) {
 
 /* harmony default export */ const helpers_readBlob = (readBlob);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/formDataToStream.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/formDataToStream.js
 
 
 
@@ -37034,7 +37034,7 @@ const formDataToStream = (form, headersHandler, options) => {
 
 /* harmony default export */ const helpers_formDataToStream = (formDataToStream);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/ZlibHeaderTransformStream.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/ZlibHeaderTransformStream.js
 
 
 
@@ -37064,7 +37064,7 @@ class ZlibHeaderTransformStream extends external_stream_.Transform {
 
 /* harmony default export */ const helpers_ZlibHeaderTransformStream = (ZlibHeaderTransformStream);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/callbackify.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/callbackify.js
 
 
 const callbackify = (fn, reducer) => {
@@ -37082,7 +37082,7 @@ const callbackify = (fn, reducer) => {
 
 /* harmony default export */ const helpers_callbackify = (callbackify);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/adapters/http.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/adapters/http.js
 
 
 
@@ -37769,7 +37769,7 @@ const buildAddressEntry = (address, family) => resolveFamily(utils.isObject(addr
 
 const __setProxy = (/* unused pure expression or super */ null && (setProxy));
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/cookies.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/cookies.js
 
 
 
@@ -37813,7 +37813,7 @@ const __setProxy = (/* unused pure expression or super */ null && (setProxy));
   });
 
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/isURLSameOrigin.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/isURLSameOrigin.js
 
 
 
@@ -37882,7 +37882,7 @@ const __setProxy = (/* unused pure expression or super */ null && (setProxy));
     };
   })());
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/adapters/xhr.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/adapters/xhr.js
 
 
 
@@ -38144,7 +38144,7 @@ const isXHRAdapterSupported = typeof XMLHttpRequest !== 'undefined';
   });
 });
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/adapters/adapters.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/adapters/adapters.js
 
 
 
@@ -38223,7 +38223,7 @@ const isResolvedHandle = (adapter) => utils.isFunction(adapter) || adapter === n
   adapters: knownAdapters
 });
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/core/dispatchRequest.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/core/dispatchRequest.js
 
 
 
@@ -38306,7 +38306,7 @@ function dispatchRequest(config) {
   });
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/core/mergeConfig.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/core/mergeConfig.js
 
 
 
@@ -38414,7 +38414,7 @@ function mergeConfig(config1, config2) {
   return config;
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/validator.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/validator.js
 
 
 
@@ -38507,7 +38507,7 @@ function assertOptions(options, schema, allowUnknown) {
   validators
 });
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/core/Axios.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/core/Axios.js
 
 
 
@@ -38734,7 +38734,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 /* harmony default export */ const core_Axios = (Axios);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/cancel/CancelToken.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/cancel/CancelToken.js
 
 
 
@@ -38857,7 +38857,7 @@ class CancelToken {
 
 /* harmony default export */ const cancel_CancelToken = (CancelToken);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/spread.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/spread.js
 
 
 /**
@@ -38887,7 +38887,7 @@ function spread(callback) {
   };
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/isAxiosError.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/isAxiosError.js
 
 
 
@@ -38903,7 +38903,7 @@ function isAxiosError(payload) {
   return utils.isObject(payload) && (payload.isAxiosError === true);
 }
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/helpers/HttpStatusCode.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/helpers/HttpStatusCode.js
 const HttpStatusCode = {
   Continue: 100,
   SwitchingProtocols: 101,
@@ -38976,7 +38976,7 @@ Object.entries(HttpStatusCode).forEach(([key, value]) => {
 
 /* harmony default export */ const helpers_HttpStatusCode = (HttpStatusCode);
 
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/node_modules/axios/lib/axios.js
+;// CONCATENATED MODULE: ./node_modules/axios/lib/axios.js
 
 
 
@@ -39072,33 +39072,181 @@ axios.default = axios;
 
 
 /**
+ * @typedef {import('../index.js').Book} Book
+ * @typedef {import('axios').AxiosRequestConfig} AxiosRequestConfig
+ */
+
+/**
  * Resolves book information from Google Books API using the provided ISBN.
  * @param {string} isbn - The ISBN of the book.
- * @param {object} options - Additional options for the API request.
- * @returns {Promise<object>} The book information retrieved from the API.
+ * @param {AxiosRequestConfig} options - Additional options for the API request.
+ * @returns {Promise<Book>} The book information retrieved from the API.
  * @throws {Error} If the API response code is not 200, or if no books are found with the provided ISBN, or if no volume information is found for the book.
  */
 async function resolveGoogle(isbn, options) {
   const requestOptions = {
     ...defaultOptions,
     ...options,
-    url: `${GOOGLE_BOOKS_API_BASE}${GOOGLE_BOOKS_API_BOOK}?q=isbn:${isbn}`,
+  };
+  const url = `${GOOGLE_BOOKS_API_BASE}${GOOGLE_BOOKS_API_BOOK}?q=isbn:${isbn}`;
+
+  try {
+    const response = await lib_axios.get(url, requestOptions);
+    if (response.status !== 200) {
+      throw new Error(`Wrong response code: ${response.status}`);
+    }
+    const books = response.data;
+    if (!books.totalItems) {
+      throw new Error(`No books found with isbn: ${isbn}`);
+    }
+    // In very rare circumstances books.items[0] is undefined (see #2)
+    if (!books.items || books.items.length === 0) {
+      throw new Error(`No volume info found for book with isbn: ${isbn}`);
+    }
+    const book = books.items[0];
+    return await standardize(book.volumeInfo, book.id, isbn);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+/**
+ * @typedef {object} ImageLinks
+ * @property {string} [extraLarge] - extraLarge
+ * @property {string} [large] - large
+ * @property {string} [medium] - medium
+ * @property {string} [small] - small
+ * @property {string} [thumbnail] - thumbnail
+ * @property {string} [smallThumbnail] - smallThumbnail
+ */
+
+/**
+ * @typedef {object} GoogleBook
+ * @property {string} title - The title of the book.
+ * @property {string} subtitle - The subtitle of the book.
+ * @property {string[]} authors - The authors of the book.
+ * @property {string} publisher - The publisher of the book.
+ * @property {string} publishedDate - The published date of the book.
+ * @property {string} description - The description of the book.
+ * @property {object[]} industryIdentifiers - The industry identifiers of the book.
+ * @property {object} readingModes - The reading modes of the book.
+ * @property {number} pageCount - The number of pages in the book.
+ * @property {string} printType - The print type of the book.
+ * @property {string[]} categories - The categories of the book.
+ * @property {number} averageRating - The average rating of the book.
+ * @property {number} ratingsCount - The ratings count of the book.
+ * @property {string} maturityRating - The maturity rating of the book.
+ * @property {boolean} allowAnonLogging - The allow anon logging of the book.
+ * @property {string} contentVersion - The content version of the book.
+ * @property {object} panelizationSummary - The panelization summary of the book.
+ * @property {ImageLinks} [imageLinks] - The image links of the book.
+ * @property {string} language - The language of the book.
+ * @property {string} previewLink - The preview link of the book.
+ * @property {string} infoLink - The info link of the book.
+ * @property {string} canonicalVolumeLink - The canonical volume link of the book.
+ * @property {object} saleInfo - The sale info of the book.
+ * @property {object} accessInfo - The access info of the book.
+ * @property {object} searchInfo - The search info of the book.
+ */
+
+/**
+ * Standardizes a book object by extracting relevant information from the provided book object.
+ * @param {GoogleBook} book - The book object to be standardized.
+ * @param {string} id - The book id.
+ * @param {string} isbn - The book's ISBN.
+ * @returns {Promise<Book>} The standardized book object.
+ */
+async function standardize(book, id, isbn) {
+  const { imageLinks = book.imageLinks, categories = book.categories } =
+    await getVolume(id);
+
+  const standardBook = {
+    title: book.title,
+    authors: book.authors,
+    description: book.description,
+    pageCount: book.pageCount,
+    printType: book.printType,
+    categories: formatCategories(categories),
+    thumbnail: getLargestThumbnail(imageLinks),
+    link: book.canonicalVolumeLink,
+    publisher: book.publisher,
+    publishedDate: book.publishedDate,
+    language: book.language,
+    isbn,
   };
 
-  const { status, data } = await lib_axios.request(requestOptions);
-  if (status !== 200) {
-    throw new Error(`wrong response code: ${status}`);
+  return standardBook;
+}
+
+/**
+ * Retrieves the volume information for a book.
+ * @param {string} id - The book id.
+ * @returns {Promise<{imageLinks?: ImageLinks, categories?: string[]}>} - A promise that resolves to an array of author names.
+ * @throws {Error} - If there is an error retrieving the author information.
+ */
+async function getVolume(id) {
+  try {
+    const url = `${GOOGLE_BOOKS_API_BASE}${GOOGLE_BOOKS_API_BOOK}/${id}`;
+    const response = await lib_axios.get(url);
+
+    if (response.status !== 200) {
+      throw new Error(`Unable to get volume ${id}: ${response.status}`);
+    }
+    return {
+      ...response.data.volumeInfo,
+    };
+  } catch (error) {
+    throw new Error(error.message);
   }
-  const books = data;
-  if (!books.totalItems) {
-    throw new Error(`no books found with isbn: ${isbn}`);
-  }
-  // In very rare circumstances books.items[0] is undefined (see #2)
-  if (!books.items || books.items.length === 0) {
-    throw new Error(`no volume info found for book with isbn: ${isbn}`);
-  }
-  const book = books.items[0].volumeInfo;
-  return book;
+}
+
+/**
+ * Get the largest available thumbnail from a book's image links.
+ * @param {ImageLinks} [imageLinks] - The image links object.
+ * @returns {string|undefined} The URL of the largest thumbnail, or undefined if not found.
+ */
+function getLargestThumbnail(imageLinks) {
+  const sizes = [
+    "extraLarge",
+    "large",
+    "medium",
+    "small",
+    "thumbnail",
+    "smallThumbnail",
+  ];
+
+  if (!imageLinks) return;
+
+  const size = sizes.find((size) => size in imageLinks);
+
+  // @ts-ignore
+  return removeQueryParameter(imageLinks[size], "imgtk");
+}
+
+/**
+ * Removes a query parameter from a URL.
+ * @param {string} url - The URL.
+ * @param {string} parameter - The query parameter to remove.
+ * @returns {string | undefined} The URL with the query parameter removed.
+ */
+function removeQueryParameter(url, parameter) {
+  const urlObject = new URL(url);
+  urlObject.searchParams.delete(parameter);
+  return urlObject.toString();
+}
+
+/**
+ * Formats the categories array.
+ * @param {string[]} categories - The array of categories.
+ * @returns {string[]} The formatted categories array.
+ */
+function formatCategories(categories) {
+  if (!categories || categories.length === 0) return [];
+
+  const [firstCategory] = categories;
+  return firstCategory.includes("/")
+    ? [firstCategory.split("/")[0].trim(), ...categories]
+    : categories;
 }
 
 ;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/src/providers/open-library.js
@@ -39106,130 +39254,238 @@ async function resolveGoogle(isbn, options) {
 
 
 /**
+ * @typedef {import('../index.js').Book} Book
+ * @typedef {import('axios').AxiosRequestConfig} AxiosRequestConfig
+ */
+
+/**
  * Resolves a book from the Open Library API using the provided ISBN.
  * @param {string} isbn - The ISBN of the book.
- * @param {object} options - Additional options for the request.
- * @returns {Promise<object>} A promise that resolves to the standardized book object.
+ * @param {AxiosRequestConfig} options - Additional options for the request.
+ * @returns {Promise<Book>} A promise that resolves to the standardized book object.
  * @throws {Error} If the response code is not 200 or if no books are found with the provided ISBN.
  */
 async function resolveOpenLibrary(isbn, options) {
   const requestOptions = {
     ...defaultOptions,
     ...options,
-    url: `${OPENLIBRARY_API_BASE}${OPENLIBRARY_API_BOOK}?bibkeys=ISBN:${isbn}&format=json&jscmd=details`,
   };
+  const url = `${OPENLIBRARY_API_BASE}${OPENLIBRARY_API_BOOK}/${isbn}.json`;
 
-  const { status, data } = await lib_axios.request(requestOptions);
-  if (status !== 200) {
-    throw new Error(
-      `Wrong response code: ${status}. Response data: ${JSON.stringify(data)}`
-    );
+  try {
+    const response = await lib_axios.get(url, requestOptions);
+    if (response.status !== 200) {
+      throw new Error(`Wrong response code: ${response.status}`);
+    }
+    const book = response.data;
+    if (!book || Object.keys(book).length === 0) {
+      throw new Error(`No books found with ISBN: ${isbn}`);
+    }
+    return await open_library_standardize(book, isbn);
+  } catch (error) {
+    throw new Error(error.message);
   }
-  const books = data;
-  const book = books[`ISBN:${isbn}`];
-  if (!book) {
-    throw new Error(`No books found with ISBN: ${isbn}`);
-  }
-  return standardize(book);
 }
 
-const LANGUAGE_MAP = {
-  "/languages/eng": "en",
-  "/languages/spa": "es",
-  "/languages/fre": "fr",
-};
+/**
+ * @typedef {object} Author
+ * @property {string} key - The key of the author.
+ */
+
+/**
+ * @typedef {object} Language
+ * @property {string} key - The key of the language.
+ */
+
+/**
+ * @typedef {object} Type
+ * @property {string} key - The key of the type.
+ */
+
+/**
+ * @typedef {object} FirstSentence
+ * @property {string} type - The type of the first sentence.
+ * @property {string} value - The value of the first sentence.
+ */
+
+/**
+ * @typedef {object} Work
+ * @property {string} key - The key of the work.
+ */
+
+/**
+ * @typedef {object} DateTime
+ * @property {string} type - The type of the datetime.
+ * @property {string} value - The value of the datetime.
+ */
+
+/**
+ * @typedef {object} OpenLibraryBook
+ * @property {object} identifiers - The identifiers of the book.
+ * @property {string} title - The title of the book.
+ * @property {Author[]} authors - The authors of the book.
+ * @property {string} publish_date - The publish date of the book.
+ * @property {string[]} publishers - The publishers of the book.
+ * @property {number[]} covers - The covers of the book.
+ * @property {string[]} contributions - The contributions to the book.
+ * @property {Language[]} languages - The languages of the book.
+ * @property {string[]} source_records - The source records of the book.
+ * @property {string[]} local_id - The local IDs of the book.
+ * @property {Type} type - The type of the book.
+ * @property {FirstSentence} first_sentence - The first sentence of the book.
+ * @property {string} key - The key of the book.
+ * @property {number} number_of_pages - The number of pages in the book.
+ * @property {Work[]} works - The works related to the book.
+ * @property {object} classifications - The classifications of the book.
+ * @property {string} ocaid - The Open Content Alliance ID of the book.
+ * @property {string[]} isbn_10 - The ISBN-10 of the book.
+ * @property {string[]} isbn_13 - The ISBN-13 of the book.
+ * @property {number} latest_revision - The latest revision of the book.
+ * @property {number} revision - The revision of the book.
+ * @property {DateTime} created - The creation datetime of the book.
+ * @property {DateTime} last_modified - The last modified datetime of the book.
+ */
 
 /**
  * Standardizes a book object by extracting relevant information from the provided book object.
- * @param {object} book - The book object to be standardized.
- * @returns {object} - The standardized book object.
+ * @param {OpenLibraryBook} book - The book object to be standardized.
+ * @param {string} isbn - The book's isbn.
+ * @returns {Promise<Book>} - The standardized book object.
  */
-function standardize(book) {
-  const standardBook = {
-    title: book.details.title,
-    publishedDate: book.details.publish_date,
-    authors: book.details.authors
-      ? book.details.authors.map(({ name }) => name)
-      : [],
-    description: book.details.subtitle,
-    industryIdentifiers: [],
-    pageCount: book.details.number_of_pages,
-    printType: "BOOK",
-    categories: [],
-    imageLinks: {
-      smallThumbnail: book.thumbnail_url,
-      thumbnail: book.thumbnail_url,
-    },
-    previewLink: book.preview_url,
-    infoLink: book.info_url,
-    publisher: book.details.publishers ? book.details.publishers[0] : "",
-    language: book.details.languages
-      ? LANGUAGE_MAP[book.details.languages[0].key] || "unknown"
-      : "unknown",
-  };
-
-  return standardBook;
-}
-
-;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/src/providers/worldcat.js
-
-
-
-/**
- * Resolves a book using the Worldcat API based on the provided ISBN.
- * @param {string} isbn - The ISBN of the book to resolve.
- * @param {object} options - Additional options for the request.
- * @returns {Promise<object>} A promise that resolves to the standardized book object.
- * @throws {Error} If the response code is not 200 or if no books are found with the provided ISBN.
- */
-async function resolveWorldcat(isbn, options) {
-  const requestOptions = {
-    ...defaultOptions,
-    ...options,
-    url: `${WORLDCAT_API_BASE}${WORLDCAT_API_BOOK}/${isbn}?method=getMetadata&fl=*&format=json`,
-  };
-
-  const { status, data } = await lib_axios.request(requestOptions);
-  if (status !== 200) {
-    throw new Error(
-      `Wrong response code: ${status}. Response data: ${JSON.stringify(data)}`
-    );
-  }
-  const books = data;
-  if (books.stat !== "ok") {
-    throw new Error(`No books found with ISBN: ${isbn}`);
-  }
-  const [book] = books.list;
-  return worldcat_standardize(book);
-}
-
-const worldcat_LANGUAGE_MAP = {
-  eng: "en",
-  spa: "es",
-  fre: "fr",
-};
-
-/**
- * Standardizes a book object by extracting relevant information from the provided book object.
- * @param {object} book - The book object to be standardized.
- * @returns {object} - The standardized book object.
- */
-function worldcat_standardize(book) {
+async function open_library_standardize(book, isbn) {
+  const { description, subjects, rawAuthors } = await getWorks(book);
+  const authors = await getAuthors(rawAuthors);
   const standardBook = {
     title: book.title,
-    publishedDate: book.year,
-    authors: book.author ? [book.author] : [],
-    description: null,
-    industryIdentifiers: [],
-    pageCount: null,
+    authors,
+    description,
+    pageCount: book.number_of_pages,
     printType: "BOOK",
-    categories: [],
-    imageLinks: {},
-    publisher: book.publisher,
-    language: worldcat_LANGUAGE_MAP[book.lang] || "unknown",
+    categories: subjects,
+    thumbnail: `https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg`,
+    link: book.key
+      ? `${OPENLIBRARY_API_BASE}${book.key}`
+      : `${OPENLIBRARY_API_BASE}${OPENLIBRARY_API_BOOK}/${isbn}`,
+    publisher: book.publishers?.join(", "),
+    publishedDate: book.publish_date,
+    language: formatLanguage(book.languages),
+    isbn,
   };
 
   return standardBook;
+}
+
+/**
+ * Retrieves the author names from OpenLibrary.
+ * @param {{key: string}[]} rawAuthors - List of author keys.
+ * @returns {Promise<string[]>} - List of author names.
+ */
+async function getAuthors(rawAuthors) {
+  const promises = rawAuthors
+    .filter((author) => author && author.key)
+    .map((author) =>
+      lib_axios.get(`https://openlibrary.org/${author.key}.json`)
+        .then((response) => {
+          if (response.status !== 200) {
+            throw new Error(
+              `Unable to get author ${author.key}: ${response.status}`,
+            );
+          }
+          return response.data && response.data.name;
+        }),
+    );
+
+  try {
+    return await Promise.all(promises);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+/**
+ * @typedef {object} OpenLibraryResponse
+ * @property {string} description - The description of the book.
+ * @property {string[]} subjects - The subjects of the book.
+ * @property {{author: {key: string}}[]} authors - The authors of the book.
+ */
+
+/**
+ * Retrieves the description of the book from OpenLibrary.
+ * @param {OpenLibraryBook} book - The book object from OpenLibrary.
+ * @returns {Promise<{description: string, subjects: string[], rawAuthors: {key: string}[]}>} - Description of the book.
+ */
+async function getWorks(book) {
+  const defaultResponse = {
+    description: "",
+    subjects: [],
+    rawAuthors: [],
+  };
+
+  if (!book.works) {
+    return defaultResponse;
+  }
+
+  const [work] = book.works;
+
+  if (!work || !work.key) {
+    return defaultResponse;
+  }
+
+  try {
+    const response = await lib_axios.get(
+      `https://openlibrary.org/${work.key}.json`,
+    );
+
+    if (response.status !== 200) {
+      throw new Error(`Unable to get ${work.key}: ${response.status}`);
+    }
+
+    /** @type {OpenLibraryResponse} */
+    const data = response.data;
+
+    return {
+      description: data.description || "",
+      subjects: data.subjects || [],
+      rawAuthors: data.authors?.map((a) => a.author) || [],
+    };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+/**
+ * Formats the language codes from Open Library API to their corresponding ISO 639-1 codes.
+ * @param {Language[]} languages - An array of language codes from Open Library API.
+ * @returns {string | undefined} - A new language map object with ISO 639-1 codes as keys and language codes as values.
+ */
+function formatLanguage(languages) {
+  if (!languages || languages.length === 0) {
+    return;
+  }
+  /**
+   * Mapping of Open Library language codes to their corresponding language names.
+   * https://openlibrary.org/languages.json
+   * @type {{ [key: string]: string } } - A new language map object with ISO 639-1 codes as keys and language codes as values.
+   */
+  const newLanguageMap = {
+    "/languages/eng": "en",
+    "/languages/spa": "es",
+    "/languages/fre": "fr",
+    "/languages/ger": "de",
+    "/languages/rus": "ru",
+    "/languages/ita": "it",
+    "/languages/chi": "zh",
+    "/languages/jpn": "ja",
+    "/languages/por": "pt",
+    "/languages/ara": "ar",
+    "/languages/heb": "he",
+    "/languages/kor": "ko",
+    "/languages/pol": "pl",
+    "/languages/dut": "nl",
+    "/languages/lat": "la",
+  };
+
+  return newLanguageMap[languages[0].key] || undefined;
 }
 
 ;// CONCATENATED MODULE: ./node_modules/@library-pals/isbn/src/providers/isbndb.js
@@ -39237,56 +39493,127 @@ function worldcat_standardize(book) {
 
 
 /**
+ * @typedef {import('../index.js').Book} Book
+ * @typedef {import('axios').AxiosRequestConfig} AxiosRequestConfig
+ */
+
+/**
  * Resolves the ISBN using the ISBNdb API.
  * @param {string} isbn - The ISBN to resolve.
- * @param {object} options - Additional options for the request.
- * @returns {Promise<object>} - A promise that resolves to the standardized book data.
+ * @param {AxiosRequestConfig} options - Additional options for the request.
+ * @returns {Promise<Book>} - A promise that resolves to the standardized book data.
  * @throws {Error} - If the response code is not 200 or if no books are found with the given ISBN.
  */
 async function resolveIsbnDb(isbn, options) {
+  if (!process.env.ISBNDB_API_KEY) {
+    throw new Error(`ISBNdb requires an API key`);
+  }
+
   const requestOptions = {
     ...defaultOptions,
     ...options,
-    url: `${ISBNDB_API_BASE}${ISBNDB_API_BOOK}/${isbn}`,
-    headers: { Authorization: process.env.ISBNDB_API_KEY || "" },
+    headers: { Authorization: process.env.ISBNDB_API_KEY },
   };
 
-  const { status, data } = await lib_axios.request(requestOptions);
-  if (status !== 200) {
-    throw new Error(
-      `Wrong response code: ${status}. Response data: ${JSON.stringify(data)}`
-    );
+  const url = `${ISBNDB_API_BASE}${ISBNDB_API_BOOK}/${isbn}`;
+
+  try {
+    const response = await lib_axios.get(url, requestOptions);
+    if (response.status !== 200) {
+      throw new Error(`Wrong response code: ${response.status}`);
+    }
+    const books = response.data;
+    if (!books.book) {
+      throw new Error(`No books found with ISBN: ${isbn}`);
+    }
+    return isbndb_standardize(books.book, isbn);
+  } catch (error) {
+    throw new Error(error.message);
   }
-  const books = data;
-  if (!books.book) {
-    throw new Error(`No books found with ISBN: ${isbn}`);
-  }
-  return isbndb_standardize(books.book);
 }
 
 /**
- * Standardizes a book object by transforming its properties into a consistent format.
- * @param {object} book - The book object to be standardized.
- * @returns {object} - The standardized book object.
+ * @typedef {object} Dimension
+ * @property {string} unit - The unit of the dimension.
+ * @property {number} value - The value of the dimension.
  */
-function isbndb_standardize(book) {
+
+/**
+ * @typedef {object} Offset
+ * @property {string} x - The x offset.
+ * @property {string} y - The y offset.
+ */
+
+/**
+ * @typedef {object} Price
+ * @property {string} condition - The condition of the book.
+ * @property {string} merchant - The merchant selling the book.
+ * @property {string} merchant_logo - The logo of the merchant.
+ * @property {Offset} merchant_logo_offset - The offset of the merchant logo.
+ * @property {string} shipping - The shipping cost.
+ * @property {string} price - The price of the book.
+ * @property {string} total - The total cost.
+ * @property {string} link - The link to buy the book.
+ */
+
+/**
+ * @typedef {object} OtherIsbn
+ * @property {string} isbn - The ISBN of the book.
+ * @property {string} binding - The binding of the book.
+ */
+
+/**
+ * @typedef {object} IsbnDbBook
+ * @property {string} title - The title of the book.
+ * @property {string} title_long - The long title of the book.
+ * @property {string} isbn - The ISBN of the book.
+ * @property {string} isbn13 - The ISBN13 of the book.
+ * @property {string} dewey_decimal - The Dewey Decimal classification of the book.
+ * @property {string} binding - The binding of the book.
+ * @property {string} publisher - The publisher of the book.
+ * @property {string} language - The language of the book.
+ * @property {string} date_published - The published date of the book.
+ * @property {string} edition - The edition of the book.
+ * @property {number} pages - The number of pages in the book.
+ * @property {string} dimensions - The dimensions of the book.
+ * @property {object} dimensions_structured - The structured dimensions of the book.
+ * @property {Dimension} dimensions_structured.length - The length of the book.
+ * @property {Dimension} dimensions_structured.width - The width of the book.
+ * @property {Dimension} dimensions_structured.height - The height of the book.
+ * @property {Dimension} dimensions_structured.weight - The weight of the book.
+ * @property {string} overview - The overview of the book.
+ * @property {string} image - The image link of the book.
+ * @property {number} msrp - The manufacturer's suggested retail price of the book.
+ * @property {string} excerpt - The excerpt of the book.
+ * @property {string} synopsis - The synopsis of the book.
+ * @property {string[]} authors - The authors of the book.
+ * @property {string[]} subjects - The subjects or categories of the book.
+ * @property {string[]} reviews - The reviews of the book.
+ * @property {Price[]} prices - The prices of the book.
+ * @property {object} related - The related books.
+ * @property {string} related.type - The type of the related books.
+ * @property {OtherIsbn[]} other_isbns - The other ISBNs of the book.
+ */
+
+/**
+ * Standardizes a book object by transforming its properties into a consistent format.
+ * @param {IsbnDbBook} book - The book object to be standardized.
+ * @param {string} isbn - The book's ISBN.
+ * @returns {Book} - The standardized book object.
+ */
+function isbndb_standardize(book, isbn) {
   return {
     title: book.title_long,
-    publishedDate: book.date_published,
     authors: book.authors,
     description: book.overview,
-    industryIdentifiers: [book.isbn, book.isbn13, book.dewey_decimal].filter(
-      Boolean
-    ),
     pageCount: book.pages,
     printType: "BOOK",
     categories: book.subjects,
-    imageLinks: {
-      smallThumbnail: book.image,
-      thumbnail: book.image,
-    },
+    thumbnail: book.image,
     publisher: book.publisher,
+    publishedDate: book.date_published,
     language: book.language,
+    isbn,
   };
 }
 
@@ -39295,11 +39622,17 @@ function isbndb_standardize(book) {
 
 
 
+/**
+ * @typedef {string[]} Providers
+ * @typedef {import('axios').AxiosRequestConfig} AxiosRequestConfig
+ */
 
+/**
+ * Default options for the provider resolvers.
+ * @type {AxiosRequestConfig}
+ * @property {number} timeout - The timeout value in milliseconds.
+ */
 const defaultOptions = {
-  poll: {
-    maxSockets: 500,
-  },
   timeout: 5000,
 };
 
@@ -39307,29 +39640,28 @@ const GOOGLE_BOOKS_API_BASE = "https://www.googleapis.com";
 const GOOGLE_BOOKS_API_BOOK = "/books/v1/volumes";
 
 const OPENLIBRARY_API_BASE = "https://openlibrary.org";
-const OPENLIBRARY_API_BOOK = "/api/books";
-
-const WORLDCAT_API_BASE = "http://xisbn.worldcat.org";
-const WORLDCAT_API_BOOK = "/webservices/xid/isbn";
+const OPENLIBRARY_API_BOOK = "/isbn";
 
 const ISBNDB_API_BASE = "https://api2.isbndb.com";
 const ISBNDB_API_BOOK = "/book";
 const PROVIDER_NAMES = {
   GOOGLE: "google",
   OPENLIBRARY: "openlibrary",
-  WORLDCAT: "worldcat",
   ISBNDB: "isbndb",
 };
+
+/**
+ * Default providers for resolving ISBN information.
+ * @type {Providers}
+ */
 const DEFAULT_PROVIDERS = [
   PROVIDER_NAMES.GOOGLE,
   PROVIDER_NAMES.OPENLIBRARY,
-  PROVIDER_NAMES.WORLDCAT,
   PROVIDER_NAMES.ISBNDB,
 ];
 const PROVIDER_RESOLVERS = {
   [PROVIDER_NAMES.GOOGLE]: resolveGoogle,
   [PROVIDER_NAMES.OPENLIBRARY]: resolveOpenLibrary,
-  [PROVIDER_NAMES.WORLDCAT]: resolveWorldcat,
   [PROVIDER_NAMES.ISBNDB]: resolveIsbnDb,
 };
 
@@ -39337,21 +39669,34 @@ const PROVIDER_RESOLVERS = {
 
 
 /**
- * Represents an ISBN (International Standard Book Number) utility class.
- * Provides methods for configuring providers, retrieving book information, and resolving ISBNs.
+ * @typedef {object} Book
+ * @property {string} isbn - The ISBN of the book.
+ * @property {string} title - The title of the book.
+ * @property {string[]} authors - The authors of the book.
+ * @property {string} description - The overview of the book.
+ * @property {number} pageCount - The number of pages in the book.
+ * @property {string} printType - The print type of the book.
+ * @property {string[]} categories - The subjects or categories of the book.
+ * @property {string} publisher - The publisher of the book.
+ * @property {string} publishedDate - The date the book was published.
+ * @property {string | undefined} [language] - The language of the book.
+ * @property {string | undefined} [thumbnail] - The thumbnail image link of the book.
+ * @property {string} [link] - The link of the book.
  */
+
+/**
+ * @typedef {import('./provider-resolvers.js').Providers} Providers
+ * @typedef {import('axios').AxiosRequestConfig} AxiosRequestConfig
+ */
+
 class Isbn {
+  /**
+   * @type {Providers}
+   */
+  _providers = DEFAULT_PROVIDERS;
+
   constructor() {
     this.PROVIDER_NAMES = PROVIDER_NAMES;
-
-    this._resetProviders();
-  }
-
-  /**
-   * Resets the providers to the default set of providers.
-   */
-  _resetProviders() {
-    this._providers = DEFAULT_PROVIDERS;
   }
 
   /**
@@ -39371,11 +39716,11 @@ class Isbn {
     }
 
     const unsupportedProviders = providers.filter(
-      (p) => !DEFAULT_PROVIDERS.includes(p)
+      (p) => !DEFAULT_PROVIDERS.includes(p),
     );
     if (unsupportedProviders.length > 0) {
       throw new Error(
-        `Unsupported providers: ${unsupportedProviders.join(", ")}`
+        `Unsupported providers: ${unsupportedProviders.join(", ")}`,
       );
     }
 
@@ -39384,45 +39729,29 @@ class Isbn {
   }
 
   /**
-   * Retrieves book information from a list of providers using the given ISBN.
-   * @param {Array<string>} providers - The list of providers to retrieve book information from.
-   * @param {string} isbn - The ISBN of the book.
-   * @param {object} options - Additional options for retrieving book information.
-   * @returns {Promise<object>} A promise that resolves to the book information.
-   * @throws {Error} If none of the providers are able to retrieve the book information.
-   */
-  async _getBookInfo(providers, isbn, options) {
-    for (const provider of providers) {
-      try {
-        return await PROVIDER_RESOLVERS[provider](isbn, options);
-      } catch {
-        // console.debug(`Unable to reach ${provider}. Trying the next one...`);
-      }
-    }
-    // If none of the providers worked, we throw an error.
-    throw new Error("All providers failed.");
-  }
-
-  /**
    * Resolves the book information for the given ISBN.
    * @param {string} isbn - The ISBN of the book.
-   * @param {object} options - The options for the request.
-   * @returns {Promise<object>} - A Promise that resolves to the book information.
+   * @param {AxiosRequestConfig} options - The options for the request.
+   * @returns {Promise<Book>} - A Promise that resolves to the book information.
    * @throws {Error} - If an error occurs while resolving the book information.
    */
   async resolve(isbn, options = {}) {
-    try {
-      const book = await this._getBookInfo(this._providers, isbn, options);
-      this._resetProviders();
-      return book;
-    } catch (error) {
-      this._resetProviders();
-      throw error;
+    const messages = [];
+    for (const provider of this._providers) {
+      try {
+        return await PROVIDER_RESOLVERS[provider](isbn, options);
+      } catch (error) {
+        if (error.message) messages.push(`${provider}: ${error.message}`);
+      }
     }
+    // If none of the providers worked, we throw an error.
+    throw new Error(
+      `All providers failed${
+        messages.length > 0 ? `\n${messages.join("\n")}` : ""
+      }`,
+    );
   }
 }
-
-/* harmony default export */ const src = (new Isbn());
 
 ;// CONCATENATED MODULE: external "fs/promises"
 const promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("fs/promises");
@@ -39824,7 +40153,7 @@ function isBookStatus(status) {
 function cleanBook(options, book) {
     const { notes, bookIsbn, dateType, bookStatus, rating, tags, thumbnailWidth, setImage, } = options;
     checkMetadata(book, bookIsbn);
-    const { title, authors, publishedDate, description, categories, pageCount, printType, imageLinks, language, canonicalVolumeLink, } = book;
+    const { title, authors, publishedDate, description, categories, pageCount, printType, thumbnail, language, link, } = book;
     return {
         isbn: bookIsbn,
         ...dateType,
@@ -39843,13 +40172,12 @@ function cleanBook(options, book) {
         ...(pageCount ? { pageCount } : { pageCount: 0 }),
         ...(printType && { printType }),
         ...(categories && { categories }),
-        ...(imageLinks &&
-            imageLinks.thumbnail && {
-            thumbnail: handleThumbnail(thumbnailWidth, imageLinks.thumbnail),
+        ...(thumbnail && {
+            thumbnail: handleThumbnail(thumbnailWidth, thumbnail),
         }),
         ...(language && { language }),
-        ...(canonicalVolumeLink && {
-            link: canonicalVolumeLink,
+        ...(link && {
+            link,
         }),
         ...(setImage && {
             image: `book-${bookIsbn}.png`,
@@ -39885,7 +40213,7 @@ function checkMetadata(book, bookIsbn) {
     if (!book.description && requiredMetadata.includes("description")) {
         missingMetadata.push("description");
     }
-    if (!book.imageLinks?.thumbnail && requiredMetadata.includes("thumbnail")) {
+    if (!book.thumbnail && requiredMetadata.includes("thumbnail")) {
         missingMetadata.push("thumbnail");
     }
     if (missingMetadata.length > 0) {
@@ -39903,7 +40231,9 @@ async function getBook(options) {
     const { bookIsbn, providers } = options;
     let book;
     try {
-        book = await src.provider(providers).resolve(bookIsbn);
+        const isbn = new Isbn();
+        isbn.provider(providers);
+        book = await isbn.resolve(bookIsbn);
     }
     catch (error) {
         throw new Error(`Book (${bookIsbn}) not found. ${error.message}`);
@@ -39962,7 +40292,7 @@ async function read() {
         const setImage = (0,core.getInput)("set-image") === "true";
         const providers = (0,core.getInput)("providers")
             ? (0,core.getInput)("providers").split(",")
-            : src._providers;
+            : new Isbn()._providers;
         const thumbnailWidth = (0,core.getInput)("thumbnail-width")
             ? Number.parseInt((0,core.getInput)("thumbnail-width"))
             : undefined;
@@ -39999,7 +40329,7 @@ async function read() {
         (0,core.setFailed)(error);
     }
 }
-/* harmony default export */ const src_0 = (read());
+/* harmony default export */ const src = (read());
 
 })();
 
