@@ -1,6 +1,9 @@
 name: Build
 run-name: Build ${{ github.ref_name }} by @${{ github.actor }}
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   push:
