@@ -8,12 +8,14 @@ const library = [
     dateStarted: "2020-11-20",
     dateFinished: "2020-11-22",
     title: "Uncanny Valley",
+    status: "finished",
   },
   {
     isbn: "9780525620792",
     dateStarted: "2021-09-26",
     title: "Mexican Gothic",
     notes: "Recommended by my sister.",
+    status: "started",
   },
 ];
 

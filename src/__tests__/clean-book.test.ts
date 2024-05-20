@@ -30,6 +30,7 @@ describe("cleanBook", () => {
           providers: [],
           bookStatus: "finished",
           filename: "_data/read.yml",
+          setImage: false,
         },
         book
       )
@@ -71,6 +72,7 @@ describe("cleanBook", () => {
           bookStatus: "finished",
           rating: "⭐️⭐️⭐️⭐️⭐️",
           filename: "_data/read.yml",
+          setImage: false,
         },
         book
       )
@@ -111,6 +113,7 @@ describe("cleanBook", () => {
           providers: [],
           bookStatus: "finished",
           filename: "_data/read.yml",
+          setImage: false,
         },
         book
       )
@@ -150,6 +153,7 @@ describe("cleanBook", () => {
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
+        setImage: false,
       },
       {
         title: "Book Title",
@@ -192,6 +196,7 @@ describe("cleanBook", () => {
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
+        setImage: false,
       },
       {
         authors: ["Author Name"],
@@ -234,6 +239,7 @@ describe("cleanBook", () => {
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
+        setImage: false,
       },
       {
         title: "Book Title",
@@ -278,12 +284,13 @@ describe("cleanBook", () => {
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
+        setImage: false,
       },
       {
         pageCount: 0,
         printType: "BOOK",
         categories: [],
-        linke: "https://openlibrary.org/books/BookTitle",
+        link: "https://openlibrary.org/books/BookTitle",
       }
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
@@ -324,6 +331,7 @@ describe("cleanBook", () => {
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
+        setImage: false,
       },
       {
         pageCount: 0,
@@ -347,6 +355,7 @@ describe("cleanBook", () => {
           bookStatus: "finished",
           filename: "_data/read.yml",
           thumbnailWidth: 10000,
+          setImage: false,
         },
         book
       )
@@ -390,6 +399,7 @@ describe("cleanBook", () => {
           bookStatus: "finished",
           filename: "_data/read.yml",
           thumbnailWidth: 10000,
+          setImage: false,
         },
         newBook
       )
