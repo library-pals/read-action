@@ -30,6 +30,7 @@ describe("cleanBook", () => {
           providers: [],
           bookStatus: "finished",
           filename: "_data/read.yml",
+          setImage: false,
         },
         book
       )
@@ -40,18 +41,21 @@ describe("cleanBook", () => {
         ],
         "categories": [
           "Fiction",
+          "Fiction / Literary",
+          "Fiction / Family Life / Siblings",
+          "Fiction / African American & Black / General",
         ],
         "dateFinished": "2020-09-12",
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
         "language": "en",
-        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
+        "publishedDate": "2020-09-01",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
     `);
@@ -68,6 +72,7 @@ describe("cleanBook", () => {
           bookStatus: "finished",
           rating: "⭐️⭐️⭐️⭐️⭐️",
           filename: "_data/read.yml",
+          setImage: false,
         },
         book
       )
@@ -78,19 +83,22 @@ describe("cleanBook", () => {
         ],
         "categories": [
           "Fiction",
+          "Fiction / Literary",
+          "Fiction / Family Life / Siblings",
+          "Fiction / African American & Black / General",
         ],
         "dateFinished": "2020-09-12",
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
         "language": "en",
-        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
+        "publishedDate": "2020-09-01",
         "rating": "⭐️⭐️⭐️⭐️⭐️",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
     `);
@@ -105,6 +113,7 @@ describe("cleanBook", () => {
           providers: [],
           bookStatus: "finished",
           filename: "_data/read.yml",
+          setImage: false,
         },
         book
       )
@@ -115,17 +124,20 @@ describe("cleanBook", () => {
         ],
         "categories": [
           "Fiction",
+          "Fiction / Literary",
+          "Fiction / Family Life / Siblings",
+          "Fiction / African American & Black / General",
         ],
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
         "language": "en",
-        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
+        "publishedDate": "2020-09-01",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
     `);
@@ -141,17 +153,15 @@ describe("cleanBook", () => {
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
+        setImage: false,
       },
       {
         title: "Book Title",
         publishedDate: "2013",
-        industryIdentifiers: [],
         pageCount: 584,
         printType: "BOOK",
         categories: [],
-        imageLinks: {},
-        previewLink: "https://openlibrary.org/books/BookTitle",
-        infoLink: "https://openlibrary.org/books/BookTitle",
+        link: "https://openlibrary.org/books/BookTitle",
         publisher: "Publisher Name",
         language: "en",
       }
@@ -189,18 +199,16 @@ describe("cleanBook", () => {
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
+        setImage: false,
       },
       {
         authors: ["Author Name"],
         description: "Book description",
         publishedDate: "2013",
-        industryIdentifiers: [],
         pageCount: 584,
         printType: "BOOK",
         categories: [],
-        imageLinks: {},
-        previewLink: "https://openlibrary.org/books/BookTitle",
-        infoLink: "https://openlibrary.org/books/BookTitle",
+        link: "https://openlibrary.org/books/BookTitle",
         publisher: "Publisher Name",
         language: "en",
       }
@@ -238,18 +246,16 @@ describe("cleanBook", () => {
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
+        setImage: false,
       },
       {
         title: "Book Title",
         authors: ["Author Name"],
         publishedDate: "2013",
-        industryIdentifiers: [],
         pageCount: 584,
         printType: "BOOK",
         categories: [],
-        imageLinks: {},
-        previewLink: "https://openlibrary.org/books/BookTitle",
-        infoLink: "https://openlibrary.org/books/BookTitle",
+        link: "https://openlibrary.org/books/BookTitle",
         publisher: "Publisher Name",
         language: "en",
       }
@@ -287,16 +293,14 @@ describe("cleanBook", () => {
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
+        setImage: false,
       },
       {
         publishedDate: "2013",
-        industryIdentifiers: [],
         pageCount: 0,
         printType: "BOOK",
         categories: [],
-        imageLinks: {},
-        previewLink: "https://openlibrary.org/books/BookTitle",
-        infoLink: "https://openlibrary.org/books/BookTitle",
+        link: "https://openlibrary.org/books/BookTitle",
         publisher: "Publisher Name",
         language: "en",
       }
@@ -339,16 +343,14 @@ describe("cleanBook", () => {
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
+        setImage: false,
       },
       {
         publishedDate: "2013",
-        industryIdentifiers: [],
         pageCount: 0,
         printType: "BOOK",
         categories: [],
-        imageLinks: {},
-        previewLink: "https://openlibrary.org/books/BookTitle",
-        infoLink: "https://openlibrary.org/books/BookTitle",
+        link: "https://openlibrary.org/books/BookTitle",
         publisher: "Publisher Name",
         language: "en",
       }
@@ -368,6 +370,7 @@ describe("cleanBook", () => {
           bookStatus: "finished",
           filename: "_data/read.yml",
           thumbnailWidth: 10000,
+          setImage: false,
         },
         book
       )
@@ -378,26 +381,29 @@ describe("cleanBook", () => {
         ],
         "categories": [
           "Fiction",
+          "Fiction / Literary",
+          "Fiction / Family Life / Siblings",
+          "Fiction / African American & Black / General",
         ],
         "dateFinished": "2020-09-12",
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
         "language": "en",
-        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
+        "publishedDate": "2020-09-01",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api&w=10000",
+        "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api&w=10000",
         "title": "Transcendent Kingdom",
       }
     `);
   });
 
-  it("cleanBook, already https thumbnail, doesn't set thumbnailWidth", () => {
+  it("cleanBook, http thumbnail, doesn't set thumbnailWidth", () => {
     const newBook = book;
-    newBook.imageLinks.thumbnail = "https://site.com/image.jpg";
+    newBook.thumbnail = "http://site.com/image.jpg";
     expect(
       cleanBook(
         {
@@ -408,6 +414,7 @@ describe("cleanBook", () => {
           bookStatus: "finished",
           filename: "_data/read.yml",
           thumbnailWidth: 10000,
+          setImage: false,
         },
         newBook
       )
@@ -418,16 +425,62 @@ describe("cleanBook", () => {
         ],
         "categories": [
           "Fiction",
+          "Fiction / Literary",
+          "Fiction / Family Life / Siblings",
+          "Fiction / African American & Black / General",
         ],
         "dateFinished": "2020-09-12",
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "0525658181",
         "language": "en",
-        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
+        "publishedDate": "2020-09-01",
+        "status": "finished",
+        "thumbnail": "https://site.com/image.jpg",
+        "title": "Transcendent Kingdom",
+      }
+    `);
+  });
+
+  it("cleanBook, https thumbnail", () => {
+    const newBook = book;
+    newBook.thumbnail = "https://site.com/image.jpg";
+    expect(
+      cleanBook(
+        {
+          dateType: { dateFinished },
+          notes: "I loved it!",
+          bookIsbn: "0525658181",
+          providers: [],
+          bookStatus: "finished",
+          filename: "_data/read.yml",
+          setImage: false,
+        },
+        newBook
+      )
+    ).toMatchInlineSnapshot(`
+      {
+        "authors": [
+          "Yaa Gyasi",
+        ],
+        "categories": [
+          "Fiction",
+          "Fiction / Literary",
+          "Fiction / Family Life / Siblings",
+          "Fiction / African American & Black / General",
+        ],
+        "dateFinished": "2020-09-12",
+        "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
+        "isbn": "0525658181",
+        "language": "en",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
+        "notes": "I loved it!",
+        "pageCount": 288,
+        "printType": "BOOK",
+        "publishedDate": "2020-09-01",
         "status": "finished",
         "thumbnail": "https://site.com/image.jpg",
         "title": "Transcendent Kingdom",

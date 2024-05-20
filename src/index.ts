@@ -1,6 +1,6 @@
 import { exportVariable, getInput, setFailed, summary } from "@actions/core";
 import * as github from "@actions/github";
-import isbn from "@library-pals/isbn";
+import Isbn from "@library-pals/isbn";
 import returnWriteFile from "./write-file";
 import { getBookStatus, sortByDate, toArray } from "./utils";
 import { checkOutBook } from "./checkout-book";
@@ -40,7 +40,7 @@ export type BookParams = {
   };
   notes?: BookPayload["notes"];
   bookStatus: BookStatus;
-  providers?: ActionInputs["providers"];
+  providers: ActionInputs["providers"];
   rating?: ActionInputs["rating"];
   tags?: string[];
   thumbnailWidth?: number;
@@ -67,7 +67,7 @@ export async function read() {
       getInput("set-image") === "true";
     const providers: ActionInputs["providers"] = getInput("providers")
       ? getInput("providers").split(",")
-      : isbn._providers;
+      : new Isbn()._providers;
     const thumbnailWidth: ActionInputs["thumbnail-width"] = getInput(
       "thumbnail-width"
     )

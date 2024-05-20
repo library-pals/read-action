@@ -1,13 +1,14 @@
 import getBook from "../get-book";
 import { promises, readFileSync } from "fs";
 import book from "./fixture.json";
-import isbn from "@library-pals/isbn";
+import Isbn from "@library-pals/isbn";
 import * as core from "@actions/core";
 
 const books = readFileSync("./_data/read.json", "utf-8");
 const dateFinished = "2020-09-12";
 
 jest.mock("@actions/core");
+jest.mock("@library-pals/isbn");
 
 const defaultOptions = {
   filename: "_data/read.yml",
@@ -23,7 +24,8 @@ describe("getBook", () => {
   });
 
   test("works", async () => {
-    jest.spyOn(isbn, "resolve").mockResolvedValueOnce(book);
+    (Isbn.prototype.resolve as jest.Mock).mockResolvedValue(book);
+
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     expect(
       await getBook({
@@ -34,6 +36,7 @@ describe("getBook", () => {
         providers: ["google"],
         bookStatus: "finished",
         filename: "_data/read.yml",
+        setImage: false,
       })
     ).toMatchInlineSnapshot(`
       {
@@ -42,28 +45,31 @@ describe("getBook", () => {
         ],
         "categories": [
           "Fiction",
+          "Fiction / Literary",
+          "Fiction / Family Life / Siblings",
+          "Fiction / African American & Black / General",
         ],
         "dateFinished": "2020-09-12",
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "isbn": "9780525658184",
         "language": "en",
-        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=ty19yQEACAAJ",
+        "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "pageCount": 288,
         "printType": "BOOK",
-        "publishedDate": "2020",
+        "publishedDate": "2020-09-01",
         "status": "finished",
-        "thumbnail": "https://books.google.com/books/content?id=ty19yQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
         "title": "Transcendent Kingdom",
       }
     `);
   });
   test("fails", async () => {
-    jest
-      .spyOn(isbn, "resolve")
-      .mockRejectedValue(new Error("Request failed with status code 401"));
+    (Isbn.prototype.resolve as jest.Mock).mockRejectedValue(
+      new Error("Request failed with status")
+    );
     await expect(
       getBook({
-        dates: {
+        dateType: {
           dateAdded: undefined,
           dateStarted: undefined,
           dateFinished,
@@ -71,10 +77,11 @@ describe("getBook", () => {
         bookIsbn: "9780525658184",
         providers: ["google"],
         bookStatus: "finished",
-        fileName: "_data/read.json",
+        filename: "_data/read.json",
+        setImage: false,
       })
     ).rejects.toMatchInlineSnapshot(
-      `[Error: Book (9780525658184) not found. Request failed with status code 401]`
+      `[Error: Book (9780525658184) not found. Request failed with status]`
     );
   });
 });

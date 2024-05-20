@@ -8,12 +8,14 @@ const library = [
     dateStarted: "2020-11-20",
     dateFinished: "2020-11-22",
     title: "Uncanny Valley",
+    status: "finished",
   },
   {
     isbn: "9780525620792",
     dateStarted: "2021-09-26",
     title: "Mexican Gothic",
     notes: "Recommended by my sister.",
+    status: "started",
   },
 ];
 
@@ -28,6 +30,8 @@ describe("updateBook", () => {
             dateFinished: "2022-02-02",
           },
           bookStatus: "finished",
+          setImage: false,
+          providers: [],
         },
         library
       )
@@ -37,6 +41,7 @@ describe("updateBook", () => {
                   "dateFinished": "2020-11-22",
                   "dateStarted": "2020-11-20",
                   "isbn": "9780374719760",
+                  "status": "finished",
                   "title": "Uncanny Valley",
                 },
                 {
@@ -72,6 +77,8 @@ describe("updateBook", () => {
           },
           notes: "Great read",
           bookStatus: "finished",
+          setImage: false,
+          providers: [],
         },
         library
       )
@@ -106,6 +113,8 @@ describe("updateBook", () => {
           },
           notes: "Great read",
           bookStatus: "finished",
+          setImage: false,
+          providers: [],
         },
         library
       )
@@ -115,6 +124,7 @@ describe("updateBook", () => {
                   "dateFinished": "2020-11-22",
                   "dateStarted": "2020-11-20",
                   "isbn": "9780374719760",
+                  "status": "finished",
                   "title": "Uncanny Valley",
                 },
                 {
@@ -146,6 +156,8 @@ describe("updateBook", () => {
             dateFinished: "2022-02-02",
           },
           bookStatus: "finished",
+          setImage: false,
+          providers: [],
         },
         library
       )
@@ -155,12 +167,14 @@ describe("updateBook", () => {
                   "dateFinished": "2020-11-22",
                   "dateStarted": "2020-11-20",
                   "isbn": "9780374719760",
+                  "status": "finished",
                   "title": "Uncanny Valley",
                 },
                 {
                   "dateStarted": "2021-09-26",
                   "isbn": "9780525620792",
                   "notes": "Recommended by my sister.",
+                  "status": "started",
                   "title": "Mexican Gothic",
                 },
               ]
@@ -178,6 +192,8 @@ describe("updateBook", () => {
             dateFinished: "2022-02-02",
           },
           bookStatus: "finished",
+          setImage: false,
+          providers: [],
         },
         library
       )
