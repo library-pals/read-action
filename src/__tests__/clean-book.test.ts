@@ -157,10 +157,13 @@ describe("cleanBook", () => {
       },
       {
         title: "Book Title",
+        publishedDate: "2013",
         pageCount: 584,
         printType: "BOOK",
         categories: [],
         link: "https://openlibrary.org/books/BookTitle",
+        publisher: "Publisher Name",
+        language: "en",
       }
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
@@ -201,9 +204,12 @@ describe("cleanBook", () => {
       {
         authors: ["Author Name"],
         description: "Book description",
+        publishedDate: "2013",
         pageCount: 584,
         printType: "BOOK",
         link: "https://openlibrary.org/books/BookTitle",
+        publisher: "Publisher Name",
+        language: "en",
       }
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
@@ -242,13 +248,14 @@ describe("cleanBook", () => {
         setImage: false,
       },
       {
-        title: "Book Title",
         authors: ["Author Name"],
+        description: "Book description",
+        publishedDate: "2013",
         pageCount: 584,
         printType: "BOOK",
-        categories: [],
-        previewLink: "https://openlibrary.org/books/BookTitle",
         link: "https://openlibrary.org/books/BookTitle",
+        publisher: "Publisher Name",
+        language: "en",
       }
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
@@ -287,10 +294,12 @@ describe("cleanBook", () => {
         setImage: false,
       },
       {
+        publishedDate: "2013",
         pageCount: 0,
         printType: "BOOK",
-        categories: [],
         link: "https://openlibrary.org/books/BookTitle",
+        publisher: "Publisher Name",
+        language: "en",
       }
     );
     expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
