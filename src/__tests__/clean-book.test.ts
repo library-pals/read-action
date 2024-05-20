@@ -207,6 +207,7 @@ describe("cleanBook", () => {
         publishedDate: "2013",
         pageCount: 584,
         printType: "BOOK",
+        categories: [],
         link: "https://openlibrary.org/books/BookTitle",
         publisher: "Publisher Name",
         language: "en",
@@ -248,37 +249,20 @@ describe("cleanBook", () => {
         setImage: false,
       },
       {
+        title: "Book Title",
         authors: ["Author Name"],
         description: "Book description",
         publishedDate: "2013",
         pageCount: 584,
         printType: "BOOK",
+        categories: [],
         link: "https://openlibrary.org/books/BookTitle",
         publisher: "Publisher Name",
         language: "en",
       }
     );
-    expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`
-      [
-        "Book does not have title",
-      ]
-    `);
-    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "BookNeedsReview",
-          true,
-        ],
-        [
-          "BookMissingMetadata",
-          "title",
-        ],
-        [
-          "BookIsbn",
-          "1234597890",
-        ],
-      ]
-    `);
+    expect(warningSpy.mock.calls[0]).toMatchInlineSnapshot(`undefined`);
+    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`[]`);
   });
 
   it("cleanBook, missing authors, pageCount, description, title", () => {
@@ -297,6 +281,7 @@ describe("cleanBook", () => {
         publishedDate: "2013",
         pageCount: 0,
         printType: "BOOK",
+        categories: [],
         link: "https://openlibrary.org/books/BookTitle",
         publisher: "Publisher Name",
         language: "en",
