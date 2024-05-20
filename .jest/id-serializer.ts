@@ -17,6 +17,6 @@ module.exports = {
   print(val: string | URL) {
     const url = new URL(val);
     url.searchParams.set("id", "CONSTANT_ID");
-    return url.toString();
+    return `"${url.toString()}"`;
   },
 };
