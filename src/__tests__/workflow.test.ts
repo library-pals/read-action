@@ -61,7 +61,6 @@ describe("workflow", () => {
         "# Updated library
 
       Want to read: “Luster”
-
       ",
       ]
     `);
@@ -143,7 +142,6 @@ describe("workflow", () => {
         "# Updated library
 
       Started: “Luster”
-
       ",
       ]
     `);
@@ -220,10 +218,6 @@ describe("workflow", () => {
         "# Updated library
 
       Finished: “Luster”
-
-      ## 2022 reading summary
-
-      - **Total books:** 1
       ",
       ]
     `);
@@ -280,7 +274,6 @@ describe("workflow", () => {
         "# Updated library
 
       Want to read: “Don't Let Her Stay”
-
       ",
       ]
     `);

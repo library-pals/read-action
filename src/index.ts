@@ -106,7 +106,7 @@ export async function read() {
     library = sortByDate(library);
 
     await returnWriteFile(filename, library);
-    await summary.addRaw(summaryMarkdown(library, date, bookStatus)).write();
+    await summary.addRaw(summaryMarkdown(bookStatus)).write();
   } catch (error) {
     setFailed(error);
   }
