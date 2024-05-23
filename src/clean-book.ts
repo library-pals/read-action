@@ -15,10 +15,15 @@ export type CleanBook = {
   categories?: string[];
   pageCount?: number;
   printType?: string;
+  format?: string;
   thumbnail?: string;
   language?: string;
   link?: string;
-  isbn: string;
+  isbn?: string;
+  identifier: {
+    isbn?: string;
+    libby?: string;
+  };
   notes?: string;
   status: BookStatus;
   rating?: string;
@@ -55,6 +60,9 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
 
   return {
     isbn: bookIsbn,
+    identifier: {
+      isbn: bookIsbn,
+    },
     ...dateType,
     status: bookStatus,
     ...(rating && { rating }),

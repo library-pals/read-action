@@ -100,7 +100,7 @@ describe("yearReview", () => {
             "books": [
               {
                 "authors": "Da'Shaun L. Harrison",
-                "isbn": "9781623175979",
+                "identifier": "9781623175979",
                 "pageCount": 148,
                 "title": "“Belly of the Beast”",
               },
@@ -120,13 +120,13 @@ describe("yearReview", () => {
           "averageBookLength": 251,
           "longestBook": {
             "authors": "Jennifer Egan",
-            "isbn": "9781476716763",
+            "identifier": "9781476716763",
             "pageCount": 352,
             "title": "“The Candy House”",
           },
           "shortestBook": {
             "authors": "Ling Ma",
-            "isbn": "9780374717124",
+            "identifier": "9780374717124",
             "pageCount": 145,
             "title": "“Bliss Montage”",
           },

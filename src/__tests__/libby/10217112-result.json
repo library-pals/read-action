@@ -1,0 +1,30 @@
+{
+  "twitterCard": "summary_large_image",
+  "twitterSite": "@LibbyApp",
+  "ogType": "book",
+  "ogTitle": "The Ministry of Time",
+  "ogDescription": "\n  NEW YORK TIMES BESTSELLER\n\n  A GOOD MORNING AMERICA BOOK CLUB PICK\nThis summer’s hottest debut. - Cosmopolitan • “Witty, sexy escapist fiction [that] packs a substantial punch...It’s a smart, gripping work that’s also a feast for the senses...Fresh and thrilling.” - Los Angeles Times • “Electric...I loved every second.” - Emily HenryUtterly winning...Imagine if The Time Traveler’s Wife had an affair with A Gent...",
+  "bookIsbn": "9781668045169",
+  "bookReleaseDate": "2024-05-07",
+  "bookAuthor": "Kaliane Bradley",
+  "customMetaTags": {
+    "authors": [
+      "Kaliane Bradley"
+    ]
+  },
+  "ogImage": [
+    {
+      "url": "https://img2.od-cdn.com/ImageType-100/0439-1/{7F19308B-74E6-41AD-8B9D-3943B4829D54}IMG100.JPG",
+      "alt": "Cover Image: The Ministry of Time"
+    }
+  ],
+  "twitterImage": [
+    {
+      "url": "https://img2.od-cdn.com/ImageType-100/0439-1/{7F19308B-74E6-41AD-8B9D-3943B4829D54}IMG100.JPG"
+    }
+  ],
+  "favicon": "/dewey-16.7.1/inc/images/libby-icon-android-192.png",
+  "charset": "utf-8",
+  "requestUrl": "https://share.libbyapp.com/title/10217112",
+  "success": true
+}

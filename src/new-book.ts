@@ -2,6 +2,7 @@ import { exportVariable, setOutput } from "@actions/core";
 import getBook from "./get-book";
 import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
+import { getMetadata } from "./libby";
 
 export async function handleNewBook({
   bookParams,
@@ -14,10 +15,16 @@ export async function handleNewBook({
   bookStatus: string;
   setImage: boolean;
 }): Promise<void> {
-  const newBook = await getBook(bookParams);
+  let newBook;
+  if (bookParams.bookIsbn.startsWith("http")) {
+    newBook = await getMetadata(bookParams);
+  } else {
+    newBook = await getBook(bookParams);
+  }
+
   library.push(newBook);
   exportVariable(`BookTitle`, newBook.title);
-  const image = `book-${newBook.isbn}.png`;
+  const image = `book-${newBook.identifier.isbn}.png`;
 
   if (bookStatus === "started") {
     setOutput("nowReading", {

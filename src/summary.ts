@@ -121,8 +121,8 @@ function simpleData(book: CleanBook) {
   return {
     title: `“${book.title}”`,
     authors: book.authors?.join(", "),
-    isbn: book.isbn,
-    pageCount: book.pageCount,
+    identifier: book.isbn || book.identifier.isbn || book.identifier.libby,
+    pageCount: book.pageCount || 0,
   };
 }
 
@@ -160,8 +160,8 @@ export type YearReview = {
       books: {
         title: string | undefined;
         authors: string | undefined;
-        isbn: string;
-        pageCount: number | undefined;
+        identifier: string;
+        pageCount: number;
       }[];
     };
   };
@@ -171,14 +171,14 @@ export type YearReview = {
     longestBook: {
       title: string | undefined;
       authors: string | undefined;
-      isbn: string;
-      pageCount: number | undefined;
+      identifier: string;
+      pageCount: number;
     };
     shortestBook: {
       title: string | undefined;
       authors: string | undefined;
-      isbn: string;
-      pageCount: number | undefined;
+      identifier: string;
+      pageCount: number;
     };
     averageBookLength: number | undefined;
     totalPages: number | undefined;
