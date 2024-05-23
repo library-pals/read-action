@@ -340,5 +340,30 @@
     "dateStarted": "2023-12-25",
     "dateAbandoned": "2023-12-25",
     "dateFinished": "2023-12-20"
+  },
+  {
+    "identifier": {
+      "libby": "9575390"
+    },
+    "dateAdded": "2024-05-23",
+    "status": "want to read",
+    "rating": "unrated",
+    "title": "Clytemnestra",
+    "description": "Monarch. Mother. Murderer. Magnificent. You were born to a king, but you marry a tyrant. You stand by helplessly as he sacrifices your child to placate the gods. You watch him wage war on a foreign shore, and you comfort yourself with violent thoughts of your own. Because this was not the first offense against you. This was not the life you ever deserved. And this will not be your undoing. Slowly, you plot. When y...",
+    "authors": [
+      "Costanza Casati",
+      "Olivia Vinall"
+    ],
+    "link": "https://share.libbyapp.com/title/9575390",
+    "thumbnail": "https://img1.od-cdn.com/ImageType-100/1694-1/{28ED6EE0-D071-4C51-9059-7BBE9EAA33DC}IMG100.JPG",
+    "publishedDate": "2023-05-02",
+    "publisher": "Recorded Books, Inc.",
+    "categories": [
+      "Fiction",
+      "Literature",
+      "Mythology",
+      "Historical Fiction"
+    ],
+    "format": "audiobook"
   }
 ]
