@@ -1,7 +1,6 @@
 import { getMetadata, parseLibbyPage } from "../libby";
 import ogs from "open-graph-scraper";
 import { readFileSync } from "fs";
-import { JSDOM } from "jsdom";
 
 import resultsAudiobook from "./libby/9575390-result.json";
 const resultHtmlAudiobook = readFileSync(
@@ -55,7 +54,6 @@ describe("getMetadata", () => {
           "Test Author",
         ],
         "description": "Test Description",
-        "format": undefined,
         "identifier": {
           "libby": "test",
         },
@@ -147,16 +145,14 @@ describe("getMetadata", () => {
           "Romance",
           "Science Fiction",
         ],
-        "description": "
-        NEW YORK TIMES BESTSELLER
-
-        A GOOD MORNING AMERICA BOOK CLUB PICK
-      This summer’s hottest debut. - Cosmopolitan • “Witty, sexy escapist fiction [that] packs a substantial punch...It’s a smart, gripping work that’s also a feast for the senses...Fresh and thrilling.” - Los Angeles Times • “Electric...I loved every second.” - Emily HenryUtterly winning...Imagine if The Time Traveler’s Wife had an affair with A Gent...",
+        "description": "NEW YORK TIMES BESTSELLER A GOOD MORNING AMERICA BOOK CLUB PICK This summer’s hottest debut. - Cosmopolitan • “Witty, sexy escapist fiction [that] packs a substantial punch...It’s a smart, gripping work that’s also a feast for the senses...Fresh and thrilling.” - Los Angeles Times • “Electric...I loved every second.” - Emily HenryUtterly winning...Imagine if The Time Traveler’s Wife had an affair with A Gent...",
         "format": "ebook",
         "identifier": {
+          "isbn": "9781668045169",
           "libby": "9575390",
         },
         "image": "book-9575390.png",
+        "isbn": "9781668045169",
         "link": "https://share.libbyapp.com/title/9575390",
         "publishedDate": "2024-05-07",
         "publisher": "Avid Reader Press / Simon & Schuster",
@@ -205,7 +201,6 @@ describe("getMetadata", () => {
       {
         "authors": [],
         "description": "Test Description",
-        "format": undefined,
         "identifier": {
           "libby": "test",
         },
@@ -247,7 +242,6 @@ describe("getMetadata", () => {
       {
         "authors": [],
         "description": "Test Description",
-        "format": undefined,
         "identifier": {
           "libby": "test",
         },
@@ -270,11 +264,42 @@ describe("parseLibbyPage", () => {
     const html = `
       <html>
         <body>
+          <div class="share-category">Audiobook</div>
+          <table class="share-table-1d">
+            <tr>
+              <th>Subjects</th>
+              <td>Test, Data</td>
+            </tr>
+            <tr>
+              <th>Publisher</th>
+              <td>Test Publisher</td>
+          </table>
+        </body>
+      </html>
+    `;
+
+    const result = parseLibbyPage(html);
+
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "categories": [
+          "Test",
+          "Data",
+        ],
+        "format": "audiobook",
+        "publisher": "Test Publisher",
+      }
+    `);
+  });
+
+  it("should parse HTML and return shareCategory and htmlData with some missing data", () => {
+    const html = `
+      <html>
+        <body>
           <div class="share-category">Test Category</div>
           <table class="share-table-1d">
             <tr>
-              <th>Test Header</th>
-              <td>Test Data</td>
+              <th>Subjects</th>
             </tr>
           </table>
         </body>
@@ -283,12 +308,7 @@ describe("parseLibbyPage", () => {
 
     const result = parseLibbyPage(html);
 
-    expect(result).toEqual({
-      shareCategory: new JSDOM(html).window.document.querySelector(
-        ".share-category"
-      ),
-      htmlData: { "test header": "Test Data" },
-    });
+    expect(result).toMatchInlineSnapshot(`{}`);
   });
 
   it("should parse HTML and return undefined shareCategory and htmlData", () => {
@@ -301,9 +321,6 @@ describe("parseLibbyPage", () => {
 
     const result = parseLibbyPage(html);
 
-    expect(result).toEqual({
-      shareCategory: undefined,
-      htmlData: undefined,
-    });
+    expect(result).toMatchInlineSnapshot(`{}`);
   });
 });

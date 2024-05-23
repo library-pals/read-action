@@ -1,5 +1,5 @@
 import {
-  removeWrappedQuotes,
+  formatDescription,
   isIsbn,
   sortByDate,
   isDate,
@@ -9,11 +9,12 @@ import {
 jest.mock("@actions/core");
 jest.useFakeTimers().setSystemTime(new Date("2023-12-01T12:00:00"));
 
-it("removeWrappedQuotes", () => {
-  expect(removeWrappedQuotes("hello")).toBe("hello");
-  expect(removeWrappedQuotes('"hello"')).toBe("hello");
-  expect(removeWrappedQuotes('this says "hello".')).toBe('this says "hello".');
-  expect(removeWrappedQuotes('"this part will get cut off"--')).toBe(
+it("formatDescription", () => {
+  expect(formatDescription("")).toBe("");
+  expect(formatDescription("hello")).toBe("hello");
+  expect(formatDescription('"hello"')).toBe("hello");
+  expect(formatDescription('this says "hello".')).toBe('this says "hello".');
+  expect(formatDescription('"this part will get cut off"--')).toBe(
     "this part will get cut off…"
   );
 });
@@ -48,50 +49,50 @@ it("sortByDate", () => {
 
 it("getBookStatus", () => {
   expect(
-  getBookStatus({
-    date: "2020-01-01",
-    bookStatus: "abandoned"
-  })
-).toMatchInlineSnapshot(`
+    getBookStatus({
+      date: "2020-01-01",
+      bookStatus: "abandoned",
+    })
+  ).toMatchInlineSnapshot(`
 {
   "dateAbandoned": "2020-01-01",
 }
 `);
   expect(
-  getBookStatus({
-    date: "2020-01-01",
-    bookStatus: "finished"
-  })
-).toMatchInlineSnapshot(`
+    getBookStatus({
+      date: "2020-01-01",
+      bookStatus: "finished",
+    })
+  ).toMatchInlineSnapshot(`
 {
   "dateFinished": "2020-01-01",
 }
 `);
   expect(
-  getBookStatus({
-    date: "2020-01-01",
-    bookStatus: "started"
-  })
-).toMatchInlineSnapshot(`
+    getBookStatus({
+      date: "2020-01-01",
+      bookStatus: "started",
+    })
+  ).toMatchInlineSnapshot(`
 {
   "dateStarted": "2020-01-01",
 }
 `);
   expect(
-  getBookStatus({
-    date: "2020-01-01",
-    bookStatus: "want to read"
-  })
-).toMatchInlineSnapshot(`
+    getBookStatus({
+      date: "2020-01-01",
+      bookStatus: "want to read",
+    })
+  ).toMatchInlineSnapshot(`
 {
   "dateAdded": "2020-01-01",
 }
 `);
   expect(
-  getBookStatus({
-    date: "2020-01-01"
-  })
-).toMatchInlineSnapshot(`
+    getBookStatus({
+      date: "2020-01-01",
+    })
+  ).toMatchInlineSnapshot(`
 {
   "dateAdded": "2020-01-01",
 }

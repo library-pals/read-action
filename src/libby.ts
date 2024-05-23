@@ -2,6 +2,8 @@ import ogs from "open-graph-scraper";
 import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
 import { JSDOM } from "jsdom";
+import { OgObject } from "open-graph-scraper/dist/lib/types";
+import { formatDescription } from "./utils";
 
 interface Data {
   [key: string]: string;
@@ -13,7 +15,7 @@ export async function getMetadata(
   const { notes, bookIsbn, dateType, bookStatus, rating, tags, setImage } =
     options;
   try {
-    const { result, html } = await ogs({
+    const ogsOptions = {
       url: bookIsbn,
       customMetaTags: [
         {
@@ -22,48 +24,57 @@ export async function getMetadata(
           fieldName: "authors",
         },
       ],
-    });
+    };
+    const { result, html } = await ogs(ogsOptions);
 
-    const parsedIsbn = bookIsbn.split("/").pop();
-
-    const { shareCategory, htmlData } = parseLibbyPage(html);
-
-    const authors: string[] = Array.isArray(result.customMetaTags?.authors)
-      ? result.customMetaTags.authors
-      : [];
+    const libbyIdentifier = bookIsbn.split("/").pop();
+    const parsedHtmlMetadata = parseLibbyPage(html);
+    const parsedResultMetadata = parseResult(result);
 
     return {
+      ...(result.bookIsbn && { isbn: result.bookIsbn }),
       identifier: {
-        libby: parsedIsbn,
+        libby: libbyIdentifier,
+        ...(result.bookIsbn && { isbn: result.bookIsbn }),
       },
       ...dateType,
       status: bookStatus,
       ...(rating && { rating }),
       ...(notes && { notes }),
       ...(tags && { tags }),
-      title: result.ogTitle,
-      description: result.ogDescription,
-      authors,
       ...(setImage && {
-        image: `book-${parsedIsbn}.png`,
+        image: `book-${libbyIdentifier}.png`,
       }),
       link: bookIsbn,
-      thumbnail: result?.ogImage ? result.ogImage[0].url : "",
-      publishedDate: result.bookReleaseDate,
-      ...(htmlData?.publisher && { publisher: htmlData.publisher }),
-      ...(htmlData?.subjects && {
-        categories: htmlData.subjects.split(",").map((f: string) => f.trim()),
-      }),
-      format: handleFormat(result.ogType || "", shareCategory),
+      ...parsedResultMetadata,
+      ...parsedHtmlMetadata,
     };
   } catch (error) {
     throw new Error(`Failed to get book from Libby: ${error.result.error}`);
   }
 }
-function handleFormat(
-  ogType: string,
-  shareCategory: Element | undefined
-): string | undefined {
+
+function parseResult(result: OgObject): {
+  title?: string;
+  description?: string;
+  authors: string[];
+  publishedDate?: string;
+  thumbnail: string;
+} {
+  return {
+    title: result.ogTitle,
+    description: formatDescription(result.ogDescription),
+    authors: Array.isArray(result.customMetaTags?.authors)
+      ? result.customMetaTags?.authors
+      : result.bookAuthor
+        ? [result.bookAuthor]
+        : [],
+    publishedDate: result.bookReleaseDate,
+    thumbnail: result?.ogImage?.[0]?.url ?? "",
+  };
+}
+
+function handleFormat(shareCategory: Element | null): string | undefined {
   const shareCategoryContent = shareCategory?.textContent?.toLowerCase();
 
   if (shareCategoryContent) {
@@ -75,40 +86,43 @@ function handleFormat(
     }
   }
 
-  return ogType || undefined;
+  return;
 }
 
 export function parseLibbyPage(html: string | undefined): {
-  shareCategory: Element | undefined;
-  htmlData: Data | undefined;
+  publisher?: string;
+  categories?: string[];
+  format?: string;
 } {
   if (!html) {
-    return {
-      shareCategory: undefined,
-      htmlData: undefined,
-    };
+    return {};
   }
-  let htmlData;
+
   const dom = new JSDOM(html);
   const document = dom.window.document;
+  const format = handleFormat(document.querySelector(".share-category"));
 
-  const shareCategory = document.querySelector(".share-category") || undefined;
-
+  let htmlData;
   const table = document.querySelector(".share-table-1d");
   if (table) {
     const rows = Array.from(table.querySelectorAll("tr"));
-
-    htmlData = rows.reduce((acc: Data, row: HTMLTableRowElement) => {
-      const th = row.querySelector("th");
-      const td = row.querySelector("td");
-      if (th && th.textContent) {
-        acc[th.textContent?.toLowerCase()] = td?.textContent || "";
-      }
-      return acc;
-    }, {});
+    htmlData = rows.reduce(handleRows, {});
   }
+
   return {
-    shareCategory,
-    htmlData,
+    ...(htmlData?.publisher && { publisher: htmlData?.publisher }),
+    ...(htmlData?.subjects && {
+      categories: htmlData?.subjects?.split(",").map((f: string) => f.trim()),
+    }),
+    ...(format && { format }),
   };
+}
+
+function handleRows(acc: Data, row: HTMLTableRowElement) {
+  const th = row.querySelector("th");
+  const td = row.querySelector("td");
+  if (th?.textContent) {
+    acc[th.textContent.toLowerCase()] = td?.textContent ?? "";
+  }
+  return acc;
 }

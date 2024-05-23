@@ -1,0 +1,26 @@
+{
+  "twitterCard": "summary_large_image",
+  "twitterSite": "@LibbyApp",
+  "ogType": "book",
+  "ogTitle": "Luster",
+  "ogDescription": "\n  AN INSTANT NEW YORK TIMES BESTSELLER\nA New York Times Notable Book of the YearWINNER of the NBCC John Leonard Prize, the Kirkus Prize, the Center for Fiction First Novel Prize, the Dylan Thomas Prize, and the VCU Cabell First Novelist AwardOne of Barack Obama’s Favorite Books of 2020 \n  A BEST BOOK OF THE YEAR: NPR, The New York Times Book Review, O Magazine, Vanity Fair, Los Angeles Times, Glamour, Shondaland,...",
+  "bookIsbn": "9780374910334",
+  "bookReleaseDate": "2020-08-04",
+  "bookAuthor": "Raven Leilani",
+  "ogImage": [
+    {
+      "url": "https://img2.od-cdn.com/ImageType-100/2390-1/{AC83A465-D32D-46B4-A70E-EFD2F0E2F7F6}Img100.jpg",
+      "alt": "Cover Image: Luster",
+      "type": "jpg"
+    }
+  ],
+  "twitterImage": [
+    {
+      "url": "https://img2.od-cdn.com/ImageType-100/2390-1/{AC83A465-D32D-46B4-A70E-EFD2F0E2F7F6}Img100.jpg"
+    }
+  ],
+  "favicon": "/dewey-16.7.1/inc/images/libby-icon-android-192.png",
+  "charset": "utf-8",
+  "requestUrl": "https://share.libbyapp.com/title/5004990",
+  "success": true
+}

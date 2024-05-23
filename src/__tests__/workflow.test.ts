@@ -308,31 +308,4 @@ describe("workflow", () => {
     `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`[]`);
   });
-
-  test("want to read, libby", async () => {
-    jest.spyOn(promises, "readFile").mockResolvedValue(JSON.stringify([]));
-    const setFailedSpy = jest.spyOn(core, "setFailed");
-    const exportVariableSpy = jest.spyOn(core, "exportVariable");
-    Object.defineProperty(github, "context", {
-      value: {
-        payload: {
-          inputs: {
-            isbn: "https://share.libbyapp.com/title/9575390",
-            "book-status": "want to read",
-            date: "2024-01-01",
-          },
-        },
-      },
-    });
-    await read();
-    expect(setFailedSpy.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          [Error: Failed to get book from Libby: Page not found],
-        ],
-      ]
-    `);
-    expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`[]`);
-    expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`undefined`);
-  }, 20000);
 });

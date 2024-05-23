@@ -8,7 +8,13 @@ export async function updateBook(
 ): Promise<CleanBook[]> {
   const { bookIsbn, dateType, bookStatus, notes, rating, tags } = bookParams;
   return currentBooks.reduce((arr: CleanBook[], book) => {
-    if (book.isbn === bookIsbn) {
+    const hasLibbyIdentifier = bookIsbn.split("/").length > 1;
+    if (
+      book.isbn === bookIsbn ||
+      book.identifier?.isbn === bookIsbn ||
+      (hasLibbyIdentifier &&
+        book.identifier?.libby === bookIsbn.split("/").pop())
+    ) {
       exportVariable("BookTitle", book.title);
       book = {
         ...book,
