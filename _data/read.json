@@ -346,7 +346,7 @@
       "libby": "9575390"
     },
     "dateAdded": "2024-05-23",
-    "status": "want to read",
+    "status": "started",
     "rating": "unrated",
     "title": "Clytemnestra",
     "description": "Monarch. Mother. Murderer. Magnificent. You were born to a king, but you marry a tyrant. You stand by helplessly as he sacrifices your child to placate the gods. You watch him wage war on a foreign shore, and you comfort yourself with violent thoughts of your own. Because this was not the first offense against you. This was not the life you ever deserved. And this will not be your undoing. Slowly, you plot. When y...",
@@ -364,6 +364,7 @@
       "Mythology",
       "Historical Fiction"
     ],
-    "format": "audiobook"
+    "format": "audiobook",
+    "dateStarted": "2024-05-23"
   }
 ]
