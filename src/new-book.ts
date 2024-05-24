@@ -24,7 +24,7 @@ export async function handleNewBook({
 
   library.push(newBook);
   exportVariable(`BookTitle`, newBook.title);
-  const image = `book-${newBook.identifier.isbn}.png`;
+  const image = `book-${newBook.identifier.libby ?? newBook.identifier.isbn}.png`;
 
   if (bookStatus === "started") {
     setOutput("nowReading", {
