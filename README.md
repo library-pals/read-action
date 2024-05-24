@@ -20,7 +20,7 @@ To use this action, create a new workflow in `.github/workflows` and modify it a
 
 ```yml
 name: read action
-run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.identifier }}
 
 # Grant the action permission to write to the repository
 permissions:
@@ -30,8 +30,11 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      isbn:
-        description: The book's ISBN. Required.
+      identifier:
+        description: The book's identifier. This is an ISBN or Libby share URL. Required.
+        # Example values:
+        # 9780062315007
+        # https://share.libbyapp.com/title/9575390
         required: true
         type: string
       book-status:
@@ -97,7 +100,7 @@ jobs:
 
 ```yml
 name: When book is missing metadata, create a pull request
-run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.identifier }}
 
 # Grant the action permission to write to the repository
 permissions:
@@ -121,8 +124,11 @@ on:
       date:
         description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
-      isbn:
-        description: The book's ISBN. Required.
+      identifier:
+        description: The book's identifier. This is an ISBN or Libby share URL. Required.
+        # Example values:
+        # 9780062315007
+        # https://share.libbyapp.com/title/9575390
         required: true
         type: string
       notes:
@@ -207,7 +213,7 @@ jobs:
 
 ```yml
 name: Download the book thumbnail
-run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.isbn }}
+run-name: 📚 ${{ inputs['book-status'] }} book ${{ inputs.identifier }}
 
 # Grant the action permission to write to the repository
 permissions:
@@ -217,8 +223,11 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      isbn:
-        description: The book's ISBN. Required.
+      identifier:
+        description: The book's identifier. This is an ISBN or Libby share URL. Required.
+        # Example values:
+        # 9780062315007
+        # https://share.libbyapp.com/title/9575390
         required: true
         type: string
       book-status:
@@ -308,7 +317,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
 {
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
-    "isbn": "", // Required. The book's ISBN. Required.
+    "identifier": "", // Required. The book's identifier. This is an ISBN or Libby share URL. Required.
     "book-status": "", // Required. What is the status of the book? Required. Default: `want to read`.
     "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
     "notes": "", // Notes about the book. Optional.
@@ -317,6 +326,8 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
+
+
 
 ## Action outputs
 
