@@ -28,14 +28,23 @@ export function sortByDate(array: CleanBook[]): CleanBook[] {
   });
 }
 
-/** remove wrapped quotes */
-export function removeWrappedQuotes(str: string) {
+export function formatDescription(str?: string) {
+  if (!str) return "";
+
+  str = str
+    .replace(/(\r\n|\n|\r)/gm, " ") // remove line breaks
+    .replace(/\s+/g, " ") // remove extra spaces
+    .trim();
+
   if (str.startsWith('"') && str.endsWith('"')) {
-    return str.substring(1, str.length - 1);
+    return str.slice(1, -1);
   }
+
   if (str.startsWith('"') && str.endsWith('"--')) {
-    return `${str.substring(1, str.length - 3)}…`;
-  } else return str;
+    return `${str.slice(1, -3)}…`;
+  }
+
+  return str;
 }
 
 function localDate() {

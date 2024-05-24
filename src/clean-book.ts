@@ -1,4 +1,4 @@
-import { removeWrappedQuotes } from "./utils";
+import { formatDescription } from "./utils";
 import { Book } from "@library-pals/isbn";
 import { BookParams } from ".";
 import { exportVariable, getInput, warning } from "@actions/core";
@@ -66,7 +66,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     }),
     ...(publishedDate && { publishedDate }),
     ...(description && {
-      description: removeWrappedQuotes(description),
+      description: formatDescription(description),
     }),
     ...(pageCount ? { pageCount } : { pageCount: 0 }),
     ...(printType && { printType }),
