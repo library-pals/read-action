@@ -10,6 +10,8 @@ This GitHub action tracks the books that you read by updating a JSON file in you
 
 When you add or update a book, you can set it as: want to read, started, finished, or abandoned. This will set the value as `bookStatus` and will add an accompanying date for the status.
 
+To update the book's status, trigger the action using the same identifier (ISBN or Libby share URL) that you used in the initial request.
+
 <!-- START GENERATED DOCUMENTATION -->
 
 ## Set up the workflow
@@ -315,8 +317,6 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
-
-
 
 ## Action outputs
 
