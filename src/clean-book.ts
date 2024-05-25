@@ -69,7 +69,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
       description: formatDescription(description),
     }),
     ...(pageCount ? { pageCount } : { pageCount: 0 }),
-    ...(printType && { format: printType }),
+    ...(printType && { format: printType.toLowerCase() }),
     ...(categories && { categories }),
     ...(thumbnail && {
       thumbnail: handleThumbnail(thumbnailWidth, thumbnail),
