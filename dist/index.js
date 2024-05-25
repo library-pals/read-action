@@ -39843,10 +39843,10 @@ function utils_toArray(tags) {
 
 ;// CONCATENATED MODULE: ./src/checkout-book.ts
 function checkOutBook(bookParams, library) {
-    const { bookIsbn } = bookParams;
+    const { inputIdentifier } = bookParams;
     if (library === undefined || library.length === 0)
         return false;
-    if (library.filter((f) => f.isbn === bookIsbn).length === 0)
+    if (library.filter((f) => f.isbn === inputIdentifier).length === 0)
         return false;
     else
         return true;
@@ -39869,9 +39869,9 @@ async function returnReadFile(fileName) {
 ;// CONCATENATED MODULE: ./src/update-book.ts
 
 async function updateBook(bookParams, currentBooks) {
-    const { bookIsbn, dateType, bookStatus, notes, rating, tags } = bookParams;
+    const { inputIdentifier, dateType, bookStatus, notes, rating, tags } = bookParams;
     return currentBooks.reduce((arr, book) => {
-        if (book.isbn === bookIsbn) {
+        if (book.isbn === inputIdentifier) {
             (0,core.exportVariable)("BookTitle", book.title);
             book = {
                 ...book,
@@ -39897,8 +39897,8 @@ function addNotes(notes, bookNotes) {
 
 
 function validatePayload(payload) {
-    if (!payload || !payload["isbn"]) {
-        (0,core.setFailed)("Missing `isbn` in payload");
+    if (!payload || !payload["identifier"]) {
+        (0,core.setFailed)("Missing `identifier` in payload");
     }
     if (payload["date"] && !utils_isDate(payload["date"])) {
         (0,core.setFailed)(`Invalid \`date\` in payload: ${payload["date"]}`);
@@ -39915,11 +39915,11 @@ function isBookStatus(status) {
 
 
 function cleanBook(options, book) {
-    const { notes, bookIsbn, dateType, bookStatus, rating, tags, thumbnailWidth, setImage, } = options;
-    checkMetadata(book, bookIsbn);
+    const { notes, inputIdentifier, dateType, bookStatus, rating, tags, thumbnailWidth, setImage, } = options;
+    checkMetadata(book, inputIdentifier);
     const { title, authors, publishedDate, description, categories, pageCount, printType, thumbnail, language, link, } = book;
     return {
-        isbn: bookIsbn,
+        isbn: inputIdentifier,
         ...dateType,
         status: bookStatus,
         ...(rating && { rating }),
@@ -39944,7 +39944,7 @@ function cleanBook(options, book) {
             link,
         }),
         ...(setImage && {
-            image: `book-${bookIsbn}.png`,
+            image: `book-${inputIdentifier}.png`,
         }),
     };
 }
@@ -39958,7 +39958,7 @@ function handleThumbnail(thumbnailWidth, thumbnail) {
     }
     return thumbnail;
 }
-function checkMetadata(book, bookIsbn) {
+function checkMetadata(book, inputIdentifier) {
     const missingMetadata = [];
     const requiredMetadata = (0,core.getInput)("required-metadata")
         .split(",")
@@ -39984,7 +39984,7 @@ function checkMetadata(book, bookIsbn) {
         (0,core.warning)(`Book does not have ${missingMetadata.join(", ")}`);
         (0,core.exportVariable)("BookNeedsReview", true);
         (0,core.exportVariable)("BookMissingMetadata", missingMetadata.join(", "));
-        (0,core.exportVariable)("BookIsbn", bookIsbn);
+        (0,core.exportVariable)("BookIdentifier", inputIdentifier);
     }
 }
 
@@ -39992,15 +39992,15 @@ function checkMetadata(book, bookIsbn) {
 
 
 async function getBook(options) {
-    const { bookIsbn, providers } = options;
+    const { inputIdentifier, providers } = options;
     let book;
     try {
         const isbn = new Isbn();
         isbn.provider(providers);
-        book = await isbn.resolve(bookIsbn);
+        book = await isbn.resolve(inputIdentifier);
     }
     catch (error) {
-        throw new Error(`Book (${bookIsbn}) not found. ${error.message}`);
+        throw new Error(`Book (${inputIdentifier}) not found. ${error.message}`);
     }
     const newBook = cleanBook(options, book);
     return newBook;
@@ -40049,7 +40049,7 @@ async function read() {
         const payload = github.context.payload.inputs;
         // Validate payload
         validatePayload(payload);
-        const { isbn: bookIsbn, date, "book-status": bookStatus, notes, rating, tags, } = payload;
+        const { identifier: inputIdentifier, date, "book-status": bookStatus, notes, rating, tags, } = payload;
         // Set inputs
         const filename = (0,core.getInput)("filename");
         const setImage = (0,core.getInput)("set-image") === "true";
@@ -40067,7 +40067,7 @@ async function read() {
         let library = await returnReadFile(filename);
         const bookParams = {
             filename,
-            bookIsbn,
+            inputIdentifier,
             dateType,
             notes,
             bookStatus,
