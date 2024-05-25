@@ -366,32 +366,5 @@
     ],
     "format": "audiobook",
     "dateStarted": "2024-05-23"
-  },
-  {
-    "identifier": "9510886",
-    "identifiers": {
-      "libby": "9510886"
-    },
-    "dateAdded": "2024-05-25",
-    "status": "want to read",
-    "rating": "unrated",
-    "image": "book-9510886.png",
-    "link": "https://share.libbyapp.com/title/9510886",
-    "title": "The Worlds I See",
-    "description": "The moving memoir of a scientist coming of age as an immigrant in America who finds her calling at the forefront of the AI revolution.Wired called Dr. Fei-Fei Li “one of a tiny group of scientists - a group perhaps small enough to fit around a kitchen table - who are responsible for AI’s recent remarkable advances.”Known to the world as the creator of ImageNet, a key catalyst of modern artificial intelligence, Dr....",
-    "authors": [
-      "Fei-Fei Li",
-      "Cindy Kay"
-    ],
-    "publishedDate": "2023-11-07",
-    "thumbnail": "https://img3.od-cdn.com/ImageType-100/1493-1/{07ADF52D-D0E9-4044-867E-3E66A217A7F0}IMG100.JPG",
-    "publisher": "Macmillan Audio",
-    "categories": [
-      "Biography & Autobiography",
-      "Sociology",
-      "Technology",
-      "Nonfiction"
-    ],
-    "format": "audiobook"
   }
 ]
