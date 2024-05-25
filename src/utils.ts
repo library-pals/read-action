@@ -94,7 +94,3 @@ export function getBookStatus({
 export function toArray(tags: string): BookParams["tags"] {
   return tags.split(",").map((f) => f.trim());
 }
-
-export function capitalize(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}

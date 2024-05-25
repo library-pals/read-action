@@ -41,7 +41,6 @@ describe("workflow", () => {
 
   test("want to read", async () => {
     jest.spyOn(promises, "readFile").mockResolvedValue();
-    const summarySpy = jest.spyOn(core.summary, "addRaw");
     jest.useFakeTimers().setSystemTime(new Date("2022-10-01T12:00:00"));
     const setFailedSpy = jest.spyOn(core, "setFailed");
     Object.defineProperty(github, "context", {
@@ -56,14 +55,6 @@ describe("workflow", () => {
     });
     await read();
     expect(setFailedSpy).not.toHaveBeenCalled();
-    expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
-      [
-        "# Updated library
-
-      Want to read: “Luster”
-      ",
-      ]
-    `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.json",
@@ -123,7 +114,6 @@ describe("workflow", () => {
       ])
     );
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    const summarySpy = jest.spyOn(core.summary, "addRaw");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -137,14 +127,6 @@ describe("workflow", () => {
     });
     await read();
     expect(setFailedSpy).not.toHaveBeenCalled();
-    expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
-      [
-        "# Updated library
-
-      Started: “Luster”
-      ",
-      ]
-    `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.json",
@@ -197,7 +179,6 @@ describe("workflow", () => {
       ])
     );
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    const summarySpy = jest.spyOn(core.summary, "addRaw");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -213,14 +194,6 @@ describe("workflow", () => {
     await read();
 
     expect(setFailedSpy).not.toHaveBeenCalled();
-    expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
-      [
-        "# Updated library
-
-      Finished: “Luster”
-      ",
-      ]
-    `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.json",
@@ -253,7 +226,6 @@ describe("workflow", () => {
   test("missing thumbnail", async () => {
     jest.spyOn(promises, "readFile").mockResolvedValue(JSON.stringify([]));
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    const summarySpy = jest.spyOn(core.summary, "addRaw");
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
 
     Object.defineProperty(github, "context", {
@@ -269,14 +241,6 @@ describe("workflow", () => {
     await read();
 
     expect(setFailedSpy).not.toHaveBeenCalled();
-    expect(summarySpy.mock.calls[0]).toMatchInlineSnapshot(`
-      [
-        "# Updated library
-
-      Want to read: “Don't Let Her Stay”
-      ",
-      ]
-    `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.json",
