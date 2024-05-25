@@ -49,6 +49,9 @@ describe("cleanBook", () => {
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "format": "book",
         "identifier": "0525658181",
+        "identifiers": {
+          "isbn": "0525658181",
+        },
         "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",
@@ -91,6 +94,9 @@ describe("cleanBook", () => {
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "format": "book",
         "identifier": "0525658181",
+        "identifiers": {
+          "isbn": "0525658181",
+        },
         "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",
@@ -131,6 +137,9 @@ describe("cleanBook", () => {
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "format": "book",
         "identifier": "0525658181",
+        "identifiers": {
+          "isbn": "0525658181",
+        },
         "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",
@@ -389,6 +398,9 @@ describe("cleanBook", () => {
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "format": "book",
         "identifier": "0525658181",
+        "identifiers": {
+          "isbn": "0525658181",
+        },
         "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",
@@ -433,6 +445,9 @@ describe("cleanBook", () => {
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "format": "book",
         "identifier": "0525658181",
+        "identifiers": {
+          "isbn": "0525658181",
+        },
         "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",
@@ -476,6 +491,9 @@ describe("cleanBook", () => {
         "description": "A novel about faith, science, religion, and family that tells the deeply moving portrait of a family of Ghanaian immigrants ravaged by depression and addiction and grief, narrated by a fifth year candidate in neuroscience at Stanford school of medicine studying the neural circuits of reward seeking behavior in mice…",
         "format": "book",
         "identifier": "0525658181",
+        "identifiers": {
+          "isbn": "0525658181",
+        },
         "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "notes": "I loved it!",

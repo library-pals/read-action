@@ -54,7 +54,8 @@ describe("getMetadata", () => {
           "Test Author",
         ],
         "description": "Test Description",
-        "identifier": {
+        "identifier": "test",
+        "identifiers": {
           "libby": "test",
         },
         "image": "book-test.png",
@@ -102,7 +103,8 @@ describe("getMetadata", () => {
         ],
         "description": "Monarch. Mother. Murderer. Magnificent. You were born to a king, but you marry a tyrant. You stand by helplessly as he sacrifices your child to placate the gods. You watch him wage war on a foreign shore, and you comfort yourself with violent thoughts of your own. Because this was not the first offense against you. This was not the life you ever deserved. And this will not be your undoing. Slowly, you plot. When y...",
         "format": "audiobook",
-        "identifier": {
+        "identifier": "9575390",
+        "identifiers": {
           "libby": "9575390",
         },
         "image": "book-9575390.png",
@@ -147,12 +149,12 @@ describe("getMetadata", () => {
         ],
         "description": "NEW YORK TIMES BESTSELLER A GOOD MORNING AMERICA BOOK CLUB PICK This summer’s hottest debut. - Cosmopolitan • “Witty, sexy escapist fiction [that] packs a substantial punch...It’s a smart, gripping work that’s also a feast for the senses...Fresh and thrilling.” - Los Angeles Times • “Electric...I loved every second.” - Emily HenryUtterly winning...Imagine if The Time Traveler’s Wife had an affair with A Gent...",
         "format": "ebook",
-        "identifier": {
+        "identifier": "9575390",
+        "identifiers": {
           "isbn": "9781668045169",
           "libby": "9575390",
         },
         "image": "book-9575390.png",
-        "isbn": "9781668045169",
         "link": "https://share.libbyapp.com/title/9575390",
         "publishedDate": "2024-05-07",
         "publisher": "Avid Reader Press / Simon & Schuster",
@@ -201,7 +203,8 @@ describe("getMetadata", () => {
       {
         "authors": [],
         "description": "Test Description",
-        "identifier": {
+        "identifier": "test",
+        "identifiers": {
           "libby": "test",
         },
         "image": "book-test.png",
@@ -242,7 +245,8 @@ describe("getMetadata", () => {
       {
         "authors": [],
         "description": "Test Description",
-        "identifier": {
+        "identifier": "test",
+        "identifiers": {
           "libby": "test",
         },
         "image": "book-test.png",

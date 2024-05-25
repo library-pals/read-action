@@ -34,13 +34,13 @@ export async function getMetadata(
     };
     const { result, html } = await ogs(ogsOptions);
 
-    const libbyIdentifier = inputIdentifier.split("/").pop();
+    const libbyIdentifier = inputIdentifier.split("/").pop() as string;
     const parsedHtmlMetadata = parseLibbyPage(html);
     const parsedResultMetadata = parseResult(result);
 
     return {
-      ...(result.bookIsbn && { isbn: result.bookIsbn }),
-      identifier: {
+      identifier: libbyIdentifier,
+      identifiers: {
         libby: libbyIdentifier,
         ...(result.bookIsbn && { isbn: result.bookIsbn }),
       },

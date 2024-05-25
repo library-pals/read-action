@@ -101,9 +101,7 @@ export function lookUp(
 ): boolean {
   const isLibby = inputIdentifier.startsWith("https://share.libbyapp.com/");
   if (isLibby) {
-    return book.identifier?.libby === inputIdentifier.split("/").pop();
+    return book.identifier === inputIdentifier.split("/").pop();
   }
-  return (
-    book.isbn === inputIdentifier || book.identifier?.isbn === inputIdentifier
-  );
+  return book.identifier === inputIdentifier;
 }
