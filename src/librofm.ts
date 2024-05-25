@@ -2,7 +2,6 @@ import ogs from "open-graph-scraper";
 import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
 import { formatDescription, getLibrofmId } from "./utils";
-import { OgObject } from "open-graph-scraper/dist/lib/types";
 
 export async function getLibrofm(
   options: BookParams
@@ -25,9 +24,6 @@ export async function getLibrofm(
     const librofmIdentifier = getLibrofmId(inputIdentifier);
     const parsedResultMetadata = parseResult(result);
 
-    if (!parsedResultMetadata) {
-      throw new Error("Failed to parse libro.fm page");
-    }
     const { isbn, ...remainingMetadata } = parsedResultMetadata;
 
     return {
@@ -52,33 +48,38 @@ export async function getLibrofm(
   }
 }
 
-function parseResult(result):
-  | {
-      format: string;
-      title: string;
-      description: string;
-      isbn: string;
-      image: string;
-      authors: string[];
-      publisher: string;
-      publishedDate: string;
-    }
-  | undefined {
-  if (!result.jsonLD || !result.jsonLD.length) {
-    return;
+export function parseResult(result): {
+  format?: string;
+  title: string;
+  description: string;
+  isbn?: string;
+  thumbnail: string;
+  authors?: string[];
+  publisher?: string;
+  publishedDate?: string;
+} {
+  if (result.jsonLD || result.jsonLD?.length) {
+    const book = result.jsonLD[0];
+    return {
+      format: formatFormat(book.bookFormat),
+      title: book.name,
+      description: formatDescription(book.description),
+      isbn: book.isbn,
+      thumbnail: book.image,
+      authors: book.author.map((author) => author.name),
+      publisher: book.publisher,
+      publishedDate: book.datePublished,
+    };
   }
-
-  const book = result.jsonLD[0];
-
   return {
-    format: formatFormat(book.bookFormat),
-    title: book.name,
-    description: formatDescription(book.description),
-    isbn: book.isbn,
-    image: book.image,
-    authors: book.author.map((author) => author.name),
-    publisher: book.publisher,
-    publishedDate: book.datePublished,
+    title: result.ogTitle,
+    description: formatDescription(result.ogDescription),
+    thumbnail: result?.ogImage?.[0]?.url ?? "",
+    authors: undefined,
+    publisher: undefined,
+    publishedDate: undefined,
+    isbn: undefined,
+    format: undefined,
   };
 }
 
