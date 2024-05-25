@@ -54,11 +54,11 @@ describe("getBook", () => {
         "identifier": {
           "isbn": "9780525658184",
         },
+        "format": "book",
         "isbn": "9780525658184",
         "language": "en",
         "link": "https://books.google.com/books/about/Transcendent_Kingdom.html?hl=&id=CONSTANT_ID",
         "pageCount": 288,
-        "printType": "BOOK",
         "publishedDate": "2020-09-01",
         "status": "finished",
         "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",

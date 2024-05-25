@@ -14,7 +14,6 @@ export type CleanBook = {
   description?: string;
   categories?: string[];
   pageCount?: number;
-  printType?: string;
   format?: string;
   thumbnail?: string;
   language?: string;
@@ -77,7 +76,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
       description: formatDescription(description),
     }),
     ...(pageCount ? { pageCount } : { pageCount: 0 }),
-    ...(printType && { printType }),
+    ...(printType && { format: printType.toLowerCase() }),
     ...(categories && { categories }),
     ...(thumbnail && {
       thumbnail: handleThumbnail(thumbnailWidth, thumbnail),

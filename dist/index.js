@@ -39934,7 +39934,7 @@ function cleanBook(options, book) {
             description: formatDescription(description),
         }),
         ...(pageCount ? { pageCount } : { pageCount: 0 }),
-        ...(printType && { printType }),
+        ...(printType && { format: printType.toLowerCase() }),
         ...(categories && { categories }),
         ...(thumbnail && {
             thumbnail: handleThumbnail(thumbnailWidth, thumbnail),
