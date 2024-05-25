@@ -28,7 +28,7 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      isbn:
+      identifier:
         description: The book's ISBN. Required.
         required: true
         type: string
@@ -119,7 +119,7 @@ on:
       date:
         description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
-      isbn:
+      identifier:
         description: The book's ISBN. Required.
         required: true
         type: string
@@ -215,7 +215,7 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      isbn:
+      identifier:
         description: The book's ISBN. Required.
         required: true
         type: string
@@ -306,7 +306,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
 {
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
-    "isbn": "", // Required. The book's ISBN. Required.
+    "identifier": "", // Required. The book's ISBN. Required.
     "book-status": "", // Required. What is the status of the book? Required. Default: `want to read`.
     "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
     "notes": "", // Notes about the book. Optional.
