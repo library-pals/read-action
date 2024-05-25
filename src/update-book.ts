@@ -9,7 +9,7 @@ export async function updateBook(
   const { inputIdentifier, dateType, bookStatus, notes, rating, tags } =
     bookParams;
   return currentBooks.reduce((arr: CleanBook[], book) => {
-    if (book.isbn === inputIdentifier) {
+    if (book.identifier === inputIdentifier) {
       exportVariable("BookTitle", book.title);
       book = {
         ...book,

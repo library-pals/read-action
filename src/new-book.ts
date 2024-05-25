@@ -17,14 +17,14 @@ export async function handleNewBook({
   const newBook = await getBook(bookParams);
   library.push(newBook);
   exportVariable(`BookTitle`, newBook.title);
-  const image = `book-${newBook.isbn}.png`;
+  const image = `book-${newBook.identifier}.png`;
 
   if (bookStatus === "started") {
     setOutput("nowReading", {
       title: newBook.title,
       authors: newBook.authors,
       description: newBook.description,
-      isbn: newBook.isbn,
+      identifier: newBook.identifier,
       thumbnail: newBook.thumbnail,
       ...(setImage && {
         image,

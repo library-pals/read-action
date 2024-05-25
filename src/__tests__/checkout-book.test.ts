@@ -4,13 +4,13 @@ jest.mock("@actions/core");
 
 const library = [
   {
-    isbn: "9780374719760",
+    identifier: "9780374719760",
     dateStarted: "2020-11-20",
     dateFinished: "2020-11-22",
     title: "Uncanny Valley",
   },
   {
-    isbn: "9780525620792",
+    identifier: "9780525620792",
     dateStarted: "2021-09-26",
     title: "Mexican Gothic",
     notes: "Recommended by my sister.",
@@ -39,7 +39,7 @@ describe("checkOutBook", () => {
   it("works, notes", () => {
     const library = [
       {
-        isbn: "9780525620792",
+        identifier: "9780525620792",
         dateStarted: "2021-09-26",
         title: "Mexican Gothic",
         tags: ["recommend"],
