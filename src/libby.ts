@@ -1,7 +1,7 @@
 import ogs from "open-graph-scraper";
 import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
-import { JSDOM } from "jsdom";
+import * as cheerio from "cheerio";
 import { OgObject } from "open-graph-scraper/dist/lib/types";
 import { formatDescription } from "./utils";
 
@@ -81,8 +81,8 @@ function parseResult(result: OgObject): {
   };
 }
 
-function handleFormat(shareCategory: Element | null): string | undefined {
-  const shareCategoryContent = shareCategory?.textContent?.toLowerCase();
+function handleFormat(shareCategory: string): string | undefined {
+  const shareCategoryContent = shareCategory.toLowerCase();
 
   if (shareCategoryContent) {
     if (shareCategoryContent.includes("audiobook")) {
@@ -105,15 +105,21 @@ export function parseLibbyPage(html: string | undefined): {
     return {};
   }
 
-  const dom = new JSDOM(html);
-  const document = dom.window.document;
-  const format = handleFormat(document.querySelector(".share-category"));
+  const $ = cheerio.load(html);
+  const format = handleFormat($(".share-category").text());
 
   let htmlData;
-  const table = document.querySelector(".share-table-1d");
-  if (table) {
-    const rows = Array.from(table.querySelectorAll("tr"));
-    htmlData = rows.reduce(handleRows, {});
+  const table = $(".share-table-1d");
+  if (table.length) {
+    const rows = table.find("tr").toArray();
+    htmlData = rows.reduce((acc: Data, row: cheerio.Element) => {
+      const th = $(row).find("th").text();
+      const td = $(row).find("td").text();
+      if (th) {
+        acc[th.toLowerCase()] = td || "";
+      }
+      return acc;
+    }, {});
   }
 
   return {
@@ -123,13 +129,4 @@ export function parseLibbyPage(html: string | undefined): {
     }),
     ...(format && { format }),
   };
-}
-
-function handleRows(acc: Data, row: HTMLTableRowElement) {
-  const th = row.querySelector("th");
-  const td = row.querySelector("td");
-  if (th?.textContent) {
-    acc[th.textContent.toLowerCase()] = td?.textContent ?? "";
-  }
-  return acc;
 }
