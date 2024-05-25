@@ -25,7 +25,7 @@ describe("updateBook", () => {
       updateBook(
         {
           filename: "my-library.yml",
-          bookIsbn: "9780525620792",
+          inputIdentifier: "9780525620792",
           dateType: {
             dateFinished: "2022-02-02",
           },
@@ -71,7 +71,7 @@ describe("updateBook", () => {
       updateBook(
         {
           filename: "my-library.yml",
-          bookIsbn: "9780525620792",
+          inputIdentifier: "9780525620792",
           dateType: {
             dateFinished: "2022-02-02",
           },
@@ -106,7 +106,7 @@ describe("updateBook", () => {
       updateBook(
         {
           filename: "my-library.yml",
-          bookIsbn: "9780525620792",
+          inputIdentifier: "9780525620792",
           tags: [""],
           dateType: {
             dateFinished: "2022-02-02",
@@ -151,7 +151,7 @@ describe("updateBook", () => {
       updateBook(
         {
           filename: "my-library.yml",
-          bookIsbn: "12345",
+          inputIdentifier: "12345",
           dateType: {
             dateFinished: "2022-02-02",
           },
@@ -187,7 +187,7 @@ describe("updateBook", () => {
       updateBook(
         {
           filename: "my-library.yml",
-          bookIsbn: "12345",
+          inputIdentifier: "12345",
           dateType: {
             dateFinished: "2022-02-02",
           },

@@ -23,7 +23,7 @@ on:
       date:
         description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
-      isbn:
+      identifier:
         description: The book's ISBN. Required.
         required: true
         type: string

@@ -32,7 +32,7 @@ describe("getBook", () => {
         dateType: {
           dateFinished,
         },
-        bookIsbn: "9780525658184",
+        inputIdentifier: "9780525658184",
         providers: ["google"],
         bookStatus: "finished",
         filename: "_data/read.yml",
@@ -74,7 +74,7 @@ describe("getBook", () => {
           dateStarted: undefined,
           dateFinished,
         },
-        bookIsbn: "9780525658184",
+        inputIdentifier: "9780525658184",
         providers: ["google"],
         bookStatus: "finished",
         filename: "_data/read.json",

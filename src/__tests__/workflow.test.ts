@@ -47,7 +47,7 @@ describe("workflow", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780385696005",
+            identifier: "9780385696005",
             "book-status": "want to read",
           },
         },
@@ -115,7 +115,7 @@ describe("workflow", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780385696005",
+            identifier: "9780385696005",
             "book-status": "started",
             date: "2022-10-02",
           },
@@ -180,7 +180,7 @@ describe("workflow", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780385696005",
+            identifier: "9780385696005",
             "book-status": "finished",
             date: "2022-10-03",
             rating: "⭐️⭐️⭐️⭐️⭐️",
@@ -229,7 +229,7 @@ describe("workflow", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9798374567144",
+            identifier: "9798374567144",
             "book-status": "want to read",
           },
         },

@@ -65,7 +65,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780385696005",
+            identifier: "9780385696005",
             "book-status": "started",
             date: "2022-01-02",
           },
@@ -88,7 +88,7 @@ describe("index", () => {
           "pageCount",
         ],
         [
-          "BookIsbn",
+          "BookIdentifier",
           "9780385696005",
         ],
         [
@@ -177,7 +177,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780525620792",
+            identifier: "9780525620792",
             "book-status": "finished",
             date: "2021-09-30",
           },
@@ -235,7 +235,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780525511342",
+            identifier: "9780525511342",
             "book-status": "finished",
             date: "2022-08-02",
           },
@@ -323,7 +323,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780385696005",
+            identifier: "9780385696005",
             "book-status": "want to read",
           },
         },
@@ -345,7 +345,7 @@ describe("index", () => {
           "pageCount",
         ],
         [
-          "BookIsbn",
+          "BookIdentifier",
           "9780385696005",
         ],
         [
@@ -422,10 +422,12 @@ describe("index", () => {
     });
 
     await read();
-    expect(setFailedSpy).toHaveBeenCalledWith("Missing `isbn` in payload");
+    expect(setFailedSpy).toHaveBeenCalledWith(
+      "Missing `identifier` in payload"
+    );
   });
 
-  test("error, missing isbn", async () => {
+  test("error, missing identifier", async () => {
     const setFailedSpy = jest.spyOn(core, "setFailed");
     Object.defineProperty(github, "context", {
       value: {
@@ -438,7 +440,9 @@ describe("index", () => {
       },
     });
     await read();
-    expect(setFailedSpy).toHaveBeenCalledWith("Missing `isbn` in payload");
+    expect(setFailedSpy).toHaveBeenCalledWith(
+      "Missing `identifier` in payload"
+    );
   });
 
   test("error, setFailed", async () => {
@@ -447,7 +451,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780385696005",
+            identifier: "9780385696005",
             "book-status": "want to read",
           },
         },
@@ -467,7 +471,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780385696005",
+            identifier: "9780385696005",
             tags: "new, recommend",
             "book-status": "want to read",
           },
@@ -535,7 +539,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780385696005",
+            identifier: "9780385696005",
             "book-status": "finished",
             date: "2022-02-02",
           },
@@ -552,7 +556,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780385696005",
+            identifier: "9780385696005",
             "book-status": "finished",
             date: "1234",
           },
@@ -571,7 +575,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "9780385696005",
+            identifier: "9780385696005",
             "book-status": "did not finish",
           },
         },

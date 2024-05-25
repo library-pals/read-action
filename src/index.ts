@@ -14,7 +14,7 @@ export type BookPayload = {
   date: string | undefined;
   "book-status": BookStatus;
   notes?: string;
-  isbn: string;
+  identifier: string;
   rating?: string;
   tags?: string;
 };
@@ -30,7 +30,7 @@ export type ActionInputs = {
 
 export type BookParams = {
   filename: string;
-  bookIsbn: BookPayload["isbn"];
+  inputIdentifier: BookPayload["identifier"];
   dateType: {
     dateAdded?: string;
     dateStarted?: string;
@@ -53,7 +53,7 @@ export async function read() {
     // Validate payload
     validatePayload(payload);
     const {
-      isbn: bookIsbn,
+      identifier: inputIdentifier,
       date,
       "book-status": bookStatus,
       notes,
@@ -83,7 +83,7 @@ export async function read() {
 
     const bookParams: BookParams = {
       filename,
-      bookIsbn,
+      inputIdentifier,
       dateType,
       notes,
       bookStatus,

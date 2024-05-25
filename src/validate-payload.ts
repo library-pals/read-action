@@ -4,8 +4,8 @@ import { BookPayload } from "./index";
 import { BookStatus } from "./clean-book";
 
 export function validatePayload(payload: BookPayload): void {
-  if (!payload || !payload["isbn"]) {
-    setFailed("Missing `isbn` in payload");
+  if (!payload || !payload["identifier"]) {
+    setFailed("Missing `identifier` in payload");
   }
 
   if (payload["date"] && !isDate(payload["date"])) {
