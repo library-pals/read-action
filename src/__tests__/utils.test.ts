@@ -9,7 +9,7 @@ import {
 jest.mock("@actions/core");
 jest.useFakeTimers().setSystemTime(new Date("2023-12-01T12:00:00"));
 
-it("removeWrappedQuotes", () => {
+it("formatDescription", () => {
   expect(formatDescription("")).toBe("");
   expect(formatDescription("hello")).toBe("hello");
   expect(formatDescription('"hello"')).toBe("hello");

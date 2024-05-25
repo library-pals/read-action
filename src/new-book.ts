@@ -2,6 +2,7 @@ import { exportVariable, setOutput } from "@actions/core";
 import getBook from "./get-book";
 import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
+import { getMetadata } from "./libby";
 
 export async function handleNewBook({
   bookParams,
@@ -14,10 +15,15 @@ export async function handleNewBook({
   bookStatus: string;
   setImage: boolean;
 }): Promise<void> {
-  const newBook = await getBook(bookParams);
+  let newBook;
+  if (bookParams.inputIdentifier.startsWith("https://share.libbyapp.com/")) {
+    newBook = await getMetadata(bookParams);
+  } else {
+    newBook = await getBook(bookParams);
+  }
+
   library.push(newBook);
   exportVariable(`BookTitle`, newBook.title);
-  const image = `book-${newBook.identifier}.png`;
 
   if (bookStatus === "started") {
     setOutput("nowReading", {
@@ -27,13 +33,17 @@ export async function handleNewBook({
       identifier: newBook.identifier,
       thumbnail: newBook.thumbnail,
       ...(setImage && {
-        image,
+        image: newBook.image,
       }),
     });
   }
 
   if (newBook.thumbnail) {
-    exportVariable(`BookThumbOutput`, image);
-    exportVariable(`BookThumb`, newBook.thumbnail);
+    exportVariable(`BookThumbOutput`, newBook.image);
+    exportVariable(`BookThumb`, encode(newBook.thumbnail));
   }
+}
+
+function encode(url: string): string {
+  return encodeURI(url);
 }

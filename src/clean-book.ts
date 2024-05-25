@@ -19,6 +19,10 @@ export type CleanBook = {
   language?: string;
   link?: string;
   identifier: string;
+  identifiers: {
+    isbn?: string;
+    libby?: string;
+  };
   notes?: string;
   status: BookStatus;
   rating?: string;
@@ -55,6 +59,9 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
 
   return {
     identifier: inputIdentifier,
+    identifiers: {
+      isbn: inputIdentifier,
+    },
     ...dateType,
     status: bookStatus,
     ...(rating && { rating }),

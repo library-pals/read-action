@@ -94,3 +94,14 @@ export function getBookStatus({
 export function toArray(tags: string): BookParams["tags"] {
   return tags.split(",").map((f) => f.trim());
 }
+
+export function lookUp(
+  book: CleanBook,
+  inputIdentifier: BookParams["inputIdentifier"]
+): boolean {
+  const isLibby = inputIdentifier.startsWith("https://share.libbyapp.com/");
+  if (isLibby) {
+    return book.identifier === inputIdentifier.split("/").pop();
+  }
+  return book.identifier === inputIdentifier;
+}

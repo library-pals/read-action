@@ -1,11 +1,22 @@
 import { setFailed } from "@actions/core";
-import { isDate } from "./utils";
+import { isDate, isIsbn } from "./utils";
 import { BookPayload } from "./index";
 import { BookStatus } from "./clean-book";
 
 export function validatePayload(payload: BookPayload): void {
   if (!payload || !payload["identifier"]) {
     setFailed("Missing `identifier` in payload");
+  }
+
+  if (
+    !(
+      payload["identifier"].startsWith("https://share.libbyapp.com/") ||
+      isIsbn(payload["identifier"])
+    )
+  ) {
+    setFailed(
+      `Invalid \`identifier\` in payload: ${payload["identifier"]}. Must be an ISBN or start with "https://share.libbyapp.com/"`
+    );
   }
 
   if (payload["date"] && !isDate(payload["date"])) {

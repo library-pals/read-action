@@ -1,0 +1,30 @@
+{
+  "twitterCard": "summary_large_image",
+  "twitterSite": "@LibbyApp",
+  "ogType": "book",
+  "ogTitle": "Clytemnestra",
+  "ogDescription": "Monarch. Mother. Murderer. Magnificent. You were born to a king, but you marry a tyrant. You stand by helplessly as he sacrifices your child to placate the gods. You watch him wage war on a foreign shore, and you comfort yourself with violent thoughts of your own. Because this was not the first offense against you. This was not the life you ever deserved. And this will not be your undoing. Slowly, you plot. When y...",
+  "bookReleaseDate": "2023-05-02",
+  "bookAuthor": "Olivia Vinall",
+  "customMetaTags": {
+    "authors": [
+      "Costanza Casati",
+      "Olivia Vinall"
+    ]
+  },
+  "ogImage": [
+    {
+      "url": "https://img2.od-cdn.com/ImageType-100/1694-1/{28ED6EE0-D071-4C51-9059-7BBE9EAA33DC}IMG100.JPG",
+      "alt": "Cover Image: Clytemnestra"
+    }
+  ],
+  "twitterImage": [
+    {
+      "url": "https://img2.od-cdn.com/ImageType-100/1694-1/{28ED6EE0-D071-4C51-9059-7BBE9EAA33DC}IMG100.JPG"
+    }
+  ],
+  "favicon": "/dewey-16.7.1/inc/images/libby-icon-android-192.png",
+  "charset": "utf-8",
+  "requestUrl": "https://share.libbyapp.com/title/9575390",
+  "success": true
+}

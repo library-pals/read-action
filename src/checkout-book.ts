@@ -1,5 +1,6 @@
 import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
+import { lookUp } from "./utils";
 
 export function checkOutBook(
   bookParams: BookParams,
@@ -7,7 +8,7 @@ export function checkOutBook(
 ): boolean {
   const { inputIdentifier } = bookParams;
   if (library === undefined || library.length === 0) return false;
-  if (library.filter((f) => f.identifier === inputIdentifier).length === 0)
+  if (library.filter((book) => lookUp(book, inputIdentifier)).length === 0)
     return false;
   else return true;
 }

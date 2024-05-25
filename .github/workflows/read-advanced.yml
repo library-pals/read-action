@@ -24,7 +24,10 @@ on:
         description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
       identifier:
-        description: The book's ISBN. Required.
+        description: The book's identifier. This is an ISBN or Libby share URL. Required.
+        # Example values:
+        # 9780062315007
+        # https://share.libbyapp.com/title/9575390
         required: true
         type: string
       notes:

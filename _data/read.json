@@ -340,5 +340,59 @@
     "dateStarted": "2023-12-25",
     "dateAbandoned": "2023-12-25",
     "dateFinished": "2023-12-20"
+  },
+  {
+    "identifier": {
+      "libby": "9575390"
+    },
+    "dateAdded": "2024-05-23",
+    "status": "started",
+    "rating": "unrated",
+    "title": "Clytemnestra",
+    "description": "Monarch. Mother. Murderer. Magnificent. You were born to a king, but you marry a tyrant. You stand by helplessly as he sacrifices your child to placate the gods. You watch him wage war on a foreign shore, and you comfort yourself with violent thoughts of your own. Because this was not the first offense against you. This was not the life you ever deserved. And this will not be your undoing. Slowly, you plot. When y...",
+    "authors": [
+      "Costanza Casati",
+      "Olivia Vinall"
+    ],
+    "link": "https://share.libbyapp.com/title/9575390",
+    "thumbnail": "https://img1.od-cdn.com/ImageType-100/1694-1/{28ED6EE0-D071-4C51-9059-7BBE9EAA33DC}IMG100.JPG",
+    "publishedDate": "2023-05-02",
+    "publisher": "Recorded Books, Inc.",
+    "categories": [
+      "Fiction",
+      "Literature",
+      "Mythology",
+      "Historical Fiction"
+    ],
+    "format": "audiobook",
+    "dateStarted": "2024-05-23"
+  },
+  {
+    "identifier": "9510886",
+    "identifiers": {
+      "libby": "9510886"
+    },
+    "dateStarted": "2024-01-01",
+    "status": "finished",
+    "rating": "⭐️⭐️⭐️⭐️⭐️",
+    "image": "book-9510886.png",
+    "link": "https://share.libbyapp.com/title/9510886",
+    "title": "The Worlds I See",
+    "description": "The moving memoir of a scientist coming of age as an immigrant in America who finds her calling at the forefront of the AI revolution.Wired called Dr. Fei-Fei Li “one of a tiny group of scientists - a group perhaps small enough to fit around a kitchen table - who are responsible for AI’s recent remarkable advances.”Known to the world as the creator of ImageNet, a key catalyst of modern artificial intelligence, Dr....",
+    "authors": [
+      "Fei-Fei Li",
+      "Cindy Kay"
+    ],
+    "publishedDate": "2023-11-07",
+    "thumbnail": "https://img2.od-cdn.com/ImageType-100/1493-1/{07ADF52D-D0E9-4044-867E-3E66A217A7F0}IMG100.JPG",
+    "publisher": "Macmillan Audio",
+    "categories": [
+      "Biography & Autobiography",
+      "Sociology",
+      "Technology",
+      "Nonfiction"
+    ],
+    "format": "audiobook",
+    "dateFinished": "2024-01-05"
   }
 ]

@@ -10,6 +10,8 @@ This GitHub action tracks the books that you read by updating a JSON file in you
 
 When you add or update a book, you can set it as: want to read, started, finished, or abandoned. This will set the value as `bookStatus` and will add an accompanying date for the status.
 
+To update the book's status, trigger the action using the same identifier (ISBN or Libby share URL) that you used in the initial request.
+
 <!-- START GENERATED DOCUMENTATION -->
 
 ## Set up the workflow
@@ -29,7 +31,10 @@ on:
   workflow_dispatch:
     inputs:
       identifier:
-        description: The book's ISBN. Required.
+        description: The book's identifier. This is an ISBN or Libby share URL. Required.
+        # Example values:
+        # 9780062315007
+        # https://share.libbyapp.com/title/9575390
         required: true
         type: string
       book-status:
@@ -120,7 +125,10 @@ on:
         description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
       identifier:
-        description: The book's ISBN. Required.
+        description: The book's identifier. This is an ISBN or Libby share URL. Required.
+        # Example values:
+        # 9780062315007
+        # https://share.libbyapp.com/title/9575390
         required: true
         type: string
       notes:
@@ -216,7 +224,10 @@ on:
   workflow_dispatch:
     inputs:
       identifier:
-        description: The book's ISBN. Required.
+        description: The book's identifier. This is an ISBN or Libby share URL. Required.
+        # Example values:
+        # 9780062315007
+        # https://share.libbyapp.com/title/9575390
         required: true
         type: string
       book-status:
@@ -306,7 +317,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
 {
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
-    "identifier": "", // Required. The book's ISBN. Required.
+    "identifier": "", // Required. The book's identifier. This is an ISBN or Libby share URL. Required.
     "book-status": "", // Required. What is the status of the book? Required. Default: `want to read`.
     "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
     "notes": "", // Notes about the book. Optional.
