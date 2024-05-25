@@ -373,8 +373,8 @@
       "libby": "9510886"
     },
     "dateStarted": "2024-01-01",
-    "status": "started",
-    "rating": "unrated",
+    "status": "finished",
+    "rating": "⭐️⭐️⭐️⭐️⭐️",
     "image": "book-9510886.png",
     "link": "https://share.libbyapp.com/title/9510886",
     "title": "The Worlds I See",
@@ -392,6 +392,7 @@
       "Technology",
       "Nonfiction"
     ],
-    "format": "audiobook"
+    "format": "audiobook",
+    "dateFinished": "2024-01-05"
   }
 ]
