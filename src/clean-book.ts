@@ -31,7 +31,7 @@ export type BookStatus = "want to read" | "started" | "finished" | "abandoned";
 export default function cleanBook(options: BookParams, book: Book): CleanBook {
   const {
     notes,
-    bookIsbn,
+    inputIdentifier,
     dateType,
     bookStatus,
     rating,
@@ -39,7 +39,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
     thumbnailWidth,
     setImage,
   } = options;
-  checkMetadata(book, bookIsbn);
+  checkMetadata(book, inputIdentifier);
   const {
     title,
     authors,
@@ -54,7 +54,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
   } = book;
 
   return {
-    isbn: bookIsbn,
+    isbn: inputIdentifier,
     ...dateType,
     status: bookStatus,
     ...(rating && { rating }),
@@ -79,7 +79,7 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
       link,
     }),
     ...(setImage && {
-      image: `book-${bookIsbn}.png`,
+      image: `book-${inputIdentifier}.png`,
     }),
   };
 }
@@ -98,7 +98,7 @@ function handleThumbnail(
   return thumbnail;
 }
 
-function checkMetadata(book: Book, bookIsbn: string) {
+function checkMetadata(book: Book, inputIdentifier: string) {
   const missingMetadata: string[] = [];
   const requiredMetadata = getInput("required-metadata")
     .split(",")
@@ -128,6 +128,6 @@ function checkMetadata(book: Book, bookIsbn: string) {
     warning(`Book does not have ${missingMetadata.join(", ")}`);
     exportVariable("BookNeedsReview", true);
     exportVariable("BookMissingMetadata", missingMetadata.join(", "));
-    exportVariable("BookIsbn", bookIsbn);
+    exportVariable("BookIdentifier", inputIdentifier);
   }
 }

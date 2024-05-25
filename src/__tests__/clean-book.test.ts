@@ -26,7 +26,7 @@ describe("cleanBook", () => {
         {
           dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
-          bookIsbn: "0525658181",
+          inputIdentifier: "0525658181",
           providers: [],
           bookStatus: "finished",
           filename: "_data/read.yml",
@@ -67,7 +67,7 @@ describe("cleanBook", () => {
         {
           dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
-          bookIsbn: "0525658181",
+          inputIdentifier: "0525658181",
           providers: [],
           bookStatus: "finished",
           rating: "⭐️⭐️⭐️⭐️⭐️",
@@ -109,7 +109,7 @@ describe("cleanBook", () => {
       cleanBook(
         {
           notes: "I loved it!",
-          bookIsbn: "0525658181",
+          inputIdentifier: "0525658181",
           providers: [],
           bookStatus: "finished",
           filename: "_data/read.yml",
@@ -149,7 +149,7 @@ describe("cleanBook", () => {
     cleanBook(
       {
         dateType: { dateStarted: "2022-01-01" },
-        bookIsbn: "1234597890",
+        inputIdentifier: "1234597890",
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
@@ -182,7 +182,7 @@ describe("cleanBook", () => {
           "authors, description",
         ],
         [
-          "BookIsbn",
+          "BookIdentifier",
           "1234597890",
         ],
       ]
@@ -195,7 +195,7 @@ describe("cleanBook", () => {
     cleanBook(
       {
         dateType: { dateStarted: "2022-01-01" },
-        bookIsbn: "1234597890",
+        inputIdentifier: "1234597890",
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
@@ -229,7 +229,7 @@ describe("cleanBook", () => {
           "title",
         ],
         [
-          "BookIsbn",
+          "BookIdentifier",
           "1234597890",
         ],
       ]
@@ -242,7 +242,7 @@ describe("cleanBook", () => {
     cleanBook(
       {
         dateType: { dateStarted: "2022-01-01" },
-        bookIsbn: "1234597890",
+        inputIdentifier: "1234597890",
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
@@ -276,7 +276,7 @@ describe("cleanBook", () => {
           "description",
         ],
         [
-          "BookIsbn",
+          "BookIdentifier",
           "1234597890",
         ],
       ]
@@ -289,7 +289,7 @@ describe("cleanBook", () => {
     cleanBook(
       {
         dateType: { dateStarted: "2022-01-01" },
-        bookIsbn: "1234597890",
+        inputIdentifier: "1234597890",
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
@@ -321,7 +321,7 @@ describe("cleanBook", () => {
           "title, pageCount, authors, description",
         ],
         [
-          "BookIsbn",
+          "BookIdentifier",
           "1234597890",
         ],
       ]
@@ -339,7 +339,7 @@ describe("cleanBook", () => {
     cleanBook(
       {
         dateType: { dateStarted: "2022-01-01" },
-        bookIsbn: "1234597890",
+        inputIdentifier: "1234597890",
         providers: [],
         bookStatus: "started",
         filename: "_data/read.yml",
@@ -365,7 +365,7 @@ describe("cleanBook", () => {
         {
           dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
-          bookIsbn: "0525658181",
+          inputIdentifier: "0525658181",
           providers: [],
           bookStatus: "finished",
           filename: "_data/read.yml",
@@ -409,7 +409,7 @@ describe("cleanBook", () => {
         {
           dateType: { dateFinished: dateFinished },
           notes: "I loved it!",
-          bookIsbn: "0525658181",
+          inputIdentifier: "0525658181",
           providers: [],
           bookStatus: "finished",
           filename: "_data/read.yml",
@@ -453,7 +453,7 @@ describe("cleanBook", () => {
         {
           dateType: { dateFinished },
           notes: "I loved it!",
-          bookIsbn: "0525658181",
+          inputIdentifier: "0525658181",
           providers: [],
           bookStatus: "finished",
           filename: "_data/read.yml",

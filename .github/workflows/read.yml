@@ -9,7 +9,7 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      isbn:
+      identifier:
         description: The book's ISBN. Required.
         required: true
         type: string

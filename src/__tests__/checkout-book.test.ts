@@ -23,7 +23,7 @@ describe("checkOutBook", () => {
       checkOutBook(
         {
           fileName: "my-library.yml",
-          bookIsbn: "9780525620792",
+          inputIdentifier: "9780525620792",
           dates: {
             dateAdded: undefined,
             dateStarted: undefined,
@@ -50,7 +50,7 @@ describe("checkOutBook", () => {
       checkOutBook(
         {
           fileName: "my-library.yml",
-          bookIsbn: "9780525620792",
+          inputIdentifier: "9780525620792",
           dates: {
             dateAdded: undefined,
             dateStarted: undefined,
@@ -70,7 +70,7 @@ describe("checkOutBook", () => {
       checkOutBook(
         {
           fileName: "my-library.yml",
-          bookIsbn: "9780525620792",
+          inputIdentifier: "9780525620792",
           tags: [""],
           dates: {
             dateAdded: undefined,
@@ -91,7 +91,7 @@ describe("checkOutBook", () => {
       checkOutBook(
         {
           fileName: "my-library.yml",
-          bookIsbn: "12345",
+          inputIdentifier: "12345",
           dates: {
             dateAdded: undefined,
             dateStarted: undefined,
@@ -110,7 +110,7 @@ describe("checkOutBook", () => {
       checkOutBook(
         {
           fileName: "my-library.yml",
-          bookIsbn: "12345",
+          inputIdentifier: "12345",
           dates: {
             dateAdded: undefined,
             dateStarted: undefined,
