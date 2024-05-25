@@ -94,3 +94,12 @@ export function getBookStatus({
 export function toArray(tags: string): BookParams["tags"] {
   return tags.split(",").map((f) => f.trim());
 }
+
+export function lookUp(book: CleanBook, bookIsbn: string): boolean {
+  return (
+    book.isbn === bookIsbn ||
+    book.identifier?.isbn === bookIsbn ||
+    (bookIsbn.split("/").length > 1 &&
+      book.identifier?.libby === bookIsbn.split("/").pop())
+  );
+}

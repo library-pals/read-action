@@ -1,6 +1,7 @@
 import { CleanBook } from "./clean-book";
 import { exportVariable } from "@actions/core";
 import { BookParams } from ".";
+import { lookUp } from "./utils";
 
 export async function updateBook(
   bookParams: BookParams,
@@ -8,13 +9,8 @@ export async function updateBook(
 ): Promise<CleanBook[]> {
   const { bookIsbn, dateType, bookStatus, notes, rating, tags } = bookParams;
   return currentBooks.reduce((arr: CleanBook[], book) => {
-    const hasLibbyIdentifier = bookIsbn.split("/").length > 1;
-    if (
-      book.isbn === bookIsbn ||
-      book.identifier?.isbn === bookIsbn ||
-      (hasLibbyIdentifier &&
-        book.identifier?.libby === bookIsbn.split("/").pop())
-    ) {
+    const thisBook = lookUp(book, bookIsbn);
+    if (thisBook) {
       exportVariable("BookTitle", book.title);
       book = {
         ...book,

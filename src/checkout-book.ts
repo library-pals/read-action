@@ -1,5 +1,6 @@
 import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
+import { lookUp } from "./utils";
 
 export function checkOutBook(
   bookParams: BookParams,
@@ -7,16 +8,7 @@ export function checkOutBook(
 ): boolean {
   const { bookIsbn } = bookParams;
   if (library === undefined || library.length === 0) return false;
-  const hasLibbyIdentifier = bookIsbn.split("/").length > 1;
-  if (
-    library.filter(
-      (f) =>
-        f.isbn === bookIsbn ||
-        f.identifier?.isbn === bookIsbn ||
-        (hasLibbyIdentifier &&
-          f.identifier?.libby === bookIsbn.split("/").pop())
-    ).length === 0
-  )
+  if (library.filter((book) => lookUp(book, bookIsbn)).length === 0)
     return false;
   else return true;
 }
