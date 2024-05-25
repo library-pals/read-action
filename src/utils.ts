@@ -44,6 +44,9 @@ export function formatDescription(str?: string) {
     return `${str.slice(1, -3)}…`;
   }
 
+  // remove HTML tags
+  str = str.replace(/<[^>]*>?/gm, "");
+
   return str;
 }
 
@@ -100,8 +103,20 @@ export function lookUp(
   inputIdentifier: BookParams["inputIdentifier"]
 ): boolean {
   const isLibby = inputIdentifier.startsWith("https://share.libbyapp.com/");
+  const isLibrofm = inputIdentifier.startsWith("https://libro.fm/");
   if (isLibby) {
-    return book.identifier === inputIdentifier.split("/").pop();
+    return book.identifier === getLibbyId(inputIdentifier);
+  }
+  if (isLibrofm) {
+    return book.identifier === getLibrofmId(inputIdentifier);
   }
   return book.identifier === inputIdentifier;
+}
+
+export function getLibbyId(inputIdentifier: string) {
+  return inputIdentifier.split("/").pop();
+}
+
+export function getLibrofmId(inputIdentifier: string) {
+  return inputIdentifier.split("/").pop().split("-")[0];
 }

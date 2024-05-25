@@ -12,10 +12,11 @@ The action will then fetch the book's metadata using and commit the change in yo
 
 Depending on the type of `identifier` you submit to the action, it will use the follow data provider.
 
-| Identifier | Data provider                                                          |
-| ---------- | ---------------------------------------------------------------------- |
-| ISBN       | [@library-pals/isbn](https://www.npmjs.com/package/@library-pals/isbn) |
-| Libby URL  | [Libby](https://libbyapp.com/shelf) via metatag and HTML scraping      |
+| Identifier   | Data provider                                                          |
+| ------------ | ---------------------------------------------------------------------- |
+| ISBN         | [@library-pals/isbn](https://www.npmjs.com/package/@library-pals/isbn) |
+| Libby URL    | [Libby](https://libbyapp.com) via metatag and HTML scraping            |
+| Libro.fm URL | [Libro.fm](https://libro.fm) via metatag and HTML scraping             |
 
 ## Book lifecycle
 

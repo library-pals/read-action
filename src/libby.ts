@@ -3,13 +3,13 @@ import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
 import * as cheerio from "cheerio";
 import { OgObject } from "open-graph-scraper/dist/lib/types";
-import { formatDescription } from "./utils";
+import { formatDescription, getLibbyId } from "./utils";
 
 interface Data {
   [key: string]: string;
 }
 
-export async function getMetadata(
+export async function getLibby(
   options: BookParams
 ): Promise<CleanBook | undefined> {
   const {
@@ -34,7 +34,7 @@ export async function getMetadata(
     };
     const { result, html } = await ogs(ogsOptions);
 
-    const libbyIdentifier = inputIdentifier.split("/").pop() as string;
+    const libbyIdentifier = getLibbyId(inputIdentifier) as string;
     const parsedHtmlMetadata = parseLibbyPage(html);
     const parsedResultMetadata = parseResult(result);
 

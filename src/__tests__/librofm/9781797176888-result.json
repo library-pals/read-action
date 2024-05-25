@@ -1,0 +1,1084 @@
+{
+  "ogSiteName": "Libro.fm",
+  "ogTitle": "The Ministry of Time Audiobook on Libro.fm",
+  "ogDescription": "NEW YORK TIMES BESTSELLER A GOOD MORNING AMERICA BOOK CLUB PICK “This summer’s hottest debut.” —Cosmopolitan • “Witty, sexy escapist fiction [that] packs a substantial punch...It’s a smart, gripping work that’s also a feast for the senses...Fresh and thrilling.” —Los Angeles Times • “Electric...I loved every second.” —Emily Henry “Utterly...",
+  "ogType": "website",
+  "twitterCard": "summary_large_image",
+  "twitterSite": "@librofm",
+  "twitterCreator": "@librofm",
+  "twitterTitle": "The Ministry of Time Audiobook on Libro.fm",
+  "twitterDescription": "NEW YORK TIMES BESTSELLER A GOOD MORNING AMERICA BOOK CLUB PICK “This summer’s hottest debut.” —Cosmopolitan • “Witty, sexy escapist fiction [that] packs a substantial punch...It’s a smart, gripping work that’s also a feast for the senses...Fresh and thrilling.” —Los Angeles Times • “Electric...I loved every second.” —Emily Henry “Utterly...",
+  "ogUrl": "https://libro.fm/audiobooks/9781797176888-the-ministry-of-time",
+  "ogImage": [
+    {
+      "url": "https://covers.libro.fm/9781797176888_1120.jpg",
+      "type": "jpg"
+    }
+  ],
+  "twitterImage": [
+    {
+      "url": "https://covers.libro.fm/9781797176888_1120.jpg"
+    }
+  ],
+  "ogAudioSecureURL": "https://samples.libro.fm/9781797176888_sample.m4a",
+  "ogLocale": "en",
+  "favicon": "/assets/icons/favicon-8bf44113179d05cf45f50c0fa2a6294cb3cbcb4bf00f3948ee60fd619a45004e.ico",
+  "charset": "utf-8",
+  "jsonLD": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Audiobook",
+      "@id": "https://libro.fm/audiobooks/9781797176888",
+      "url": "https://libro.fm/audiobooks/9781797176888",
+      "bookFormat": "AudiobookFormat",
+      "name": "The Ministry of Time",
+      "description": "<b><i>NEW YORK TIMES</i></b><b> BESTSELLER</b><br> <b>A GOOD MORNING AMERICA BOOK CLUB PICK</b><br> <br><b>“This summer’s hottest debut.” —<i>Cosmopolitan </i>• “Witty, sexy escapist fiction [that] packs a substantial punch...It’s a smart, gripping work that’s also a feast for the senses...Fresh and thrilling.” —<i>Los Angeles Times </i>• “Electric...I loved every second.” —Emily Henry</b><br> <br><b>“Utterly winning...Imagine if <i>The Time Traveler’s Wife </i>had an affair with <i>A Gentleman in Moscow</i>...Readers, I envy you: There’s a smart, witty novel in your future.” —Ron Charles, <i>The Washington Post</i></b><br> <br><b>A time travel romance, a spy thriller, a workplace comedy, and an ingenious exploration of the nature of power and the potential for love to change it all: Welcome to <i>The Ministry of Time</i>, the exhilarating debut novel by Kaliane Bradley.</b><br><br>In the near future, a civil servant is offered the salary of her dreams and is, shortly afterward, told what project she’ll be working on. A recently established government ministry is gathering “expats” from across history to establish whether time travel is feasible—for the body, but also for the fabric of space-time.<br> <br>She is tasked with working as a “bridge”: living with, assisting, and monitoring the expat known as “1847” or Commander Graham Gore. As far as history is concerned, Commander Gore died on Sir John Franklin’s doomed 1845 expedition to the Arctic, so he’s a little disoriented to be living with an unmarried woman who regularly shows her calves, surrounded by outlandish concepts such as “washing machines,” “Spotify,” and “the collapse of the British Empire.” But with an appetite for discovery, a seven-a-day cigarette habit, and the support of a charming and chaotic cast of fellow expats, he soon adjusts.<br> <br>Over the next year, what the bridge initially thought would be, at best, a horrifically uncomfortable roommate dynamic, evolves into something much deeper. By the time the true shape of the Ministry’s project comes to light, the bridge has fallen haphazardly, fervently in love, with consequences she never could have imagined. Forced to confront the choices that brought them together, the bridge must finally reckon with how—and whether she believes—what she does next can change the future.<br> <br>An exquisitely original and feverishly fun fusion of genres and ideas, <i>The Ministry of Time </i>asks: What does it mean to defy history, when history is living in your house? Kaliane Bradley’s answer is a blazing, unforgettable testament to what we owe each other in a changing world.",
+      "isbn": "9781797176888",
+      "image": "https://covers.libro.fm/9781797176888_1120.jpg",
+      "abridged": "false",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Kaliane Bradley"
+        }
+      ],
+      "readBy": [
+        {
+          "@type": "Person",
+          "name": "George Weightman"
+        },
+        {
+          "@type": "Person",
+          "name": "Katie Leung"
+        }
+      ],
+      "publisher": "Simon & Schuster Audio",
+      "datePublished": "2024-05-07",
+      "inLanguage": "en",
+      "duration": "PT10H22M45S",
+      "regionsAllowed": [
+        "AE",
+        "AF",
+        "AO",
+        "AQ",
+        "AR",
+        "AS",
+        "AW",
+        "AZ",
+        "BA",
+        "BF",
+        "BH",
+        "BI",
+        "BJ",
+        "BL",
+        "BO",
+        "BQ",
+        "BR",
+        "CA",
+        "CD",
+        "CF",
+        "CI",
+        "CL",
+        "CN",
+        "CO",
+        "CR",
+        "CU",
+        "CV",
+        "CW",
+        "DJ",
+        "DO",
+        "DZ",
+        "EC",
+        "EG",
+        "EH",
+        "ER",
+        "ET",
+        "FM",
+        "GA",
+        "GL",
+        "GN",
+        "GQ",
+        "GT",
+        "GU",
+        "GW",
+        "HK",
+        "HN",
+        "HT",
+        "ID",
+        "IR",
+        "JP",
+        "KG",
+        "KH",
+        "KM",
+        "KP",
+        "KR",
+        "KZ",
+        "LA",
+        "LB",
+        "LR",
+        "LY",
+        "MA",
+        "MF",
+        "MG",
+        "MH",
+        "MK",
+        "ML",
+        "MN",
+        "MO",
+        "MP",
+        "MR",
+        "MX",
+        "NE",
+        "NI",
+        "NP",
+        "OM",
+        "PA",
+        "PE",
+        "PH",
+        "PR",
+        "PS",
+        "PW",
+        "PY",
+        "QA",
+        "SA",
+        "SM",
+        "SN",
+        "SR",
+        "SS",
+        "SV",
+        "SX",
+        "SY",
+        "TD",
+        "TG",
+        "TH",
+        "TJ",
+        "TL",
+        "TM",
+        "TN",
+        "TW",
+        "UA",
+        "UM",
+        "US",
+        "UY",
+        "UZ",
+        "VE",
+        "VI",
+        "VN"
+      ],
+      "offers": {
+        "@type": "AggregateOffer",
+        "availability": "https://schema.org/InStock",
+        "lowPrice": "14.99",
+        "highPrice": "27.29",
+        "priceCurrency": "USD"
+      },
+      "workExample": {
+        "@type": "Book",
+        "@id": "https://libro.fm/audiobooks/9781797176888-the-ministry-of-time",
+        "isbn": "9781797176888",
+        "bookFormat": "https://schema.org/AudiobookFormat",
+        "bookEdition": "Audiobook",
+        "inLanguage": "en",
+        "abridged": "false",
+        "author": [
+          {
+            "@type": "Person",
+            "name": "Kaliane Bradley"
+          }
+        ],
+        "url": "https://libro.fm/audiobooks/9781797176888-the-ministry-of-time",
+        "publisher": "Simon & Schuster Audio",
+        "datePublished": "2024-05-07",
+        "potentialAction": {
+          "@type": "ReadAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://libro.fm/audiobooks/9781797176888-the-ministry-of-time",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform",
+              "http://schema.org/IOSPlatform",
+              "http://schema.org/AndroidPlatform"
+            ]
+          },
+          "expectsAcceptanceOf": [
+            {
+              "@type": "Offer",
+              "category": "Subscription",
+              "availability": "https://schema.org/InStock",
+              "eligibleRegion": [
+                {
+                  "@type": "Country",
+                  "name": "AE"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AF"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AO"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AQ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AS"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AW"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AZ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BF"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BI"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BJ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BL"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BO"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BQ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CD"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CF"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CI"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CL"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CO"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CU"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CV"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CW"
+                },
+                {
+                  "@type": "Country",
+                  "name": "DJ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "DO"
+                },
+                {
+                  "@type": "Country",
+                  "name": "DZ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "EC"
+                },
+                {
+                  "@type": "Country",
+                  "name": "EG"
+                },
+                {
+                  "@type": "Country",
+                  "name": "EH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "ER"
+                },
+                {
+                  "@type": "Country",
+                  "name": "ET"
+                },
+                {
+                  "@type": "Country",
+                  "name": "FM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GL"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GQ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GT"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GU"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GW"
+                },
+                {
+                  "@type": "Country",
+                  "name": "HK"
+                },
+                {
+                  "@type": "Country",
+                  "name": "HN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "HT"
+                },
+                {
+                  "@type": "Country",
+                  "name": "ID"
+                },
+                {
+                  "@type": "Country",
+                  "name": "IR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "JP"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KG"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KP"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KZ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "LA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "LB"
+                },
+                {
+                  "@type": "Country",
+                  "name": "LR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "LY"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MF"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MG"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MK"
+                },
+                {
+                  "@type": "Country",
+                  "name": "ML"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MO"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MP"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MX"
+                },
+                {
+                  "@type": "Country",
+                  "name": "NE"
+                },
+                {
+                  "@type": "Country",
+                  "name": "NI"
+                },
+                {
+                  "@type": "Country",
+                  "name": "NP"
+                },
+                {
+                  "@type": "Country",
+                  "name": "OM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PE"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PS"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PW"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PY"
+                },
+                {
+                  "@type": "Country",
+                  "name": "QA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SS"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SV"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SX"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SY"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TD"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TG"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TJ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TL"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TW"
+                },
+                {
+                  "@type": "Country",
+                  "name": "UA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "UM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "US"
+                },
+                {
+                  "@type": "Country",
+                  "name": "UY"
+                },
+                {
+                  "@type": "Country",
+                  "name": "UZ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "VE"
+                },
+                {
+                  "@type": "Country",
+                  "name": "VI"
+                },
+                {
+                  "@type": "Country",
+                  "name": "VN"
+                }
+              ]
+            },
+            {
+              "@type": "Offer",
+              "category": "Purchase",
+              "price": "27.29",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "eligibleRegion": [
+                {
+                  "@type": "Country",
+                  "name": "AE"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AF"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AO"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AQ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AS"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AW"
+                },
+                {
+                  "@type": "Country",
+                  "name": "AZ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BF"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BI"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BJ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BL"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BO"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BQ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "BR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CD"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CF"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CI"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CL"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CO"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CU"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CV"
+                },
+                {
+                  "@type": "Country",
+                  "name": "CW"
+                },
+                {
+                  "@type": "Country",
+                  "name": "DJ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "DO"
+                },
+                {
+                  "@type": "Country",
+                  "name": "DZ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "EC"
+                },
+                {
+                  "@type": "Country",
+                  "name": "EG"
+                },
+                {
+                  "@type": "Country",
+                  "name": "EH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "ER"
+                },
+                {
+                  "@type": "Country",
+                  "name": "ET"
+                },
+                {
+                  "@type": "Country",
+                  "name": "FM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GL"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GQ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GT"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GU"
+                },
+                {
+                  "@type": "Country",
+                  "name": "GW"
+                },
+                {
+                  "@type": "Country",
+                  "name": "HK"
+                },
+                {
+                  "@type": "Country",
+                  "name": "HN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "HT"
+                },
+                {
+                  "@type": "Country",
+                  "name": "ID"
+                },
+                {
+                  "@type": "Country",
+                  "name": "IR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "JP"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KG"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KP"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "KZ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "LA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "LB"
+                },
+                {
+                  "@type": "Country",
+                  "name": "LR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "LY"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MF"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MG"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MK"
+                },
+                {
+                  "@type": "Country",
+                  "name": "ML"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MO"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MP"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "MX"
+                },
+                {
+                  "@type": "Country",
+                  "name": "NE"
+                },
+                {
+                  "@type": "Country",
+                  "name": "NI"
+                },
+                {
+                  "@type": "Country",
+                  "name": "NP"
+                },
+                {
+                  "@type": "Country",
+                  "name": "OM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PE"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PS"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PW"
+                },
+                {
+                  "@type": "Country",
+                  "name": "PY"
+                },
+                {
+                  "@type": "Country",
+                  "name": "QA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SR"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SS"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SV"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SX"
+                },
+                {
+                  "@type": "Country",
+                  "name": "SY"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TD"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TG"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TH"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TJ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TL"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TN"
+                },
+                {
+                  "@type": "Country",
+                  "name": "TW"
+                },
+                {
+                  "@type": "Country",
+                  "name": "UA"
+                },
+                {
+                  "@type": "Country",
+                  "name": "UM"
+                },
+                {
+                  "@type": "Country",
+                  "name": "US"
+                },
+                {
+                  "@type": "Country",
+                  "name": "UY"
+                },
+                {
+                  "@type": "Country",
+                  "name": "UZ"
+                },
+                {
+                  "@type": "Country",
+                  "name": "VE"
+                },
+                {
+                  "@type": "Country",
+                  "name": "VI"
+                },
+                {
+                  "@type": "Country",
+                  "name": "VN"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "requestUrl": "https://libro.fm/audiobooks/9781797176888-the-ministry-of-time",
+  "success": true
+}

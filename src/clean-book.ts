@@ -22,6 +22,7 @@ export type CleanBook = {
   identifiers: {
     isbn?: string;
     libby?: string;
+    librofm?: string;
   };
   notes?: string;
   status: BookStatus;
