@@ -39791,16 +39791,20 @@ function sortByDate(array) {
             return 0;
     });
 }
-/** remove wrapped quotes */
-function removeWrappedQuotes(str) {
+function formatDescription(str) {
+    if (!str)
+        return "";
+    str = str
+        .replace(/(\r\n|\n|\r)/gm, " ") // remove line breaks
+        .replace(/\s+/g, " ") // remove extra spaces
+        .trim();
     if (str.startsWith('"') && str.endsWith('"')) {
-        return str.substring(1, str.length - 1);
+        return str.slice(1, -1);
     }
     if (str.startsWith('"') && str.endsWith('"--')) {
-        return `${str.substring(1, str.length - 3)}…`;
+        return `${str.slice(1, -3)}…`;
     }
-    else
-        return str;
+    return str;
 }
 function localDate() {
     // "fr-ca" will result YYYY-MM-DD formatting
@@ -40167,7 +40171,7 @@ function cleanBook(options, book) {
         }),
         ...(publishedDate && { publishedDate }),
         ...(description && {
-            description: removeWrappedQuotes(description),
+            description: formatDescription(description),
         }),
         ...(pageCount ? { pageCount } : { pageCount: 0 }),
         ...(printType && { printType }),
