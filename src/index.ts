@@ -1,11 +1,10 @@
-import { exportVariable, getInput, setFailed, summary } from "@actions/core";
+import { exportVariable, getInput, setFailed } from "@actions/core";
 import * as github from "@actions/github";
 import Isbn from "@library-pals/isbn";
 import returnWriteFile from "./write-file";
 import { getBookStatus, sortByDate, toArray } from "./utils";
 import { checkOutBook } from "./checkout-book";
 import { BookStatus } from "./clean-book";
-import { summaryMarkdown } from "./summary";
 import returnReadFile from "./read-file";
 import { updateBook } from "./update-book";
 import { validatePayload } from "./validate-payload";
@@ -106,7 +105,6 @@ export async function read() {
     library = sortByDate(library);
 
     await returnWriteFile(filename, library);
-    await summary.addRaw(summaryMarkdown(library, date, bookStatus)).write();
   } catch (error) {
     setFailed(error);
   }
