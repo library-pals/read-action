@@ -95,10 +95,15 @@ export function toArray(tags: string): BookParams["tags"] {
   return tags.split(",").map((f) => f.trim());
 }
 
-export function lookUp(book: CleanBook, bookIsbn: string): boolean {
-  const isLibby = bookIsbn.startsWith("https://share.libbyapp.com/");
+export function lookUp(
+  book: CleanBook,
+  inputIdentifier: BookParams["inputIdentifier"]
+): boolean {
+  const isLibby = inputIdentifier.startsWith("https://share.libbyapp.com/");
   if (isLibby) {
-    return book.identifier?.libby === bookIsbn.split("/").pop();
+    return book.identifier?.libby === inputIdentifier.split("/").pop();
   }
-  return book.isbn === bookIsbn || book.identifier?.isbn === bookIsbn;
+  return (
+    book.isbn === inputIdentifier || book.identifier?.isbn === inputIdentifier
+  );
 }

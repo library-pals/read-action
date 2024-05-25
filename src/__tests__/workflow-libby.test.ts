@@ -60,7 +60,7 @@ describe("workflow", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "https://share.libbyapp.com/title/5004990",
+            identifier: "https://share.libbyapp.com/title/5004990",
             "book-status": "want to read",
           },
         },
@@ -119,7 +119,7 @@ describe("workflow", () => {
             "  AN INSTANT NEW YORK TIMES BESTSELLERA New York Times Notable Book of the YearWINNER of the NBCC John Leonard Prize, the Kirkus Prize, the Center for Fiction First Novel Prize, the Dylan Thomas Prize, and the VCU Cabell First Novelist AwardOne of Barack Obama’s Favorite Books of 2020   A BEST BOOK OF THE YEAR: NPR, The New York Times Book Review, O Magazine, Vanity Fair, Los Angeles Times, Glamour, Shondaland,...",
           format: "ebook",
           identifier: {
-            isbn: "9780374910334",
+            identifier: "9780374910334",
             libby: "5004990",
           },
           image: "book-5004990.png",
@@ -139,7 +139,7 @@ describe("workflow", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "https://share.libbyapp.com/title/5004990",
+            identifier: "https://share.libbyapp.com/title/5004990",
             "book-status": "started",
             date: "2022-10-02",
           },
@@ -169,7 +169,7 @@ describe("workflow", () => {
             "description": "  AN INSTANT NEW YORK TIMES BESTSELLERA New York Times Notable Book of the YearWINNER of the NBCC John Leonard Prize, the Kirkus Prize, the Center for Fiction First Novel Prize, the Dylan Thomas Prize, and the VCU Cabell First Novelist AwardOne of Barack Obama’s Favorite Books of 2020   A BEST BOOK OF THE YEAR: NPR, The New York Times Book Review, O Magazine, Vanity Fair, Los Angeles Times, Glamour, Shondaland,...",
             "format": "ebook",
             "identifier": {
-              "isbn": "9780374910334",
+              "identifier": "9780374910334",
               "libby": "5004990",
             },
             "image": "book-5004990.png",
@@ -205,7 +205,7 @@ describe("workflow", () => {
             "AN INSTANT NEW YORK TIMES BESTSELLER A New York Times Notable Book of the YearWINNER of the NBCC John Leonard Prize, the Kirkus Prize, the Center for Fiction First Novel Prize, the Dylan Thomas Prize, and the VCU Cabell First Novelist AwardOne of Barack Obama’s Favorite Books of 2020 A BEST BOOK OF THE YEAR: NPR, The New York Times Book Review, O Magazine, Vanity Fair, Los Angeles Times, Glamour, Shondaland,...",
           format: "ebook",
           identifier: {
-            isbn: "9780374910334",
+            identifier: "9780374910334",
             libby: "5004990",
           },
           image: "book-5004990.png",
@@ -225,7 +225,7 @@ describe("workflow", () => {
       value: {
         payload: {
           inputs: {
-            isbn: "https://share.libbyapp.com/title/5004990",
+            identifier: "https://share.libbyapp.com/title/5004990",
             "book-status": "finished",
             date: "2022-10-03",
             rating: "⭐️⭐️⭐️⭐️⭐️",
@@ -257,7 +257,7 @@ describe("workflow", () => {
             "description": "AN INSTANT NEW YORK TIMES BESTSELLER A New York Times Notable Book of the YearWINNER of the NBCC John Leonard Prize, the Kirkus Prize, the Center for Fiction First Novel Prize, the Dylan Thomas Prize, and the VCU Cabell First Novelist AwardOne of Barack Obama’s Favorite Books of 2020 A BEST BOOK OF THE YEAR: NPR, The New York Times Book Review, O Magazine, Vanity Fair, Los Angeles Times, Glamour, Shondaland,...",
             "format": "ebook",
             "identifier": {
-              "isbn": "9780374910334",
+              "identifier": "9780374910334",
               "libby": "5004990",
             },
             "image": "book-5004990.png",

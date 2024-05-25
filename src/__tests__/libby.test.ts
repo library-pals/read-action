@@ -37,7 +37,7 @@ describe("getMetadata", () => {
     });
 
     const result = await getMetadata({
-      bookIsbn: "test",
+      inputIdentifier: "test",
       dateType: {},
       bookStatus: "started",
       filename: "test.json",
@@ -79,7 +79,7 @@ describe("getMetadata", () => {
     });
 
     const result = await getMetadata({
-      bookIsbn: "https://share.libbyapp.com/title/9575390",
+      inputIdentifier: "https://share.libbyapp.com/title/9575390",
       dateType: {},
       bookStatus: "started",
       tags: ["Test Tag"],
@@ -126,7 +126,7 @@ describe("getMetadata", () => {
     });
 
     const result = await getMetadata({
-      bookIsbn: "https://share.libbyapp.com/title/9575390",
+      inputIdentifier: "https://share.libbyapp.com/title/9575390",
       dateType: {},
       bookStatus: "started",
       setImage: true,
@@ -170,7 +170,7 @@ describe("getMetadata", () => {
     });
 
     await expect(
-      getMetadata({ bookIsbn: "test" })
+      getMetadata({ inputIdentifier: "test" })
     ).rejects.toThrowErrorMatchingInlineSnapshot(
       `"Cannot read properties of undefined (reading 'error')"`
     );
@@ -188,7 +188,7 @@ describe("getMetadata", () => {
     });
 
     const result = await getMetadata({
-      bookIsbn: "test",
+      inputIdentifier: "test",
       dateType: {},
       bookStatus: "started",
       tags: ["Test Tag"],
@@ -229,7 +229,7 @@ describe("getMetadata", () => {
     });
 
     const result = await getMetadata({
-      bookIsbn: "test",
+      inputIdentifier: "test",
       dateType: {},
       bookStatus: "started",
       tags: ["Test Tag"],

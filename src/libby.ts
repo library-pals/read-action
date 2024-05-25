@@ -12,11 +12,18 @@ interface Data {
 export async function getMetadata(
   options: BookParams
 ): Promise<CleanBook | undefined> {
-  const { notes, bookIsbn, dateType, bookStatus, rating, tags, setImage } =
-    options;
+  const {
+    notes,
+    inputIdentifier,
+    dateType,
+    bookStatus,
+    rating,
+    tags,
+    setImage,
+  } = options;
   try {
     const ogsOptions = {
-      url: bookIsbn,
+      url: inputIdentifier,
       customMetaTags: [
         {
           multiple: true,
@@ -27,7 +34,7 @@ export async function getMetadata(
     };
     const { result, html } = await ogs(ogsOptions);
 
-    const libbyIdentifier = bookIsbn.split("/").pop();
+    const libbyIdentifier = inputIdentifier.split("/").pop();
     const parsedHtmlMetadata = parseLibbyPage(html);
     const parsedResultMetadata = parseResult(result);
 
@@ -45,7 +52,7 @@ export async function getMetadata(
       ...(setImage && {
         image: `book-${libbyIdentifier}.png`,
       }),
-      link: bookIsbn,
+      link: inputIdentifier,
       ...parsedResultMetadata,
       ...parsedHtmlMetadata,
     };

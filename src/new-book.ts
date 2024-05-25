@@ -16,7 +16,7 @@ export async function handleNewBook({
   setImage: boolean;
 }): Promise<void> {
   let newBook;
-  if (bookParams.bookIsbn.startsWith("http")) {
+  if (bookParams.inputIdentifier.startsWith("https://share.libbyapp.com/")) {
     newBook = await getMetadata(bookParams);
   } else {
     newBook = await getBook(bookParams);
