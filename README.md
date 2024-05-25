@@ -4,7 +4,18 @@
 
 This GitHub action tracks the books that you read by updating a JSON file in your repository. Pair it with the [iOS Shortcut](shortcut/README.md) to automatically trigger the action or click **Run workflow** from the Actions tab to submit details about the book.
 
-[Create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with information about the book. The action will then fetch the book's metadata using [@library-pals/isbn](https://www.npmjs.com/package/@library-pals/isbn) and commit the change in your repository, always sorting by the date you finished the book.
+[Create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with information about the book.
+
+The action will then fetch the book's metadata using and commit the change in your repository, always sorting by the date you finished the book.
+
+## Data providers
+
+Depending on the type of `identifier` you submit to the action, it will use the follow data provider.
+
+| Identifier | Data provider                                                          |
+| ---------- | ---------------------------------------------------------------------- |
+| ISBN       | [@library-pals/isbn](https://www.npmjs.com/package/@library-pals/isbn) |
+| Libby URL  | [Libby](https://libbyapp.com/shelf) via metatag and HTML scraping      |
 
 ## Book lifecycle
 
@@ -326,8 +337,6 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
-
-
 
 ## Action outputs
 
