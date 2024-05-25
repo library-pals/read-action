@@ -6,9 +6,9 @@ export function checkOutBook(
   bookParams: BookParams,
   library: CleanBook[]
 ): boolean {
-  const { bookIsbn } = bookParams;
+  const { inputIdentifier } = bookParams;
   if (library === undefined || library.length === 0) return false;
-  if (library.filter((book) => lookUp(book, bookIsbn)).length === 0)
+  if (library.filter((book) => lookUp(book, inputIdentifier)).length === 0)
     return false;
   else return true;
 }
