@@ -96,10 +96,9 @@ export function toArray(tags: string): BookParams["tags"] {
 }
 
 export function lookUp(book: CleanBook, bookIsbn: string): boolean {
-  return (
-    book.isbn === bookIsbn ||
-    book.identifier?.isbn === bookIsbn ||
-    (bookIsbn.split("/").length > 1 &&
-      book.identifier?.libby === bookIsbn.split("/").pop())
-  );
+  const isLibby = bookIsbn.startsWith("https://share.libbyapp.com/");
+  if (isLibby) {
+    return book.identifier?.libby === bookIsbn.split("/").pop();
+  }
+  return book.isbn === bookIsbn || book.identifier?.isbn === bookIsbn;
 }
