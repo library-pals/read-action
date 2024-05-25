@@ -40,6 +40,10 @@ export async function handleNewBook({
 
   if (newBook.thumbnail) {
     exportVariable(`BookThumbOutput`, newBook.image);
-    exportVariable(`BookThumb`, newBook.thumbnail);
+    exportVariable(`BookThumb`, encode(newBook.thumbnail));
   }
+}
+
+function encode(url: string): string {
+  return encodeURI(url);
 }
