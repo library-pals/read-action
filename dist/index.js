@@ -39846,7 +39846,7 @@ function checkOutBook(bookParams, library) {
     const { inputIdentifier } = bookParams;
     if (library === undefined || library.length === 0)
         return false;
-    if (library.filter((f) => f.isbn === inputIdentifier).length === 0)
+    if (library.filter((f) => f.identifier === inputIdentifier).length === 0)
         return false;
     else
         return true;
@@ -39871,7 +39871,7 @@ async function returnReadFile(fileName) {
 async function updateBook(bookParams, currentBooks) {
     const { inputIdentifier, dateType, bookStatus, notes, rating, tags } = bookParams;
     return currentBooks.reduce((arr, book) => {
-        if (book.isbn === inputIdentifier) {
+        if (book.identifier === inputIdentifier) {
             (0,core.exportVariable)("BookTitle", book.title);
             book = {
                 ...book,
@@ -39919,7 +39919,7 @@ function cleanBook(options, book) {
     checkMetadata(book, inputIdentifier);
     const { title, authors, publishedDate, description, categories, pageCount, printType, thumbnail, language, link, } = book;
     return {
-        isbn: inputIdentifier,
+        identifier: inputIdentifier,
         ...dateType,
         status: bookStatus,
         ...(rating && { rating }),
@@ -40013,13 +40013,13 @@ async function handleNewBook({ bookParams, library, bookStatus, setImage, }) {
     const newBook = await getBook(bookParams);
     library.push(newBook);
     (0,core.exportVariable)(`BookTitle`, newBook.title);
-    const image = `book-${newBook.isbn}.png`;
+    const image = `book-${newBook.identifier}.png`;
     if (bookStatus === "started") {
         (0,core.setOutput)("nowReading", {
             title: newBook.title,
             authors: newBook.authors,
             description: newBook.description,
-            isbn: newBook.isbn,
+            identifier: newBook.identifier,
             thumbnail: newBook.thumbnail,
             ...(setImage && {
                 image,

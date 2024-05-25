@@ -18,8 +18,8 @@ export type CleanBook = {
   thumbnail?: string;
   language?: string;
   link?: string;
-  isbn?: string;
-  identifier: {
+  identifier: string;
+  identifiers: {
     isbn?: string;
     libby?: string;
   };
@@ -58,8 +58,8 @@ export default function cleanBook(options: BookParams, book: Book): CleanBook {
   } = book;
 
   return {
-    isbn: inputIdentifier,
-    identifier: {
+    identifier: inputIdentifier,
+    identifiers: {
       isbn: inputIdentifier,
     },
     ...dateType,

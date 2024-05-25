@@ -30,7 +30,6 @@ export async function handleNewBook({
       title: newBook.title,
       authors: newBook.authors,
       description: newBook.description,
-      isbn: newBook.isbn,
       identifier: newBook.identifier,
       thumbnail: newBook.thumbnail,
       ...(setImage && {
