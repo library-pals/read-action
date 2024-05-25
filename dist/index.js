@@ -39840,9 +39840,6 @@ function getBookStatus({ date, bookStatus, }) {
 function utils_toArray(tags) {
     return tags.split(",").map((f) => f.trim());
 }
-function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 ;// CONCATENATED MODULE: ./src/checkout-book.ts
 function checkOutBook(bookParams, library) {
@@ -39853,243 +39850,6 @@ function checkOutBook(bookParams, library) {
         return false;
     else
         return true;
-}
-
-;// CONCATENATED MODULE: ./src/summary-markdown.ts
-function s(num) {
-    return num === 1 ? "" : "s";
-}
-function and(array) {
-    const lf = new Intl.ListFormat("en");
-    return lf.format(array);
-}
-function mAverageDays({ dates }) {
-    if (!dates || !dates.averageFinishTime)
-        return [];
-    return [
-        `- **Average read time:** ${dates.averageFinishTime.toFixed(1)} days`,
-    ];
-}
-function mMostReadMonth({ dates }) {
-    if (!dates || dates.mostReadMonth.count == dates.leastReadMonth.count)
-        return [];
-    const { mostReadMonth, leastReadMonth } = dates;
-    return [
-        `- **Month with most books:** ${mostReadMonth.month} (${mostReadMonth.count} book${s(mostReadMonth.count)})`,
-        `- **Month with least books:** ${leastReadMonth.month} (${leastReadMonth.count} book${s(leastReadMonth.count)})`,
-    ];
-}
-function mGenre({ topGenres }) {
-    if (!topGenres || topGenres.length === 0)
-        return [];
-    return [
-        `- **Top genre${s(topGenres.length)}:** ${and(topGenres.map(({ name, count }) => `${name} (${count} book${s(count)})`))}`,
-    ];
-}
-function mSameDay({ dates }) {
-    if (!dates || !dates.finishedInOneDay.count)
-        return [];
-    const { count, books } = dates.finishedInOneDay;
-    return [
-        `- **Read in a day:** ${and(books.map((book) => `${book.title} by ${book.authors}`))} (${count} book${s(count)})`,
-    ];
-}
-function mAverageLength({ length }) {
-    if (!length || !length.averageBookLength)
-        return [];
-    const { averageBookLength, longestBook, shortestBook, totalPages } = length;
-    return [
-        `- **Average book length:** ${averageBookLength?.toLocaleString()} pages`,
-        `- **Longest book:** ${longestBook.title} by ${longestBook.authors} (${longestBook.pageCount?.toLocaleString()} pages)`,
-        `- **Shortest book:** ${shortestBook.title} by ${shortestBook.authors} (${shortestBook.pageCount?.toLocaleString()} pages)`,
-        `- **Total pages read:** ${totalPages?.toLocaleString()}`,
-    ];
-}
-function mTopAuthors({ topAuthors }) {
-    if (!topAuthors || topAuthors.length === 0)
-        return [];
-    return [
-        `- **Top author${s(topAuthors.length)}:** ${and(topAuthors.map(({ name, count }) => `${name} (${count} book${s(count)})`))}`,
-    ];
-}
-function mTags({ tags }) {
-    if (!tags || tags.length === 0)
-        return [];
-    return [
-        `- **Top tag${s(tags.length)}:** ${and(tags.map(({ name, count }) => `${name} (${count} book${s(count)})`))}`,
-    ];
-}
-
-;// CONCATENATED MODULE: ./src/summary.ts
-
-
-function summaryMarkdown(library, date, bookStatus) {
-    const { BookTitle } = process.env;
-    return `# Updated library
-
-${capitalize(`${bookStatus}`)}: “${BookTitle}”
-${bookStatus === "finished" && date
-        ? yearReviewSummary(library, date.slice(0, 4))
-        : ""}
-`;
-}
-function yearReviewSummary(books, year) {
-    const obj = yearReview(books, year);
-    if (obj === undefined)
-        return undefined;
-    const summary = [
-        "",
-        `## ${year} reading summary`,
-        "",
-        `- **Total books:** ${obj.count}`,
-        ...mAverageDays(obj),
-        ...mMostReadMonth(obj),
-        ...mGenre(obj),
-        ...mSameDay(obj),
-        ...mAverageLength(obj),
-        ...mTopAuthors(obj),
-        ...mTags(obj),
-    ];
-    return summary.join("\n");
-}
-function yearReview(books, year) {
-    if (books.length === 0)
-        return undefined;
-    const booksThisYear = bBooksThisYear(books, year);
-    const count = booksThisYear.length;
-    if (count === 0)
-        return undefined;
-    if (count < 5) {
-        return {
-            year,
-            count,
-        };
-    }
-    const longestBook = booksThisYear[0];
-    const shortestBook = booksThisYear[count - 1];
-    const topGenres = findTopItems(booksThisYear, "categories", toLowerCase);
-    const groupByMonth = bGroupByMonth(booksThisYear);
-    const mostReadMonth = getKeyFromBiggestValue(groupByMonth);
-    const leastReadMonth = getKeyFromSmallestValue(groupByMonth);
-    const finishedInOneDay = booksThisYear.filter((b) => b.dateStarted === b.dateFinished);
-    const topAuthors = findTopItems(booksThisYear, "authors");
-    const averageFinishTime = average(booksThisYear.filter((b) => b.finishTime).map((b) => b.finishTime));
-    const bookLengths = booksThisYear.map((b) => b.pageCount).filter((f) => f);
-    const averageBookLength = bookLengths.length > 0 ? Math.round(average(bookLengths)) : undefined;
-    const totalPages = bookLengths.reduce((total, book) => book + total, 0);
-    const tags = findTopItems(booksThisYear, "tags");
-    return {
-        year,
-        count,
-        topAuthors,
-        dates: {
-            averageFinishTime,
-            mostReadMonth: {
-                month: monthToWord[mostReadMonth],
-                count: booksThisYear.filter((f) => f.dateFinished?.startsWith(`${year}-${mostReadMonth}`)).length,
-            },
-            leastReadMonth: {
-                month: monthToWord[leastReadMonth],
-                count: booksThisYear.filter((f) => f.dateFinished?.startsWith(`${year}-${leastReadMonth}`)).length,
-            },
-            finishedInOneDay: {
-                count: finishedInOneDay.length,
-                books: finishedInOneDay.map(simpleData),
-            },
-        },
-        topGenres,
-        length: {
-            longestBook: simpleData(longestBook),
-            shortestBook: simpleData(shortestBook),
-            averageBookLength,
-            totalPages,
-        },
-        tags,
-    };
-}
-function simpleData(book) {
-    return {
-        title: `“${book.title}”`,
-        authors: book.authors?.join(", "),
-        isbn: book.isbn,
-        pageCount: book.pageCount,
-    };
-}
-function getKeyFromBiggestValue(object) {
-    return Object.keys(object).reduce((a, b) => (object[a] > object[b] ? a : b));
-}
-function getKeyFromSmallestValue(object) {
-    return Object.keys(object).reduce((a, b) => (object[a] > object[b] ? b : a));
-}
-function groupBy(array, key) {
-    return array
-        .filter((b) => b[key])
-        .map((b) => b[key])
-        .reduce((obj, k) => {
-        if (!obj[k])
-            obj[k] = 0;
-        obj[k]++;
-        return obj;
-    }, {});
-}
-const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
-function bBooksThisYear(books, year) {
-    return books
-        .filter((f) => f.dateFinished?.startsWith(year))
-        .map((b) => ({
-        ...b,
-        finishTime: b.dateFinished !== undefined && b.dateStarted !== undefined
-            ? Math.floor((Date.parse(b.dateFinished) - Date.parse(b.dateStarted)) /
-                86400000)
-            : undefined,
-    }))
-        .sort((a, b) => b.pageCount && a.pageCount ? b.pageCount - a.pageCount : -1);
-}
-function bGroupByMonth(booksThisYear) {
-    return groupBy(booksThisYear.map((b) => {
-        const match = b.dateFinished && b.dateFinished.match(/\d\d\d\d-(\d\d)-\d\d/);
-        return {
-            ...b,
-            ...(b.dateFinished &&
-                match && {
-                dateFinished: match[1],
-            }),
-        };
-    }), "dateFinished");
-}
-const monthToWord = {
-    "01": "January",
-    "02": "February",
-    "03": "March",
-    "04": "April",
-    "05": "May",
-    "06": "June",
-    "07": "July",
-    "08": "August",
-    "09": "September",
-    "10": "October",
-    "11": "November",
-    "12": "December",
-};
-function findTopItems(booksThisYear, key, valueTransform) {
-    const items = booksThisYear
-        .map((book) => book[key])
-        .flat()
-        .filter((f) => f)
-        .map((f) => (valueTransform ? valueTransform(f) : f))
-        .reduce((obj, item) => {
-        if (!obj[item])
-            obj[item] = 0;
-        obj[item]++;
-        return obj;
-    }, {});
-    const itemsArr = Object.keys(items)
-        .map((a) => ({ name: a, count: items[a] }))
-        .filter((f) => f.count > 1);
-    return itemsArr.sort((a, b) => b.count - a.count).slice(0, 3);
-}
-function toLowerCase(s) {
-    return s.toLowerCase().trim();
 }
 
 ;// CONCATENATED MODULE: ./src/read-file.ts
@@ -40283,7 +40043,6 @@ async function handleNewBook({ bookParams, library, bookStatus, setImage, }) {
 
 
 
-
 async function read() {
     try {
         // Get book payload
@@ -40327,7 +40086,6 @@ async function read() {
         }
         library = sortByDate(library);
         await returnWriteFile(filename, library);
-        await core.summary.addRaw(summaryMarkdown(library, date, bookStatus)).write();
     }
     catch (error) {
         (0,core.setFailed)(error);
