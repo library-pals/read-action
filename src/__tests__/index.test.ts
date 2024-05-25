@@ -454,6 +454,44 @@ describe("index", () => {
     );
   });
 
+  test("error, missing bad identifier", async () => {
+    const setFailedSpy = jest.spyOn(core, "setFailed");
+    Object.defineProperty(github, "context", {
+      value: {
+        payload: {
+          inputs: {
+            identifier: "978",
+            "book-status": "finished",
+            date: "2021-09-26",
+          },
+        },
+      },
+    });
+    await read();
+    expect(setFailedSpy).toHaveBeenCalledWith(
+      'Invalid `identifier` in payload: 978. Must be an ISBN or start with "https://share.libbyapp.com/"'
+    );
+  });
+
+  test("error, missing bad identifier url", async () => {
+    const setFailedSpy = jest.spyOn(core, "setFailed");
+    Object.defineProperty(github, "context", {
+      value: {
+        payload: {
+          inputs: {
+            identifier: "http://not-libby.com/yadda-yadda",
+            "book-status": "finished",
+            date: "2021-09-26",
+          },
+        },
+      },
+    });
+    await read();
+    expect(setFailedSpy).toHaveBeenCalledWith(
+      'Invalid `identifier` in payload: http://not-libby.com/yadda-yadda. Must be an ISBN or start with "https://share.libbyapp.com/"'
+    );
+  });
+
   test("error, setFailed", async () => {
     const setFailedSpy = jest.spyOn(core, "setFailed");
     Object.defineProperty(github, "context", {
