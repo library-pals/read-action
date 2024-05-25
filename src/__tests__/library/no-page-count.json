@@ -6,7 +6,7 @@
     "title": "Book 1",
     "authors": ["Other Author Name"],
     "publishedDate": "2021-11-16",
-    "printType": "BOOK",
+    "format": "BOOK",
     "categories": ["Fiction"],
     "language": "en"
   },
@@ -17,7 +17,7 @@
     "title": "Book 2",
     "authors": ["Author Name"],
     "publishedDate": "2021-11-16",
-    "printType": "BOOK",
+    "format": "BOOK",
     "categories": ["Fiction"],
     "language": "en"
   },
@@ -28,7 +28,7 @@
     "title": "Book 3",
     "authors": ["Author Name"],
     "publishedDate": "2021-11-16",
-    "printType": "BOOK",
+    "format": "BOOK",
     "categories": ["Fiction"],
     "language": "en"
   },
@@ -39,7 +39,7 @@
     "title": "Book 4",
     "authors": ["Author Name"],
     "publishedDate": "2021-11-16",
-    "printType": "BOOK",
+    "format": "BOOK",
     "categories": ["Fiction"],
     "language": "en"
   },
@@ -50,7 +50,7 @@
     "title": "Book 5",
     "authors": ["Other Author Name"],
     "publishedDate": "2021-11-16",
-    "printType": "BOOK",
+    "format": "BOOK",
     "categories": ["Fiction"],
     "language": "en"
   }
