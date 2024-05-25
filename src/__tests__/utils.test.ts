@@ -17,6 +17,7 @@ it("formatDescription", () => {
   expect(formatDescription('"this part will get cut off"--')).toBe(
     "this part will get cut off…"
   );
+  expect(formatDescription("<p>hello</p>")).toBe("hello");
 });
 
 it("isIsbn", () => {
