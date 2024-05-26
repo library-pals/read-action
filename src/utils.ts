@@ -32,7 +32,7 @@ export function formatDescription(str?: string) {
   if (!str) return "";
 
   // remove HTML tags
-  str = str.replace(/<[^>]*>?/gm, "");
+  str = str.replace(/<\/?[^>]+(>|$)/gm, "");
 
   // Remove common phrases, case insensitive
   const phrases = [
