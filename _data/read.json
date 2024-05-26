@@ -416,5 +416,25 @@
     "publisher": "Simon & Schuster Audio",
     "publishedDate": "2024-05-07",
     "dateFinished": "2024-05-26"
+  },
+  {
+    "identifier": "9781478975311",
+    "identifiers": {
+      "librofm": "9781478975311",
+      "isbn": "9781478975311"
+    },
+    "dateAdded": "2024-05-25",
+    "status": "want to read",
+    "rating": "unrated",
+    "link": "https://libro.fm/audiobooks/9781478975311-circe",
+    "format": "audiobook",
+    "title": "Circe",
+    "description": "This #1 is a \"bold and subversive retelling of the goddess's story\" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, TheNew York Times). In the house of Helios, god of the sun and mightiest of the Titans, a daughter is born. But Circe is a strange child -- not powerful, like her father, nor viciously alluring like her mother. Turning to the world of mortals for companionship, she discovers that she does possess power -- the power of witchcraft, which can transform rivals into monsters and menace the gods themselves. Threatened, Zeus banishes her to a deserted island, where she hones her occult craft, tames wild beasts and crosses paths with many of the most famous figures in all of mythology, including the Minotaur, Daedalus and his doomed son Icarus, the murderous Medea, and, of course, wily Odysseus. But there is danger, too, for a woman who stands alone, and Circe unwittingly draws the wrath of both men and gods, ultimately finding herself pitted against one of the most terrifying and vengeful of the Olympians. To protect what she loves most, Circe must summon all her strength and choose, once and for all, whether she belongs with the gods she is born from, or the mortals she has come to love. With unforgettably vivid characters, mesmerizing language, and page-turning suspense, Circe is a triumph of storytelling, an intoxicating epic of family rivalry, palace intrigue, love and loss, as well as a celebration of indomitable female strength in a man's world.#1 -- named one of the Best Books of the Year by NPR, the Washington Post, People, Time, Amazon, Entertainment Weekly, Bustle, Newsweek, the A.V. Club, Christian Science Monitor, Refinery 29, Buzzfeed, Paste, Audible, Kirkus, Publishers Weekly, Thrillist, NYPL, Self, Real Simple, Goodreads, Boston Globe, Electric Literature, BookPage, the Guardian, Book Riot, Seattle Times, and Business Insider.",
+    "thumbnail": "https://covers.libro.fm/9781478975311_1120.jpg",
+    "authors": [
+      "Madeline Miller"
+    ],
+    "publisher": "Hachette Audio",
+    "publishedDate": "2018-04-10"
   }
 ]
