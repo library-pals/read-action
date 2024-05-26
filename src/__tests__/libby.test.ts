@@ -1,4 +1,4 @@
-import { getMetadata, parseLibbyPage } from "../libby";
+import { getLibby, parseLibbyPage } from "../libby";
 import ogs from "open-graph-scraper";
 import { readFileSync } from "fs";
 
@@ -16,7 +16,7 @@ const resultHtmlEbook = readFileSync(
 
 jest.mock("open-graph-scraper");
 
-describe("getMetadata", () => {
+describe("getLibby", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -36,7 +36,7 @@ describe("getMetadata", () => {
       html: "",
     });
 
-    const result = await getMetadata({
+    const result = await getLibby({
       inputIdentifier: "test",
       dateType: {},
       bookStatus: "started",
@@ -79,7 +79,7 @@ describe("getMetadata", () => {
       html: resultHtmlAudiobook,
     });
 
-    const result = await getMetadata({
+    const result = await getLibby({
       inputIdentifier: "https://share.libbyapp.com/title/9575390",
       dateType: {},
       bookStatus: "started",
@@ -127,7 +127,7 @@ describe("getMetadata", () => {
       html: resultHtmlEbook,
     });
 
-    const result = await getMetadata({
+    const result = await getLibby({
       inputIdentifier: "https://share.libbyapp.com/title/9575390",
       dateType: {},
       bookStatus: "started",
@@ -172,7 +172,7 @@ describe("getMetadata", () => {
     });
 
     await expect(
-      getMetadata({ inputIdentifier: "test" })
+      getLibby({ inputIdentifier: "test" })
     ).rejects.toThrowErrorMatchingInlineSnapshot(
       `"Cannot read properties of undefined (reading 'error')"`
     );
@@ -189,7 +189,7 @@ describe("getMetadata", () => {
       html: `<h2 class="share-category">Library</h2><table class='share-table-1d'><tr><th></th><td></td></tr></table>`,
     });
 
-    const result = await getMetadata({
+    const result = await getLibby({
       inputIdentifier: "test",
       dateType: {},
       bookStatus: "started",
@@ -231,7 +231,7 @@ describe("getMetadata", () => {
       html: `<table class='share-table-1d'><tr><th>Subjects</th><td></td></tr></table>`,
     });
 
-    const result = await getMetadata({
+    const result = await getLibby({
       inputIdentifier: "test",
       dateType: {},
       bookStatus: "started",

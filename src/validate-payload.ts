@@ -11,6 +11,7 @@ export function validatePayload(payload: BookPayload): void {
   if (
     !(
       payload["identifier"].startsWith("https://share.libbyapp.com/") ||
+      payload["identifier"].startsWith("https://libro.fm/") ||
       isIsbn(payload["identifier"])
     )
   ) {

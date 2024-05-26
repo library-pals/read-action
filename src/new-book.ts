@@ -2,7 +2,8 @@ import { exportVariable, setOutput } from "@actions/core";
 import getBook from "./get-book";
 import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
-import { getMetadata } from "./libby";
+import { getLibby } from "./libby";
+import { getLibrofm } from "./librofm";
 
 export async function handleNewBook({
   bookParams,
@@ -17,7 +18,11 @@ export async function handleNewBook({
 }): Promise<void> {
   let newBook;
   if (bookParams.inputIdentifier.startsWith("https://share.libbyapp.com/")) {
-    newBook = await getMetadata(bookParams);
+    newBook = await getLibby(bookParams);
+  } else if (
+    bookParams.inputIdentifier.startsWith("https://libro.fm/audiobooks/")
+  ) {
+    newBook = await getLibrofm(bookParams);
   } else {
     newBook = await getBook(bookParams);
   }

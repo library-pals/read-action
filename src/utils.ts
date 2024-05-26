@@ -116,9 +116,21 @@ export function lookUp(
   book: CleanBook,
   inputIdentifier: BookParams["inputIdentifier"]
 ): boolean {
-  const isLibby = inputIdentifier.startsWith("https://share.libbyapp.com/");
-  if (isLibby) {
-    return book.identifier === inputIdentifier.split("/").pop();
+  if (inputIdentifier.startsWith("https://share.libbyapp.com/")) {
+    return book.identifier === getLibbyId(inputIdentifier);
+  }
+  if (inputIdentifier.startsWith("https://libro.fm/")) {
+    return book.identifier === getLibrofmId(inputIdentifier);
   }
   return book.identifier === inputIdentifier;
+}
+
+export function getLibbyId(inputIdentifier: string): string {
+  return inputIdentifier.split("/").pop() as string;
+}
+
+export function getLibrofmId(inputIdentifier: string): string {
+  const isbn = inputIdentifier.split("/").pop();
+  if (!isbn) return inputIdentifier;
+  return isbn?.split("-")[0];
 }
