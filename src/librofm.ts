@@ -66,7 +66,7 @@ export function parseResult(result): {
       description: formatDescription(book.description),
       isbn: book.isbn,
       thumbnail: book.image,
-      authors: book.author.map((author) => author.name),
+      authors: book.author?.map((author) => author.name),
       publisher: book.publisher,
       publishedDate: book.datePublished,
     };
