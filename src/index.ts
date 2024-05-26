@@ -4,11 +4,10 @@ import Isbn from "@library-pals/isbn";
 import returnWriteFile from "./write-file";
 import { getBookStatus, sortByDate, toArray } from "./utils";
 import { checkOutBook } from "./checkout-book";
-import { BookStatus } from "./clean-book";
+import { BookStatus, handleNewBook } from "./new-book";
 import returnReadFile from "./read-file";
 import { updateBook } from "./update-book";
 import { validatePayload } from "./validate-payload";
-import { handleNewBook } from "./new-book";
 
 export type BookPayload = {
   date: string | undefined;

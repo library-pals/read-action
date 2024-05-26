@@ -1,5 +1,5 @@
-import { getLibrofm, parseResult } from "../librofm";
-import { BookParams } from "..";
+import { getLibrofm, parseResult } from "../../providers/librofm";
+import { BookParams } from "../..";
 import ogs from "open-graph-scraper";
 
 jest.mock("open-graph-scraper");

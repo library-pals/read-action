@@ -1,11 +1,11 @@
 import ogs from "open-graph-scraper";
-import { CleanBook } from "./clean-book";
-import { BookParams } from ".";
-import { formatDescription, getLibrofmId } from "./utils";
+import { BookParams } from "..";
+import { formatDescription, getLibrofmId } from "../utils";
+import { NewBook } from "../new-book";
 
 export async function getLibrofm(
   options: BookParams
-): Promise<CleanBook | undefined> {
+): Promise<NewBook | undefined> {
   const {
     notes,
     inputIdentifier,

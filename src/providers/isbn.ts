@@ -1,39 +1,24 @@
-import { formatDescription } from "./utils";
-import { Book } from "@library-pals/isbn";
-import { BookParams } from ".";
+import Isbn, { Book } from "@library-pals/isbn";
+import { BookParams } from "..";
+import { NewBook } from "../new-book";
+import { formatDescription } from "../utils";
 import { exportVariable, getInput, warning } from "@actions/core";
 
-export type CleanBook = {
-  dateAdded?: string | undefined;
-  dateStarted?: string | undefined;
-  dateFinished?: string | undefined;
-  dateAbandoned?: string | undefined;
-  title?: string;
-  authors?: string[];
-  publishedDate?: string;
-  description?: string;
-  categories?: string[];
-  pageCount?: number;
-  format?: string;
-  thumbnail?: string;
-  language?: string;
-  link?: string;
-  identifier: string;
-  identifiers: {
-    isbn?: string;
-    libby?: string;
-    librofm?: string;
-  };
-  notes?: string;
-  status: BookStatus;
-  rating?: string;
-  tags?: BookParams["tags"];
-  image?: string;
-};
+export async function getIsbn(options: BookParams): Promise<NewBook> {
+  const { inputIdentifier, providers } = options;
+  let book;
+  try {
+    const isbn = new Isbn();
+    isbn.provider(providers);
+    book = await isbn.resolve(inputIdentifier);
+  } catch (error) {
+    throw new Error(`Book (${inputIdentifier}) not found. ${error.message}`);
+  }
+  const newBook: NewBook = cleanBook(options, book);
+  return newBook;
+}
 
-export type BookStatus = "want to read" | "started" | "finished" | "abandoned";
-
-export default function cleanBook(options: BookParams, book: Book): CleanBook {
+export function cleanBook(options: BookParams, book: Book): NewBook {
   const {
     notes,
     inputIdentifier,

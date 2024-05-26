@@ -1,10 +1,10 @@
-import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
+import { NewBook } from "./new-book";
 import { lookUp } from "./utils";
 
 export function checkOutBook(
   bookParams: BookParams,
-  library: CleanBook[]
+  library: NewBook[]
 ): boolean {
   const { inputIdentifier } = bookParams;
   if (library === undefined || library.length === 0) return false;
