@@ -402,7 +402,7 @@
       "isbn": "9781797176888"
     },
     "dateStarted": "2024-05-25",
-    "status": "started",
+    "status": "finished",
     "rating": "unrated",
     "image": "book-9781797176888.png",
     "link": "https://libro.fm/audiobooks/9781797176888",
@@ -414,6 +414,7 @@
       "Kaliane Bradley"
     ],
     "publisher": "Simon & Schuster Audio",
-    "publishedDate": "2024-05-07"
+    "publishedDate": "2024-05-07",
+    "dateFinished": "2024-05-26"
   }
 ]
