@@ -61,9 +61,6 @@ export function formatDescription(str?: string) {
     return `${str.slice(1, -3)}…`;
   }
 
-  // remove HTML tags
-  str = str.replace(/<\/?[^>]+(>|$)/gm, "");
-
   return str;
 }
 
