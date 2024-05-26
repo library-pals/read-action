@@ -16,7 +16,7 @@ Depending on the type of `identifier` you submit to the action, it will use the 
 | ------------ | ---------------------------------------------------------------------- |
 | ISBN         | [@library-pals/isbn](https://www.npmjs.com/package/@library-pals/isbn) |
 | Libby URL    | [Libby](https://libbyapp.com) via metatag and HTML scraping            |
-| Libro.fm URL | [Libro.fm](https://libro.fm) via metatag and HTML scraping             |
+| Libro.fm URL | [Libro.fm](https://libro.fm) via metatag scraping                      |
 
 ## Book lifecycle
 
@@ -341,8 +341,6 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
-
-
 
 ## Action outputs
 
