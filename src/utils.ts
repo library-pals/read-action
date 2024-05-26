@@ -31,6 +31,23 @@ export function sortByDate(array: CleanBook[]): CleanBook[] {
 export function formatDescription(str?: string) {
   if (!str) return "";
 
+  // remove HTML tags
+  str = str.replace(/<[^>]*>?/gm, "");
+
+  // Remove common phrases, case insensitive
+  const phrases = [
+    "NEW YORK TIMES BESTSELLER",
+    "A GOOD MORNING AMERICA BOOK CLUB PICK",
+    "Winner of the \\d\\d\\d\\d Center for Fiction",
+    "First Novel Prize Winner of the \\d\\d\\d National Book",
+    "AN INSTANT NEW YORK TIMES BESTSELLER",
+    "A New York Times Notable Book of the Year",
+  ];
+
+  phrases.forEach((phrase) => {
+    str = str?.replace(new RegExp(phrase, "gi"), "");
+  });
+
   str = str
     .replace(/(\r\n|\n|\r)/gm, " ") // remove line breaks
     .replace(/\s+/g, " ") // remove extra spaces
