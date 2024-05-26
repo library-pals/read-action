@@ -18,7 +18,7 @@ on:
         required: true
         type: string
       book-status:
-        description: What is the status of the book? Required.
+        description: What is the status of the book? Required. You can completely customize the default value and options.
         required: true
         type: choice
         default: "want to read"
@@ -37,7 +37,7 @@ on:
       # You can change the options to whatever you want to use.
       # For example, you can use numbers, other emoji, or words.
       rating:
-        description: Rate the book. Optional.
+        description: Rate the book. Optional. You can completely customize the default value and options.
         type: choice
         default: "unrated"
         options:
