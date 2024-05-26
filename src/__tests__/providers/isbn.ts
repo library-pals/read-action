@@ -1,4 +1,4 @@
-import getIsbn from "../../providers/isbn";
+import { getIsbn } from "../../providers/isbn";
 import { promises, readFileSync } from "fs";
 import book from "../fixture.json";
 import Isbn from "@library-pals/isbn";

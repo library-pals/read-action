@@ -1,6 +1,6 @@
 import { BookParams } from ".";
 import { getInput } from "@actions/core";
-import { BookStatus, CleanBook } from "./clean-book";
+import { BookStatus, NewBook } from "./new-book";
 
 /** make sure date is in YYYY-MM-DD format */
 export function dateFormat(date: string) {
@@ -18,7 +18,7 @@ export function isIsbn(isbn: string) {
 }
 
 /** sort array of objects by `dateFinished` */
-export function sortByDate(array: CleanBook[]): CleanBook[] {
+export function sortByDate(array: NewBook[]): NewBook[] {
   return array.sort((a, b) => {
     if (a.dateFinished && b.dateFinished) {
       return (
@@ -113,7 +113,7 @@ export function toArray(tags: string): BookParams["tags"] {
 }
 
 export function lookUp(
-  book: CleanBook,
+  book: NewBook,
   inputIdentifier: BookParams["inputIdentifier"]
 ): boolean {
   if (inputIdentifier.startsWith("https://share.libbyapp.com/")) {

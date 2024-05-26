@@ -1,6 +1,6 @@
-import cleanBook from "../clean-book";
-import book from "./fixture.json";
+import book from "../fixture.json";
 import * as core from "@actions/core";
+import { cleanBook } from "../../providers/isbn";
 
 const dateFinished = "2020-09-12";
 

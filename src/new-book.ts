@@ -1,9 +1,53 @@
 import { exportVariable, setOutput } from "@actions/core";
-import getIsbn from "./providers/isbn";
-import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
+import { getIsbn } from "./providers/isbn";
 import { getLibby } from "./providers/libby";
 import { getLibrofm } from "./providers/librofm";
+
+const providerAction = [
+  {
+    check: (url: string) => url.startsWith("https://share.libbyapp.com/"),
+    action: getLibby,
+  },
+  {
+    check: (url: string) => url.startsWith("https://libro.fm/audiobooks/"),
+    action: getLibrofm,
+  },
+  {
+    check: () => true, // Default strategy
+    action: getIsbn,
+  },
+];
+
+export type BookStatus = "want to read" | "started" | "finished" | "abandoned";
+
+export type NewBook = {
+  dateAdded?: string | undefined;
+  dateStarted?: string | undefined;
+  dateFinished?: string | undefined;
+  dateAbandoned?: string | undefined;
+  title?: string;
+  authors?: string[];
+  publishedDate?: string;
+  description?: string;
+  categories?: string[];
+  pageCount?: number;
+  format?: string;
+  thumbnail?: string;
+  language?: string;
+  link?: string;
+  identifier: string;
+  identifiers: {
+    isbn?: string;
+    libby?: string;
+    librofm?: string;
+  };
+  notes?: string;
+  status: BookStatus;
+  rating?: string;
+  tags?: BookParams["tags"];
+  image?: string;
+};
 
 export async function handleNewBook({
   bookParams,
@@ -12,20 +56,13 @@ export async function handleNewBook({
   setImage,
 }: {
   bookParams: BookParams;
-  library: CleanBook[];
+  library: NewBook[];
   bookStatus: string;
   setImage: boolean;
 }): Promise<void> {
-  let newBook;
-  if (bookParams.inputIdentifier.startsWith("https://share.libbyapp.com/")) {
-    newBook = await getLibby(bookParams);
-  } else if (
-    bookParams.inputIdentifier.startsWith("https://libro.fm/audiobooks/")
-  ) {
-    newBook = await getLibrofm(bookParams);
-  } else {
-    newBook = await getIsbn(bookParams);
-  }
+  const newBook = await (providerAction
+    .find(({ check }) => check(bookParams.inputIdentifier))
+    ?.action(bookParams) as Promise<NewBook>);
 
   library.push(newBook);
   exportVariable(`BookTitle`, newBook.title);

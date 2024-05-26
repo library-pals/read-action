@@ -1,9 +1,9 @@
 import ogs from "open-graph-scraper";
-import { CleanBook } from "../clean-book";
 import { BookParams } from "..";
 import * as cheerio from "cheerio";
 import { OgObject } from "open-graph-scraper/dist/lib/types";
 import { formatDescription, getLibbyId } from "../utils";
+import { NewBook } from "../new-book";
 
 interface Data {
   [key: string]: string;
@@ -11,7 +11,7 @@ interface Data {
 
 export async function getLibby(
   options: BookParams
-): Promise<CleanBook | undefined> {
+): Promise<NewBook | undefined> {
   const {
     notes,
     inputIdentifier,

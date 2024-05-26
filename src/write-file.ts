@@ -1,9 +1,9 @@
 import { writeFile } from "fs/promises";
-import { CleanBook } from "./clean-book";
+import { NewBook } from "./new-book";
 
 export default async function returnWriteFile(
   fileName: string,
-  bookMetadata: CleanBook[]
+  bookMetadata: NewBook[]
 ) {
   try {
     const promise = writeFile(fileName, JSON.stringify(bookMetadata, null, 2));

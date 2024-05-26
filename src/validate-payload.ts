@@ -1,7 +1,7 @@
 import { setFailed } from "@actions/core";
 import { isDate, isIsbn } from "./utils";
 import { BookPayload } from "./index";
-import { BookStatus } from "./clean-book";
+import { BookStatus } from "./new-book";
 
 export function validatePayload(payload: BookPayload): void {
   if (!payload || !payload["identifier"]) {

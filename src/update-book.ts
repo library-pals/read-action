@@ -1,15 +1,15 @@
-import { CleanBook } from "./clean-book";
+import { NewBook } from "./new-book";
 import { exportVariable } from "@actions/core";
 import { BookParams } from ".";
 import { lookUp } from "./utils";
 
 export async function updateBook(
   bookParams: BookParams,
-  currentBooks: CleanBook[]
-): Promise<CleanBook[]> {
+  currentBooks: NewBook[]
+): Promise<NewBook[]> {
   const { inputIdentifier, dateType, bookStatus, notes, rating, tags } =
     bookParams;
-  return currentBooks.reduce((arr: CleanBook[], book) => {
+  return currentBooks.reduce((arr: NewBook[], book) => {
     const thisBook = lookUp(book, inputIdentifier);
     if (thisBook) {
       exportVariable("BookTitle", book.title);
