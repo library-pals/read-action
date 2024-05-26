@@ -7,9 +7,9 @@ import ogs from "open-graph-scraper";
 
 jest.mock("open-graph-scraper");
 
-import result_5004990 from "./libby/5004990-result.json";
+import result_5004990 from "./providers/libby/5004990-result.json";
 const html_5004990 = readFileSync(
-  "./src/__tests__/libby/5004990-html.html",
+  "./src/__tests__/providers/libby/5004990-html.html",
   "utf8"
 );
 

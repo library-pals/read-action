@@ -1,9 +1,9 @@
 import { exportVariable, setOutput } from "@actions/core";
-import getBook from "./get-book";
+import getIsbn from "./providers/isbn";
 import { CleanBook } from "./clean-book";
 import { BookParams } from ".";
-import { getLibby } from "./libby";
-import { getLibrofm } from "./librofm";
+import { getLibby } from "./providers/libby";
+import { getLibrofm } from "./providers/librofm";
 
 export async function handleNewBook({
   bookParams,
@@ -24,7 +24,7 @@ export async function handleNewBook({
   ) {
     newBook = await getLibrofm(bookParams);
   } else {
-    newBook = await getBook(bookParams);
+    newBook = await getIsbn(bookParams);
   }
 
   library.push(newBook);

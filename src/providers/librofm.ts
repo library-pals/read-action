@@ -1,7 +1,7 @@
 import ogs from "open-graph-scraper";
-import { CleanBook } from "./clean-book";
-import { BookParams } from ".";
-import { formatDescription, getLibrofmId } from "./utils";
+import { CleanBook } from "../clean-book";
+import { BookParams } from "..";
+import { formatDescription, getLibrofmId } from "../utils";
 
 export async function getLibrofm(
   options: BookParams

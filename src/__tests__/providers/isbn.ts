@@ -1,6 +1,6 @@
-import getBook from "../get-book";
+import getIsbn from "../../providers/isbn";
 import { promises, readFileSync } from "fs";
-import book from "./fixture.json";
+import book from "../fixture.json";
 import Isbn from "@library-pals/isbn";
 import * as core from "@actions/core";
 
@@ -16,7 +16,7 @@ const defaultOptions = {
   "time-zone": "America/New_York",
 };
 
-describe("getBook", () => {
+describe("getIsbn", () => {
   beforeEach(() => {
     jest
       .spyOn(core, "getInput")
@@ -28,7 +28,7 @@ describe("getBook", () => {
 
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
     expect(
-      await getBook({
+      await getIsbn({
         dateType: {
           dateFinished,
         },
@@ -71,7 +71,7 @@ describe("getBook", () => {
       new Error("Request failed with status")
     );
     await expect(
-      getBook({
+      getIsbn({
         dateType: {
           dateAdded: undefined,
           dateStarted: undefined,

@@ -1,8 +1,8 @@
 import Isbn from "@library-pals/isbn";
-import { BookParams } from ".";
-import cleanBook, { CleanBook } from "./clean-book";
+import { BookParams } from "..";
+import cleanBook, { CleanBook } from "../clean-book";
 
-export default async function getBook(options: BookParams): Promise<CleanBook> {
+export default async function getIsbn(options: BookParams): Promise<CleanBook> {
   const { inputIdentifier, providers } = options;
   let book;
   try {

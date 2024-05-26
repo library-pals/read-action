@@ -7,9 +7,9 @@ import ogs from "open-graph-scraper";
 
 jest.mock("open-graph-scraper");
 
-import result_9781797176888 from "./librofm/9781797176888-result.json";
+import result_9781797176888 from "./providers/librofm/9781797176888-result.json";
 const html_9781797176888 = readFileSync(
-  "./src/__tests__/librofm/9781797176888-html.html",
+  "./src/__tests__/providers/librofm/9781797176888-html.html",
   "utf8"
 );
 

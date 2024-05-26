@@ -1,16 +1,16 @@
-import { getLibby, parseLibbyPage } from "../libby";
+import { getLibby, parseLibbyPage } from "../../providers/libby";
 import ogs from "open-graph-scraper";
 import { readFileSync } from "fs";
 
 import resultsAudiobook from "./libby/9575390-result.json";
 const resultHtmlAudiobook = readFileSync(
-  "./src/__tests__/libby/9575390-html.html",
+  "./src/__tests__/providers/libby/9575390-html.html",
   "utf8"
 );
 
 import resultsEbook from "./libby/10217112-result.json";
 const resultHtmlEbook = readFileSync(
-  "./src/__tests__/libby/10217112-html.html",
+  "./src/__tests__/providers/libby/10217112-html.html",
   "utf8"
 );
 
