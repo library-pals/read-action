@@ -83,7 +83,7 @@ describe("workflow", () => {
               "Historical Fiction",
             ],
             "dateAdded": "2022-10-01",
-            "description": "AN INSTANT NEW YORK TIMES BESTSELLER A New York Times Notable Book of the YearWINNER of the NBCC John Leonard Prize, the Kirkus Prize, the Center for Fiction First Novel Prize, the Dylan Thomas Prize, and the VCU Cabell First Novelist AwardOne of Barack Obama’s Favorite Books of 2020 A BEST BOOK OF THE YEAR: NPR, The New York Times Book Review, O Magazine, Vanity Fair, Los Angeles Times, Glamour, Shondaland,...",
+            "description": "AN INSTANT WINNER of the NBCC John Leonard Prize, the Kirkus Prize, the Center for Fiction First Novel Prize, the Dylan Thomas Prize, and the VCU Cabell First Novelist AwardOne of Barack Obama’s Favorite Books of 2020 A BEST BOOK OF THE YEAR: NPR, The New York Times Book Review, O Magazine, Vanity Fair, Los Angeles Times, Glamour, Shondaland,...",
             "format": "ebook",
             "identifier": "5004990",
             "identifiers": {
