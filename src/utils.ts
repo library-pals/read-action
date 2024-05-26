@@ -62,7 +62,7 @@ export function formatDescription(str?: string) {
   }
 
   // remove HTML tags
-  str = str.replace(/<[^>]*>?/gm, "");
+  str = str.replace(/<\/?[^>]+(>|$)/gm, "");
 
   return str;
 }
