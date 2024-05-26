@@ -333,10 +333,10 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
     "identifier": "", // Required. The book's identifier. This is an ISBN, Libby or Libro.fm share URL. Required.
-    "book-status": "", // Required. What is the status of the book? Required. Default: `want to read`.
+    "book-status": "", // Required. What is the status of the book? Required. Default: `want to read`. Options: `want to read`, `started`, `finished`, `abandoned`.
     "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
     "notes": "", // Notes about the book. Optional.
-    "rating": "", // Rate the book. Optional. Default: `unrated`.
+    "rating": "", // Rate the book. Optional. Default: `unrated`. Options: `unrated`, `⭐️`, `⭐️⭐️`, `⭐️⭐️⭐️`, `⭐️⭐️⭐️⭐️`, `⭐️⭐️⭐️⭐️⭐️`.
     "tags": "", // Add tags to categorize the book. Separate each tag with a comma. Optional.
   }
 }
