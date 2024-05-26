@@ -1,6 +1,6 @@
 {
   "name": "read-action",
-  "version": "8.1.0",
+  "version": "9.0.0",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
