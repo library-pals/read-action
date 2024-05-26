@@ -4,5 +4,6 @@
     "moduleResolution": "node",
     "strictNullChecks": true
   },
-  "include": ["src/*.ts", "src/clean-book.ts", "src/providers/libby.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["**/__tests__/**/*.ts"]
 }
