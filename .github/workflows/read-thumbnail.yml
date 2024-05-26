@@ -10,7 +10,6 @@ on:
   workflow_dispatch:
     inputs:
       identifier:
-      identifier:
         description: The book's identifier. This is an ISBN, Libby or Libro.fm share URL. Required.
         # Example values:
         # 9780062315007
