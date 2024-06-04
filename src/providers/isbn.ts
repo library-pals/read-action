@@ -7,12 +7,16 @@ import { exportVariable, getInput, warning } from "@actions/core";
 export async function getIsbn(options: BookParams): Promise<NewBook> {
   const { inputIdentifier, providers } = options;
   let book;
+  const isLibrofm = inputIdentifier.startsWith("https://libro.fm");
+  const identifier = isLibrofm
+    ? getLibrofmId(inputIdentifier)
+    : inputIdentifier;
   try {
     const isbn = new Isbn();
     isbn.provider(providers);
-    book = await isbn.resolve(inputIdentifier);
+    book = await isbn.resolve(identifier);
   } catch (error) {
-    throw new Error(`Book (${inputIdentifier}) not found. ${error.message}`);
+    throw new Error(`Book (${identifier}) not found. ${error.message}`);
   }
   const newBook: NewBook = cleanBook(options, book);
   return newBook;
