@@ -14,7 +14,7 @@
   "dependencies": {
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
-    "@library-pals/isbn": "^1.3.1",
+    "@library-pals/isbn": "^1.3.2",
     "cheerio": "^1.0.0-rc.12",
     "open-graph-scraper": "^6.5.1"
   },
