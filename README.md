@@ -6,17 +6,17 @@ This GitHub action tracks the books that you read by updating a JSON file in you
 
 [Create a workflow dispatch event](https://docs.github.com/en/rest/actions/workflows#create-a-workflow-dispatch-event) with information about the book.
 
-The action will then fetch the book's metadata using and commit the change in your repository, always sorting by the date you finished the book.
+Given an ISBN, a Libby or a Libro.fm share URL, the action will fetch the book's metadata and commit the change in your repository, always sorting by the date you finished the book.
 
 ## Data providers
 
 Depending on the type of `identifier` you submit to the action, it will use the follow data provider.
 
-| Identifier   | Data provider                                                          |
-| ------------ | ---------------------------------------------------------------------- |
-| ISBN         | [@library-pals/isbn](https://www.npmjs.com/package/@library-pals/isbn) |
-| Libby URL    | [Libby](https://libbyapp.com) via metatag and HTML scraping            |
-| Libro.fm URL | [Libro.fm](https://libro.fm) via metatag scraping                      |
+| Identifier   | Provider                                                               | Example `identifier` value                                 |
+| ------------ | ---------------------------------------------------------------------- | ---------------------------------------------------------- |
+| ISBN         | [@library-pals/isbn](https://www.npmjs.com/package/@library-pals/isbn) | `9780385353311`                                            |
+| Libby URL    | [Libby](https://libbyapp.com) via metatag and HTML scraping            | `https://share.libbyapp.com/title/1499830`                 |
+| Libro.fm URL | [Libro.fm](https://libro.fm) via metatag scraping                      | `https://libro.fm/audiobooks/9780553397970-station-eleven` |
 
 ## Book lifecycle
 
@@ -341,8 +341,6 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
-
-
 
 ## Action outputs
 
