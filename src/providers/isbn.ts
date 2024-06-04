@@ -43,15 +43,16 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
     link,
   } = book;
 
-  const identifier =
-    book.bookProvider === "Libro.fm"
-      ? getLibrofmId(inputIdentifier)
-      : inputIdentifier;
+  const isLibrofm = book.bookProvider === "Libro.fm";
+
+  const identifier = isLibrofm
+    ? getLibrofmId(inputIdentifier)
+    : inputIdentifier;
 
   return {
     identifier,
     identifiers: {
-      ...(book.bookProvider === "Libro.fm" && { librofm: identifier }),
+      ...(isLibrofm && { librofm: identifier }),
       ...(book.isbn && { isbn: book.isbn }),
     },
     ...dateType,
