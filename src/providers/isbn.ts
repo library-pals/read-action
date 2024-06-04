@@ -29,6 +29,7 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
     thumbnailWidth,
     setImage,
   } = options;
+  const isLibrofm = book.bookProvider === "Libro.fm";
   checkMetadata(book, inputIdentifier);
   const {
     title,
@@ -42,8 +43,6 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
     language,
     link,
   } = book;
-
-  const isLibrofm = book.bookProvider === "Libro.fm";
 
   const identifier = isLibrofm
     ? getLibrofmId(inputIdentifier)
@@ -107,6 +106,7 @@ function checkMetadata(book: Book, inputIdentifier: string) {
     missingMetadata.push("title");
   }
   if (
+    book.format !== "audiobook" &&
     (!book.pageCount || book.pageCount === 0) &&
     requiredMetadata.includes("pageCount")
   ) {
