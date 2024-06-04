@@ -3,7 +3,7 @@ import * as github from "@actions/github";
 import * as core from "@actions/core";
 import returnWriteFile from "../write-file";
 import { promises } from "fs";
-import book from "./providers/librofm/fixture.json";
+import book from "./providers/librofm/fixture-9781797176888.json";
 import Isbn from "@library-pals/isbn";
 
 jest.mock("@actions/core", () => {

@@ -1,5 +1,5 @@
 import { promises, readFileSync } from "fs";
-import book from "./librofm/fixture.json";
+import book from "./librofm/fixture-9781797176888.json";
 import Isbn from "@library-pals/isbn";
 import * as core from "@actions/core";
 import { getLibrofm } from "../../providers/librofm";
