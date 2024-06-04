@@ -1,7 +1,7 @@
 import Isbn, { Book } from "@library-pals/isbn";
 import { BookParams } from "..";
 import { NewBook } from "../new-book";
-import { formatDescription } from "../utils";
+import { formatDescription, getLibrofmId } from "../utils";
 import { exportVariable, getInput, warning } from "@actions/core";
 
 export async function getIsbn(options: BookParams): Promise<NewBook> {
@@ -37,16 +37,22 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
     description,
     categories,
     pageCount,
-    printType,
+    format,
     thumbnail,
     language,
     link,
   } = book;
 
+  const identifier =
+    book.bookProvider === "Libro.fm"
+      ? getLibrofmId(inputIdentifier)
+      : inputIdentifier;
+
   return {
-    identifier: inputIdentifier,
+    identifier,
     identifiers: {
-      isbn: inputIdentifier,
+      ...(book.bookProvider === "Libro.fm" && { librofm: identifier }),
+      ...(book.isbn && { isbn: book.isbn }),
     },
     ...dateType,
     status: bookStatus,
@@ -61,8 +67,8 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
     ...(description && {
       description: formatDescription(description),
     }),
-    ...(pageCount ? { pageCount } : { pageCount: 0 }),
-    ...(printType && { format: printType.toLowerCase() }),
+    ...(pageCount && { pageCount }),
+    ...(format && { format: format.toLowerCase() }),
     ...(categories && { categories }),
     ...(thumbnail && {
       thumbnail: handleThumbnail(thumbnailWidth, thumbnail),
@@ -72,7 +78,7 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
       link,
     }),
     ...(setImage && {
-      image: `book-${inputIdentifier}.png`,
+      image: `book-${identifier}.png`,
     }),
   };
 }

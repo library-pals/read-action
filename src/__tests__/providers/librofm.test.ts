@@ -1,190 +1,91 @@
-import { getLibrofm, parseResult } from "../../providers/librofm";
-import { BookParams } from "../..";
-import ogs from "open-graph-scraper";
+import { promises, readFileSync } from "fs";
+import book from "./librofm/fixture.json";
+import Isbn from "@library-pals/isbn";
+import * as core from "@actions/core";
+import { getLibrofm } from "../../providers/librofm";
 
-jest.mock("open-graph-scraper");
+const books = readFileSync("./_data/read.json", "utf-8");
+const dateFinished = "2020-09-12";
 
-describe("librofm", () => {
-  afterEach(() => {
-    jest.clearAllMocks();
+jest.mock("@actions/core");
+jest.mock("@library-pals/isbn");
+
+const defaultOptions = {
+  filename: "_data/read.yml",
+  "required-metadata": "title,pageCount,authors,description",
+  "time-zone": "America/New_York",
+};
+
+describe("getLibrofm", () => {
+  beforeEach(() => {
+    jest
+      .spyOn(core, "getInput")
+      .mockImplementation((v) => defaultOptions[v] || undefined);
   });
 
-  describe("getLibrofm", () => {
-    it("should return a book when ogs returns valid data", async () => {
-      const bookParams: BookParams = {
-        inputIdentifier: "https://libro.fm/audiobooks/9781797176888",
-        dateType: {},
-        bookStatus: "started",
-        filename: "test.json",
-        providers: [],
-        rating: "Test Rating",
-        tags: ["Test Tag"],
-        setImage: true,
-        notes: "Test Notes",
-      };
+  test("works", async () => {
+    (Isbn.prototype.resolve as jest.Mock).mockResolvedValue(book);
 
-      ogs.mockResolvedValue({
-        result: {
-          success: true,
-          ogTitle: "Test Book",
-          ogDescription: "Test Description",
-          ogImage: [{ url: "test-image-url" }],
+    jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
+    expect(
+      await getLibrofm({
+        dateType: {
+          dateFinished,
         },
-      });
-
-      const result = await getLibrofm(bookParams);
-
-      expect(result).toMatchInlineSnapshot(`
-        {
-          "authors": undefined,
-          "description": "Test Description",
-          "format": undefined,
-          "identifier": "9781797176888",
-          "identifiers": {
-            "librofm": "9781797176888",
-          },
-          "image": "book-9781797176888.png",
-          "link": "https://libro.fm/audiobooks/9781797176888",
-          "notes": "Test Notes",
-          "publishedDate": undefined,
-          "publisher": undefined,
-          "rating": "Test Rating",
-          "status": "started",
-          "tags": [
-            "Test Tag",
-          ],
-          "thumbnail": "test-image-url",
-          "title": "Test Book",
-        }
-      `);
-    });
-
-    it("should return a book", async () => {
-      const bookParams: BookParams = {
-        inputIdentifier: "https://libro.fm/audiobooks/",
-        dateType: {},
-        bookStatus: "started",
-        filename: "test.json",
-        providers: [],
-        rating: "Test Rating",
-        tags: ["Test Tag"],
-        setImage: true,
-        notes: "Test Notes",
-      };
-
-      ogs.mockResolvedValue({
-        result: {
-          success: true,
-          ogTitle: "Test Book",
-          ogDescription: "Test Description",
-        },
-      });
-
-      const result = await getLibrofm(bookParams);
-
-      expect(result).toMatchInlineSnapshot(`
-        {
-          "authors": undefined,
-          "description": "Test Description",
-          "format": undefined,
-          "identifier": "https://libro.fm/audiobooks/",
-          "identifiers": {
-            "librofm": "https://libro.fm/audiobooks/",
-          },
-          "image": "book-https://libro.fm/audiobooks/.png",
-          "link": "https://libro.fm/audiobooks/",
-          "notes": "Test Notes",
-          "publishedDate": undefined,
-          "publisher": undefined,
-          "rating": "Test Rating",
-          "status": "started",
-          "tags": [
-            "Test Tag",
-          ],
-          "thumbnail": "",
-          "title": "Test Book",
-        }
-      `);
-    });
-    it("should throw an error when ogs fails", async () => {
-      const bookParams: BookParams = {
-        inputIdentifier: "https://libro.fm/audiobooks/9781797176888",
-        dateType: {},
-        bookStatus: "started",
-        filename: "test.json",
-        providers: [],
-        rating: "Test Rating",
-        tags: ["Test Tag"],
-        setImage: true,
-        notes: "Test Notes",
-      };
-
-      ogs.mockRejectedValueOnce(new Error("Test Error"));
-
-      await expect(
-        getLibrofm(bookParams)
-      ).rejects.toThrowErrorMatchingInlineSnapshot(
-        `"Cannot read properties of undefined (reading 'error')"`
-      );
-    });
-  });
-
-  describe("parseResult", () => {
-    it("should return parsed book data when jsonLD is present", () => {
-      const result = {
-        jsonLD: [
-          {
-            bookFormat: "another format",
-            name: "Test Book",
-            description: "Test Description",
-            isbn: "1234567890",
-            image: "test-image-url",
-            author: [{ name: "Test Author" }],
-            publisher: "Test Publisher",
-            datePublished: "2022-01-01",
-          },
+        inputIdentifier: "9781797176888",
+        providers: ["google"],
+        bookStatus: "finished",
+        filename: "_data/read.yml",
+        setImage: false,
+      })
+    ).toMatchInlineSnapshot(`
+      {
+        "authors": [
+          "Kaliane Bradley",
         ],
-      };
+        "categories": [
+          "Fiction",
+          "Romance",
+          "Science Fiction",
+          "Fiction - Literary",
+        ],
+        "dateFinished": "2020-09-12",
+        "description": "In the near future, a civil servant is offered the salary of her dreams and is, shortly afterward, told what project she’ll be working on. A recently established government ministry is gathering “expats” from across history to establish whether time travel is feasible—for the body, but also for the fabric of space-time. She is tasked with working as a “bridge”: living with, assisting, and monitoring the expat known as “1847” or Commander Graham Gore. As far as history is concerned, Commander Gore died on Sir John Franklin’s doomed 1845 expedition to the Arctic, so he’s a little disoriented to be living with an unmarried woman who regularly shows her calves, surrounded by outlandish concepts such as “washing machines,” “Spotify,” and “the collapse of the British Empire.” But with an appetite for discovery, a seven-a-day cigarette habit, and the support of a charming and chaotic cast of fellow expats, he soon adjusts. Over the next year, what the bridge initially thought would be, at best, a horrifically uncomfortable roommate dynamic, evolves into something much deeper. By the time the true shape of the Ministry’s project comes to light, the bridge has fallen haphazardly, fervently in love, with consequences she never could have imagined. Forced to confront the choices that brought them together, the bridge must finally reckon with how—and whether she believes—what she does next can change the future. An exquisitely original and feverishly fun fusion of genres and ideas, The Ministry of Time asks: What does it mean to defy history, when history is living in your house? Kaliane Bradley’s answer is a blazing, unforgettable testament to what we owe each other in a changing world.",
+        "format": "audiobook",
+        "identifier": "9781797176888",
+        "identifiers": {
+          "isbn": "9781797176888",
+          "librofm": "9781797176888",
+        },
+        "language": "en",
+        "link": "https://libro.fm/audiobooks/9781797176888",
+        "publishedDate": "2024-05-07",
+        "status": "finished",
+        "thumbnail": "https://covers.libro.fm/9781797176888_1120.jpg",
+        "title": "The Ministry of Time",
+      }
+    `);
+  });
 
-      const parsedResult = parseResult(result);
-
-      expect(parsedResult).toMatchInlineSnapshot(`
-        {
-          "authors": [
-            "Test Author",
-          ],
-          "description": "Test Description",
-          "format": "another format",
-          "isbn": "1234567890",
-          "publishedDate": "2022-01-01",
-          "publisher": "Test Publisher",
-          "thumbnail": "test-image-url",
-          "title": "Test Book",
-        }
-      `);
-    });
-
-    it("should return parsed book data when jsonLD is not present", () => {
-      const result = {
-        ogTitle: "Test Book",
-        ogDescription: "Test Description",
-        ogImage: [{ url: "test-image-url" }],
-      };
-
-      const parsedResult = parseResult(result);
-
-      expect(parsedResult).toMatchInlineSnapshot(`
-        {
-          "authors": undefined,
-          "description": "Test Description",
-          "format": undefined,
-          "isbn": undefined,
-          "publishedDate": undefined,
-          "publisher": undefined,
-          "thumbnail": "test-image-url",
-          "title": "Test Book",
-        }
-      `);
-    });
+  test("fails", async () => {
+    (Isbn.prototype.resolve as jest.Mock).mockRejectedValue(
+      new Error("Request failed with status")
+    );
+    await expect(
+      getLibrofm({
+        dateType: {
+          dateAdded: undefined,
+          dateStarted: undefined,
+          dateFinished,
+        },
+        inputIdentifier: "9781797176888",
+        providers: ["google"],
+        bookStatus: "finished",
+        filename: "_data/read.json",
+        setImage: false,
+      })
+    ).rejects.toMatchInlineSnapshot(
+      `[Error: Failed to get book from Libro.fm: Book (9781797176888) not found. Request failed with status]`
+    );
   });
 });

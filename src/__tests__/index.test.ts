@@ -163,7 +163,6 @@ describe("index", () => {
             "image": "book-9780385696005.png",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=CONSTANT_ID",
-            "pageCount": 0,
             "publishedDate": "2020-08-04",
             "status": "started",
             "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
@@ -411,7 +410,6 @@ describe("index", () => {
             "image": "book-9780385696005.png",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=CONSTANT_ID",
-            "pageCount": 0,
             "publishedDate": "2020-08-04",
             "status": "want to read",
             "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
@@ -568,7 +566,6 @@ describe("index", () => {
             "image": "book-9780385696005.png",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=CONSTANT_ID",
-            "pageCount": 0,
             "publishedDate": "2020-08-04",
             "status": "want to read",
             "tags": [

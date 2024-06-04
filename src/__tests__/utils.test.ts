@@ -4,6 +4,7 @@ import {
   sortByDate,
   isDate,
   getBookStatus,
+  getLibrofmId,
 } from "../utils";
 
 jest.mock("@actions/core");
@@ -110,4 +111,12 @@ it("getBookStatus", () => {
       "dateAdded": "2023-12-01",
     }
   `);
+});
+
+describe("getLibrofmId", () => {
+  it("should return the input identifier when no ISBN is found", () => {
+    const inputIdentifier = "";
+    const result = getLibrofmId(inputIdentifier);
+    expect(result).toBe(inputIdentifier);
+  });
 });
