@@ -1,18 +1,24 @@
 import Isbn, { Book } from "@library-pals/isbn";
 import { BookParams } from "..";
 import { NewBook } from "../new-book";
-import { formatDescription } from "../utils";
+import { formatDescription, getLibrofmId } from "../utils";
 import { exportVariable, getInput, warning } from "@actions/core";
 
-export async function getIsbn(options: BookParams): Promise<NewBook> {
+export async function getIsbn(
+  options: BookParams,
+  isLibrofm = false
+): Promise<NewBook> {
   const { inputIdentifier, providers } = options;
   let book;
+  const identifier = isLibrofm
+    ? getLibrofmId(inputIdentifier)
+    : inputIdentifier;
   try {
     const isbn = new Isbn();
     isbn.provider(providers);
-    book = await isbn.resolve(inputIdentifier);
+    book = await isbn.resolve(identifier);
   } catch (error) {
-    throw new Error(`Book (${inputIdentifier}) not found. ${error.message}`);
+    throw new Error(`Book (${identifier}) not found. ${error.message}`);
   }
   const newBook: NewBook = cleanBook(options, book);
   return newBook;
@@ -29,6 +35,7 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
     thumbnailWidth,
     setImage,
   } = options;
+  const isLibrofm = book.bookProvider === "Libro.fm";
   checkMetadata(book, inputIdentifier);
   const {
     title,
@@ -37,16 +44,21 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
     description,
     categories,
     pageCount,
-    printType,
+    format,
     thumbnail,
     language,
     link,
   } = book;
 
+  const identifier = isLibrofm
+    ? getLibrofmId(inputIdentifier)
+    : inputIdentifier;
+
   return {
-    identifier: inputIdentifier,
+    identifier,
     identifiers: {
-      isbn: inputIdentifier,
+      ...(isLibrofm && { librofm: identifier }),
+      ...(book.isbn && { isbn: book.isbn }),
     },
     ...dateType,
     status: bookStatus,
@@ -61,8 +73,8 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
     ...(description && {
       description: formatDescription(description),
     }),
-    ...(pageCount ? { pageCount } : { pageCount: 0 }),
-    ...(printType && { format: printType.toLowerCase() }),
+    ...(pageCount && { pageCount }),
+    ...(format && { format: format.toLowerCase() }),
     ...(categories && { categories }),
     ...(thumbnail && {
       thumbnail: handleThumbnail(thumbnailWidth, thumbnail),
@@ -72,7 +84,7 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
       link,
     }),
     ...(setImage && {
-      image: `book-${inputIdentifier}.png`,
+      image: `book-${identifier}.png`,
     }),
   };
 }
@@ -100,6 +112,7 @@ function checkMetadata(book: Book, inputIdentifier: string) {
     missingMetadata.push("title");
   }
   if (
+    book.format !== "audiobook" &&
     (!book.pageCount || book.pageCount === 0) &&
     requiredMetadata.includes("pageCount")
   ) {
