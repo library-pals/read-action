@@ -4,10 +4,12 @@ import { NewBook } from "../new-book";
 import { formatDescription, getLibrofmId } from "../utils";
 import { exportVariable, getInput, warning } from "@actions/core";
 
-export async function getIsbn(options: BookParams): Promise<NewBook> {
+export async function getIsbn(
+  options: BookParams,
+  isLibrofm = false
+): Promise<NewBook> {
   const { inputIdentifier, providers } = options;
   let book;
-  const isLibrofm = inputIdentifier.startsWith("https://libro.fm");
   const identifier = isLibrofm
     ? getLibrofmId(inputIdentifier)
     : inputIdentifier;

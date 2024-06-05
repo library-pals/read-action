@@ -10,7 +10,7 @@ export async function getLibrofm(
       ...options,
       providers: ["librofm"],
     };
-    const book = await getIsbn(newOptions);
+    const book = await getIsbn(newOptions, true);
     return book;
   } catch (error) {
     throw new Error(`Failed to get book from Libro.fm: ${error.message}`);
