@@ -436,32 +436,5 @@
     ],
     "publisher": "Hachette Audio",
     "publishedDate": "2018-04-10"
-  },
-  {
-    "identifier": "9780553397970",
-    "identifiers": {
-      "librofm": "9780553397970",
-      "isbn": "9780553397970"
-    },
-    "dateAdded": "2024-06-04",
-    "status": "want to read",
-    "rating": "unrated",
-    "title": "Station Eleven",
-    "authors": [
-      "Emily St. John Mandel"
-    ],
-    "publishedDate": "2014-09-09",
-    "description": "Kirsten Raymonde will never forget the night Arthur Leander, the famous Hollywood actor, had a heart attack on stage during a production of King Lear. That was the night when a devastating flu pandemic arrived in the city, and within weeks, civilization as we know it came to an end. Twenty years later, Kirsten moves between the settlements of the altered world with a small troupe of actors and musicians. They call themselves The Traveling Symphony, and they have dedicated themselves to keeping the remnants of art and humanity alive. But when they arrive in St. Deborah by the Water, they encounter a violent prophet who will threaten the tiny band’s existence. And as the story takes off, moving back and forth in time, and vividly depicting life before and after the pandemic, the strange twist of fate that connects them all will be revealed.",
-    "format": "audiobook",
-    "categories": [
-      "Fiction",
-      "Science Fiction",
-      "Apocalyptic &amp; Dystopian",
-      "Fiction - Literary"
-    ],
-    "thumbnail": "https://covers.libro.fm/9780553397970_1120.jpg",
-    "language": "en",
-    "link": "https://libro.fm/audiobooks/9780553397970",
-    "image": "book-9780553397970.png"
   }
 ]
