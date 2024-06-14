@@ -71,14 +71,23 @@ function parseResult(result: OgObject): {
   return {
     title: result.ogTitle,
     description: formatDescription(result.ogDescription),
-    authors: Array.isArray(result.customMetaTags?.authors)
-      ? result.customMetaTags?.authors
-      : result.bookAuthor
-        ? [result.bookAuthor]
-        : [],
+    authors: formatAuthor(result),
     publishedDate: result.bookReleaseDate,
     thumbnail: result?.ogImage?.[0]?.url ?? "",
   };
+}
+
+function formatAuthor(result: OgObject): string[] {
+  if (Array.isArray(result.customMetaTags?.authors)) {
+    // Only get the first one as Libby includes narrator in this list
+    return [result.customMetaTags.authors[0]];
+  }
+
+  if (result.bookAuthor) {
+    return [result.bookAuthor];
+  }
+
+  return [];
 }
 
 function handleFormat(shareCategory: string): string | undefined {

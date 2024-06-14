@@ -93,7 +93,6 @@ describe("getLibby", () => {
       {
         "authors": [
           "Costanza Casati",
-          "Olivia Vinall",
         ],
         "categories": [
           "Fiction",
