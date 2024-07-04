@@ -1,7 +1,7 @@
 import ogs from "open-graph-scraper";
 import { BookParams } from "..";
 import * as cheerio from "cheerio";
-import { OgObject } from "open-graph-scraper/dist/lib/types";
+import { OgObject } from "open-graph-scraper/types/lib/types";
 import { formatDescription, getLibbyId } from "../utils";
 import { NewBook } from "../new-book";
 
