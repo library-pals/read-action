@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es2022",
     "moduleResolution": "node",
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["**/__tests__/**/*.ts"]
