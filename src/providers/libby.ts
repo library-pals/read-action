@@ -1,8 +1,7 @@
 import ogs from "open-graph-scraper";
 import { BookParams } from "..";
 import * as cheerio from "cheerio";
-import { OgObject } from "open-graph-scraper/types/lib/types";
-import { formatDescription, getLibbyId } from "../utils";
+import { getLibbyId, parseOgMetatagResult } from "../utils";
 import { NewBook } from "../new-book";
 
 interface Data {
@@ -36,7 +35,7 @@ export async function getLibby(
 
     const libbyIdentifier = getLibbyId(inputIdentifier) as string;
     const parsedHtmlMetadata = parseLibbyPage(html);
-    const parsedResultMetadata = parseResult(result);
+    const parsedResultMetadata = parseOgMetatagResult(result);
 
     return {
       identifier: libbyIdentifier,
@@ -59,35 +58,6 @@ export async function getLibby(
   } catch (error) {
     throw new Error(`Failed to get book from Libby: ${error.result.error}`);
   }
-}
-
-function parseResult(result: OgObject): {
-  title?: string;
-  description?: string;
-  authors: string[];
-  publishedDate?: string;
-  thumbnail: string;
-} {
-  return {
-    title: result.ogTitle,
-    description: formatDescription(result.ogDescription),
-    authors: formatAuthor(result),
-    publishedDate: result.bookReleaseDate,
-    thumbnail: result?.ogImage?.[0]?.url ?? "",
-  };
-}
-
-function formatAuthor(result: OgObject): string[] {
-  if (Array.isArray(result.customMetaTags?.authors)) {
-    // Only get the first one as Libby includes narrator in this list
-    return [result.customMetaTags.authors[0]];
-  }
-
-  if (result.bookAuthor) {
-    return [result.bookAuthor];
-  }
-
-  return [];
 }
 
 function handleFormat(shareCategory: string): string | undefined {

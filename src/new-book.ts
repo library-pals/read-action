@@ -3,6 +3,7 @@ import { BookParams } from ".";
 import { getIsbn } from "./providers/isbn";
 import { getLibby } from "./providers/libby";
 import { getLibrofm } from "./providers/librofm";
+import { getAppleBooks } from "./providers/apple-books";
 
 const providerAction = [
   {
@@ -12,6 +13,10 @@ const providerAction = [
   {
     check: (url: string) => url.startsWith("https://libro.fm/audiobooks/"),
     action: getLibrofm,
+  },
+  {
+    check: (url: string) => url.startsWith("https://books.apple.com/"),
+    action: getAppleBooks,
   },
   {
     check: () => true, // Default strategy
@@ -41,6 +46,7 @@ export type NewBook = {
     isbn?: string;
     libby?: string;
     librofm?: string;
+    apple?: string;
   };
   notes?: string;
   status: BookStatus;

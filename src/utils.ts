@@ -1,6 +1,7 @@
 import { BookParams } from ".";
 import { getInput } from "@actions/core";
 import { BookStatus, NewBook } from "./new-book";
+import { OgObject } from "open-graph-scraper/types/lib/types";
 
 /** make sure date is in YYYY-MM-DD format */
 export function dateFormat(date: string) {
@@ -28,7 +29,7 @@ export function sortByDate(array: NewBook[]): NewBook[] {
   });
 }
 
-export function formatDescription(str?: string) {
+export function formatDescription(str?) {
   if (!str) return "";
 
   // remove HTML tags
@@ -60,6 +61,9 @@ export function formatDescription(str?: string) {
   if (str.startsWith('"') && str.endsWith('"--')) {
     return `${str.slice(1, -3)}…`;
   }
+
+  // remove invisible characters
+  str = str.replace(/\u200E/g, "");
 
   return str;
 }
@@ -129,8 +133,45 @@ export function getLibbyId(inputIdentifier: string): string {
   return inputIdentifier.split("/").pop() as string;
 }
 
+export function getAppleBooksId(inputIdentifier: string): string {
+  return inputIdentifier.split("/").pop() as string;
+}
+
 export function getLibrofmId(inputIdentifier: string): string {
   const isbn = inputIdentifier.split("/").pop();
   if (!isbn) return inputIdentifier;
   return isbn?.split("-")[0];
+}
+
+function removeInvisibleCharacters(text): string {
+  return text.replace(/\u200E/g, "");
+}
+
+export function parseOgMetatagResult(result: OgObject): {
+  title?: string;
+  description?: string;
+  authors: string[];
+  publishedDate?: string;
+  thumbnail: string;
+} {
+  return {
+    title: removeInvisibleCharacters(result.ogTitle),
+    description: formatDescription(result.ogDescription),
+    authors: formatAuthor(result),
+    publishedDate: result.bookReleaseDate,
+    thumbnail: result?.ogImage?.[0]?.url ?? "",
+  };
+}
+
+function formatAuthor(result: OgObject): string[] {
+  if (Array.isArray(result.customMetaTags?.authors)) {
+    // Only get the first one as Libby includes narrator in this list
+    return [result.customMetaTags.authors[0]];
+  }
+
+  if (result.bookAuthor) {
+    return [result.bookAuthor];
+  }
+
+  return [];
 }
