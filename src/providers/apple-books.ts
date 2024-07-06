@@ -58,16 +58,41 @@ function parseResult(result: OgObject): Partial<NewBook> {
   if (!result.jsonLD) {
     return parseOgMetatagResult(result);
   }
+
   const schema = result.jsonLD[0] as Audiobook;
+  const pageCount = parsePageCount(schema.numberOfPages);
   return {
-    title: schema.name?.toString(),
+    title: safeToString(schema.name),
     description: formatDescription(schema.description),
-    authors: schema.author?.toString() ? [schema.author.toString()] : [],
-    publishedDate: schema.datePublished?.toString(),
-    thumbnail: schema.image?.toString(),
-    categories: schema.genre?.toString().split(",") || [],
-    format: schema["@type"] === "Audiobook" ? "audiobook" : "ebook",
-    ...(schema.numberOfPages && { pageCount: Number(schema.numberOfPages) }),
-    language: schema.inLanguage?.toString(),
+    authors: parseAuthors(schema.author),
+    publishedDate: safeToString(schema.datePublished),
+    thumbnail: safeToString(schema.image),
+    categories: parseCategories(schema.genre),
+    format: schema["@type"].toLocaleLowerCase(),
+    ...(pageCount && { pageCount }),
+    language: safeToString(schema.inLanguage),
   };
+}
+
+function safeToString(value): string | undefined {
+  return value?.toString() ?? undefined;
+}
+
+function parseAuthors(author): string[] {
+  if (!author) return [];
+  return [author.toString()];
+}
+
+function parseCategories(genre): string[] {
+  if (!genre) return [];
+  return genre
+    .toString()
+    .split(",")
+    .map((g) => g.trim())
+    .filter((g) => g);
+}
+
+function parsePageCount(numberOfPages): number | undefined {
+  const pageCount = Number(numberOfPages);
+  return !isNaN(pageCount) ? pageCount : undefined;
 }

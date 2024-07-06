@@ -84,7 +84,7 @@ describe("getAppleBooks", () => {
           "Classics",
         ],
         "description": "&lt;b&gt;This #1 &lt;i&gt;New York Times &lt;/i&gt;bestseller is a "bold and subversive retelling of the goddess's story" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, &lt;i&gt;The&lt;/i&gt;&lt;i&gt;New York Times&lt;/i&gt;).&lt;/b&gt;&lt;br /&gt;&lt;br /&gt; In the house of Helios, god of the sun and mi…",
-        "format": "ebook",
+        "format": "book",
         "identifier": "id1442351802",
         "identifiers": {
           "apple": "id1442351802",
