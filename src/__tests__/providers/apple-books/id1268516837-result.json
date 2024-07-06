@@ -1,0 +1,204 @@
+{
+  "success": true,
+  "alIosAppStoreId": "364709193",
+  "alIosAppName": "Apple Books",
+  "ogTitle": "‎Circe",
+  "ogDescription": "‎Fiction & Literature · 2018",
+  "ogSiteName": "Apple Books",
+  "ogUrl": "https://books.apple.com/us/book/circe/id1268516837",
+  "ogType": "book",
+  "ogLocale": "en_US",
+  "twitterTitle": "‎Circe",
+  "twitterDescription": "‎Fiction & Literature · 2018",
+  "twitterSite": "@AppleBooks",
+  "twitterCard": "summary_large_image",
+  "ogImage": [
+    {
+      "height": "630",
+      "type": "image/png",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Publication113/v4/a4/fa/48/a4fa4887-5d06-88e8-77e0-5638afc376cd/9780316556330.jpg/1200x630wz.png",
+      "width": "1200",
+      "alt": "Circe on Apple Books"
+    }
+  ],
+  "twitterImage": [
+    {
+      "alt": "Circe on Apple Books",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Publication113/v4/a4/fa/48/a4fa4887-5d06-88e8-77e0-5638afc376cd/9780316556330.jpg/1200x600wz.png"
+    }
+  ],
+  "ogDate": "2018-02-05T08:00:00.000Z",
+  "charset": "utf-8",
+  "jsonLD": [
+    {
+      "@context": "http://schema.org",
+      "@type": "Book",
+      "additionalType": "Product",
+      "author": "Madeline Miller",
+      "bookFormat": "EBook",
+      "datePublished": "2018-04-10T00:00:00.000Z",
+      "description": "&lt;b&gt;This #1 &lt;i&gt;New York Times &lt;/i&gt;bestseller is a \"bold and subversive retelling of the goddess's story\" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, &lt;i&gt;The&lt;/i&gt;&lt;i&gt;New York Times&lt;/i&gt;).&lt;/b&gt;&lt;br /&gt;&lt;br /&gt; In the house of Helios, god of the sun and mi…",
+      "genre": [
+        "Historical Fiction",
+        "Books",
+        "Fiction &amp; Literature",
+        "Literary Fiction",
+        "Classics"
+      ],
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Publication113/v4/a4/fa/48/a4fa4887-5d06-88e8-77e0-5638afc376cd/9780316556330.jpg/1200x630wz.png",
+      "inLanguage": "en-US",
+      "isbn": "9780316556330",
+      "name": "Circe",
+      "numberOfPages": 400,
+      "publisher": "Little, Brown and Company",
+      "offers": {
+        "@type": "Offer",
+        "price": 11.99,
+        "priceCurrency": "USD",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+          "merchantReturnDays": 0
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.6,
+        "reviewCount": 3961
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": "LLH_reads",
+          "name": "An Incredible Story of Realization",
+          "reviewBody": "This book moved me in ways I didn’t think possible. Mythology is not a subject I’m fond  of, and I was intimidated that the complicated cast of famous characters would distract me trying to keep the relationships straight. But, I was proven wrong. Miller weaves her story beautifully and makes it easy to draw connections between the gods, mortals and monsters. Circe is more than a retelling of an age old tale, it’s a coming of age - a story of realizing ones true purpose as a witch, a woman, a daughter and a mother exiled to learn about herself and her relationships through a series of adventures. Relatable in ways I didn’t expect, I highly recommend this.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2019-01-06T21:34:35.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "Gollum&amp;Frodo",
+          "name": "Great Read",
+          "reviewBody": "Great mythological fiction.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2024-07-03T10:07:02.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "Whim1954",
+          "name": "5 stars",
+          "reviewBody": "I rarely give a book five stars but Circe is an exception.  Beautifully written in which the gods come to “life”.  This book had me looking up all the Greek classic gods and goddesses with flashbacks to a college humanities course I had mostly forgotten. Highly recommend to both women and men.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2024-06-27T04:37:26.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "F.Bayona21",
+          "name": "Beautiful novel.",
+          "reviewBody": "This novel was eloquently written, and the characters were very compelling. I did not want to leave the world once I finished reading. Highly recommend!",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2024-06-23T04:30:08.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "Fonstev",
+          "name": "Very good read",
+          "reviewBody": "I found this book fascinating. I had never read about Greek mythology before and was interested about the topic. Really enjoyed the story and understood more of what I had heard.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2024-05-17T15:29:05.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "Nickname: All is taken",
+          "name": "A Retelling…?",
+          "reviewBody": "I have a love and hate relationship with Circe. Don’t ask why?!\nBut I do love a strong woman and the little description of Achilles and Patroclus was everything this book needed.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 3
+          },
+          "datePublished": "2024-05-30T05:43:48.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "binitasaha",
+          "name": "Made me come back in the reading game",
+          "reviewBody": "I used to read a book a week a decade ago. Slowly the habit dropped. Circe helped me pick it back up. It matched my recent interest in Greek Mythology because I played about 100 hours of Assassins Creed Odyssey. This book expanded by knowledge while also entertaining. Language was beautiful in some places and most relatable in all.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2024-04-10T04:02:10.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "ballin'94",
+          "name": "Enchanting from first page to last",
+          "reviewBody": "I savored every word of this beautifully told story of Circe, the divine and empathetic witch.  I couldn’t put this book down.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2024-04-01T21:02:34.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "pharmer_c",
+          "name": "Wanderlust",
+          "reviewBody": "Amazing read. I loved the story line. Anything Greek or Titan related is an instant win for me. This story is beautifully told, you can imagine yourself in every aspect of the character. A win for me.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2024-01-27T03:36:59.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "bdbdhdjdjfjfjhrrhhrjdjfjffjfj",
+          "name": "Circe review",
+          "reviewBody": "A little slow at times but overall a good read. very interesting for those who read the Odyssey as it gives you a whole \nnew perspective!",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 4
+          },
+          "datePublished": "2024-02-01T04:52:14.000Z"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@id": "https://books.apple.com/#organization",
+      "@type": "Organization",
+      "name": "Apple Books",
+      "url": "https://www.apple.com/apple-books/",
+      "logo": "https://books.apple.com/assets/images/knowledge-graph/books.png",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q284115",
+        "https://twitter.com/AppleBooks",
+        "https://www.instagram.com/applebooks/",
+        "https://www.facebook.com/AppleBooksOfficial/"
+      ],
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Apple",
+        "@id": "https://www.apple.com/#organization",
+        "url": "https://www.apple.com/"
+      }
+    }
+  ],
+  "requestUrl": "https://books.apple.com/us/book/circe/id1268516837"
+}

@@ -65,7 +65,9 @@ function parseResult(result: OgObject): Partial<NewBook> {
     authors: schema.author?.toString() ? [schema.author.toString()] : [],
     publishedDate: schema.datePublished?.toString(),
     thumbnail: schema.image?.toString(),
-    categories: schema.genre?.toString() ? [schema.genre.toString()] : [],
+    categories: schema.genre?.toString().split(",") || [],
     format: schema["@type"] === "Audiobook" ? "audiobook" : "ebook",
+    ...(schema.numberOfPages && { pageCount: Number(schema.numberOfPages) }),
+    language: schema.inLanguage?.toString(),
   };
 }
