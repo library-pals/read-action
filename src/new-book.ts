@@ -5,7 +5,7 @@ import { getLibby } from "./providers/libby";
 import { getLibrofm } from "./providers/librofm";
 import { getAppleBooks } from "./providers/apple-books";
 
-const providerAction = [
+export const providerAction = [
   {
     check: (url: string) => url.startsWith("https://share.libbyapp.com/"),
     action: getLibby,
