@@ -1,0 +1,195 @@
+{
+  "success": true,
+  "alIosAppStoreId": "364709193",
+  "alIosAppName": "Apple Books",
+  "ogTitle": "‎Circe",
+  "ogDescription": "‎Fiction · 2018",
+  "ogSiteName": "Apple Books",
+  "ogUrl": "https://books.apple.com/us/audiobook/circe/id1442351802",
+  "ogLocale": "en_US",
+  "twitterTitle": "‎Circe",
+  "twitterDescription": "‎Fiction · 2018",
+  "twitterSite": "@AppleBooks",
+  "twitterCard": "summary_large_image",
+  "ogImage": [
+    {
+      "height": "630",
+      "type": "image/png",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/a5/3e/4a/a53e4acc-e48e-5184-db00-568fb3cc1216/9781478975311.jpg/1200x630wp.png",
+      "width": "1200",
+      "alt": "Circe on Apple Books"
+    }
+  ],
+  "twitterImage": [
+    {
+      "alt": "Circe on Apple Books",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/a5/3e/4a/a53e4acc-e48e-5184-db00-568fb3cc1216/9781478975311.jpg/1200x600wp.png"
+    }
+  ],
+  "ogDate": "2020-06-28T00:34:40.000Z",
+  "charset": "utf-8",
+  "jsonLD": [
+    {
+      "@context": "http://schema.org",
+      "@type": "Audiobook",
+      "additionalType": "Product",
+      "author": "Madeline Miller",
+      "datePublished": "2018-04-10T00:00:00.000Z",
+      "description": "&lt;b&gt;This #1 &lt;i&gt;New York Times &lt;/i&gt;bestseller is a \"bold and subversive retelling of the goddess's story\" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, &lt;i&gt;The&lt;/i&gt;&lt;i&gt;New York Times&lt;/i&gt;).&lt;/b&gt;&lt;br /&gt;&lt;br /&gt; In the house of Helios, god of the sun and mi…",
+      "duration": "PT12H8M25S",
+      "genre": "Fiction",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/a5/3e/4a/a53e4acc-e48e-5184-db00-568fb3cc1216/9781478975311.jpg/1200x630wp.png",
+      "name": "Circe",
+      "provider": "Hachette Audio",
+      "readBy": "Perdita Weeks",
+      "offers": {
+        "@type": "Offer",
+        "price": 19.99,
+        "priceCurrency": "USD",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+          "merchantReturnDays": 0
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.4,
+        "reviewCount": 1719
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": "alnicnireader",
+          "name": "Amazing Audiobook",
+          "reviewBody": "This book is beautifully written. The voice actor, Perdita Weeks, makes the audiobook so enjoyable. She voices the characters distinctly without throwing the listener off. Very well done!",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2020-06-28T00:34:40.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "Saraswati5",
+          "name": "Circe",
+          "reviewBody": "Wonderful.  Brought arch types to life in a meaningful way. Beautifully read and evocative.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2019-03-12T02:37:36.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "izdirita",
+          "name": "Still one of my favorite novels ever.",
+          "reviewBody": "My second reading and another 5 stars. Truly a perfect narrative with such lyrical prose it feels as though it were written out of time. The themes and lessons of Circe are as timeless as the myths themselves, yet ever more potent in as time goes on. Madeline Miller has indeed succeeded in providing the world with an Odyssey tale, much fuller than its predecessor and with infinitely more wisdom of human nature and the dark night of the soul. Oh to be witch of Aiaia.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2024-05-19T08:54:12.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "Dakotasaxton",
+          "name": "The new rules are expected by mid September or",
+          "reviewBody": "The first time you",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2024-04-20T12:40:58.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "wineg1rl",
+          "name": "My favorite book in the whole world",
+          "reviewBody": "I first read this book during a really challenging time of my life. I saw it on the shelf and I was immediately drawn to it. I needed Circe. I related to her so much and found myself inspired and empowered by her and her story. I love this adaptation so much. I love Circe and thank you Madeline Miller!!! The audiobook is even better, just because the narrator is amazing and I just love hearing someone else reading her story.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2023-11-30T13:55:02.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "piblett_",
+          "name": "highly recommend",
+          "reviewBody": "i’ve listened to this so many times and still feel entertained, i often think of this wonderful book and recommend it to anyone even if they aren’t familiar with greek mythology. \n\ni’ve even found myself daydreaming of what it would be like to fall in love with a greek goddess, or even be one because of this beautiful book.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2023-11-09T09:18:16.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "Will47Ensign7",
+          "name": "More please",
+          "reviewBody": "One of the best books ever",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2023-08-13T21:11:34.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "ButterKat😋✌🏻",
+          "name": "Circe",
+          "reviewBody": "A good life story",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 3
+          },
+          "datePublished": "2023-08-28T20:45:46.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "breebreeatx",
+          "name": "My favorite audio book.",
+          "reviewBody": "Perfect! Absolutely perfect.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2023-04-02T02:28:44.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "Bakeneko21",
+          "name": "A fresh take on Greek mythology, absolutely inspiring!",
+          "reviewBody": "What a please to read this was! Circe communicates her feelings within a fantastical world in such a way that you long to become more than an espectador, but are too afraid to engage more, for it all feels so very plausible. For any genre lover, definitely worth a read!",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2023-01-12T05:41:01.000Z"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@id": "https://books.apple.com/#organization",
+      "@type": "Organization",
+      "name": "Apple Books",
+      "url": "https://www.apple.com/apple-books/",
+      "logo": "https://books.apple.com/assets/images/knowledge-graph/books.png",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q284115",
+        "https://twitter.com/AppleBooks",
+        "https://www.instagram.com/applebooks/",
+        "https://www.facebook.com/AppleBooksOfficial/"
+      ],
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Apple",
+        "@id": "https://www.apple.com/#organization",
+        "url": "https://www.apple.com/"
+      }
+    }
+  ],
+  "requestUrl": "https://books.apple.com/us/audiobook/circe/id1442351802"
+}

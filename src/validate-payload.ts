@@ -3,20 +3,25 @@ import { isDate, isIsbn } from "./utils";
 import { BookPayload } from "./index";
 import { BookStatus } from "./new-book";
 
+const validPrefixes = [
+  "https://share.libbyapp.com/",
+  "https://libro.fm/",
+  "https://books.apple.com/",
+];
+
 export function validatePayload(payload: BookPayload): void {
   if (!payload || !payload["identifier"]) {
     setFailed("Missing `identifier` in payload");
   }
 
+  const { identifier } = payload;
+
   if (
-    !(
-      payload["identifier"].startsWith("https://share.libbyapp.com/") ||
-      payload["identifier"].startsWith("https://libro.fm/") ||
-      isIsbn(payload["identifier"])
-    )
+    !validPrefixes.some((prefix) => identifier.startsWith(prefix)) &&
+    !isIsbn(identifier)
   ) {
     setFailed(
-      `Invalid \`identifier\` in payload: ${payload["identifier"]}. Must be an ISBN or start with "https://share.libbyapp.com/"`
+      `Invalid \`identifier\` in payload: ${identifier}. Must be an ISBN or start with one of the following: ${validPrefixes.join(", ")}`
     );
   }
 
