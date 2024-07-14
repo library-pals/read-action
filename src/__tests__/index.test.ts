@@ -466,8 +466,8 @@ describe("index", () => {
       },
     });
     await read();
-    expect(setFailedSpy).toHaveBeenCalledWith(
-      'Invalid `identifier` in payload: 978. Must be an ISBN or start with "https://share.libbyapp.com/"'
+    expect(setFailedSpy.mock.calls[0][0]).toMatchInlineSnapshot(
+      `"Invalid \`identifier\` in payload: 978. Must be an ISBN or start with one of the following: https://share.libbyapp.com/, https://libro.fm/, https://books.apple.com/"`
     );
   });
 
@@ -485,8 +485,8 @@ describe("index", () => {
       },
     });
     await read();
-    expect(setFailedSpy).toHaveBeenCalledWith(
-      'Invalid `identifier` in payload: http://not-libby.com/yadda-yadda. Must be an ISBN or start with "https://share.libbyapp.com/"'
+    expect(setFailedSpy.mock.calls[0][0]).toMatchInlineSnapshot(
+      `"Invalid \`identifier\` in payload: http://not-libby.com/yadda-yadda. Must be an ISBN or start with one of the following: https://share.libbyapp.com/, https://libro.fm/, https://books.apple.com/"`
     );
   });
 
