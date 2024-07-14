@@ -436,26 +436,5 @@
     ],
     "publisher": "Hachette Audio",
     "publishedDate": "2018-04-10"
-  },
-  {
-    "identifier": "id1470137739",
-    "identifiers": {
-      "apple": "id1470137739"
-    },
-    "dateStarted": "2024-07-13",
-    "status": "started",
-    "rating": "unrated",
-    "link": "https://books.apple.com/us/audiobook/this-is-how-you-lose-the-time-war-unabridged/id1470137739",
-    "title": "This Is How You Lose The Time War (Unabridged)",
-    "description": "WINNER OF THE NEBULA AND LOCUS AWARDS FOR BEST NOVELLA“[An] exquisitely crafted tale...Part epistolary romance, part mind-blowing science fiction adventure, this dazzling story unfolds bit by bit, revealing layers of meaning as it plays with cause and effect, wildly imaginative…",
-    "authors": [
-      "Amal El-Mohtar &amp; Max Gladstone"
-    ],
-    "publishedDate": "2019-07-16T00:00:00.000Z",
-    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/6c/5d/8c/6c5d8cd5-7c11-d20d-431d-9b41b7ff5ed6/9781508287056.jpg/1200x630wp.png",
-    "categories": [
-      "Sci-Fi &amp; Fantasy"
-    ],
-    "format": "audiobook"
   }
 ]
