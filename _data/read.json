@@ -436,5 +436,27 @@
     ],
     "publisher": "Hachette Audio",
     "publishedDate": "2018-04-10"
+  },
+  {
+    "identifier": "id1579442238",
+    "identifiers": {
+      "apple": "id1579442238"
+    },
+    "dateStarted": "2024-07-13",
+    "status": "started",
+    "rating": "unrated",
+    "image": "book-id1579442238.png",
+    "link": "https://books.apple.com/us/audiobook/portrait-of-a-thief-a-novel-unabridged/id1579442238",
+    "title": "Portrait of a Thief: A Novel (Unabridged)",
+    "description": "INSTANT NEW YORK TIMES BESTSELLER An Edgar Award Nominee for Best First Novel Longlisted for the Center for Fiction's First Novel Prize Named a New York Times Best Crime Novel of 2022 Named A Most Anticipated Book of 2022 by * Marie Claire * * Wa…",
+    "authors": [
+      "Grace D. Li"
+    ],
+    "publishedDate": "2022-04-05T00:00:00.000Z",
+    "thumbnail": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/7a/81/3f/7a813f37-15f6-988c-0545-52d974b65209/9780593510957.d.jpg/1200x630wp.png",
+    "categories": [
+      "Fiction"
+    ],
+    "format": "audiobook"
   }
 ]
