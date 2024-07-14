@@ -35,7 +35,7 @@ describe("getAppleBooks", () => {
         "categories": [
           "Fiction",
         ],
-        "description": "&lt;b&gt;This #1 &lt;i&gt;New York Times &lt;/i&gt;bestseller is a "bold and subversive retelling of the goddess's story" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, &lt;i&gt;The&lt;/i&gt;&lt;i&gt;New York Times&lt;/i&gt;).&lt;/b&gt;&lt;br /&gt;&lt;br /&gt; In the house of Helios, god of the sun and mi…",
+        "description": "This #1 is a "bold and subversive retelling of the goddess's story" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, TheNew York Times). In the house of Helios, god of the sun and mi…",
         "format": "audiobook",
         "identifier": "id1442351802",
         "identifiers": {
@@ -83,7 +83,7 @@ describe("getAppleBooks", () => {
           "Literary Fiction",
           "Classics",
         ],
-        "description": "&lt;b&gt;This #1 &lt;i&gt;New York Times &lt;/i&gt;bestseller is a "bold and subversive retelling of the goddess's story" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, &lt;i&gt;The&lt;/i&gt;&lt;i&gt;New York Times&lt;/i&gt;).&lt;/b&gt;&lt;br /&gt;&lt;br /&gt; In the house of Helios, god of the sun and mi…",
+        "description": "This #1 is a "bold and subversive retelling of the goddess's story" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, TheNew York Times). In the house of Helios, god of the sun and mi…",
         "format": "book",
         "identifier": "id1442351802",
         "identifiers": {
@@ -134,7 +134,7 @@ describe("getAppleBooks", () => {
       {
         "authors": [],
         "categories": [],
-        "description": "&lt;b&gt;This #1 &lt;i&gt;New York Times &lt;/i&gt;bestseller is a "bold and subversive retelling of the goddess's story" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, &lt;i&gt;The&lt;/i&gt;&lt;i&gt;New York Times&lt;/i&gt;).&lt;/b&gt;&lt;br /&gt;&lt;br /&gt; In the house of Helios, god of the sun and mi…",
+        "description": "This #1 is a "bold and subversive retelling of the goddess's story" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, TheNew York Times). In the house of Helios, god of the sun and mi…",
         "format": "book",
         "identifier": "id1442351802",
         "identifiers": {

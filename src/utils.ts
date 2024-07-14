@@ -32,6 +32,11 @@ export function sortByDate(array: NewBook[]): NewBook[] {
 export function formatDescription(str?) {
   if (!str) return "";
 
+  // replace HTML entities
+  str = str.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+  str = str.replace(/&quot;/g, '"');
+  str = str.replace(/&apos;/g, "'");
+
   // remove HTML tags
   str = str.replace(/<\/?[^>]+(>|$)/gm, "");
 
