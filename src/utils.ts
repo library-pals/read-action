@@ -38,21 +38,7 @@ export function formatDescription(str?) {
   str = str.replace(/&apos;/g, "'");
 
   // remove HTML tags
-  str = str.replace(/<\/?[^>]+(>|$)/gm, "");
-
-  // Remove common phrases, case insensitive
-  const phrases = [
-    "NEW YORK TIMES BESTSELLER",
-    "A GOOD MORNING AMERICA BOOK CLUB PICK",
-    "Winner of the \\d\\d\\d\\d Center for Fiction",
-    "First Novel Prize Winner of the \\d\\d\\d National Book",
-    "AN INSTANT NEW YORK TIMES BESTSELLER",
-    "A New York Times Notable Book of the Year",
-  ];
-
-  phrases.forEach((phrase) => {
-    str = str?.replace(new RegExp(phrase, "gi"), "");
-  });
+  str = str.replace(/<\/?[^>]+(>|$)/gm, " ");
 
   str = str
     .replace(/(\r\n|\n|\r)/gm, " ") // remove line breaks
@@ -69,6 +55,27 @@ export function formatDescription(str?) {
 
   // remove invisible characters
   str = str.replace(/\u200E/g, "");
+
+  str = removeCommonPhrases(str);
+
+  return str.trim();
+}
+
+function removeCommonPhrases(str: string): string {
+  // Remove common phrases, case insensitive
+  const phrases = [
+    //"NEW YORK TIMES BESTSELLER",
+    "A GOOD MORNING AMERICA BOOK CLUB PICK",
+    "Winner of the \\d\\d\\d\\d Center for Fiction",
+    "First Novel Prize Winner of the \\d\\d\\d National Book",
+    "AN INSTANT NEW YORK TIMES BESTSELLER",
+    "A New York Times Notable Book of the Year",
+    "WINNER OF THE NEBULA AND LOCUS AWARDS FOR BEST NOVELLA",
+  ];
+
+  phrases.forEach((phrase) => {
+    str = str?.replace(new RegExp(phrase, "gi"), "");
+  });
 
   return str;
 }

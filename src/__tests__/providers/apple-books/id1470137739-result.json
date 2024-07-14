@@ -1,0 +1,134 @@
+{
+  "success": true,
+  "alIosAppStoreId": "364709193",
+  "alIosAppName": "Apple Books",
+  "ogTitle": "‎This Is How You Lose The Time War (Unabridged)",
+  "ogDescription": "‎Sci-Fi & Fantasy · 2019",
+  "ogSiteName": "Apple Books",
+  "ogUrl": "https://books.apple.com/us/audiobook/this-is-how-you-lose-the-time-war-unabridged/id1470137739",
+  "ogLocale": "en_US",
+  "twitterTitle": "‎This Is How You Lose The Time War (Unabridged)",
+  "twitterDescription": "‎Sci-Fi & Fantasy · 2019",
+  "twitterSite": "@AppleBooks",
+  "twitterCard": "summary_large_image",
+  "ogImage": [
+    {
+      "height": "630",
+      "type": "image/png",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/6c/5d/8c/6c5d8cd5-7c11-d20d-431d-9b41b7ff5ed6/9781508287056.jpg/1200x630wp.png",
+      "width": "1200",
+      "alt": "This Is How You Lose The Time War (Unabridged) on Apple Books"
+    }
+  ],
+  "twitterImage": [
+    {
+      "alt": "This Is How You Lose The Time War (Unabridged) on Apple Books",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/6c/5d/8c/6c5d8cd5-7c11-d20d-431d-9b41b7ff5ed6/9781508287056.jpg/1200x600wp.png"
+    }
+  ],
+  "ogDate": "2019-09-09T12:59:49.000Z",
+  "charset": "utf-8",
+  "jsonLD": [
+    {
+      "@context": "http://schema.org",
+      "@type": "Audiobook",
+      "additionalType": "Product",
+      "author": "Amal El-Mohtar &amp; Max Gladstone",
+      "datePublished": "2019-07-16T00:00:00.000Z",
+      "description": "&lt;b&gt;WINNER OF THE NEBULA AND LOCUS AWARDS FOR BEST NOVELLA&lt;/b&gt;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;“[An] exquisitely crafted tale...Part epistolary romance, part mind-blowing science fiction adventure, this dazzling story unfolds bit by bit, revealing layers of meaning as it plays with cause and effect, wildly imaginative…",
+      "duration": "PT4H16M1S",
+      "genre": "Sci-Fi &amp; Fantasy",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/6c/5d/8c/6c5d8cd5-7c11-d20d-431d-9b41b7ff5ed6/9781508287056.jpg/1200x630wp.png",
+      "name": "This Is How You Lose The Time War (Unabridged)",
+      "provider": "Simon &amp; Schuster Audio",
+      "readBy": "Cynthia Farrell",
+      "thumbnailUrl": [
+        "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/6c/5d/8c/6c5d8cd5-7c11-d20d-431d-9b41b7ff5ed6/9781508287056.jpg/1200x675wf.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/6c/5d/8c/6c5d8cd5-7c11-d20d-431d-9b41b7ff5ed6/9781508287056.jpg/1200x900wf.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/6c/5d/8c/6c5d8cd5-7c11-d20d-431d-9b41b7ff5ed6/9781508287056.jpg/1200x1200wf.jpg"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": 12.99,
+        "priceCurrency": "USD",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+          "merchantReturnDays": 0
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.2,
+        "reviewCount": 139
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": "Buttonsvixen",
+          "name": "Different but good",
+          "reviewBody": "You’ll have to pay attention. Don’t listen if you just want to pop in once in a while, so to speak. It’s also not a terribly long book. About five hundred miles of driving, I’d say. \nI like that it’s fairly hardcore sci-fi with no dragons, magic or swords. The plot? Two heroines battle for control of Time until they finally realize they are in love with each other, and run off together leaving someone else to figure out how to deal with Time. This story seems to really be a metaphor for certain situations in life, perhaps. The author likes to build very descriptive passages which I enjoyed. There is no actual racy or sexual content.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 4
+          },
+          "datePublished": "2019-09-09T12:59:49.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "zamual",
+          "name": "BLOWN AWAY",
+          "reviewBody": "Just read it, listen to it, eat it, breathe it, bathe in it!!! An absolute masterpiece",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2023-08-08T21:47:10.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "baj101",
+          "name": "A piece of trash",
+          "reviewBody": "This book manages to be the trifecta -boring, pretentious and annoying all in one. I can only imagine it was written for the authors five or six friends who hope someday to have scholarly conversations that will impress the passersby in the food court.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 1
+          },
+          "datePublished": "2021-09-13T14:17:12.000Z"
+        },
+        {
+          "@type": "Review",
+          "author": "jaysung",
+          "name": "Choose RED!!!",
+          "reviewBody": "Love this book",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5
+          },
+          "datePublished": "2021-04-08T01:56:31.000Z"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@id": "https://books.apple.com/#organization",
+      "@type": "Organization",
+      "name": "Apple Books",
+      "url": "https://www.apple.com/apple-books/",
+      "logo": "https://books.apple.com/assets/images/knowledge-graph/books.png",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q284115",
+        "https://twitter.com/AppleBooks",
+        "https://www.instagram.com/applebooks/",
+        "https://www.facebook.com/AppleBooksOfficial/"
+      ],
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Apple",
+        "@id": "https://www.apple.com/#organization",
+        "url": "https://www.apple.com/"
+      }
+    }
+  ],
+  "requestUrl": "https://books.apple.com/us/audiobook/this-is-how-you-lose-the-time-war-unabridged/id1470137739"
+}

@@ -146,7 +146,7 @@ describe("getLibby", () => {
           "Romance",
           "Science Fiction",
         ],
-        "description": "This summer’s hottest debut. - Cosmopolitan • “Witty, sexy escapist fiction [that] packs a substantial punch...It’s a smart, gripping work that’s also a feast for the senses...Fresh and thrilling.” - Los Angeles Times • “Electric...I loved every second.” - Emily HenryUtterly winning...Imagine if The Time Traveler’s Wife had an affair with A Gent...",
+        "description": "NEW YORK TIMES BESTSELLER  This summer’s hottest debut. - Cosmopolitan • “Witty, sexy escapist fiction [that] packs a substantial punch...It’s a smart, gripping work that’s also a feast for the senses...Fresh and thrilling.” - Los Angeles Times • “Electric...I loved every second.” - Emily HenryUtterly winning...Imagine if The Time Traveler’s Wife had an affair with A Gent...",
         "format": "ebook",
         "identifier": "9575390",
         "identifiers": {

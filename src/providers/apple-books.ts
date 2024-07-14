@@ -80,11 +80,17 @@ function safeToString(value): string | undefined {
 
 function parseAuthors(author): string[] {
   if (!author) return [];
+  if (author.includes("&amp;")) {
+    return author.split("&amp;").map((a) => a.trim());
+  }
   return [author.toString()];
 }
 
 function parseCategories(genre): string[] {
   if (!genre) return [];
+  if (genre.includes("&amp;")) {
+    return genre.split("&amp;").map((a) => a.trim());
+  }
   return genre
     .toString()
     .split(",")
