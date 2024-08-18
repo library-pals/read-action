@@ -9,7 +9,7 @@ module.exports = {
     try {
       const url = new URL(val);
       return url.searchParams.has("id");
-    } catch (err) {
+    } catch {
       // If it's not a valid URL, it's not testable by this serializer
       return false;
     }
