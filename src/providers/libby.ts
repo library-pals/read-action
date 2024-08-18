@@ -3,6 +3,7 @@ import { BookParams } from "..";
 import * as cheerio from "cheerio";
 import { getLibbyId, parseOgMetatagResult } from "../utils";
 import { NewBook } from "../new-book";
+import type { Element } from "domhandler";
 
 interface Data {
   [key: string]: string;
@@ -91,7 +92,7 @@ export function parseLibbyPage(html: string | undefined): {
   const table = $(".share-table-1d");
   if (table.length) {
     const rows = table.find("tr").toArray();
-    htmlData = rows.reduce((acc: Data, row: cheerio.Element) => {
+    htmlData = rows.reduce((acc: Data, row: Element) => {
       const th = $(row).find("th").text();
       const td = $(row).find("td").text();
       if (th) {
