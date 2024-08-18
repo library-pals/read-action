@@ -3,7 +3,7 @@ import { BookParams } from "..";
 import * as cheerio from "cheerio";
 import { getLibbyId, parseOgMetatagResult } from "../utils";
 import { NewBook } from "../new-book";
-import type { Element } from "domhandler";
+import type { Element } from "domhandler"; // https://github.com/cheeriojs/cheerio/issues/3988
 
 interface Data {
   [key: string]: string;
