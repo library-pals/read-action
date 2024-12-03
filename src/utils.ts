@@ -138,6 +138,9 @@ export function lookUp(
   if (inputIdentifier.startsWith("https://libro.fm/")) {
     return book.identifier === getLibrofmId(inputIdentifier);
   }
+  if (inputIdentifier.startsWith("https://books.apple.com/")) {
+    return book.identifier === getAppleBooksId(inputIdentifier);
+  }
   return book.identifier === inputIdentifier;
 }
 

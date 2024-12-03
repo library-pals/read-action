@@ -1,0 +1,98 @@
+{
+  "success": true,
+  "alIosAppStoreId": "364709193",
+  "alIosAppName": "Apple Books",
+  "ogTitle": "‎Prophet Song (Unabridged)",
+  "ogDescription": "‎Fiction · 2023",
+  "ogSiteName": "Apple Books",
+  "ogUrl": "https://books.apple.com/us/audiobook/prophet-song-unabridged/id1719188959",
+  "ogLocale": "en_US",
+  "twitterTitle": "‎Prophet Song (Unabridged)",
+  "twitterDescription": "‎Fiction · 2023",
+  "twitterSite": "@AppleBooks",
+  "twitterCard": "summary_large_image",
+  "ogImage": [
+    {
+      "height": "630",
+      "type": "image/png",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c9/e7/03/c9e703da-1349-dc0a-77d9-5f9c9c300bf5/9781038662170_FrontCover_Trade_DD.jpg/1200x630wp.png",
+      "width": "1200",
+      "alt": "Prophet Song (Unabridged) by Paul Lynch on Apple Books"
+    }
+  ],
+  "twitterImage": [
+    {
+      "alt": "Prophet Song (Unabridged) by Paul Lynch on Apple Books",
+      "url": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c9/e7/03/c9e703da-1349-dc0a-77d9-5f9c9c300bf5/9781038662170_FrontCover_Trade_DD.jpg/1200x600wp.png"
+    }
+  ],
+  "ogDate": "2024-09-02T12:30:50.000Z",
+  "charset": "utf-8",
+  "jsonLD": [
+    {
+      "@context": "http://schema.org",
+      "@type": "Audiobook",
+      "additionalType": "Product",
+      "author": "Paul Lynch",
+      "datePublished": "2023-12-01T00:00:00.000Z",
+      "description": "A fearless portrait of a society on the brink as a mother faces a terrible choice, from Booker-winning author Paul Lynch.\n\nWinner of the Booker Prize 2023\n\nOn a dark, wet evening in Dublin, scientist and mother of four Eilish Stack answers her front door to find the GNSB on her step. Two officers fr…",
+      "duration": "PT8H32M40S",
+      "genre": "Fiction",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c9/e7/03/c9e703da-1349-dc0a-77d9-5f9c9c300bf5/9781038662170_FrontCover_Trade_DD.jpg/1200x630wp.png",
+      "name": "Prophet Song (Unabridged)",
+      "provider": "Bolinda Publishing Pty Ltd",
+      "readBy": "Gerry O'Brien",
+      "thumbnailUrl": [
+        "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c9/e7/03/c9e703da-1349-dc0a-77d9-5f9c9c300bf5/9781038662170_FrontCover_Trade_DD.jpg/1200x675wf.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c9/e7/03/c9e703da-1349-dc0a-77d9-5f9c9c300bf5/9781038662170_FrontCover_Trade_DD.jpg/1200x900wf.jpg",
+        "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c9/e7/03/c9e703da-1349-dc0a-77d9-5f9c9c300bf5/9781038662170_FrontCover_Trade_DD.jpg/1200x1200wf.jpg"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": 19.99,
+        "priceCurrency": "USD",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+          "merchantReturnDays": 0
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.4,
+        "reviewCount": 33
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": "bwn4805",
+          "name": "Not even 1 star",
+          "reviewBody": "A book of enduring pain and suffering - dark &amp; outright depressing with a boring storyline…..\n\nI really don’t get the message or point (the underlying theme is mis-matched - no clue) teacher union/labor representative (socialist) pushing back against a full implementation of a socialist (communist) system……what a joke\n\nFind something else to read",
+          "reviewRating": { "@type": "Rating", "ratingValue": 1 },
+          "datePublished": "2024-09-02T12:30:50.000Z"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@id": "https://books.apple.com/#organization",
+      "@type": "Organization",
+      "name": "Apple Books",
+      "url": "https://www.apple.com/apple-books/",
+      "logo": "https://books.apple.com/assets/images/knowledge-graph/books.png",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q284115",
+        "https://twitter.com/AppleBooks",
+        "https://www.instagram.com/applebooks/",
+        "https://www.facebook.com/AppleBooksOfficial/"
+      ],
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Apple",
+        "@id": "https://www.apple.com/#organization",
+        "url": "https://www.apple.com/"
+      }
+    }
+  ],
+  "requestUrl": "https://books.apple.com/us/audiobook/id1719188959"
+}
