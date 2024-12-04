@@ -15,9 +15,9 @@ Depending on the type of `identifier` you submit to the action, it will use the 
 | Identifier      | Provider                                                               | Example `identifier` value                                 |
 | --------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------- |
 | ISBN            | [@library-pals/isbn](https://www.npmjs.com/package/@library-pals/isbn) | `9780385353311`                                            |
-| Libby URL       | [Libby](https://libbyapp.com) via metatag and HTML scraping            | `https://share.libbyapp.com/title/1499830`                 |
-| Libro.fm URL    | [Libro.fm](https://libro.fm) via metatag scraping                      | `https://libro.fm/audiobooks/9780553397970-station-eleven` |
-| Apple Books URL | [Apple Books](https://books.apple.com/) via metatag scripaing          | `https://books.apple.com/us/audiobook/circe/id1442351802`  |
+| Libby URL       | [Libby](https://libbyapp.com) via meta tag and HTML scraping           | `https://share.libbyapp.com/title/1499830`                 |
+| Libro.fm URL    | [Libro.fm](https://libro.fm) via meta tag scraping                     | `https://libro.fm/audiobooks/9780553397970-station-eleven` |
+| Apple Books URL | [Apple Books](https://books.apple.com/) via meta tag scraping          | `https://books.apple.com/us/audiobook/circe/id1442351802`  |
 
 ## Book lifecycle
 
