@@ -65,7 +65,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            identifier: "9780385696005",
+            identifier: "9781760983215",
             "book-status": "started",
             date: "2022-01-02",
           },
@@ -80,28 +80,16 @@ describe("index", () => {
           "started",
         ],
         [
-          "BookNeedsReview",
-          true,
-        ],
-        [
-          "BookMissingMetadata",
-          "pageCount",
-        ],
-        [
-          "BookIdentifier",
-          "9780385696005",
-        ],
-        [
           "BookTitle",
           "Luster",
         ],
         [
           "BookThumbOutput",
-          "book-9780385696005.png",
+          "book-9781760983215.png",
         ],
         [
           "BookThumb",
-          "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&source=gbs_api",
         ],
       ]
     `);
@@ -113,10 +101,10 @@ describe("index", () => {
           "authors": [
             "Raven Leilani",
           ],
-          "description": "NEW YORK TIMES BESTSELLER  First Novel Prize Winner of the 2020 National Book Critics Circle's John Leonard Prize for Best First Book Winner of the 2020 Kirkus Prize for Fiction Winner of the 2021 Dylan Thomas Prize Finalist for the 2021 PEN/Hemingway Award for Best First Novel Longlisted for the 2021 Andrew Carnegie Medal for Excellence in Fiction Longlisted for the 2021 PEN/Jean Stein Book Award Longlisted for the 2021 Women's Prize for Fiction  Named Best Book of the Year by O: the Oprah Magazine, Vanity Fair, Los Angeles Times, Town and Country, Amazon, Indigo, NPR, Harper’s Bazaar, Kirkus Reviews, Marie Claire, Good Housekeeping Sharp, comic, disruptive, and tender, Luster sees a young Black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties—sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage—with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only Black woman who young Akila knows. Razor-sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
-          "identifier": "9780385696005",
-          "image": "book-9780385696005.png",
-          "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          "description": "'A taut, sharp, funny book about being young now. It's brutal-and brilliant.' Zadie Smith WINNER OF THE KIRKUS PRIZE FOR FICTION 2020 LONGLISTED FOR THE WOMEN'S PRIZE FOR FICTION 2021 Meet Edie. Edie is not okay. She's messing up in her dead-end admin job in her all white office, is sleeping with all the wrong men, and has failed at the only thing that meant anything to her, painting. No one seems to care that she doesn't really know what she's doing with her life beyond looking for her next hook-up. And then she meets Eric, a white, middle-aged archivist with a suburban family, including a wife who has sort-of-agreed to an open marriage and an adopted black daughter who doesn't have a single person in her life who can show her how to do her hair. As if navigating the constantly shifting landscape of sexual and racial politics as a young, black woman wasn't already hard enough, with nowhere else left to go, Edie finds herself falling headfirst into Eric's home and family. Razor sharp. provocatively page-turning and surprisingly tender, Luster is a painfully funny coming-of-age story told by a fresh new voice. ONE OF BARACK OBAMA'S FAVOURITE BOOKS OF 2020 PRAISE FOR LUSTER 'Remarkable, the most delicious novel I've read.' Candice Carty-Williams, bestselling author of Queenie 'Raven Leilani is a writer of unusual daring, with a voice that is unique and fully formed. There is humor, intelligence, emotion, and power in her work. I cannot think of a writer better suited to capture our contemporary moment.' Katie Kitamura, author of A Separation 'Among the most exciting releases of 2020-a lively, unforgettable coming-of-age story . . . Leilani brings painterly precision to each stunning sentence, making for an exacting, darkly comic story of a gifted yet wayward young woman learning to believe in her own talent.' Esquire 'Narrated with fresh and wry jadedness, Edie's every disappointment [is] rendered with a comic twist . . . Edie's life is a mess, her past is filled with sorrow, she's wasting her precious youth, and yet, reading about it all is a whole lot of fun.' Vogue 'Darkly funny with wicked insight . . . This keenly observed, dynamic debut is so cutting, it almost stings.' Elle 'I was blown away by this debut novel . . . It is exquisite.' Dolly Alderton, bestselling author of Everything I Know About Love 'Smart and satirical about everything from the gig economy to racism in publishing to the inner politics of families' Emma Donoghue, bestselling author of Room and The Pull of the Stars",
+          "identifier": "9781760983215",
+          "image": "book-9781760983215.png",
+          "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&source=gbs_api",
           "title": "Luster",
         },
       ]
@@ -150,22 +138,25 @@ describe("index", () => {
             "categories": [
               "Fiction",
               "Fiction / Literary",
+              "Fiction / Cultural Heritage",
+              "Fiction / African American & Black / General",
               "Fiction / Women",
-              "Fiction / Humorous / Black Humor",
+              "Fiction / General",
             ],
             "dateStarted": "2022-01-02",
-            "description": "NEW YORK TIMES BESTSELLER  First Novel Prize Winner of the 2020 National Book Critics Circle's John Leonard Prize for Best First Book Winner of the 2020 Kirkus Prize for Fiction Winner of the 2021 Dylan Thomas Prize Finalist for the 2021 PEN/Hemingway Award for Best First Novel Longlisted for the 2021 Andrew Carnegie Medal for Excellence in Fiction Longlisted for the 2021 PEN/Jean Stein Book Award Longlisted for the 2021 Women's Prize for Fiction  Named Best Book of the Year by O: the Oprah Magazine, Vanity Fair, Los Angeles Times, Town and Country, Amazon, Indigo, NPR, Harper’s Bazaar, Kirkus Reviews, Marie Claire, Good Housekeeping Sharp, comic, disruptive, and tender, Luster sees a young Black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties—sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage—with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only Black woman who young Akila knows. Razor-sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
+            "description": "'A taut, sharp, funny book about being young now. It's brutal-and brilliant.' Zadie Smith WINNER OF THE KIRKUS PRIZE FOR FICTION 2020 LONGLISTED FOR THE WOMEN'S PRIZE FOR FICTION 2021 Meet Edie. Edie is not okay. She's messing up in her dead-end admin job in her all white office, is sleeping with all the wrong men, and has failed at the only thing that meant anything to her, painting. No one seems to care that she doesn't really know what she's doing with her life beyond looking for her next hook-up. And then she meets Eric, a white, middle-aged archivist with a suburban family, including a wife who has sort-of-agreed to an open marriage and an adopted black daughter who doesn't have a single person in her life who can show her how to do her hair. As if navigating the constantly shifting landscape of sexual and racial politics as a young, black woman wasn't already hard enough, with nowhere else left to go, Edie finds herself falling headfirst into Eric's home and family. Razor sharp. provocatively page-turning and surprisingly tender, Luster is a painfully funny coming-of-age story told by a fresh new voice. ONE OF BARACK OBAMA'S FAVOURITE BOOKS OF 2020 PRAISE FOR LUSTER 'Remarkable, the most delicious novel I've read.' Candice Carty-Williams, bestselling author of Queenie 'Raven Leilani is a writer of unusual daring, with a voice that is unique and fully formed. There is humor, intelligence, emotion, and power in her work. I cannot think of a writer better suited to capture our contemporary moment.' Katie Kitamura, author of A Separation 'Among the most exciting releases of 2020-a lively, unforgettable coming-of-age story . . . Leilani brings painterly precision to each stunning sentence, making for an exacting, darkly comic story of a gifted yet wayward young woman learning to believe in her own talent.' Esquire 'Narrated with fresh and wry jadedness, Edie's every disappointment [is] rendered with a comic twist . . . Edie's life is a mess, her past is filled with sorrow, she's wasting her precious youth, and yet, reading about it all is a whole lot of fun.' Vogue 'Darkly funny with wicked insight . . . This keenly observed, dynamic debut is so cutting, it almost stings.' Elle 'I was blown away by this debut novel . . . It is exquisite.' Dolly Alderton, bestselling author of Everything I Know About Love 'Smart and satirical about everything from the gig economy to racism in publishing to the inner politics of families' Emma Donoghue, bestselling author of Room and The Pull of the Stars",
             "format": "book",
-            "identifier": "9780385696005",
+            "identifier": "9781760983215",
             "identifiers": {
-              "isbn": "9780385696005",
+              "isbn": "9781760983215",
             },
-            "image": "book-9780385696005.png",
+            "image": "book-9781760983215.png",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=CONSTANT_ID",
-            "publishedDate": "2020-08-04",
+            "pageCount": 209,
+            "publishedDate": "2020-11-13",
             "status": "started",
-            "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+            "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&source=gbs_api",
             "title": "Luster",
           },
         ],
@@ -261,7 +252,7 @@ describe("index", () => {
         ],
         [
           "BookThumb",
-          "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=4&edge=curl&source=gbs_api",
+          "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
         ],
       ]
     `);
@@ -311,7 +302,7 @@ describe("index", () => {
             "pageCount": 353,
             "publishedDate": "2022-06-07",
             "status": "finished",
-            "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=4&edge=curl&source=gbs_api",
+            "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
             "title": "Woman of Light",
           },
         ],
@@ -328,7 +319,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            identifier: "9780385696005",
+            identifier: "9781760983215",
             "book-status": "want to read",
           },
         },
@@ -342,28 +333,16 @@ describe("index", () => {
           "want to read",
         ],
         [
-          "BookNeedsReview",
-          true,
-        ],
-        [
-          "BookMissingMetadata",
-          "pageCount",
-        ],
-        [
-          "BookIdentifier",
-          "9780385696005",
-        ],
-        [
           "BookTitle",
           "Luster",
         ],
         [
           "BookThumbOutput",
-          "book-9780385696005.png",
+          "book-9781760983215.png",
         ],
         [
           "BookThumb",
-          "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&source=gbs_api",
         ],
       ]
     `);
@@ -397,22 +376,25 @@ describe("index", () => {
             "categories": [
               "Fiction",
               "Fiction / Literary",
+              "Fiction / Cultural Heritage",
+              "Fiction / African American & Black / General",
               "Fiction / Women",
-              "Fiction / Humorous / Black Humor",
+              "Fiction / General",
             ],
             "dateAdded": "2022-10-01",
-            "description": "NEW YORK TIMES BESTSELLER  First Novel Prize Winner of the 2020 National Book Critics Circle's John Leonard Prize for Best First Book Winner of the 2020 Kirkus Prize for Fiction Winner of the 2021 Dylan Thomas Prize Finalist for the 2021 PEN/Hemingway Award for Best First Novel Longlisted for the 2021 Andrew Carnegie Medal for Excellence in Fiction Longlisted for the 2021 PEN/Jean Stein Book Award Longlisted for the 2021 Women's Prize for Fiction  Named Best Book of the Year by O: the Oprah Magazine, Vanity Fair, Los Angeles Times, Town and Country, Amazon, Indigo, NPR, Harper’s Bazaar, Kirkus Reviews, Marie Claire, Good Housekeeping Sharp, comic, disruptive, and tender, Luster sees a young Black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties—sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage—with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only Black woman who young Akila knows. Razor-sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
+            "description": "'A taut, sharp, funny book about being young now. It's brutal-and brilliant.' Zadie Smith WINNER OF THE KIRKUS PRIZE FOR FICTION 2020 LONGLISTED FOR THE WOMEN'S PRIZE FOR FICTION 2021 Meet Edie. Edie is not okay. She's messing up in her dead-end admin job in her all white office, is sleeping with all the wrong men, and has failed at the only thing that meant anything to her, painting. No one seems to care that she doesn't really know what she's doing with her life beyond looking for her next hook-up. And then she meets Eric, a white, middle-aged archivist with a suburban family, including a wife who has sort-of-agreed to an open marriage and an adopted black daughter who doesn't have a single person in her life who can show her how to do her hair. As if navigating the constantly shifting landscape of sexual and racial politics as a young, black woman wasn't already hard enough, with nowhere else left to go, Edie finds herself falling headfirst into Eric's home and family. Razor sharp. provocatively page-turning and surprisingly tender, Luster is a painfully funny coming-of-age story told by a fresh new voice. ONE OF BARACK OBAMA'S FAVOURITE BOOKS OF 2020 PRAISE FOR LUSTER 'Remarkable, the most delicious novel I've read.' Candice Carty-Williams, bestselling author of Queenie 'Raven Leilani is a writer of unusual daring, with a voice that is unique and fully formed. There is humor, intelligence, emotion, and power in her work. I cannot think of a writer better suited to capture our contemporary moment.' Katie Kitamura, author of A Separation 'Among the most exciting releases of 2020-a lively, unforgettable coming-of-age story . . . Leilani brings painterly precision to each stunning sentence, making for an exacting, darkly comic story of a gifted yet wayward young woman learning to believe in her own talent.' Esquire 'Narrated with fresh and wry jadedness, Edie's every disappointment [is] rendered with a comic twist . . . Edie's life is a mess, her past is filled with sorrow, she's wasting her precious youth, and yet, reading about it all is a whole lot of fun.' Vogue 'Darkly funny with wicked insight . . . This keenly observed, dynamic debut is so cutting, it almost stings.' Elle 'I was blown away by this debut novel . . . It is exquisite.' Dolly Alderton, bestselling author of Everything I Know About Love 'Smart and satirical about everything from the gig economy to racism in publishing to the inner politics of families' Emma Donoghue, bestselling author of Room and The Pull of the Stars",
             "format": "book",
-            "identifier": "9780385696005",
+            "identifier": "9781760983215",
             "identifiers": {
-              "isbn": "9780385696005",
+              "isbn": "9781760983215",
             },
-            "image": "book-9780385696005.png",
+            "image": "book-9781760983215.png",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=CONSTANT_ID",
-            "publishedDate": "2020-08-04",
+            "pageCount": 209,
+            "publishedDate": "2020-11-13",
             "status": "want to read",
-            "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+            "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&source=gbs_api",
             "title": "Luster",
           },
         ],
@@ -496,7 +478,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            identifier: "9780385696005",
+            identifier: "9781760983215",
             "book-status": "want to read",
           },
         },
@@ -516,7 +498,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            identifier: "9780385696005",
+            identifier: "9781760983215",
             tags: "new, recommend",
             "book-status": "want to read",
           },
@@ -553,26 +535,29 @@ describe("index", () => {
             "categories": [
               "Fiction",
               "Fiction / Literary",
+              "Fiction / Cultural Heritage",
+              "Fiction / African American & Black / General",
               "Fiction / Women",
-              "Fiction / Humorous / Black Humor",
+              "Fiction / General",
             ],
             "dateAdded": "2022-10-01",
-            "description": "NEW YORK TIMES BESTSELLER  First Novel Prize Winner of the 2020 National Book Critics Circle's John Leonard Prize for Best First Book Winner of the 2020 Kirkus Prize for Fiction Winner of the 2021 Dylan Thomas Prize Finalist for the 2021 PEN/Hemingway Award for Best First Novel Longlisted for the 2021 Andrew Carnegie Medal for Excellence in Fiction Longlisted for the 2021 PEN/Jean Stein Book Award Longlisted for the 2021 Women's Prize for Fiction  Named Best Book of the Year by O: the Oprah Magazine, Vanity Fair, Los Angeles Times, Town and Country, Amazon, Indigo, NPR, Harper’s Bazaar, Kirkus Reviews, Marie Claire, Good Housekeeping Sharp, comic, disruptive, and tender, Luster sees a young Black woman fall into art and someone else's open marriage. Edie is stumbling her way through her twenties—sharing a subpar apartment in Bushwick, clocking in and out of her admin job, making a series of inappropriate sexual choices. She's also, secretly, haltingly, figuring her way into life as an artist. And then she meets Eric, a digital archivist with a family in New Jersey, including an autopsist wife who has agreed to an open marriage—with rules. As if navigating the constantly shifting landscapes of contemporary sexual manners and racial politics weren't hard enough, Edie finds herself unemployed and falling into Eric's family life, his home. She becomes a hesitant friend to his wife and a de facto role model to his adopted daughter. Edie is the only Black woman who young Akila knows. Razor-sharp, darkly comic, sexually charged, socially disruptive, Luster is a portrait of a young woman trying to make sense of her life in a tumultuous era. It is also a haunting, aching description of how hard it is to believe in your own talent and the unexpected influences that bring us into ourselves along the way.",
+            "description": "'A taut, sharp, funny book about being young now. It's brutal-and brilliant.' Zadie Smith WINNER OF THE KIRKUS PRIZE FOR FICTION 2020 LONGLISTED FOR THE WOMEN'S PRIZE FOR FICTION 2021 Meet Edie. Edie is not okay. She's messing up in her dead-end admin job in her all white office, is sleeping with all the wrong men, and has failed at the only thing that meant anything to her, painting. No one seems to care that she doesn't really know what she's doing with her life beyond looking for her next hook-up. And then she meets Eric, a white, middle-aged archivist with a suburban family, including a wife who has sort-of-agreed to an open marriage and an adopted black daughter who doesn't have a single person in her life who can show her how to do her hair. As if navigating the constantly shifting landscape of sexual and racial politics as a young, black woman wasn't already hard enough, with nowhere else left to go, Edie finds herself falling headfirst into Eric's home and family. Razor sharp. provocatively page-turning and surprisingly tender, Luster is a painfully funny coming-of-age story told by a fresh new voice. ONE OF BARACK OBAMA'S FAVOURITE BOOKS OF 2020 PRAISE FOR LUSTER 'Remarkable, the most delicious novel I've read.' Candice Carty-Williams, bestselling author of Queenie 'Raven Leilani is a writer of unusual daring, with a voice that is unique and fully formed. There is humor, intelligence, emotion, and power in her work. I cannot think of a writer better suited to capture our contemporary moment.' Katie Kitamura, author of A Separation 'Among the most exciting releases of 2020-a lively, unforgettable coming-of-age story . . . Leilani brings painterly precision to each stunning sentence, making for an exacting, darkly comic story of a gifted yet wayward young woman learning to believe in her own talent.' Esquire 'Narrated with fresh and wry jadedness, Edie's every disappointment [is] rendered with a comic twist . . . Edie's life is a mess, her past is filled with sorrow, she's wasting her precious youth, and yet, reading about it all is a whole lot of fun.' Vogue 'Darkly funny with wicked insight . . . This keenly observed, dynamic debut is so cutting, it almost stings.' Elle 'I was blown away by this debut novel . . . It is exquisite.' Dolly Alderton, bestselling author of Everything I Know About Love 'Smart and satirical about everything from the gig economy to racism in publishing to the inner politics of families' Emma Donoghue, bestselling author of Room and The Pull of the Stars",
             "format": "book",
-            "identifier": "9780385696005",
+            "identifier": "9781760983215",
             "identifiers": {
-              "isbn": "9780385696005",
+              "isbn": "9781760983215",
             },
-            "image": "book-9780385696005.png",
+            "image": "book-9781760983215.png",
             "language": "en",
             "link": "https://books.google.com/books/about/Luster.html?hl=&id=CONSTANT_ID",
-            "publishedDate": "2020-08-04",
+            "pageCount": 209,
+            "publishedDate": "2020-11-13",
             "status": "want to read",
             "tags": [
               "new",
               "recommend",
             ],
-            "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+            "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&source=gbs_api",
             "title": "Luster",
           },
         ],
@@ -586,7 +571,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            identifier: "9780385696005",
+            identifier: "9781760983215",
             "book-status": "finished",
             date: "2022-02-02",
           },
@@ -603,7 +588,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            identifier: "9780385696005",
+            identifier: "9781760983215",
             "book-status": "finished",
             date: "1234",
           },
@@ -622,7 +607,7 @@ describe("index", () => {
       value: {
         payload: {
           inputs: {
-            identifier: "9780385696005",
+            identifier: "9781760983215",
             "book-status": "did not finish",
           },
         },
