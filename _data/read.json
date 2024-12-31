@@ -465,7 +465,7 @@
       "isbn": "9781888363432"
     },
     "dateAdded": "2024-12-31",
-    "status": "finished",
+    "status": "want to read",
     "rating": "unrated",
     "title": "I who have never known men",
     "authors": [
@@ -481,7 +481,6 @@
     ],
     "thumbnail": "https://covers.openlibrary.org/b/id/936140-L.jpg",
     "language": "en",
-    "link": "https://openlibrary.org/books/OL998749M",
-    "dateFinished": "2024-12-31"
+    "link": "https://openlibrary.org/books/OL998749M"
   }
 ]
