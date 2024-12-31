@@ -89,18 +89,20 @@ function localDate() {
   return dateFormat.format(new Date());
 }
 
+export type DateTypes = {
+  dateAbandoned?: string;
+  dateStarted?: string;
+  dateFinished?: string;
+  dateAdded?: string;
+};
+
 export function getBookStatus({
   date,
   bookStatus,
 }: {
   date?: string;
   bookStatus?: BookStatus;
-}): {
-  dateAbandoned?: string;
-  dateStarted?: string;
-  dateFinished?: string;
-  dateAdded?: string;
-} {
+}): DateTypes {
   const dateValue = date ?? localDate();
   switch (bookStatus) {
     case "abandoned":

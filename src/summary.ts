@@ -9,23 +9,23 @@ import {
   mTopAuthors,
   mTags,
 } from "./summary-markdown";
-import { capitalize } from "./utils";
+import { capitalize, DateTypes } from "./utils";
 
 export function summaryMarkdown(
   library: NewBook[],
-  date: BookPayload["date"],
+  dateType: DateTypes,
   bookStatus: BookStatus
 ): string {
   const { BookTitle } = process.env;
   return `# Updated library
 
 ${capitalize(`${bookStatus}`)}: “${BookTitle}”
-Date: ${date}
+Date: ${dateType.dateFinished}
 Book status: ${bookStatus}
-Result: ${bookStatus === "finished" && date}
+Result: ${bookStatus === "finished" && dateType.dateFinished}
 ${
-  bookStatus === "finished" && date
-    ? yearReviewSummary(library, date.slice(0, 4))
+  bookStatus === "finished" && dateType.dateFinished
+    ? yearReviewSummary(library, dateType.dateFinished.slice(0, 4))
     : ""
 }
 `;
