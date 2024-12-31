@@ -96,7 +96,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Read
-        uses: library-pals/read-action@v9.2.1
+        uses: library-pals/read-action@v9.3.0
 
       - name: Commit updated read file
         if: env.BookStatus != 'summary'
@@ -182,7 +182,7 @@ jobs:
         id: read_action
         with:
           set-image: true
-        uses: library-pals/read-action@v9.2.1
+        uses: library-pals/read-action@v9.3.0
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
@@ -292,7 +292,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Read
-        uses: library-pals/read-action@v9.2.1
+        uses: library-pals/read-action@v9.3.0
         with:
           thumbnail-width: 1280
           set-image: true
