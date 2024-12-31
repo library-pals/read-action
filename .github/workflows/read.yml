@@ -15,7 +15,6 @@ on:
         # 9780062315007
         # https://share.libbyapp.com/title/9575390
         # https://libro.fm/audiobooks/9781797176888-the-ministry-of-time
-        required: true
         type: string
       book-status:
         description: What is the status of the book? Required. You can completely customize the default value and options.
