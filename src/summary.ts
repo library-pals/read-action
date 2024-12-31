@@ -1,4 +1,3 @@
-import { BookPayload } from ".";
 import { BookStatus, NewBook } from "./new-book";
 import {
   mAverageDays,
