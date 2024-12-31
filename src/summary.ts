@@ -20,9 +20,6 @@ export function summaryMarkdown(
   return `# Updated library
 
 ${capitalize(`${bookStatus}`)}: “${BookTitle}”
-Date: ${dateType.dateFinished}
-Book status: ${bookStatus}
-Result: ${bookStatus === "finished" && dateType.dateFinished}
 ${
   bookStatus === "finished" && dateType.dateFinished
     ? yearReviewSummary(library, dateType.dateFinished.slice(0, 4))
