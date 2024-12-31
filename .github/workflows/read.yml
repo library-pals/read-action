@@ -9,13 +9,6 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      identifier:
-        description: The book's identifier. This is an ISBN, Libby or Libro.fm share URL. Required.
-        # Example values:
-        # 9780062315007
-        # https://share.libbyapp.com/title/9575390
-        # https://libro.fm/audiobooks/9781797176888-the-ministry-of-time
-        type: string
       book-status:
         description: What is the status of the book? Required. You can completely customize the default value and options.
         required: true
@@ -27,6 +20,14 @@ on:
           - "finished"
           - "abandoned"
           - "summary" # Outputs your reading summary year to date
+      identifier:
+        description: The book's identifier. This is an ISBN, Libby or Libro.fm share URL. Required.
+        # Example values:
+        # 9780062315007
+        # https://share.libbyapp.com/title/9575390
+        # https://libro.fm/audiobooks/9781797176888-the-ministry-of-time
+        required: true
+        type: string
       date:
         description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string
