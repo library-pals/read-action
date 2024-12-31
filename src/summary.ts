@@ -1,5 +1,5 @@
 import { BookPayload } from ".";
-import { BookStatus, CleanBook } from "./clean-book";
+import { BookStatus, NewBook } from "./new-book";
 import {
   mAverageDays,
   mMostReadMonth,
@@ -12,7 +12,7 @@ import {
 import { capitalize } from "./utils";
 
 export function summaryMarkdown(
-  library: CleanBook[],
+  library: NewBook[],
   date: BookPayload["date"],
   bookStatus: BookStatus
 ): string {
@@ -28,7 +28,7 @@ ${
 `;
 }
 
-export function yearReviewSummary(books: CleanBook[], year: string) {
+export function yearReviewSummary(books: NewBook[], year: string) {
   const obj = yearReview(books, year);
   if (obj === undefined) return undefined;
   const summary = [
@@ -48,7 +48,7 @@ export function yearReviewSummary(books: CleanBook[], year: string) {
 }
 
 export function yearReview(
-  books: CleanBook[],
+  books: NewBook[],
   year: string
 ): YearReview | undefined {
   if (books.length === 0) return undefined;
@@ -117,11 +117,10 @@ export function yearReview(
   };
 }
 
-function simpleData(book: CleanBook) {
+function simpleData(book: NewBook) {
   return {
     title: `“${book.title}”`,
     authors: book.authors?.join(", "),
-    isbn: book.isbn,
     pageCount: book.pageCount,
   };
 }
@@ -160,7 +159,6 @@ export type YearReview = {
       books: {
         title: string | undefined;
         authors: string | undefined;
-        isbn: string;
         pageCount: number | undefined;
       }[];
     };
@@ -171,13 +169,11 @@ export type YearReview = {
     longestBook: {
       title: string | undefined;
       authors: string | undefined;
-      isbn: string;
       pageCount: number | undefined;
     };
     shortestBook: {
       title: string | undefined;
       authors: string | undefined;
-      isbn: string;
       pageCount: number | undefined;
     };
     averageBookLength: number | undefined;
@@ -185,7 +181,7 @@ export type YearReview = {
   };
 };
 
-function bBooksThisYear(books: CleanBook[], year: string) {
+function bBooksThisYear(books: NewBook[], year: string) {
   return books
     .filter((f) => f.dateFinished?.startsWith(year))
     .map((b) => ({
@@ -203,7 +199,7 @@ function bBooksThisYear(books: CleanBook[], year: string) {
     );
 }
 
-function bGroupByMonth(booksThisYear: CleanBook[]) {
+function bGroupByMonth(booksThisYear: NewBook[]) {
   return groupBy(
     booksThisYear.map((b) => {
       const match =
@@ -236,7 +232,7 @@ const monthToWord = {
 };
 
 function findTopItems(
-  booksThisYear: CleanBook[],
+  booksThisYear: NewBook[],
   key: string,
   valueTransform?
 ): { name: string; count: number }[] {

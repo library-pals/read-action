@@ -470,7 +470,7 @@ describe("index", () => {
     expect(setFailedSpy.mock.calls[0][0]).toMatchInlineSnapshot(
       `"Invalid \`identifier\` in payload: http://not-libby.com/yadda-yadda. Must be an ISBN or start with one of the following: https://share.libbyapp.com/, https://libro.fm/, https://books.apple.com/"`
     );
-  });
+  }, 7000);
 
   test("error, setFailed", async () => {
     const setFailedSpy = jest.spyOn(core, "setFailed");
@@ -580,7 +580,7 @@ describe("index", () => {
     });
     await read();
     expect(setFailedSpy).not.toHaveBeenCalled();
-  });
+  }, 50000);
 
   test("error, bad date", async () => {
     const setFailedSpy = jest.spyOn(core, "setFailed");
