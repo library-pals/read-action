@@ -55,7 +55,7 @@ on:
           - "abandoned"
           - "summary" # Outputs your reading summary year to date
       identifier:
-        description: The book's identifier. This is an ISBN, Libby or Libro.fm share URL. Required.
+        description: The book's identifier. This is an ISBN, Libby or Libro.fm share URL.
         # Example values:
         # 9780062315007
         # https://share.libbyapp.com/title/9575390
@@ -335,7 +335,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   "ref": "main", // Required. The git reference for the workflow, a branch or tag name.
   "inputs": {
     "book-status": "", // Required. What is the status of the book? Required. You can completely customize the default value and options. Default: `want to read`. Options: `want to read`, `started`, `finished`, `abandoned`, `summary`.
-    "identifier": "", // The book's identifier. This is an ISBN, Libby or Libro.fm share URL. Required.
+    "identifier": "", // The book's identifier. This is an ISBN, Libby or Libro.fm share URL.
     "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
     "notes": "", // Notes about the book. Optional.
     "rating": "", // Rate the book. Optional. You can completely customize the default value and options. Default: `unrated`. Options: `unrated`, `⭐️`, `⭐️⭐️`, `⭐️⭐️⭐️`, `⭐️⭐️⭐️⭐️`, `⭐️⭐️⭐️⭐️⭐️`.
