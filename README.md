@@ -62,7 +62,7 @@ on:
         # https://libro.fm/audiobooks/9781797176888-the-ministry-of-time
         type: string
       date:
-        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today.
         type: string
       notes:
         description: Notes about the book. Optional.
@@ -83,7 +83,7 @@ on:
           - ⭐️⭐️⭐️⭐️⭐️
       # Tags are optional.
       tags:
-        description: Add tags to categorize the book. Separate each tag with a comma. Optional.
+        description: Add tags to categorize the book. Separate each tag with a comma.
         type: string
 
 # Set up the steps to run the action
@@ -336,10 +336,10 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   "inputs": {
     "book-status": "", // Required. What is the status of the book? Required. You can completely customize the default value and options. Default: `want to read`. Options: `want to read`, `started`, `finished`, `abandoned`, `summary`.
     "identifier": "", // The book's identifier. This is an ISBN, Libby or Libro.fm share URL.
-    "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
+    "date": "", // Date to record the status of the book (YYYY-MM-DD). Leave blank for today.
     "notes": "", // Notes about the book. Optional.
     "rating": "", // Rate the book. Optional. You can completely customize the default value and options. Default: `unrated`. Options: `unrated`, `⭐️`, `⭐️⭐️`, `⭐️⭐️⭐️`, `⭐️⭐️⭐️⭐️`, `⭐️⭐️⭐️⭐️⭐️`.
-    "tags": "", // Add tags to categorize the book. Separate each tag with a comma. Optional.
+    "tags": "", // Add tags to categorize the book. Separate each tag with a comma.
   }
 }
 ```
