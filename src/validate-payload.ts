@@ -1,4 +1,4 @@
-import { setFailed, info } from "@actions/core";
+import { setFailed } from "@actions/core";
 import { isDate, isIsbn } from "./utils";
 import { BookPayload } from "./index";
 import { BookStatus } from "./new-book";
@@ -14,8 +14,6 @@ export function validatePayload(payload: BookPayload): void {
     setFailed("Missing payload");
     return;
   }
-
-  info(`Validating payload: ${JSON.stringify(payload, null, 2)}`);
 
   if (payload["book-status"] === "summary") {
     return;
