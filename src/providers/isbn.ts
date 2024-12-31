@@ -2,7 +2,7 @@ import Isbn, { Book } from "@library-pals/isbn";
 import { BookParams } from "..";
 import { NewBook } from "../new-book";
 import { formatDescription, getLibrofmId } from "../utils";
-import { exportVariable, getInput, warning } from "@actions/core";
+import { exportVariable, getInput, warning, info } from "@actions/core";
 
 export async function getIsbn(
   options: BookParams,
@@ -53,6 +53,9 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
   const identifier = isLibrofm
     ? getLibrofmId(inputIdentifier)
     : inputIdentifier;
+
+  // Github log "book"
+  info(`Book information: ${JSON.stringify(book, null, 2)}`);
 
   return {
     identifier,
