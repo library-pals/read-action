@@ -21,7 +21,7 @@ on:
           - "abandoned"
           - "summary" # Outputs your reading summary year to date
       identifier:
-        description: The book's identifier. This is an ISBN, Libby or Libro.fm share URL. Required.
+        description: The book's identifier. This is an ISBN, Libby or Libro.fm share URL.
         # Example values:
         # 9780062315007
         # https://share.libbyapp.com/title/9575390
