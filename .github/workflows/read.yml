@@ -66,6 +66,7 @@ jobs:
         uses: ./
 
       - name: Commit updated read file
+        if: env.BookStatus != 'summary'
         run: |
           git pull
           git config --local user.email "action@github.com"
