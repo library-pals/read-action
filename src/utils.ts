@@ -94,6 +94,7 @@ export type DateTypes = {
   dateStarted?: string;
   dateFinished?: string;
   dateAdded?: string;
+  summaryEndDate?: string;
 };
 
 export function getBookStatus({
@@ -116,6 +117,11 @@ export function getBookStatus({
     case "finished":
       return {
         dateFinished: dateValue,
+        summaryEndDate: dateValue,
+      };
+    case "summary":
+      return {
+        summaryEndDate: dateValue,
       };
     case "want to read":
     default: {

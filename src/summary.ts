@@ -16,12 +16,11 @@ export function summaryMarkdown(
   bookStatus: BookStatus
 ): string {
   const { BookTitle } = process.env;
-  return `# Updated library
-
-${capitalize(`${bookStatus}`)}: “${BookTitle}”
+  return `# ${bookStatus == "summary" ? "Reading summary" : "Updated library"}
+${bookStatus !== "summary" ? `\n${capitalize(`${bookStatus}`)}: “${BookTitle}”` : ""}
 ${
-  bookStatus === "finished" && dateType.dateFinished
-    ? yearReviewSummary(library, dateType.dateFinished.slice(0, 4))
+  dateType.summaryEndDate
+    ? yearReviewSummary(library, dateType.summaryEndDate.slice(0, 4))
     : ""
 }
 `;

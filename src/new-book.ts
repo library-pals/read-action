@@ -24,7 +24,12 @@ export const providerAction = [
   },
 ];
 
-export type BookStatus = "want to read" | "started" | "finished" | "abandoned";
+export type BookStatus =
+  | "want to read"
+  | "started"
+  | "finished"
+  | "abandoned"
+  | "summary";
 
 export type NewBook = {
   dateAdded?: string | undefined;

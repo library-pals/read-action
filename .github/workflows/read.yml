@@ -27,6 +27,7 @@ on:
           - "started"
           - "finished"
           - "abandoned"
+          - "summary" # Outputs your reading summary year to date
       date:
         description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
         type: string

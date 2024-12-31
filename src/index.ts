@@ -94,17 +94,20 @@ export async function read() {
       ...(tags && { tags: toArray(tags) }),
     };
 
-    const bookExists = checkOutBook(bookParams, library);
+    if (bookStatus !== "summary") {
+      const bookExists = checkOutBook(bookParams, library);
 
-    if (bookExists) {
-      library = await updateBook(bookParams, library);
-    } else {
-      await handleNewBook({ bookParams, library, bookStatus, setImage });
+      if (bookExists) {
+        library = await updateBook(bookParams, library);
+      } else {
+        await handleNewBook({ bookParams, library, bookStatus, setImage });
+      }
+
+      library = sortByDate(library);
+
+      await returnWriteFile(filename, library);
     }
 
-    library = sortByDate(library);
-
-    await returnWriteFile(filename, library);
     await summary
       .addRaw(summaryMarkdown(library, dateType, bookStatus))
       .write();

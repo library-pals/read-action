@@ -75,6 +75,7 @@ it("getBookStatus", () => {
   ).toMatchInlineSnapshot(`
     {
       "dateFinished": "2020-01-01",
+      "summaryEndDate": "2020-01-01",
     }
   `);
   expect(

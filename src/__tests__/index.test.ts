@@ -302,6 +302,7 @@ describe("index", () => {
             "pageCount": 353,
             "publishedDate": "2022-06-07",
             "status": "finished",
+            "summaryEndDate": "2022-08-02",
             "thumbnail": "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
             "title": "Woman of Light",
           },
@@ -411,9 +412,7 @@ describe("index", () => {
     });
 
     await read();
-    expect(setFailedSpy).toHaveBeenCalledWith(
-      "Missing `identifier` in payload"
-    );
+    expect(setFailedSpy).toHaveBeenCalledWith("Missing payload");
   });
 
   test("error, missing identifier", async () => {

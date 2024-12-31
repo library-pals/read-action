@@ -10,7 +10,16 @@ const validPrefixes = [
 ];
 
 export function validatePayload(payload: BookPayload): void {
-  if (!payload || !payload["identifier"]) {
+  if (!payload) {
+    setFailed("Missing payload");
+    return;
+  }
+
+  if (payload["book-status"] === "summary") {
+    return;
+  }
+
+  if (!payload["identifier"]) {
     setFailed("Missing `identifier` in payload");
   }
 
