@@ -28,7 +28,7 @@ on:
         # https://libro.fm/audiobooks/9781797176888-the-ministry-of-time
         type: string
       date:
-        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today. Optional.
+        description: Date to record the status of the book (YYYY-MM-DD). Leave blank for today.
         type: string
       notes:
         description: Notes about the book. Optional.
@@ -49,7 +49,7 @@ on:
           - ⭐️⭐️⭐️⭐️⭐️
       # Tags are optional.
       tags:
-        description: Add tags to categorize the book. Separate each tag with a comma. Optional.
+        description: Add tags to categorize the book. Separate each tag with a comma.
         type: string
 
 # Set up the steps to run the action
