@@ -89,18 +89,21 @@ function localDate() {
   return dateFormat.format(new Date());
 }
 
+export type DateTypes = {
+  dateAbandoned?: string;
+  dateStarted?: string;
+  dateFinished?: string;
+  dateAdded?: string;
+  summaryEndDate?: string;
+};
+
 export function getBookStatus({
   date,
   bookStatus,
 }: {
   date?: string;
   bookStatus?: BookStatus;
-}): {
-  dateAbandoned?: string;
-  dateStarted?: string;
-  dateFinished?: string;
-  dateAdded?: string;
-} {
+}): DateTypes {
   const dateValue = date ?? localDate();
   switch (bookStatus) {
     case "abandoned":
@@ -114,6 +117,11 @@ export function getBookStatus({
     case "finished":
       return {
         dateFinished: dateValue,
+        summaryEndDate: dateValue,
+      };
+    case "summary":
+      return {
+        summaryEndDate: dateValue,
       };
     case "want to read":
     default: {
@@ -189,4 +197,8 @@ function formatAuthor(result: OgObject): string[] {
   }
 
   return [];
+}
+
+export function capitalize(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
