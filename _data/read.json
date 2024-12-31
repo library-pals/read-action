@@ -458,5 +458,29 @@
       "Fiction"
     ],
     "format": "audiobook"
+  },
+  {
+    "identifier": "9781888363432",
+    "identifiers": {
+      "isbn": "9781888363432"
+    },
+    "dateAdded": "2024-12-31",
+    "status": "want to read",
+    "rating": "unrated",
+    "title": "I who have never known men",
+    "authors": [
+      "Jacqueline Harpman"
+    ],
+    "publishedDate": "1997",
+    "description": "A work of fantasy, I Who Have Never Known Men is the haunting and unforgettable account of a near future on a barren earth where women are kept in underground cages guarded by uniformed groups of men. It is narrated by the youngest of the women, the only one with no memory of what the world was like before the cages, who must teach herself, without books or sexual contact, the essential human emotions of longing, loving, learning, companionship, and dying.",
+    "pageCount": 206,
+    "format": "book",
+    "categories": [
+      "Fiction, fantasy, general",
+      "New York Times reviewed"
+    ],
+    "thumbnail": "https://covers.openlibrary.org/b/id/936140-L.jpg",
+    "language": "en",
+    "link": "https://openlibrary.org/books/OL998749M"
   }
 ]
