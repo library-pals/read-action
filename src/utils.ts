@@ -202,3 +202,43 @@ function formatAuthor(result: OgObject): string[] {
 export function capitalize(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+// Utility function to parse ISO 8601 duration to total seconds
+export function parseISO8601Duration(duration: string): number {
+  const regex =
+    /P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/;
+  const matches = regex.exec(duration);
+
+  // istanbul ignore next
+  if (!matches) return 0;
+
+  const years = parseInt(matches[1] || "0", 10);
+  const months = parseInt(matches[2] || "0", 10);
+  const days = parseInt(matches[3] || "0", 10);
+  // istanbul ignore next
+  const hours = parseInt(matches[4] || "0", 10);
+  const minutes = parseInt(matches[5] || "0", 10);
+  const seconds = parseInt(matches[6] || "0", 10);
+
+  // Convert all to seconds
+  return (
+    years * 31536000 + // 365 days * 24 hours * 60 minutes * 60 seconds
+    months * 2592000 + // 30 days * 24 hours * 60 minutes * 60 seconds
+    days * 86400 + // 24 hours * 60 minutes * 60 seconds
+    hours * 3600 + // 60 minutes * 60 seconds
+    minutes * 60 +
+    seconds
+  );
+}
+
+export function secondsToHms(d: number | undefined): string {
+  if (!d) return "";
+  d = Number(d);
+  const h = Math.floor(d / 3600);
+  const m = Math.floor((d % 3600) / 60);
+  // istanbul ignore next
+  const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+  // istanbul ignore next
+  const mDisplay = m > 0 ? m + (m == 1 ? " minute" : " minutes") : "";
+  return hDisplay + mDisplay;
+}
