@@ -28,31 +28,37 @@ ${dateType.summaryEndDate ? `\n${yearOverYear(library)}` : ""}
 `;
 }
 
-export function yearOverYear(books: NewBook[]) {
-  const years = Array.from(
-    new Set(books.map((b) => b.dateFinished?.slice(0, 4)))
-  );
+export function yearOverYear(books: NewBook[]): string {
+  const years = getUniqueYears(books);
   if (years.length < 2) return "";
+
   const allYearsData = years
-    .filter((year): year is string => year !== undefined)
-    .map((year) => yearReview(books, year));
-  const table = allYearsData
-    .map((yearData) => {
-      if (!yearData) return;
-      return `| ${yearData.year} | ${yearData.count} |`;
-    })
-    .filter((f) => f)
+    .map((year) => yearReview(books, year))
+    .filter(Boolean) as YearReview[];
+  const table = generateYearComparisonTable(allYearsData);
+
+  return `## Year over year
+
+| Year | Books read |
+| ---: | ---: |
+${table}`.trim();
+}
+
+function getUniqueYears(books: NewBook[]): string[] {
+  return Array.from(
+    new Set(books.map((b) => b.dateFinished?.slice(0, 4)).filter(Boolean))
+  ) as string[];
+}
+
+function generateYearComparisonTable(allYearsData: YearReview[]): string {
+  return allYearsData
+    .map((yearData) => `| ${yearData.year} | ${yearData.count} |`)
     .sort((a, b) => {
-      const aYear = a ? parseInt(a.split("|")[1].trim()) : 0;
-      const bYear = b ? parseInt(b.split("|")[1].trim()) : 0;
+      const aYear = parseInt(a.split("|")[1].trim());
+      const bYear = parseInt(b.split("|")[1].trim());
       return bYear - aYear;
     })
     .join("\n");
-  return `## Year over year comparison
-
-${years.length > 1 ? `| Year | Books read |` : ""}
-| ---: | ---: |
-${table}`.trim();
 }
 
 export function yearReviewSummary(books: NewBook[], year: string) {

@@ -65,7 +65,7 @@ describe("workflow", () => {
 
       - **Total books:** 3
 
-      ## Year over year comparison
+      ## Year over year
 
       | Year | Books read |
       | ---: | ---: |

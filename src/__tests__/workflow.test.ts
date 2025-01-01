@@ -229,11 +229,7 @@ describe("workflow", () => {
 
       - **Total books:** 1
 
-      ## Year over year comparison
 
-
-      | ---: | ---: |
-      | 2022 | 1 |
       ",
       ]
     `);
