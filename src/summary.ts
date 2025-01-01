@@ -171,7 +171,6 @@ function simpleData(book: NewBook) {
   return {
     title: `“${book.title}”`,
     authors: book.authors?.join(", "),
-    bookFormat: book.format,
     pageCount: book.pageCount || undefined,
   };
 }

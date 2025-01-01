@@ -103,7 +103,6 @@ describe("yearReview", () => {
             "books": [
               {
                 "authors": "Da'Shaun L. Harrison",
-                "bookFormat": "book",
                 "pageCount": 148,
                 "title": "“Belly of the Beast”",
               },
@@ -123,13 +122,11 @@ describe("yearReview", () => {
           "averageBookLength": 251,
           "longestBook": {
             "authors": "Jennifer Egan",
-            "bookFormat": "book",
             "pageCount": 352,
             "title": "“The Candy House”",
           },
           "shortestBook": {
             "authors": "Ling Ma",
-            "bookFormat": "book",
             "pageCount": 145,
             "title": "“Bliss Montage”",
           },
