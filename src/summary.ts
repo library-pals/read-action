@@ -17,15 +17,22 @@ export function summaryMarkdown(
   bookStatus: BookStatus
 ): string {
   const { BookTitle } = process.env;
-  return `# ${bookStatus == "summary" ? "Reading summary" : "Updated library"}
-${bookStatus !== "summary" ? `\n${capitalize(`${bookStatus}`)}: “${BookTitle}”` : ""}
-${
-  dateType.summaryEndDate
+  const isSummary = bookStatus === "summary";
+  const title = isSummary ? "Reading summary" : "Updated library";
+  const bookTitleLine = !isSummary
+    ? `${capitalize(bookStatus)}: “${BookTitle}”`
+    : "";
+  const yearReview = dateType.summaryEndDate
     ? yearReviewSummary(library, dateType.summaryEndDate.slice(0, 4))
-    : ""
-}
-${dateType.summaryEndDate ? `\n${yearOverYear(library)}` : ""}
-`;
+    : "";
+  const yearComparison = dateType.summaryEndDate ? yearOverYear(library) : "";
+  const markdownLines = [
+    `# ${title}`,
+    bookTitleLine,
+    yearReview,
+    yearComparison,
+  ];
+  return markdownLines.filter(Boolean).join("\n\n");
 }
 
 export function yearOverYear(books: NewBook[]): string {

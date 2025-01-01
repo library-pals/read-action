@@ -73,8 +73,7 @@ describe("workflow", () => {
       | 2023 | 1 |
       | 2022 | 7 |
       | 2021 | 2 |
-      | 2020 | 2 |
-      ",
+      | 2020 | 2 |",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`undefined`);
