@@ -62,6 +62,7 @@ describe("workflow", () => {
 
       Want to read: “Luster”
 
+
       ",
       ]
     `);
@@ -146,6 +147,7 @@ describe("workflow", () => {
 
       Started: “Luster”
 
+
       ",
       ]
     `);
@@ -226,6 +228,12 @@ describe("workflow", () => {
       ## 2022 reading summary
 
       - **Total books:** 1
+
+      ## Year over year comparison
+
+
+      | ---: | ---: |
+      | 2022 | 1 |
       ",
       ]
     `);
@@ -282,6 +290,7 @@ describe("workflow", () => {
         "# Updated library
 
       Want to read: “Don't Let Her Stay”
+
 
       ",
       ]

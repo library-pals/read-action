@@ -15,10 +15,11 @@ describe("yearReviewSummary", () => {
       - **Month with most books:** September (2 books)
       - **Month with least books:** January (1 book)
       - **Top genres:** fiction (5 books) and social science (2 books)
+      - **Top format:** book (7 books)
       - **Read in a day:** “Belly of the Beast” by Da'Shaun L. Harrison (1 book)
       - **Average book length:** 251 pages
-      - **Longest book:** “The Candy House” by Jennifer Egan (352 pages)
-      - **Shortest book:** “Bliss Montage” by Ling Ma (145 pages)
+      - **Longest book by page count:** “The Candy House” by Jennifer Egan (352 pages)
+      - **Shortest book by page count:** “Bliss Montage” by Ling Ma (145 pages)
       - **Total pages read:** 1,756
       - **Top tag:** recommend (3 books)"
     `);
@@ -43,6 +44,7 @@ describe("yearReviewSummary", () => {
       - **Total books:** 5
       - **Average read time:** 1.0 days
       - **Top genre:** fiction (5 books)
+      - **Top format:** book (5 books)
       - **Read in a day:** “Book 1” by Other Author Name (1 book)
       - **Top authors:** Author Name (3 books) and Other Author Name (2 books)"
     `);
@@ -58,10 +60,11 @@ describe("yearReviewSummary", () => {
       - **Month with most books:** January (12 books)
       - **Month with least books:** February (1 book)
       - **Top genres:** fiction (9 books) and web sites (2 books)
+      - **Top format:** book (13 books)
       - **Read in a day:** “Noor” by Nnedi Okorafor (1 book)
       - **Average book length:** 303 pages
-      - **Longest book:** “Caste” by Isabel Wilkerson (678 pages)
-      - **Shortest book:** “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis (100 pages)
+      - **Longest book by page count:** “Caste” by Isabel Wilkerson (678 pages)
+      - **Shortest book by page count:** “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis (100 pages)
       - **Total pages read:** 3,938
       - **Top tag:** recommend (3 books)"
     `);
@@ -100,6 +103,7 @@ describe("yearReview", () => {
             "books": [
               {
                 "authors": "Da'Shaun L. Harrison",
+                "bookFormat": "book",
                 "pageCount": 148,
                 "title": "“Belly of the Beast”",
               },
@@ -119,11 +123,13 @@ describe("yearReview", () => {
           "averageBookLength": 251,
           "longestBook": {
             "authors": "Jennifer Egan",
+            "bookFormat": "book",
             "pageCount": 352,
             "title": "“The Candy House”",
           },
           "shortestBook": {
             "authors": "Ling Ma",
+            "bookFormat": "book",
             "pageCount": 145,
             "title": "“Bliss Montage”",
           },
@@ -136,6 +142,12 @@ describe("yearReview", () => {
           },
         ],
         "topAuthors": [],
+        "topFormats": [
+          {
+            "count": 7,
+            "name": "book",
+          },
+        ],
         "topGenres": [
           {
             "count": 5,
