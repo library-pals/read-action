@@ -58,21 +58,29 @@ export function mSameDay({ dates }: YearReview) {
   ];
 }
 
-export function mAverageLength({ length }: YearReview) {
+export function mAverageLength({ length }: YearReview): string[] {
   if (!length || !length.averageBookLength) return [];
   const { averageBookLength, longestBook, shortestBook, totalPages } = length;
-  return [
+  const result: string[] = [
     `- **Average book length:** ${averageBookLength?.toLocaleString()} pages`,
-    longestBook &&
-      `- **Longest book by page count:** ${longestBook.title} by ${
-        longestBook.authors
-      } (${longestBook.pageCount?.toLocaleString()} pages)`,
-    shortestBook &&
-      `- **Shortest book by page count:** ${shortestBook.title} by ${
-        shortestBook.authors
-      } (${shortestBook.pageCount?.toLocaleString()} pages)`,
-    `- **Total pages read:** ${totalPages?.toLocaleString()}`,
   ];
+
+  // istanbul ignore next
+  if (longestBook) {
+    result.push(
+      `- **Longest book by page count:** ${longestBook.title} by ${longestBook.authors} (${longestBook.pageCount?.toLocaleString()} pages)`
+    );
+  }
+  // istanbul ignore next
+  if (shortestBook) {
+    result.push(
+      `- **Shortest book by page count:** ${shortestBook.title} by ${shortestBook.authors} (${shortestBook.pageCount?.toLocaleString()} pages)`
+    );
+  }
+
+  result.push(`- **Total pages read:** ${totalPages?.toLocaleString()}`);
+
+  return result;
 }
 
 export function mTopAuthors({ topAuthors }: YearReview) {

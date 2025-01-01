@@ -171,7 +171,7 @@ function simpleData(book: NewBook) {
   return {
     title: `“${book.title}”`,
     authors: book.authors?.join(", "),
-    pageCount: book.pageCount || undefined,
+    pageCount: book.pageCount,
   };
 }
 
@@ -241,7 +241,7 @@ function bBooksThisYear(books: NewBook[], year: string) {
     .filter((f) => f.dateFinished?.startsWith(year))
     .map((b) => ({
       ...b,
-      format: b.format?.toLowerCase() || undefined,
+      format: b.format?.toLowerCase(),
       finishTime:
         b.dateFinished !== undefined && b.dateStarted !== undefined
           ? Math.floor(
@@ -252,13 +252,11 @@ function bBooksThisYear(books: NewBook[], year: string) {
     }));
 }
 
-function sortBooksByPageCount(booksThisYear: NewBook[]) {
+function sortBooksByPageCount(booksThisYear: NewBook[]): NewBook[] {
   // istanbul ignore next
   return booksThisYear
-    .filter((f) => f.pageCount && f.pageCount > 0)
-    .sort((a, b) =>
-      b.pageCount && a.pageCount ? b.pageCount - a.pageCount : -1
-    );
+    .filter((book) => book.pageCount !== undefined && book.pageCount > 0)
+    .sort((a, b) => (b.pageCount ?? 0) - (a.pageCount ?? 0));
 }
 
 function bGroupByMonth(booksThisYear: NewBook[]) {

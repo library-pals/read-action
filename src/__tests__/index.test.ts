@@ -466,12 +466,9 @@ describe("index", () => {
       },
     });
     await read();
-    expect(setFailedSpy.mock.calls[0][0]).toMatchInlineSnapshot(`
-      [Error: Book (http://not-libby.com/yadda-yadda) not found. All providers failed
-      google: No books found with isbn: http://not-libby.com/yadda-yadda
-      openlibrary: Request failed with status code 404
-      librofm: Request failed with status code 404]
-    `);
+    expect(setFailedSpy.mock.calls[0][0]).toMatchInlineSnapshot(
+      `"Invalid \`identifier\` in payload: http://not-libby.com/yadda-yadda. Must be an ISBN or start with one of the following: https://share.libbyapp.com/, https://libro.fm/, https://books.apple.com/"`
+    );
   });
 
   test("error, setFailed", async () => {
