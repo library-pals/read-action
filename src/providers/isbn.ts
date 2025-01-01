@@ -48,6 +48,7 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
     thumbnail,
     language,
     link,
+    duration,
   } = book;
 
   const identifier = isLibrofm
@@ -86,6 +87,7 @@ export function cleanBook(options: BookParams, book: Book): NewBook {
     ...(setImage && {
       image: `book-${identifier}.png`,
     }),
+    ...(duration && { duration }),
   };
 }
 
