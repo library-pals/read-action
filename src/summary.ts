@@ -32,9 +32,10 @@ export function yearOverYear(books: NewBook[]) {
   const years = Array.from(
     new Set(books.map((b) => b.dateFinished?.slice(0, 4)))
   );
-  const allYearsData = years.map((year) => yearReview(books, year));
-  // Create a table with previous year, number of books read
-  // and the difference between the two years
+  if (years.length < 2) return "";
+  const allYearsData = years
+    .filter((year): year is string => year !== undefined)
+    .map((year) => yearReview(books, year));
   const table = allYearsData
     .map((yearData) => {
       if (!yearData) return;
@@ -42,8 +43,8 @@ export function yearOverYear(books: NewBook[]) {
     })
     .filter((f) => f)
     .sort((a, b) => {
-      const aYear = parseInt(a.split("|")[1].trim());
-      const bYear = parseInt(b.split("|")[1].trim());
+      const aYear = a ? parseInt(a.split("|")[1].trim()) : 0;
+      const bYear = b ? parseInt(b.split("|")[1].trim()) : 0;
       return bYear - aYear;
     })
     .join("\n");
