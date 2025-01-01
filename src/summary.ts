@@ -120,6 +120,7 @@ export function yearReview(
   );
   const tags = findTopItems(booksThisYear, "tags");
 
+  // istanbul ignore next
   return {
     year,
     count,
@@ -140,7 +141,10 @@ export function yearReview(
       },
       finishedInOneDay: {
         count: finishedInOneDay.length,
-        books: finishedInOneDay.map(simpleData),
+        books:
+          finishedInOneDay.length > 0
+            ? finishedInOneDay.map(simpleData).filter((b) => b !== undefined)
+            : [],
       },
     },
     topGenres,
@@ -156,13 +160,7 @@ export function yearReview(
 }
 
 function simpleData(book: NewBook) {
-  if (!book)
-    return {
-      title: undefined,
-      authors: undefined,
-      bookFormat: undefined,
-      pageCount: undefined,
-    };
+  if (!book) return;
   return {
     title: `“${book.title}”`,
     authors: book.authors?.join(", "),
