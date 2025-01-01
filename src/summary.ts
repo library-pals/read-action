@@ -7,6 +7,7 @@ import {
   mAverageLength,
   mTopAuthors,
   mTags,
+  mFormat,
 } from "./summary-markdown";
 import { capitalize, DateTypes } from "./utils";
 
@@ -16,14 +17,55 @@ export function summaryMarkdown(
   bookStatus: BookStatus
 ): string {
   const { BookTitle } = process.env;
-  return `# ${bookStatus == "summary" ? "Reading summary" : "Updated library"}
-${bookStatus !== "summary" ? `\n${capitalize(`${bookStatus}`)}: “${BookTitle}”` : ""}
-${
-  dateType.summaryEndDate
+  const isSummary = bookStatus === "summary";
+  const title = isSummary ? "Reading summary" : "Updated library";
+  const bookTitleLine = !isSummary
+    ? `${capitalize(bookStatus)}: “${BookTitle}”`
+    : "";
+  const yearReview = dateType.summaryEndDate
     ? yearReviewSummary(library, dateType.summaryEndDate.slice(0, 4))
-    : ""
+    : "";
+  const yearComparison = dateType.summaryEndDate ? yearOverYear(library) : "";
+  const markdownLines = [
+    `# ${title}`,
+    bookTitleLine,
+    yearReview,
+    yearComparison,
+  ];
+  return markdownLines.filter(Boolean).join("\n\n");
 }
-`;
+
+export function yearOverYear(books: NewBook[]): string {
+  const years = getUniqueYears(books);
+  if (years.length < 2) return "";
+
+  const allYearsData = years
+    .map((year) => yearReview(books, year))
+    .filter(Boolean) as YearReview[];
+  const table = generateYearComparisonTable(allYearsData);
+
+  return `## Year over year
+
+| Year | Books read |
+| ---: | ---: |
+${table}`.trim();
+}
+
+function getUniqueYears(books: NewBook[]): string[] {
+  return Array.from(
+    new Set(books.map((b) => b.dateFinished?.slice(0, 4)).filter(Boolean))
+  ) as string[];
+}
+
+function generateYearComparisonTable(allYearsData: YearReview[]): string {
+  return allYearsData
+    .map((yearData) => `| ${yearData.year} | ${yearData.count} |`)
+    .sort((a, b) => {
+      const aYear = parseInt(a.split("|")[1].trim());
+      const bYear = parseInt(b.split("|")[1].trim());
+      return bYear - aYear;
+    })
+    .join("\n");
 }
 
 export function yearReviewSummary(books: NewBook[], year: string) {
@@ -37,6 +79,7 @@ export function yearReviewSummary(books: NewBook[], year: string) {
     ...mAverageDays(obj),
     ...mMostReadMonth(obj),
     ...mGenre(obj),
+    ...mFormat(obj),
     ...mSameDay(obj),
     ...mAverageLength(obj),
     ...mTopAuthors(obj),
@@ -59,9 +102,12 @@ export function yearReview(
       count,
     };
   }
-  const longestBook = booksThisYear[0];
-  const shortestBook = booksThisYear[count - 1];
+  const booksByPageCount = sortBooksByPageCount(booksThisYear);
+  const longestBook = booksByPageCount[0] || undefined;
+  const shortestBook =
+    booksByPageCount[booksByPageCount.length - 1] || undefined;
   const topGenres = findTopItems(booksThisYear, "categories", toLowerCase);
+  const topFormats = findTopItems(booksThisYear, "format");
   const groupByMonth = bGroupByMonth(booksThisYear);
   const mostReadMonth = getKeyFromBiggestValue(groupByMonth);
   const leastReadMonth = getKeyFromSmallestValue(groupByMonth);
@@ -81,6 +127,7 @@ export function yearReview(
   );
   const tags = findTopItems(booksThisYear, "tags");
 
+  // istanbul ignore next
   return {
     year,
     count,
@@ -101,10 +148,14 @@ export function yearReview(
       },
       finishedInOneDay: {
         count: finishedInOneDay.length,
-        books: finishedInOneDay.map(simpleData),
+        books:
+          finishedInOneDay.length > 0
+            ? finishedInOneDay.map(simpleData).filter((b) => b !== undefined)
+            : [],
       },
     },
     topGenres,
+    topFormats,
     length: {
       longestBook: simpleData(longestBook),
       shortestBook: simpleData(shortestBook),
@@ -116,6 +167,7 @@ export function yearReview(
 }
 
 function simpleData(book: NewBook) {
+  if (!book) return;
   return {
     title: `“${book.title}”`,
     authors: book.authors?.join(", "),
@@ -162,18 +214,23 @@ export type YearReview = {
     };
   };
   topGenres?: { name: string; count: number }[];
+  topFormats?: { name: string; count: number }[];
   tags?: { name: string; count: number }[];
   length?: {
-    longestBook: {
-      title: string | undefined;
-      authors: string | undefined;
-      pageCount: number | undefined;
-    };
-    shortestBook: {
-      title: string | undefined;
-      authors: string | undefined;
-      pageCount: number | undefined;
-    };
+    longestBook:
+      | {
+          title: string | undefined;
+          authors: string | undefined;
+          pageCount: number | undefined;
+        }
+      | undefined;
+    shortestBook:
+      | {
+          title: string | undefined;
+          authors: string | undefined;
+          pageCount: number | undefined;
+        }
+      | undefined;
     averageBookLength: number | undefined;
     totalPages: number | undefined;
   };
@@ -184,6 +241,7 @@ function bBooksThisYear(books: NewBook[], year: string) {
     .filter((f) => f.dateFinished?.startsWith(year))
     .map((b) => ({
       ...b,
+      format: b.format?.toLowerCase(),
       finishTime:
         b.dateFinished !== undefined && b.dateStarted !== undefined
           ? Math.floor(
@@ -191,10 +249,14 @@ function bBooksThisYear(books: NewBook[], year: string) {
                 86400000
             )
           : undefined,
-    }))
-    .sort((a, b) =>
-      b.pageCount && a.pageCount ? b.pageCount - a.pageCount : -1
-    );
+    }));
+}
+
+function sortBooksByPageCount(booksThisYear: NewBook[]): NewBook[] {
+  // istanbul ignore next
+  return booksThisYear
+    .filter((book) => book.pageCount !== undefined && book.pageCount > 0)
+    .sort((a, b) => (b.pageCount ?? 0) - (a.pageCount ?? 0));
 }
 
 function bGroupByMonth(booksThisYear: NewBook[]) {

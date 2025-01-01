@@ -39,6 +39,15 @@ export function mGenre({ topGenres }: YearReview) {
   ];
 }
 
+export function mFormat({ topFormats }: YearReview) {
+  if (!topFormats || topFormats.length === 0) return [];
+  return [
+    `- **Top format${s(topFormats.length)}:** ${and(
+      topFormats.map(({ name, count }) => `${name} (${count} book${s(count)})`)
+    )}`,
+  ];
+}
+
 export function mSameDay({ dates }: YearReview) {
   if (!dates || !dates.finishedInOneDay.count) return [];
   const { count, books } = dates.finishedInOneDay;
@@ -49,19 +58,29 @@ export function mSameDay({ dates }: YearReview) {
   ];
 }
 
-export function mAverageLength({ length }: YearReview) {
+export function mAverageLength({ length }: YearReview): string[] {
   if (!length || !length.averageBookLength) return [];
   const { averageBookLength, longestBook, shortestBook, totalPages } = length;
-  return [
+  const result: string[] = [
     `- **Average book length:** ${averageBookLength?.toLocaleString()} pages`,
-    `- **Longest book:** ${longestBook.title} by ${
-      longestBook.authors
-    } (${longestBook.pageCount?.toLocaleString()} pages)`,
-    `- **Shortest book:** ${shortestBook.title} by ${
-      shortestBook.authors
-    } (${shortestBook.pageCount?.toLocaleString()} pages)`,
-    `- **Total pages read:** ${totalPages?.toLocaleString()}`,
   ];
+
+  // istanbul ignore next
+  if (longestBook) {
+    result.push(
+      `- **Longest book by page count:** ${longestBook.title} by ${longestBook.authors} (${longestBook.pageCount?.toLocaleString()} pages)`
+    );
+  }
+  // istanbul ignore next
+  if (shortestBook) {
+    result.push(
+      `- **Shortest book by page count:** ${shortestBook.title} by ${shortestBook.authors} (${shortestBook.pageCount?.toLocaleString()} pages)`
+    );
+  }
+
+  result.push(`- **Total pages read:** ${totalPages?.toLocaleString()}`);
+
+  return result;
 }
 
 export function mTopAuthors({ topAuthors }: YearReview) {
