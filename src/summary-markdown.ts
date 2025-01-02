@@ -129,7 +129,7 @@ function addBookDuration(
 ) {
   if (book) {
     result.push(
-      `- **${label}:** ${book.title} by ${book.authors} (${book.length} hours)`
+      `- **${label}:** ${book.title} by ${book.authors} (${book.length})`
     );
   }
 }

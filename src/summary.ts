@@ -139,7 +139,7 @@ export function yearReview(
     0
   );
   const bookLengthsByDuration = booksThisYear
-    .map((b) => b.durationInSeconds)
+    .map((b) => b.durationSeconds)
     .filter((f) => f);
   const averageBookLengthByDuration =
     bookLengthsByDuration.length > 0
@@ -201,9 +201,7 @@ function simpleData(book) {
   return {
     title: `“${book.title}”`,
     authors: book.authors?.join(", ") || "",
-    length:
-      book.pageCount ??
-      (book.durationInSeconds ? secondsToHms(book.durationInSeconds) : 0),
+    length: book.pageCount ?? book.durationHours ?? 0,
   };
 }
 
@@ -291,7 +289,8 @@ function bBooksThisYear(books: NewBook[], year: string) {
       ...b,
       format: b.format?.toLowerCase(),
       ...(b.duration && {
-        durationInSeconds: parseISO8601Duration(b.duration),
+        durationSeconds: parseISO8601Duration(b.duration),
+        durationHours: secondsToHms(parseISO8601Duration(b.duration)),
       }),
       finishTime:
         b.dateFinished !== undefined && b.dateStarted !== undefined
@@ -313,8 +312,8 @@ function sortBooksByPageCount(booksThisYear: NewBook[]): NewBook[] {
 function sortBooksByDuration(booksThisYear): NewBook[] {
   // istanbul ignore next
   return booksThisYear
-    .filter((book) => book.durationInSeconds !== undefined)
-    .sort((a, b) => b.durationInSeconds - a.durationInSeconds);
+    .filter((book) => book.durationSeconds !== undefined)
+    .sort((a, b) => b.durationSeconds - a.durationSeconds);
 }
 
 function bGroupByMonth(booksThisYear: NewBook[]) {

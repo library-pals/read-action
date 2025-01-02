@@ -71,8 +71,8 @@ describe("workflow", () => {
       - **Shortest book by page count:** “Book 1” by Author 1 (100 pages)
       - **Total pages read:** 1,150
       - **Average book length by duration:** 5 hours, 31 minutes
-      - **Longest book by duration:** “Book 4” by Author 4 (7 hours, 45 minutes hours)
-      - **Shortest book by duration:** “Book 6” by Author 6 (3 hours, 20 minutes hours)
+      - **Longest book by duration:** “Book 4” by Author 4 (7 hours, 45 minutes)
+      - **Shortest book by duration:** “Book 6” by Author 6 (3 hours, 20 minutes)
       - **Total hours read:** 27 hours, 35 minutes
 
       ## Year over year
