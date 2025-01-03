@@ -51,7 +51,11 @@ export async function read() {
     // Get book payload
     const payload = github.context.payload.inputs as BookPayload;
     // Validate payload
-    validatePayload(payload);
+    const { success, message } = validatePayload(payload);
+    if (!success) {
+      setFailed(message);
+      return;
+    }
     const {
       identifier: inputIdentifier,
       date,

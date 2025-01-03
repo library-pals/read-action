@@ -1,4 +1,3 @@
-import { setFailed } from "@actions/core";
 import { isDate, isIsbn } from "./utils";
 import { BookPayload } from "./index";
 import { BookStatus } from "./new-book";
@@ -9,18 +8,20 @@ const validPrefixes = [
   "https://books.apple.com/",
 ];
 
-export function validatePayload(payload: BookPayload): void {
+export function validatePayload(payload: BookPayload): {
+  success: boolean;
+  message: string;
+} {
   if (!payload) {
-    setFailed("Missing payload");
-    return;
+    return { success: false, message: "Missing payload" };
   }
 
   if (payload["book-status"] === "summary") {
-    return;
+    return { success: true, message: "Valid payload" };
   }
 
   if (!payload["identifier"]) {
-    setFailed("Missing `identifier` in payload");
+    return { success: false, message: "Missing `identifier` in payload" };
   }
 
   const { identifier } = payload;
@@ -29,20 +30,27 @@ export function validatePayload(payload: BookPayload): void {
     !validPrefixes.some((prefix) => identifier.startsWith(prefix)) &&
     !isIsbn(identifier)
   ) {
-    setFailed(
-      `Invalid \`identifier\` in payload: ${identifier}. Must be an ISBN or start with one of the following: ${validPrefixes.join(", ")}`
-    );
+    return {
+      success: false,
+      message: `Invalid \`identifier\` in payload: ${identifier}. Must be an ISBN or start with one of the following: ${validPrefixes.join(", ")}`,
+    };
   }
 
   if (payload["date"] && !isDate(payload["date"])) {
-    setFailed(`Invalid \`date\` in payload: ${payload["date"]}`);
+    return {
+      success: false,
+      message: `Invalid \`date\` in payload: ${payload["date"]}`,
+    };
   }
 
   if (!payload["book-status"] || !isBookStatus(payload["book-status"])) {
-    setFailed(
-      `Invalid \`book-status\` in payload: "${payload["book-status"]}". Choose from: "want to read", "started", "finished", "abandoned"`
-    );
+    return {
+      success: false,
+      message: `Invalid \`book-status\` in payload: "${payload["book-status"]}". Choose from: "want to read", "started", "finished", "abandoned"`,
+    };
   }
+
+  return { success: true, message: "Valid payload" };
 }
 
 function isBookStatus(status: string): status is BookStatus {
