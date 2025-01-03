@@ -48,7 +48,6 @@ const defaultOptions = {
 describe("index", () => {
   afterEach(() => {
     jest.restoreAllMocks();
-    jest.clearAllMocks();
   });
 
   beforeEach(() => {
