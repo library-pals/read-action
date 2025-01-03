@@ -17,7 +17,7 @@ describe("yearReviewSummary", () => {
       - **Top genres:** fiction (5 books) and social science (2 books)
       - **Top format:** book (7 books)
       - **Read in a day:** “Belly of the Beast” by Da'Shaun L. Harrison (1 book)
-      - **Average book length:** 251 pages
+      - **Average book page length:** 251
       - **Longest book by page count:** “The Candy House” by Jennifer Egan (352 pages)
       - **Shortest book by page count:** “Bliss Montage” by Ling Ma (145 pages)
       - **Total pages read:** 1,756
@@ -62,7 +62,7 @@ describe("yearReviewSummary", () => {
       - **Top genres:** fiction (9 books) and web sites (2 books)
       - **Top format:** book (13 books)
       - **Read in a day:** “Noor” by Nnedi Okorafor (1 book)
-      - **Average book length:** 303 pages
+      - **Average book page length:** 303
       - **Longest book by page count:** “Caste” by Isabel Wilkerson (678 pages)
       - **Shortest book by page count:** “You Should Write a Book” by Katel LeDû, Lisa Maria Marquis (100 pages)
       - **Total pages read:** 3,938
@@ -103,7 +103,7 @@ describe("yearReview", () => {
             "books": [
               {
                 "authors": "Da'Shaun L. Harrison",
-                "pageCount": 148,
+                "length": 148,
                 "title": "“Belly of the Beast”",
               },
             ],
@@ -119,18 +119,22 @@ describe("yearReview", () => {
           },
         },
         "length": {
-          "averageBookLength": 251,
-          "longestBook": {
+          "averageBookLengthByDuration": "",
+          "averageBookLengthByPages": 251,
+          "longestBookByDuration": undefined,
+          "longestBookByPageCount": {
             "authors": "Jennifer Egan",
-            "pageCount": 352,
+            "length": 352,
             "title": "“The Candy House”",
           },
-          "shortestBook": {
+          "shortestBookByDuration": undefined,
+          "shortestBookByPageCount": {
             "authors": "Ling Ma",
-            "pageCount": 145,
+            "length": 145,
             "title": "“Bliss Montage”",
           },
           "totalPages": 1756,
+          "totalTime": "",
         },
         "tags": [
           {

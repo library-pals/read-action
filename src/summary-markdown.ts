@@ -59,28 +59,79 @@ export function mSameDay({ dates }: YearReview) {
 }
 
 export function mAverageLength({ length }: YearReview): string[] {
-  if (!length || !length.averageBookLength) return [];
-  const { averageBookLength, longestBook, shortestBook, totalPages } = length;
+  if (!length) return [];
+
   const result: string[] = [
-    `- **Average book length:** ${averageBookLength?.toLocaleString()} pages`,
+    ...(length.averageBookLengthByPages
+      ? [
+          `- **Average book page length:** ${length.averageBookLengthByPages.toLocaleString()}`,
+        ]
+      : []),
   ];
 
-  // istanbul ignore next
-  if (longestBook) {
+  addBookLength(
+    result,
+    "Longest book by page count",
+    length.longestBookByPageCount
+  );
+  addBookLength(
+    result,
+    "Shortest book by page count",
+    length.shortestBookByPageCount
+  );
+
+  if (length.totalPages) {
     result.push(
-      `- **Longest book by page count:** ${longestBook.title} by ${longestBook.authors} (${longestBook.pageCount?.toLocaleString()} pages)`
-    );
-  }
-  // istanbul ignore next
-  if (shortestBook) {
-    result.push(
-      `- **Shortest book by page count:** ${shortestBook.title} by ${shortestBook.authors} (${shortestBook.pageCount?.toLocaleString()} pages)`
+      `- **Total pages read:** ${length.totalPages.toLocaleString()}`
     );
   }
 
-  result.push(`- **Total pages read:** ${totalPages?.toLocaleString()}`);
+  if (length.averageBookLengthByDuration) {
+    result.push(
+      `- **Average book length by duration:** ${length.averageBookLengthByDuration}`
+    );
+  }
+
+  addBookDuration(
+    result,
+    "Longest book by duration",
+    length.longestBookByDuration
+  );
+  addBookDuration(
+    result,
+    "Shortest book by duration",
+    length.shortestBookByDuration
+  );
+
+  if (length.totalTime) {
+    result.push(`- **Total hours read:** ${length.totalTime}`);
+  }
 
   return result;
+}
+
+function addBookLength(
+  result: string[],
+  label: string,
+  book?: { title: string; authors: string; length: number | string }
+) {
+  if (book) {
+    result.push(
+      `- **${label}:** ${book.title} by ${book.authors} (${book.length} pages)`
+    );
+  }
+}
+
+function addBookDuration(
+  result: string[],
+  label: string,
+  book?: { title: string; authors: string; length: number | string }
+) {
+  if (book) {
+    result.push(
+      `- **${label}:** ${book.title} by ${book.authors} (${book.length})`
+    );
+  }
 }
 
 export function mTopAuthors({ topAuthors }: YearReview) {

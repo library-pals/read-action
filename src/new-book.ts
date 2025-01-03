@@ -58,6 +58,7 @@ export type NewBook = {
   rating?: string;
   tags?: BookParams["tags"];
   image?: string;
+  duration?: string;
 };
 
 export async function handleNewBook({
