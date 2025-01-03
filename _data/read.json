@@ -483,5 +483,31 @@
     "language": "en",
     "link": "https://openlibrary.org/books/OL998749M",
     "dateFinished": "2024-12-31"
+  },
+  {
+    "identifier": "9780593867792",
+    "identifiers": {
+      "librofm": "9780593867792",
+      "isbn": "9780593867792"
+    },
+    "dateFinished": "2025-01-02",
+    "summaryEndDate": "2025-01-02",
+    "status": "finished",
+    "rating": "unrated",
+    "title": "The God of the Woods",
+    "authors": [
+      "Liz Moore"
+    ],
+    "publishedDate": "2024-07-02",
+    "description": "Early morning, August 1975: a camp counselor discovers an empty bunk. Its occupant, Barbara Van Laar, has gone missing. Barbara isn’t just any thirteen-year-old: she’s the daughter of the family that owns the summer camp and employs most of the region’s residents. And this isn’t the first time a Van Laar child has disappeared. Barbara’s older brother similarly vanished fourteen years ago, never to be found. As a panicked search begins, a thrilling drama unfolds. Chasing down the layered secrets of the Van Laar family and the blue-collar community working in its shadow, Moore’s multi-threaded story invites readers into a rich and gripping dynasty of secrets and second chances. It is Liz Moore’s most ambitious and wide-reaching novel yet.",
+    "format": "audiobook",
+    "categories": [
+      "Fiction",
+      "Fiction - Literary"
+    ],
+    "thumbnail": "https://covers.libro.fm/9780593867792_1120.jpg",
+    "language": "en",
+    "link": "https://libro.fm/audiobooks/9780593867792",
+    "duration": "PT14H34M15S"
   }
 ]
