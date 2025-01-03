@@ -21,6 +21,7 @@ export function validatePayload(payload: BookPayload): void {
 
   if (!payload["identifier"]) {
     setFailed("Missing `identifier` in payload");
+    return;
   }
 
   const { identifier } = payload;
@@ -32,16 +33,19 @@ export function validatePayload(payload: BookPayload): void {
     setFailed(
       `Invalid \`identifier\` in payload: ${identifier}. Must be an ISBN or start with one of the following: ${validPrefixes.join(", ")}`
     );
+    return;
   }
 
   if (payload["date"] && !isDate(payload["date"])) {
     setFailed(`Invalid \`date\` in payload: ${payload["date"]}`);
+    return;
   }
 
   if (!payload["book-status"] || !isBookStatus(payload["book-status"])) {
     setFailed(
       `Invalid \`book-status\` in payload: "${payload["book-status"]}". Choose from: "want to read", "started", "finished", "abandoned"`
     );
+    return;
   }
 }
 
