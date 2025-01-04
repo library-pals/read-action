@@ -38,6 +38,7 @@ describe("getAppleBooks", () => {
           "Fiction",
         ],
         "description": "This #1 New York Times bestseller is a "bold and subversive retelling of the goddess's story" that brilliantly reimagines the life of Circe, formidable sorceress of The Odyssey (Alexandra Alter, The New York Times ). In the house of Helios, god of the sun and mi…",
+        "duration": "PT12H8M25S",
         "format": "audiobook",
         "identifier": "id1442351802",
         "identifiers": {
@@ -84,6 +85,7 @@ describe("getAppleBooks", () => {
           "Fantasy",
         ],
         "description": "“[An] exquisitely crafted tale...Part epistolary romance, part mind-blowing science fiction adventure, this dazzling story unfolds bit by bit, revealing layers of meaning as it plays with cause and effect, wildly imaginative…",
+        "duration": "PT4H16M1S",
         "format": "audiobook",
         "identifier": "id1470137739",
         "identifiers": {

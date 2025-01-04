@@ -81,6 +81,7 @@ describe("workflow", () => {
             ],
             "dateAdded": "2022-10-01",
             "description": "A fearless portrait of a society on the brink as a mother faces a terrible choice, from Booker-winning author Paul Lynch. Winner of the Booker Prize 2023 On a dark, wet evening in Dublin, scientist and mother of four Eilish Stack answers her front door to find the GNSB on her step. Two officers fr…",
+            "duration": "PT8H32M40S",
             "format": "audiobook",
             "identifier": "id1719188959",
             "identifiers": {
