@@ -61,6 +61,7 @@ function parseResult(result: OgObject): Partial<NewBook> {
 
   const schema = result.jsonLD[0] as Audiobook;
   const pageCount = parsePageCount(schema.numberOfPages);
+  const duration = schema.duration;
   return {
     title: safeToString(schema.name),
     description: formatDescription(schema.description),
@@ -71,6 +72,7 @@ function parseResult(result: OgObject): Partial<NewBook> {
     format: schema["@type"].toLocaleLowerCase(),
     ...(pageCount && { pageCount }),
     language: safeToString(schema.inLanguage),
+    ...(duration && { duration: safeToString(duration) }),
   };
 }
 
