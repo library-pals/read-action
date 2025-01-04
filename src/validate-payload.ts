@@ -50,6 +50,19 @@ export function validatePayload(payload: BookPayload): {
     };
   }
 
+  // Make sure duration is in ISO 8601 format
+  if (
+    payload["duration"] &&
+    !/^P(\d+Y)?(\d+M)?(\d+D)?(T(\d+H)?(\d+M)?(\d+S)?)?$/.test(
+      payload["duration"]
+    )
+  ) {
+    return {
+      success: false,
+      message: `Invalid \`duration\` in payload: ${payload["duration"]}. Must be in ISO 8601 format, example: "PT8H30M40S" is 8 hours, 30 minutes, and 40 seconds`,
+    };
+  }
+
   return { success: true, message: "Valid payload" };
 }
 

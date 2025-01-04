@@ -20,6 +20,7 @@ export async function getLibby(
     rating,
     tags,
     setImage,
+    duration,
   } = options;
   try {
     const ogsOptions = {
@@ -55,6 +56,7 @@ export async function getLibby(
       link: inputIdentifier,
       ...parsedResultMetadata,
       ...parsedHtmlMetadata,
+      ...(duration && { duration }),
     };
   } catch (error) {
     throw new Error(`Failed to get book from Libby: ${error.result.error}`);
