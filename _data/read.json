@@ -516,7 +516,7 @@
       "libby": "4681636"
     },
     "dateAdded": "2025-01-05",
-    "status": "want to read",
+    "status": "started",
     "rating": "unrated",
     "link": "https://share.libbyapp.com/title/4681636",
     "title": "Long Bright River",
@@ -532,6 +532,7 @@
       "Thriller"
     ],
     "format": "audiobook",
-    "duration": "PT13H0M"
+    "duration": "PT13H0M",
+    "dateStarted": "2025-01-05"
   }
 ]
