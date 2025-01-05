@@ -71,7 +71,7 @@ describe("validatePayload", () => {
     expect(result).toEqual({
       success: false,
       message:
-        'Invalid `duration` in payload: 8H30M40S. Must be in ISO 8601 format, example: "PT8H30M40S" is 8 hours, 30 minutes, and 40 seconds',
+        'Invalid `duration` in payload: 8H30M40S. Must be in HH:MM format, example: "08:30" is 8 hours and 30 minutes',
     });
   });
 
@@ -80,7 +80,7 @@ describe("validatePayload", () => {
       "book-status": "started",
       identifier: "https://share.libbyapp.com/123",
       date: "2023-01-01",
-      duration: "PT8H30M40S",
+      duration: "8:30",
     } as BookPayload;
     const result = validatePayload(payload);
     expect(result).toEqual({ success: true, message: "Valid payload" });

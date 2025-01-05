@@ -56,11 +56,17 @@ export async function getLibby(
       link: inputIdentifier,
       ...parsedResultMetadata,
       ...parsedHtmlMetadata,
-      ...(duration && { duration }),
+      ...(duration && { duration: toIsoFormat(duration) }),
     };
   } catch (error) {
     throw new Error(`Failed to get book from Libby: ${error.result.error}`);
   }
+}
+
+function toIsoFormat(duration: string): string {
+  // convert HH:MM to ISO 8601 duration format
+  const [hours, minutes] = duration.split(":").map(Number);
+  return `PT${hours}H${minutes}M`;
 }
 
 function handleFormat(shareCategory: string): string | undefined {

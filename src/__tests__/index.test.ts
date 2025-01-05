@@ -633,7 +633,7 @@ describe("index", () => {
     });
     await read();
     expect(setFailedSpy).toHaveBeenCalledWith(
-      'Invalid `duration` in payload: 1234. Must be in ISO 8601 format, example: "PT8H30M40S" is 8 hours, 30 minutes, and 40 seconds'
+      'Invalid `duration` in payload: 1234. Must be in HH:MM format, example: "08:30" is 8 hours and 30 minutes'
     );
   });
 });

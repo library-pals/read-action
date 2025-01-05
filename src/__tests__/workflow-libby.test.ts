@@ -289,7 +289,7 @@ describe("workflow", () => {
           inputs: {
             identifier: "https://share.libbyapp.com/title/5004990",
             "book-status": "want to read",
-            duration: "PT8H32M40S",
+            duration: "8:32",
           },
         },
       },
@@ -312,7 +312,7 @@ describe("workflow", () => {
             ],
             "dateAdded": "2022-10-01",
             "description": "WINNER of the NBCC John Leonard Prize, the Kirkus Prize, the Center for Fiction First Novel Prize, the Dylan Thomas Prize, and the VCU Cabell First Novelist AwardOne of Barack Obama’s Favorite Books of 2020 A BEST BOOK OF THE YEAR: NPR, The New York Times Book Review, O Magazine, Vanity Fair, Los Angeles Times, Glamour, Shondaland,...",
-            "duration": "PT8H32M40S",
+            "duration": "PT8H32M",
             "format": "ebook",
             "identifier": "5004990",
             "identifiers": {
