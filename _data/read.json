@@ -509,5 +509,30 @@
     "language": "en",
     "link": "https://libro.fm/audiobooks/9780593867792",
     "duration": "PT14H34M15S"
+  },
+  {
+    "identifier": "4681636",
+    "identifiers": {
+      "libby": "4681636"
+    },
+    "dateAdded": "2025-01-05",
+    "status": "started",
+    "rating": "unrated",
+    "link": "https://share.libbyapp.com/title/4681636",
+    "title": "Long Bright River",
+    "description": "ONE OF BARACK OBAMA’S FAVORITE BOOKS OF THE YEAR, BY THE AUTHOR OF THE THE GOD OF THE WOODS   [Moore’s] careful balance of the hard-bitten with the heartfelt is what elevates Long Bright River from entertaining page-turner to a book that makes you want to call someone you love. - The New York Times Book ReviewThis is police proce...",
+    "authors": [
+      "Liz Moore"
+    ],
+    "publishedDate": "2020-01-07",
+    "thumbnail": "https://img1.od-cdn.com/ImageType-100/1191-1/{CF95195D-2BB7-4471-93EB-B7084481069E}Img100.jpg",
+    "publisher": "Books on Tape",
+    "categories": [
+      "Fiction",
+      "Thriller"
+    ],
+    "format": "audiobook",
+    "duration": "PT13H0M",
+    "dateStarted": "2025-01-05"
   }
 ]

@@ -50,6 +50,14 @@ export function validatePayload(payload: BookPayload): {
     };
   }
 
+  // Make sure duration is in HH:MM format
+  if (payload["duration"] && !/^\d{1,2}:\d{2}$/.test(payload["duration"])) {
+    return {
+      success: false,
+      message: `Invalid \`duration\` in payload: ${payload["duration"]}. Must be in HH:MM format, example: "08:30" is 8 hours and 30 minutes`,
+    };
+  }
+
   return { success: true, message: "Valid payload" };
 }
 

@@ -274,4 +274,61 @@ describe("workflow", () => {
       ]
     `);
   });
+
+  test("want to read, reader-defined duration", async () => {
+    ogs.mockResolvedValue({
+      result: result_5004990,
+      html: html_5004990,
+    });
+    jest.spyOn(promises, "readFile").mockResolvedValue();
+    jest.useFakeTimers().setSystemTime(new Date("2022-10-01T12:00:00"));
+    const setFailedSpy = jest.spyOn(core, "setFailed");
+    Object.defineProperty(github, "context", {
+      value: {
+        payload: {
+          inputs: {
+            identifier: "https://share.libbyapp.com/title/5004990",
+            "book-status": "want to read",
+            duration: "8:32",
+          },
+        },
+      },
+    });
+    await read();
+    expect(setFailedSpy).not.toHaveBeenCalled();
+    expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
+      [
+        "my-library.json",
+        [
+          {
+            "authors": [
+              "Raven Leilani",
+            ],
+            "categories": [
+              "Fiction",
+              "African American Fiction",
+              "Literature",
+              "Historical Fiction",
+            ],
+            "dateAdded": "2022-10-01",
+            "description": "WINNER of the NBCC John Leonard Prize, the Kirkus Prize, the Center for Fiction First Novel Prize, the Dylan Thomas Prize, and the VCU Cabell First Novelist AwardOne of Barack Obama’s Favorite Books of 2020 A BEST BOOK OF THE YEAR: NPR, The New York Times Book Review, O Magazine, Vanity Fair, Los Angeles Times, Glamour, Shondaland,...",
+            "duration": "PT8H32M",
+            "format": "ebook",
+            "identifier": "5004990",
+            "identifiers": {
+              "isbn": "9780374910334",
+              "libby": "5004990",
+            },
+            "image": "book-5004990.png",
+            "link": "https://share.libbyapp.com/title/5004990",
+            "publishedDate": "2020-08-04",
+            "publisher": "Farrar, Straus and Giroux",
+            "status": "want to read",
+            "thumbnail": "https://img2.od-cdn.com/ImageType-100/2390-1/{AC83A465-D32D-46B4-A70E-EFD2F0E2F7F6}Img100.jpg",
+            "title": "Luster",
+          },
+        ],
+      ]
+    `);
+  });
 });

@@ -617,4 +617,23 @@ describe("index", () => {
       'Invalid `book-status` in payload: "did not finish". Choose from: "want to read", "started", "finished", "abandoned"'
     );
   });
+
+  test("error, bad duration", async () => {
+    const setFailedSpy = jest.spyOn(core, "setFailed");
+    Object.defineProperty(github, "context", {
+      value: {
+        payload: {
+          inputs: {
+            identifier: "9781760983215",
+            "book-status": "finished",
+            duration: "1234",
+          },
+        },
+      },
+    });
+    await read();
+    expect(setFailedSpy).toHaveBeenCalledWith(
+      'Invalid `duration` in payload: 1234. Must be in HH:MM format, example: "08:30" is 8 hours and 30 minutes'
+    );
+  });
 });

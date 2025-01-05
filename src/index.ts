@@ -17,6 +17,7 @@ export type BookPayload = {
   identifier: string;
   rating?: string;
   tags?: string;
+  duration?: string;
 };
 
 export type ActionInputs = {
@@ -44,6 +45,7 @@ export type BookParams = {
   tags?: string[];
   thumbnailWidth?: number;
   setImage: boolean;
+  duration?: string;
 };
 
 export async function read() {
@@ -63,6 +65,7 @@ export async function read() {
       notes,
       rating,
       tags,
+      duration,
     } = payload;
     // Set inputs
     const filename: ActionInputs["filename"] = getInput("filename");
@@ -96,6 +99,7 @@ export async function read() {
       thumbnailWidth,
       setImage,
       ...(tags && { tags: toArray(tags) }),
+      ...(duration && { duration }),
     };
 
     if (bookStatus !== "summary") {

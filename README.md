@@ -85,6 +85,12 @@ on:
       tags:
         description: Add tags to categorize the book. Separate each tag with a comma.
         type: string
+      # Duration is optional and is in HH:MM format.
+      # Example: 8:30
+      # The example above is 8 hours and 30 minutes.
+      duration:
+        description: Duration of the Libby audiobook (HH:MM).
+        type: string
 
 # Set up the steps to run the action
 jobs:
@@ -340,6 +346,7 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
     "notes": "", // Notes about the book. Optional.
     "rating": "", // Rate the book. Optional. You can completely customize the default value and options. Default: `unrated`. Options: `unrated`, `⭐️`, `⭐️⭐️`, `⭐️⭐️⭐️`, `⭐️⭐️⭐️⭐️`, `⭐️⭐️⭐️⭐️⭐️`.
     "tags": "", // Add tags to categorize the book. Separate each tag with a comma.
+    "duration": "", // Duration of the Libby audiobook (HH:MM).
   }
 }
 ```
