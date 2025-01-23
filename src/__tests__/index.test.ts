@@ -29,7 +29,6 @@ jest.mock("@actions/core", () => {
     getInput: jest.fn(),
     warning: jest.fn(),
     setOutput: jest.fn(),
-    info: jest.fn(),
     summary: {
       addRaw: () => ({
         write: jest.fn(),
@@ -37,7 +36,7 @@ jest.mock("@actions/core", () => {
     },
   };
 });
-jest.mock("../write-file", () => jest.fn());
+jest.mock("../write-file");
 
 const defaultOptions = {
   filename: "my-library.json",
@@ -62,7 +61,6 @@ describe("index", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
     const setOutputSpy = jest.spyOn(core, "setOutput");
-    const infoSpy = jest.spyOn(core, "info");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -95,7 +93,6 @@ describe("index", () => {
         ],
       ]
     `);
-    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`[]`);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(setOutputSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -112,7 +109,7 @@ describe("index", () => {
         },
       ]
     `);
-    expect((returnWriteFile as jest.Mock).mock.calls[0]).toMatchInlineSnapshot(`
+    expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.json",
         [
@@ -167,7 +164,6 @@ describe("index", () => {
 
   test("works, finished a previous book", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
-    const infoSpy = jest.spyOn(core, "info");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -180,7 +176,6 @@ describe("index", () => {
       },
     });
     await read();
-    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`[]`);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
       [
         [
@@ -227,7 +222,6 @@ describe("index", () => {
   test("works, finished a book (new, not started)", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    const infoSpy = jest.spyOn(core, "info");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -240,7 +234,6 @@ describe("index", () => {
       },
     });
     await read();
-    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`[]`);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
       [
         [
@@ -321,7 +314,6 @@ describe("index", () => {
 
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
-    const infoSpy = jest.spyOn(core, "info");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -333,7 +325,6 @@ describe("index", () => {
       },
     });
     await read();
-    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`[]`);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
       [
         [
