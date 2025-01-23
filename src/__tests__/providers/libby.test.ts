@@ -173,7 +173,7 @@ describe("getLibby", () => {
     await expect(
       getLibby({ inputIdentifier: "test" })
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Cannot read properties of undefined (reading 'error')"`
+      `"Failed to get book from Libby: Error: Test error"`
     );
   });
 
@@ -276,6 +276,7 @@ describe("parseLibbyPage", () => {
             <tr>
               <th>Publisher</th>
               <td>Test Publisher</td>
+            </tr>
           </table>
         </body>
       </html>

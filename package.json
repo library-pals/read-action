@@ -15,7 +15,7 @@
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
     "@library-pals/isbn": "^1.4.4",
-    "cheerio": "^1.0.0",
+    "node-html-parser": "^7.0.1",
     "open-graph-scraper": "^6.9.0",
     "schema-dts": "^1.1.2"
   },

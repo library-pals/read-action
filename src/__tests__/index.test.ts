@@ -95,17 +95,7 @@ describe("index", () => {
         ],
       ]
     `);
-    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "{
-        "identifier": "9781760983215",
-        "book-status": "started",
-        "date": "2022-01-02"
-      }",
-        ],
-      ]
-    `);
+    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`[]`);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(setOutputSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -190,17 +180,7 @@ describe("index", () => {
       },
     });
     await read();
-    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "{
-        "identifier": "9780525620792",
-        "book-status": "finished",
-        "date": "2021-09-30"
-      }",
-        ],
-      ]
-    `);
+    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`[]`);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
       [
         [
@@ -260,22 +240,24 @@ describe("index", () => {
       },
     });
     await read();
-    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "{
-        "identifier": "9781760983215",
-        "tags": "new, recommend",
-        "book-status": "want to read"
-      }",
-        ],
-      ]
-    `);
+    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`[]`);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
       [
         [
           "BookStatus",
-          "want to read",
+          "finished",
+        ],
+        [
+          "BookTitle",
+          "Woman of Light",
+        ],
+        [
+          "BookThumbOutput",
+          "book-9780525511342.png",
+        ],
+        [
+          "BookThumb",
+          "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
         ],
       ]
     `);
@@ -351,16 +333,7 @@ describe("index", () => {
       },
     });
     await read();
-    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`
-      [
-        [
-          "{
-        "identifier": "9781760983215",
-        "book-status": "want to read"
-      }",
-        ],
-      ]
-    `);
+    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`[]`);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
       [
         [
