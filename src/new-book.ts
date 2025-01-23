@@ -1,9 +1,9 @@
 import { exportVariable, setOutput } from "@actions/core";
-import { BookParams } from ".";
-import { getIsbn } from "./providers/isbn";
-import { getLibby } from "./providers/libby";
-import { getLibrofm } from "./providers/librofm";
-import { getAppleBooks } from "./providers/apple-books";
+import { BookParams } from "./index.js";
+import { getIsbn } from "./providers/isbn.js";
+import { getLibby } from "./providers/libby.js";
+import { getLibrofm } from "./providers/librofm.js";
+import { getAppleBooks } from "./providers/apple-books.js";
 
 export const providerAction = [
   {

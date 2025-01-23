@@ -1,7 +1,7 @@
 import Isbn, { Book } from "@library-pals/isbn";
-import { BookParams } from "..";
-import { NewBook } from "../new-book";
-import { formatDescription, getLibrofmId } from "../utils";
+import { BookParams } from "../index.js";
+import { NewBook } from "../new-book.js";
+import { formatDescription, getLibrofmId } from "../utils.js";
 import { exportVariable, getInput, warning } from "@actions/core";
 
 export async function getIsbn(

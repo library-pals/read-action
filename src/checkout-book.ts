@@ -1,6 +1,6 @@
-import { BookParams } from ".";
-import { NewBook } from "./new-book";
-import { lookUp } from "./utils";
+import { BookParams } from "./index.js";
+import { NewBook } from "./new-book.js";
+import { lookUp } from "./utils.js";
 
 export function checkOutBook(
   bookParams: BookParams,

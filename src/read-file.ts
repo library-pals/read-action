@@ -1,5 +1,5 @@
 import { readFile } from "fs/promises";
-import { NewBook } from "./new-book";
+import { NewBook } from "./new-book.js";
 
 export default async function returnReadFile(
   fileName: string

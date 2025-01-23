@@ -1,14 +1,14 @@
 import { exportVariable, getInput, setFailed, summary } from "@actions/core";
 import * as github from "@actions/github";
 import Isbn from "@library-pals/isbn";
-import returnWriteFile from "./write-file";
-import { getBookStatus, sortByDate, toArray } from "./utils";
-import { checkOutBook } from "./checkout-book";
-import { BookStatus, handleNewBook } from "./new-book";
-import { summaryMarkdown } from "./summary";
-import returnReadFile from "./read-file";
-import { updateBook } from "./update-book";
-import { validatePayload } from "./validate-payload";
+import returnWriteFile from "./write-file.js";
+import { getBookStatus, sortByDate, toArray } from "./utils.js";
+import { checkOutBook } from "./checkout-book.js";
+import { BookStatus, handleNewBook } from "./new-book.js";
+import { summaryMarkdown } from "./summary.js";
+import returnReadFile from "./read-file.js";
+import { updateBook } from "./update-book.js";
+import { validatePayload } from "./validate-payload.js";
 
 export type BookPayload = {
   date: string | undefined;

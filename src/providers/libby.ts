@@ -1,9 +1,8 @@
 import ogs from "open-graph-scraper";
-import { BookParams } from "..";
-import * as cheerio from "cheerio";
-import { getLibbyId, parseOgMetatagResult } from "../utils";
-import { NewBook } from "../new-book";
-import type { Element } from "domhandler"; // https://github.com/cheeriojs/cheerio/issues/3988
+import { BookParams } from "../index.js";
+import { parse, HTMLElement } from "node-html-parser";
+import { getLibbyId, parseOgMetatagResult } from "../utils.js";
+import { NewBook } from "../new-book.js";
 
 interface Data {
   [key: string]: string;
@@ -59,7 +58,7 @@ export async function getLibby(
       ...(duration && { duration: toIsoFormat(duration) }),
     };
   } catch (error) {
-    throw new Error(`Failed to get book from Libby: ${error.result.error}`);
+    throw new Error(`Failed to get book from Libby: ${error}`);
   }
 }
 
@@ -93,18 +92,21 @@ export function parseLibbyPage(html: string | undefined): {
     return {};
   }
 
-  const $ = cheerio.load(html);
-  const format = handleFormat($(".share-category").text());
+  const root = parse(html);
+
+  const format = handleFormat(
+    root.querySelector(".share-category")?.text || ""
+  );
 
   let htmlData;
-  const table = $(".share-table-1d");
-  if (table.length) {
-    const rows = table.find("tr").toArray();
-    htmlData = rows.reduce((acc: Data, row: Element) => {
-      const th = $(row).find("th").text();
-      const td = $(row).find("td").text();
+  const table = root.querySelector(".share-table-1d");
+  if (table) {
+    const rows = table.querySelectorAll("tr");
+    htmlData = rows.reduce((acc: Data, row: HTMLElement) => {
+      const th = row.querySelector("th")?.text || "";
+      const td = row.querySelector("td")?.text || "";
       if (th) {
-        acc[th.toLowerCase()] = td || "";
+        acc[th.toLowerCase()] = td;
       }
       return acc;
     }, {});
