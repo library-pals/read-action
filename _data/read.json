@@ -534,5 +534,29 @@
     "format": "audiobook",
     "duration": "PT13H0M",
     "dateStarted": "2025-01-05"
+  },
+  {
+    "identifier": "11150266",
+    "identifiers": {
+      "libby": "11150266"
+    },
+    "dateAdded": "2025-01-22",
+    "status": "want to read",
+    "rating": "unrated",
+    "link": "https://share.libbyapp.com/title/11150266",
+    "title": "The Undercurrent",
+    "description": "A mystery of remarkable scope, bristling with intelligence, beauty, and humanity. It is, quite simply: stunning. - Gillian Flynn, author of Gone GirlA stunning, achingly beautiful and gripping mystery. Full of page-turning suspense, intrigue, and secrets...I loved it. - Chris Whitaker, author of All the Colors of the DarkDelve into a thrilling novel where dark secrets and hidden agendas intertwine, keeping you on ...",
+    "authors": [
+      "Sarah Sawyer"
+    ],
+    "publishedDate": "2024-10-08",
+    "thumbnail": "https://img1.od-cdn.com/ImageType-100/7552-1/{5EBD696D-A8CD-44E0-B4E3-28F87E9FDE23}IMG100.JPG",
+    "publisher": "Zibby Books",
+    "categories": [
+      "Fiction",
+      "Literature",
+      "Thriller"
+    ],
+    "format": "audiobook"
   }
 ]
