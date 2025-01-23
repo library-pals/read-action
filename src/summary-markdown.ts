@@ -1,4 +1,4 @@
-import { YearReview } from "./summary";
+import { YearReview } from "./summary.js";
 
 export function s(num: number) {
   return num === 1 ? "" : "s";

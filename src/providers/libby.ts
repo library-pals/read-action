@@ -1,8 +1,8 @@
 import ogs from "open-graph-scraper";
-import { BookParams } from "..";
-import * as cheerio from "cheerio";
-import { getLibbyId, parseOgMetatagResult } from "../utils";
-import { NewBook } from "../new-book";
+import { BookParams } from "../index.js";
+import { load } from "cheerio";
+import { getLibbyId, parseOgMetatagResult } from "../utils.js";
+import { NewBook } from "../new-book.js";
 import type { Element } from "domhandler"; // https://github.com/cheeriojs/cheerio/issues/3988
 
 interface Data {
@@ -93,7 +93,7 @@ export function parseLibbyPage(html: string | undefined): {
     return {};
   }
 
-  const $ = cheerio.load(html);
+  const $ = load(html);
   const format = handleFormat($(".share-category").text());
 
   let htmlData;

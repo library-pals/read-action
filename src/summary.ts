@@ -1,4 +1,4 @@
-import { BookStatus, NewBook } from "./new-book";
+import { BookStatus, NewBook } from "./new-book.js";
 import {
   mAverageDays,
   mMostReadMonth,
@@ -8,13 +8,13 @@ import {
   mTopAuthors,
   mTags,
   mFormat,
-} from "./summary-markdown";
+} from "./summary-markdown.js";
 import {
   capitalize,
   DateTypes,
   parseISO8601Duration,
   secondsToHms,
-} from "./utils";
+} from "./utils.js";
 
 export function summaryMarkdown(
   library: NewBook[],

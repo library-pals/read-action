@@ -1,7 +1,7 @@
-import { BookParams } from ".";
+import { BookParams } from "./index.js";
 import { getInput } from "@actions/core";
-import { BookStatus, NewBook } from "./new-book";
-import { OgObject } from "open-graph-scraper/types/lib/types";
+import { BookStatus, NewBook } from "./new-book.js";
+import { OgObject } from "open-graph-scraper/types";
 
 /** make sure date is in YYYY-MM-DD format */
 export function dateFormat(date: string) {

@@ -1,6 +1,6 @@
-import { BookParams } from "..";
-import { NewBook } from "../new-book";
-import { getIsbn } from "./isbn";
+import { BookParams } from "../index.js";
+import { NewBook } from "../new-book.js";
+import { getIsbn } from "./isbn.js";
 
 export async function getLibrofm(
   options: BookParams

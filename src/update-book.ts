@@ -1,7 +1,7 @@
-import { NewBook } from "./new-book";
+import { NewBook } from "./new-book.js";
 import { exportVariable } from "@actions/core";
-import { BookParams } from ".";
-import { lookUp } from "./utils";
+import { BookParams } from "./index.js";
+import { lookUp } from "./utils.js";
 
 export async function updateBook(
   bookParams: BookParams,

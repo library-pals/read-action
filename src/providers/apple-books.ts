@@ -1,12 +1,12 @@
 import ogs from "open-graph-scraper";
-import { BookParams } from "..";
-import { OgObject } from "open-graph-scraper/types/lib/types";
+import { BookParams } from "../index.js";
+import { OgObject } from "open-graph-scraper/types";
 import {
   formatDescription,
   getAppleBooksId,
   parseOgMetatagResult,
-} from "../utils";
-import { NewBook } from "../new-book";
+} from "../utils.js";
+import { NewBook } from "../new-book.js";
 import { Audiobook } from "schema-dts";
 
 export async function getAppleBooks(

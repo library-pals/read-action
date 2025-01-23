@@ -1,6 +1,6 @@
-import { isDate, isIsbn } from "./utils";
-import { BookPayload } from "./index";
-import { BookStatus } from "./new-book";
+import { isDate, isIsbn } from "./utils.js";
+import { BookPayload } from "./index.js";
+import { BookStatus } from "./new-book.js";
 
 const validPrefixes = [
   "https://share.libbyapp.com/",

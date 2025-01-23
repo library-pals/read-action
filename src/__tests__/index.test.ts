@@ -29,6 +29,7 @@ jest.mock("@actions/core", () => {
     getInput: jest.fn(),
     warning: jest.fn(),
     setOutput: jest.fn(),
+    info: jest.fn(),
     summary: {
       addRaw: () => ({
         write: jest.fn(),
@@ -36,7 +37,7 @@ jest.mock("@actions/core", () => {
     },
   };
 });
-jest.mock("../write-file");
+jest.mock("../write-file", () => jest.fn());
 
 const defaultOptions = {
   filename: "my-library.json",
@@ -61,6 +62,7 @@ describe("index", () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
     const setOutputSpy = jest.spyOn(core, "setOutput");
+    const infoSpy = jest.spyOn(core, "info");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -93,6 +95,17 @@ describe("index", () => {
         ],
       ]
     `);
+    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "{
+        "identifier": "9781760983215",
+        "book-status": "started",
+        "date": "2022-01-02"
+      }",
+        ],
+      ]
+    `);
     expect(setFailedSpy).not.toHaveBeenCalled();
     expect(setOutputSpy.mock.calls[0]).toMatchInlineSnapshot(`
       [
@@ -109,7 +122,7 @@ describe("index", () => {
         },
       ]
     `);
-    expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
+    expect((returnWriteFile as jest.Mock).mock.calls[0]).toMatchInlineSnapshot(`
       [
         "my-library.json",
         [
@@ -139,8 +152,6 @@ describe("index", () => {
               "Fiction",
               "Fiction / Literary",
               "Fiction / Cultural Heritage",
-              "Fiction / African American & Black / General",
-              "Fiction / Women",
               "Fiction / General",
             ],
             "dateStarted": "2022-01-02",
@@ -166,6 +177,7 @@ describe("index", () => {
 
   test("works, finished a previous book", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
+    const infoSpy = jest.spyOn(core, "info");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -178,6 +190,17 @@ describe("index", () => {
       },
     });
     await read();
+    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "{
+        "identifier": "9780525620792",
+        "book-status": "finished",
+        "date": "2021-09-30"
+      }",
+        ],
+      ]
+    `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
       [
         [
@@ -224,6 +247,7 @@ describe("index", () => {
   test("works, finished a book (new, not started)", async () => {
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
+    const infoSpy = jest.spyOn(core, "info");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -236,23 +260,22 @@ describe("index", () => {
       },
     });
     await read();
+    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "{
+        "identifier": "9781760983215",
+        "tags": "new, recommend",
+        "book-status": "want to read"
+      }",
+        ],
+      ]
+    `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
       [
         [
           "BookStatus",
-          "finished",
-        ],
-        [
-          "BookTitle",
-          "Woman of Light",
-        ],
-        [
-          "BookThumbOutput",
-          "book-9780525511342.png",
-        ],
-        [
-          "BookThumb",
-          "https://books.google.com/books/publisher/content?id=CONSTANT_ID&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "want to read",
         ],
       ]
     `);
@@ -316,6 +339,7 @@ describe("index", () => {
 
     const exportVariableSpy = jest.spyOn(core, "exportVariable");
     const setFailedSpy = jest.spyOn(core, "setFailed");
+    const infoSpy = jest.spyOn(core, "info");
     Object.defineProperty(github, "context", {
       value: {
         payload: {
@@ -327,6 +351,16 @@ describe("index", () => {
       },
     });
     await read();
+    expect(infoSpy.mock.calls).toMatchInlineSnapshot(`
+      [
+        [
+          "{
+        "identifier": "9781760983215",
+        "book-status": "want to read"
+      }",
+        ],
+      ]
+    `);
     expect(exportVariableSpy.mock.calls).toMatchInlineSnapshot(`
       [
         [
@@ -378,8 +412,6 @@ describe("index", () => {
               "Fiction",
               "Fiction / Literary",
               "Fiction / Cultural Heritage",
-              "Fiction / African American & Black / General",
-              "Fiction / Women",
               "Fiction / General",
             ],
             "dateAdded": "2022-10-01",
@@ -535,8 +567,6 @@ describe("index", () => {
               "Fiction",
               "Fiction / Literary",
               "Fiction / Cultural Heritage",
-              "Fiction / African American & Black / General",
-              "Fiction / Women",
               "Fiction / General",
             ],
             "dateAdded": "2022-10-01",
