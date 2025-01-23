@@ -139,8 +139,6 @@ describe("index", () => {
               "Fiction",
               "Fiction / Literary",
               "Fiction / Cultural Heritage",
-              "Fiction / African American & Black / General",
-              "Fiction / Women",
               "Fiction / General",
             ],
             "dateStarted": "2022-01-02",
@@ -378,8 +376,6 @@ describe("index", () => {
               "Fiction",
               "Fiction / Literary",
               "Fiction / Cultural Heritage",
-              "Fiction / African American & Black / General",
-              "Fiction / Women",
               "Fiction / General",
             ],
             "dateAdded": "2022-10-01",
@@ -535,8 +531,6 @@ describe("index", () => {
               "Fiction",
               "Fiction / Literary",
               "Fiction / Cultural Heritage",
-              "Fiction / African American & Black / General",
-              "Fiction / Women",
               "Fiction / General",
             ],
             "dateAdded": "2022-10-01",
@@ -631,6 +625,7 @@ describe("index", () => {
         },
       },
     });
+
     await read();
     expect(setFailedSpy).toHaveBeenCalledWith(
       'Invalid `duration` in payload: 1234. Must be in HH:MM format, example: "08:30" is 8 hours and 30 minutes'
