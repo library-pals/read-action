@@ -236,9 +236,11 @@ export function secondsToHms(d: number | undefined): string {
   d = Number(d);
   const h = Math.floor(d / 3600);
   const m = Math.floor((d % 3600) / 60);
-  // istanbul ignore next
-  const hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
-  // istanbul ignore next
-  const mDisplay = m > 0 ? m + (m == 1 ? " minute" : " minutes") : "";
-  return hDisplay + mDisplay;
+  const s = d % 60;
+
+  const hDisplay = h > 0 ? `${h} hour${h !== 1 ? "s" : ""}` : "";
+  const mDisplay = m > 0 ? `${m} minute${m !== 1 ? "s" : ""}` : "";
+  const sDisplay = s > 0 ? `${s} second${s !== 1 ? "s" : ""}` : "";
+
+  return [hDisplay, mDisplay, sDisplay].filter(Boolean).join(", ");
 }
