@@ -47,19 +47,15 @@ export function summaryMarkdown(
 function createBarChart(books: NewBook[]): string {
   const years = getUniqueYears(books).sort();
   if (years.length < 2) return "";
-
-  const allYearsData = years
-    .map((year) => yearReview(books, year))
-    .filter(Boolean) as YearReview[];
-  const count = allYearsData.map((yearData) => yearData.count);
-  const maxCount = Math.max(...count);
+  const bookCounts = years.map((year) => bBooksThisYear(books, year).length);
+  const maxCount = Math.max(...bookCounts);
 
   return `\`\`\`mermaid
 xychart-beta
   title "Books read per year"
   x-axis "Year" [${years.join(", ")}]
   y-axis "Books read" 0 --> ${maxCount}
-  bar [${count.join(", ")}]
+  bar [${bookCounts.join(", ")}]
 \`\`\``;
 }
 

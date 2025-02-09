@@ -85,8 +85,8 @@ describe("workflow", () => {
       \`\`\`mermaid
       xychart-beta
         title "Books read per year"
-        x-axis [2023, 2024]
-        y-axis "Books Read" 0 --> 10
+        x-axis "Year" [2023, 2024]
+        y-axis "Books read" 0 --> 10
         bar [7, 10]
       \`\`\`",
       ]
