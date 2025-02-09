@@ -83,6 +83,7 @@ describe("workflow", () => {
       | 2023 | 7 |
 
       \`\`\`mermaid
+      %%{init: { 'theme': 'forest', 'themeVariables': { 'fontFamily': 'Courier', 'fontSize': '16px', 'textColor': '#FF5733' } } }%%
       xychart-beta
         title "Books read per year"
         x-axis "Year" [2023, 2024]
