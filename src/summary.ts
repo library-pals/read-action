@@ -31,12 +31,22 @@ export function summaryMarkdown(
     ? yearReviewSummary(library, dateType.summaryEndDate.slice(0, 4))
     : "";
   const yearComparison = dateType.summaryEndDate ? yearOverYear(library) : "";
+  const chart = `
+  \`\`\`mermaid
+  pie title Pets adopted by volunteers
+    "Dogs" : 386
+    "Cats" : 85
+    "Rats" : 15
+  \`\`\`
+`;
   const markdownLines = [
     `# ${title}`,
     bookTitleLine,
     yearReview,
     yearComparison,
+    chart,
   ];
+
   return markdownLines.filter(Boolean).join("\n\n");
 }
 
