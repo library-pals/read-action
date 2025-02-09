@@ -80,7 +80,13 @@ describe("workflow", () => {
       | Year | Books read |
       | ---: | ---: |
       | 2024 | 10 |
-      | 2023 | 7 |",
+      | 2023 | 7 |
+
+      \`\`\`mermaid
+      pie title Year over year
+        "2024" : 10
+      	"2023" : 7
+      \`\`\`",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`undefined`);

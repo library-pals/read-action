@@ -31,23 +31,36 @@ export function summaryMarkdown(
     ? yearReviewSummary(library, dateType.summaryEndDate.slice(0, 4))
     : "";
   const yearComparison = dateType.summaryEndDate ? yearOverYear(library) : "";
-  const chart = `
-  \`\`\`mermaid
-  pie title Pets adopted by volunteers
-    "Dogs" : 386
-    "Cats" : 85
-    "Rats" : 15
-  \`\`\`
-`;
+  const yearComparisonChart = createPieChart(library);
+
   const markdownLines = [
     `# ${title}`,
     bookTitleLine,
     yearReview,
     yearComparison,
-    chart,
+    yearComparisonChart,
   ];
 
   return markdownLines.filter(Boolean).join("\n\n");
+}
+
+function createPieChart(books: NewBook[]): string {
+  const years = getUniqueYears(books);
+  if (years.length < 2) return "";
+
+  const allYearsData = years
+    .map((year) => yearReview(books, year))
+    .filter(Boolean) as YearReview[];
+  const data = allYearsData
+    .map((yearData) => {
+      return `"${yearData.year}" : ${yearData.count}`;
+    })
+    .join("\n\t");
+
+  return `\`\`\`mermaid
+pie title Year over year
+  ${data}
+\`\`\``;
 }
 
 export function yearOverYear(books: NewBook[]): string {
