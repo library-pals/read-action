@@ -51,6 +51,7 @@ function createBarChart(books: NewBook[]): string {
   const maxCount = Math.max(...bookCounts);
 
   return `\`\`\`mermaid
+%%{init: { 'theme': 'forest', 'themeVariables': { 'fontFamily': 'Courier', 'fontSize': '16px', 'textColor': '#FF5733' } } }%%
 xychart-beta
   title "Books read per year"
   x-axis "Year" [${years.join(", ")}]
