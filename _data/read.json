@@ -558,5 +558,33 @@
       "Thriller"
     ],
     "format": "audiobook"
+  },
+  {
+    "identifier": "9781501197291",
+    "identifiers": {
+      "isbn": "9781501197291"
+    },
+    "dateFinished": "2025-02-09",
+    "summaryEndDate": "2025-02-09",
+    "status": "finished",
+    "rating": "unrated",
+    "title": "The Courage to Be Disliked",
+    "authors": [
+      "Ichiro Kishimi",
+      "Fumitake Koga"
+    ],
+    "publishedDate": "2018-05-08",
+    "description": "An international bestseller and TikTok sensation with more than 10 million copies sold worldwide, The Courage to Be Disliked is a transformative and practical guide to personal happiness and self-fulfillment. Now you can unlock your full potential and free yourself from the shackles of past traumas and societal expectations to find true personal happiness. Based on the theories of renowned psychologist Alfred Adler, this book guides you through the principles of self-forgiveness, self-care, and mind decluttering in a straightforward, easy-to-digest style that’s accessible to all. The Courage to Be Disliked unfolds as a dialogue between a philosopher and a young man, who, over the course of five enriching conversations, realizes that each of us is in control of our life’s direction, independent of past burdens and expectations of others. Wise, empowering, and profoundly liberating, this book is a life-changing experience that shows you a path to lasting happiness and how to finally be the person you truly want to be. Millions are already benefiting from its teachings—and you can be next.",
+    "pageCount": 288,
+    "format": "book",
+    "categories": [
+      "Self-Help",
+      "Self-Help / Personal Growth / Happiness",
+      "Self-Help / Motivational & Inspirational",
+      "Philosophy / Free Will & Determinism"
+    ],
+    "thumbnail": "https://books.google.com/books/publisher/content?id=hGFEDwAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=hGFEDwAAQBAJ"
   }
 ]
