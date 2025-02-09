@@ -5,6 +5,7 @@ import {
   isDate,
   getBookStatus,
   getLibrofmId,
+  secondsToHms,
 } from "../utils";
 
 jest.mock("@actions/core");
@@ -119,5 +120,39 @@ describe("getLibrofmId", () => {
     const inputIdentifier = "";
     const result = getLibrofmId(inputIdentifier);
     expect(result).toBe(inputIdentifier);
+  });
+});
+
+describe("secondsToHms", () => {
+  it("should return an empty string for undefined input", () => {
+    expect(secondsToHms(undefined)).toMatchInlineSnapshot(`""`);
+  });
+
+  it("should return the correct format for seconds only", () => {
+    expect(secondsToHms(45)).toMatchInlineSnapshot(`"45 seconds"`);
+  });
+
+  it("should return the correct format for minutes and seconds", () => {
+    expect(secondsToHms(125)).toMatchInlineSnapshot(`"2 minutes, 5 seconds"`);
+  });
+
+  it("should return the correct format for hours, minutes, and seconds", () => {
+    expect(secondsToHms(3665)).toMatchInlineSnapshot(
+      `"1 hour, 1 minute, 5 seconds"`
+    );
+  });
+
+  it("should return the correct format for hours and minutes", () => {
+    expect(secondsToHms(3600)).toMatchInlineSnapshot(`"1 hour"`);
+    expect(secondsToHms(7200)).toMatchInlineSnapshot(`"2 hours"`);
+    expect(secondsToHms(7260)).toMatchInlineSnapshot(`"2 hours, 1 minute"`);
+  });
+
+  it("should return an empty string for zero seconds", () => {
+    expect(secondsToHms(0)).toMatchInlineSnapshot(`""`);
+  });
+
+  it("should return '1 second' for one second input", () => {
+    expect(secondsToHms(1)).toMatchInlineSnapshot(`"1 second"`);
   });
 });
