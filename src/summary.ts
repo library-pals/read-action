@@ -57,8 +57,8 @@ function createBarChart(books: NewBook[]): string {
   return `\`\`\`mermaid
 xychart-beta
   title "Books read per year"
-  x-axis [${years.join(", ")}]
-  y-axis "Books Read" 0 --> ${maxCount}
+  x-axis "Year" [${years.join(", ")}]
+  y-axis "Books read" 0 --> ${maxCount}
   bar [${count.join(", ")}]
 \`\`\``;
 }
