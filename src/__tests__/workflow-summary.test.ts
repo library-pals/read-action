@@ -83,9 +83,11 @@ describe("workflow", () => {
       | 2023 | 7 |
 
       \`\`\`mermaid
-      pie title Year over year
-        "2024" : 10
-      	"2023" : 7
+      xychart-beta
+        title "Books read per year"
+        x-axis [2023, 2024]
+        y-axis "Books Read" 0 --> 10
+        bar [7, 10]
       \`\`\`",
       ]
     `);

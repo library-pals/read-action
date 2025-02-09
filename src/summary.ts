@@ -31,7 +31,7 @@ export function summaryMarkdown(
     ? yearReviewSummary(library, dateType.summaryEndDate.slice(0, 4))
     : "";
   const yearComparison = dateType.summaryEndDate ? yearOverYear(library) : "";
-  const yearComparisonChart = createPieChart(library);
+  const yearComparisonChart = createBarChart(library);
 
   const markdownLines = [
     `# ${title}`,
@@ -44,22 +44,22 @@ export function summaryMarkdown(
   return markdownLines.filter(Boolean).join("\n\n");
 }
 
-function createPieChart(books: NewBook[]): string {
-  const years = getUniqueYears(books);
+function createBarChart(books: NewBook[]): string {
+  const years = getUniqueYears(books).sort();
   if (years.length < 2) return "";
 
   const allYearsData = years
     .map((year) => yearReview(books, year))
     .filter(Boolean) as YearReview[];
-  const data = allYearsData
-    .map((yearData) => {
-      return `"${yearData.year}" : ${yearData.count}`;
-    })
-    .join("\n\t");
+  const count = allYearsData.map((yearData) => yearData.count);
+  const maxCount = Math.max(...count);
 
   return `\`\`\`mermaid
-pie title Year over year
-  ${data}
+xychart-beta
+  title "Books read per year"
+  x-axis [${years.join(", ")}]
+  y-axis "Books Read" 0 --> ${maxCount}
+  bar [${count.join(", ")}]
 \`\`\``;
 }
 
