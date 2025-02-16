@@ -77,7 +77,7 @@ describe("workflow", () => {
       - **Total hours read:** 27 hours, 35 minutes
 
       \`\`\`mermaid
-      %%{init: {"theme":"base","themeVariables":{"fontFamily":"Courier","fontSize":"16px","primaryColor":"#6272a4","primaryTextColor":"#282a36","primaryBorderColor":"#6272a4","lineColor":"#282a36","secondaryColor":"#bd93f9","tertiaryColor":"#ffb86c","tertiaryTextColor":"#282a36","background":"#f8f8f2"}} }%%
+      %%{init: {"themeVariables":{"fontFamily":"Courier","fontSize":"16px"}} }%%
       pie showData
         title "Genres read in 2024"
       	"fiction": 8
@@ -92,7 +92,7 @@ describe("workflow", () => {
       | 2023 | 7 |
 
       \`\`\`mermaid
-      %%{init: {"theme":"base","themeVariables":{"fontFamily":"Courier","fontSize":"16px","xyChart":{"backgroundColor":"#f8f8f2","titleColor":"#282a36","xAxisLabelColor":"#282a36","xAxisTitleColor":"#282a36","xAxisTickColor":"#6272a4","xAxisLineColor":"#6272a4","yAxisLabelColor":"#282a36","yAxisTitleColor":"#282a36","yAxisTickColor":"#6272a4","yAxisLineColor":"#6272a4","plotColorPalette":"#bd93f9, #ff79c6, #50fa7b, #ffb86c, #8be9fd, #f1fa8c"}}} }%%
+      %%{init: {"themeVariables":{"fontFamily":"Courier","fontSize":"16px"}} }%%
       xychart-beta
         title "Books read per year"
         x-axis "Year" [2023, 2024]
