@@ -31,8 +31,6 @@ export function createMermaidDiagram(
       return createBarChart(theme, data as BarChart);
     case ChartType.Pie:
       return createPieChart(theme, data as PieChart);
-    default:
-      throw new Error(`Unsupported chart type: ${chartType}`);
   }
 }
 
