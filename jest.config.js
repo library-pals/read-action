@@ -36,6 +36,7 @@ export default {
       "providers/libby",
       "providers/librofm",
       "providers/apple-books",
+      "summary-theme",
     ]),
     "^\\./isbn\\.js$": "<rootDir>/src/providers/isbn.ts",
   },

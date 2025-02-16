@@ -220,7 +220,16 @@ describe("workflow", () => {
 
       ## 2022 reading summary
 
-      - **Total books:** 1",
+      - **Total books:** 1
+
+      \`\`\`mermaid
+      %%{init: {"themeVariables":{"fontFamily":"Courier"}} }%%
+      xychart-beta
+        title "By month"
+        x-axis "Month" [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+        y-axis "Books read" 0 --> 1
+        bar [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+      \`\`\`",
       ]
     `);
     expect(returnWriteFile.mock.calls[0]).toMatchInlineSnapshot(`
