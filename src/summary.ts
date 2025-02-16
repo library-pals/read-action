@@ -1,3 +1,4 @@
+import { createMermaidDiagram, ChartType } from "./summary-theme.js";
 import { BookStatus, NewBook } from "./new-book.js";
 import {
   mAverageDays,
@@ -30,34 +31,53 @@ export function summaryMarkdown(
   const yearReview = dateType.summaryEndDate
     ? yearReviewSummary(library, dateType.summaryEndDate.slice(0, 4))
     : "";
+  const genrePieChart = dateType.summaryEndDate
+    ? createGenrePieChart(library, dateType.summaryEndDate.slice(0, 4))
+    : "";
   const yearComparison = dateType.summaryEndDate ? yearOverYear(library) : "";
-  const yearComparisonChart = createBarChart(library);
+  const yearBarChart = createYearBarChart(library);
 
   const markdownLines = [
     `# ${title}`,
     bookTitleLine,
     yearReview,
+    genrePieChart,
     yearComparison,
-    yearComparisonChart,
+    yearBarChart,
   ];
 
   return markdownLines.filter(Boolean).join("\n\n");
 }
 
-function createBarChart(books: NewBook[]): string {
+function createGenrePieChart(books, year): string {
+  const booksThisYear = bBooksThisYear(books, year);
+  const genres = findTopItems(booksThisYear, "categories", toLowerCase);
+  if (genres.length === 0) return "";
+  const data = genres
+    .map((genre) => `\t"${genre.name}": ${genre.count}`)
+    .join("\n");
+  return createMermaidDiagram(ChartType.Pie, {
+    title: `Genres read in ${year}`,
+    data,
+  });
+}
+
+function createYearBarChart(books: NewBook[]): string {
   const years = getUniqueYears(books).sort();
   if (years.length < 2) return "";
   const bookCounts = years.map((year) => bBooksThisYear(books, year).length);
   const maxCount = Math.max(...bookCounts);
 
-  return `\`\`\`mermaid
-%%{init: { 'theme': 'forest', 'themeVariables': { 'fontFamily': 'Courier', 'fontSize': '16px', 'textColor': '#FF5733' } } }%%
-xychart-beta
-  title "Books read per year"
-  x-axis "Year" [${years.join(", ")}]
-  y-axis "Books read" 0 --> ${maxCount}
-  bar [${bookCounts.join(", ")}]
-\`\`\``;
+  const data = {
+    title: "Books read per year",
+    xAxisLabel: "Year",
+    xAxisData: years.map((year) => Number(year)),
+    yAxisLabel: "Books read",
+    yAxisData: `0 --> ${maxCount}`,
+    barData: bookCounts,
+  };
+
+  return createMermaidDiagram(ChartType.XYChart, data);
 }
 
 export function yearOverYear(books: NewBook[]): string {

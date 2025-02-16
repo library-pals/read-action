@@ -66,6 +66,7 @@ describe("workflow", () => {
 
       - **Total books:** 10
       - **Average read time:** 11.0 days
+      - **Top genres:** fiction (8 books) and nonfiction (2 books)
       - **Average book page length:** 230
       - **Longest book by page count:** “Book 9” by Author 9 (350 pages)
       - **Shortest book by page count:** “Book 1” by Author 1 (100 pages)
@@ -75,6 +76,14 @@ describe("workflow", () => {
       - **Shortest book by duration:** “Book 6” by Author 6 (3 hours, 20 minutes)
       - **Total hours read:** 27 hours, 35 minutes
 
+      \`\`\`mermaid
+      %%{init: {"theme":"base","themeVariables":{"fontFamily":"Courier","fontSize":"16px","primaryColor":"#6272a4","primaryTextColor":"#282a36","primaryBorderColor":"#6272a4","lineColor":"#282a36","secondaryColor":"#bd93f9","tertiaryColor":"#ffb86c","tertiaryTextColor":"#282a36","background":"#f8f8f2"}} }%%
+      pie showData
+        title "Genres read in 2024"
+      	"fiction": 8
+      	"nonfiction": 2
+      \`\`\`
+
       ## Year over year
 
       | Year | Books read |
@@ -83,7 +92,7 @@ describe("workflow", () => {
       | 2023 | 7 |
 
       \`\`\`mermaid
-      %%{init: { 'theme': 'forest', 'themeVariables': { 'fontFamily': 'Courier', 'fontSize': '16px', 'textColor': '#FF5733' } } }%%
+      %%{init: {"theme":"base","themeVariables":{"fontFamily":"Courier","fontSize":"16px","xyChart":{"backgroundColor":"#f8f8f2","titleColor":"#282a36","xAxisLabelColor":"#282a36","xAxisTitleColor":"#282a36","xAxisTickColor":"#6272a4","xAxisLineColor":"#6272a4","yAxisLabelColor":"#282a36","yAxisTitleColor":"#282a36","yAxisTickColor":"#6272a4","yAxisLineColor":"#6272a4","plotColorPalette":"#bd93f9, #ff79c6, #50fa7b, #ffb86c, #8be9fd, #f1fa8c"}}} }%%
       xychart-beta
         title "Books read per year"
         x-axis "Year" [2023, 2024]
@@ -105,6 +114,7 @@ export const bookFixture = [
     thumbnail: "http://example.com/book1.jpg",
     dateStarted: "2024-01-01",
     dateFinished: "2024-01-10",
+    categories: ["Fiction"],
   },
   {
     title: "Book 2",
@@ -114,6 +124,7 @@ export const bookFixture = [
     thumbnail: "http://example.com/book2.jpg",
     dateStarted: "2024-02-01",
     dateFinished: "2024-02-05",
+    categories: ["Nonfiction"],
   },
   {
     title: "Book 3",
@@ -123,6 +134,7 @@ export const bookFixture = [
     thumbnail: "http://example.com/book3.jpg",
     dateStarted: "2024-03-01",
     dateFinished: "2024-03-15",
+    categories: ["Fiction"],
   },
   {
     title: "Book 4",
@@ -132,6 +144,7 @@ export const bookFixture = [
     thumbnail: "http://example.com/book4.jpg",
     dateStarted: "2024-04-01",
     dateFinished: "2024-04-10",
+    categories: ["Fiction"],
   },
   {
     title: "Book 5",
@@ -141,6 +154,7 @@ export const bookFixture = [
     thumbnail: "http://example.com/book5.jpg",
     dateStarted: "2024-05-01",
     dateFinished: "2024-05-20",
+    categories: ["Fiction"],
   },
   {
     title: "Book 6",
@@ -150,6 +164,7 @@ export const bookFixture = [
     thumbnail: "http://example.com/book6.jpg",
     dateStarted: "2024-06-01",
     dateFinished: "2024-06-05",
+    categories: ["Fiction"],
   },
   {
     title: "Book 7",
@@ -159,6 +174,7 @@ export const bookFixture = [
     thumbnail: "http://example.com/book7.jpg",
     dateStarted: "2024-07-01",
     dateFinished: "2024-07-15",
+    categories: ["Fiction"],
   },
   {
     title: "Book 8",
@@ -168,6 +184,7 @@ export const bookFixture = [
     thumbnail: "http://example.com/book8.jpg",
     dateStarted: "2024-08-01",
     dateFinished: "2024-08-10",
+    categories: ["Fiction"],
   },
   {
     title: "Book 9",
@@ -177,6 +194,7 @@ export const bookFixture = [
     thumbnail: "http://example.com/book9.jpg",
     dateStarted: "2024-09-01",
     dateFinished: "2024-09-20",
+    categories: ["Nonfiction"],
   },
   {
     title: "Book 10",
@@ -186,6 +204,7 @@ export const bookFixture = [
     thumbnail: "http://example.com/book10.jpg",
     dateStarted: "2024-10-01",
     dateFinished: "2024-10-10",
+    categories: ["Fiction"],
   },
   // Add data for previous years
   {
