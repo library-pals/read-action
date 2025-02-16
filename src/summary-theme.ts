@@ -49,7 +49,7 @@ export function createBarChart(theme: string, data: BarChart): string {
   return `\`\`\`mermaid
 ${theme}
 xychart-beta
-  title ${data.title}
+  title "${data.title}"
   x-axis "${data.xAxisLabel}" [${data.xAxisData.join(", ")}]
   y-axis "${data.yAxisLabel}" ${data.yAxisData}
   bar [${data.barData.join(", ")}]

@@ -225,7 +225,7 @@ describe("workflow", () => {
       \`\`\`mermaid
       %%{init: {"themeVariables":{"fontFamily":"Courier"}} }%%
       xychart-beta
-        title Books read by month
+        title "By month"
         x-axis "Month" [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
         y-axis "Books read" 0 --> 1
         bar [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]

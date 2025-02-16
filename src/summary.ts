@@ -63,7 +63,7 @@ function createBooksByMonthChart(books: NewBook[], year: string): string {
   const mostReadMonth = Math.max(...barData);
 
   const data = {
-    title: `Books read by month`,
+    title: "By month",
     xAxisLabel: "Month",
     xAxisData: [
       "Jan",
@@ -95,7 +95,7 @@ function createGenrePieChart(books, year): string {
     .map((genre) => `\t"${genre.name}": ${genre.count}`)
     .join("\n");
   return createMermaidDiagram(ChartType.Pie, {
-    title: `Genres read in ${year}`,
+    title: "By genre",
     data,
   });
 }
@@ -107,7 +107,7 @@ function createYearBarChart(books: NewBook[]): string {
   const maxCount = Math.max(...bookCounts);
 
   const data = {
-    title: "Books read per year",
+    title: "By year",
     xAxisLabel: "Year",
     xAxisData: years.map((year) => Number(year)),
     yAxisLabel: "Books read",

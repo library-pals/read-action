@@ -81,7 +81,7 @@ describe("workflow", () => {
       \`\`\`mermaid
       %%{init: {"themeVariables":{"fontFamily":"Courier"}} }%%
       pie showData
-        title Genres read in 2024
+        title By genre
       	"fiction": 8
       	"nonfiction": 2
       \`\`\`
@@ -89,7 +89,7 @@ describe("workflow", () => {
       \`\`\`mermaid
       %%{init: {"themeVariables":{"fontFamily":"Courier"}} }%%
       xychart-beta
-        title Books read by month
+        title "By month"
         x-axis "Month" [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
         y-axis "Books read" 0 --> 3
         bar [3, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0]
@@ -105,7 +105,7 @@ describe("workflow", () => {
       \`\`\`mermaid
       %%{init: {"themeVariables":{"fontFamily":"Courier"}} }%%
       xychart-beta
-        title Books read per year
+        title "By year"
         x-axis "Year" [2023, 2024]
         y-axis "Books read" 0 --> 10
         bar [7, 10]
