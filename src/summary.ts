@@ -36,17 +36,55 @@ export function summaryMarkdown(
     : "";
   const yearComparison = dateType.summaryEndDate ? yearOverYear(library) : "";
   const yearBarChart = createYearBarChart(library);
+  const booksByMonthChart = dateType.summaryEndDate
+    ? createBooksByMonthChart(library, dateType.summaryEndDate.slice(0, 4))
+    : "";
 
   const markdownLines = [
     `# ${title}`,
     bookTitleLine,
     yearReview,
     genrePieChart,
+    booksByMonthChart,
     yearComparison,
     yearBarChart,
   ];
 
   return markdownLines.filter(Boolean).join("\n\n");
+}
+
+function createBooksByMonthChart(books: NewBook[], year: string): string {
+  const booksThisYear = bBooksThisYear(books, year);
+  const groupByMonth = bGroupByMonth(booksThisYear);
+  const months = Array.from({ length: 12 }, (_, i) =>
+    (i + 1).toString().padStart(2, "0")
+  );
+  const barData = months.map((month) => groupByMonth[month] || 0);
+  const mostReadMonth = Math.max(...barData);
+
+  const data = {
+    title: `Books read by month`,
+    xAxisLabel: "Month",
+    xAxisData: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    yAxisLabel: "Books read",
+    yAxisData: `0 --> ${mostReadMonth}`,
+    barData,
+  };
+
+  return createMermaidDiagram(ChartType.XYChart, data);
 }
 
 function createGenrePieChart(books, year): string {

@@ -6,10 +6,10 @@ export enum ChartType {
 interface BarChart {
   title: string;
   xAxisLabel: string;
-  xAxisData: number[];
+  xAxisData: number[] | string[];
   yAxisLabel: string;
   yAxisData: string;
-  barData: number[];
+  barData: number[] | string[];
 }
 
 interface PieChart {
@@ -24,7 +24,6 @@ export function createMermaidDiagram(
   const theme = `%%{init: ${JSON.stringify({
     themeVariables: {
       fontFamily: "Courier",
-      fontSize: "16px",
     },
   })} }%%`;
   switch (chartType) {
@@ -41,7 +40,7 @@ export function createPieChart(theme: string, data: PieChart): string {
   return `\`\`\`mermaid
 ${theme}
 pie showData
-  title "${data.title}"
+  title ${data.title}
 ${data.data}
 \`\`\``;
 }
@@ -50,7 +49,7 @@ export function createBarChart(theme: string, data: BarChart): string {
   return `\`\`\`mermaid
 ${theme}
 xychart-beta
-  title "${data.title}"
+  title ${data.title}
   x-axis "${data.xAxisLabel}" [${data.xAxisData.join(", ")}]
   y-axis "${data.yAxisLabel}" ${data.yAxisData}
   bar [${data.barData.join(", ")}]

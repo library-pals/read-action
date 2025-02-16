@@ -65,7 +65,9 @@ describe("workflow", () => {
       ## 2024 reading summary
 
       - **Total books:** 10
-      - **Average read time:** 11.0 days
+      - **Average read time:** 10.9 days
+      - **Month with most books:** January (3 books)
+      - **Month with least books:** October (1 book)
       - **Top genres:** fiction (8 books) and nonfiction (2 books)
       - **Average book page length:** 230
       - **Longest book by page count:** “Book 9” by Author 9 (350 pages)
@@ -77,11 +79,20 @@ describe("workflow", () => {
       - **Total hours read:** 27 hours, 35 minutes
 
       \`\`\`mermaid
-      %%{init: {"themeVariables":{"fontFamily":"Courier","fontSize":"16px"}} }%%
+      %%{init: {"themeVariables":{"fontFamily":"Courier"}} }%%
       pie showData
-        title "Genres read in 2024"
+        title Genres read in 2024
       	"fiction": 8
       	"nonfiction": 2
+      \`\`\`
+
+      \`\`\`mermaid
+      %%{init: {"themeVariables":{"fontFamily":"Courier"}} }%%
+      xychart-beta
+        title Books read by month
+        x-axis "Month" [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+        y-axis "Books read" 0 --> 3
+        bar [3, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0]
       \`\`\`
 
       ## Year over year
@@ -92,9 +103,9 @@ describe("workflow", () => {
       | 2023 | 7 |
 
       \`\`\`mermaid
-      %%{init: {"themeVariables":{"fontFamily":"Courier","fontSize":"16px"}} }%%
+      %%{init: {"themeVariables":{"fontFamily":"Courier"}} }%%
       xychart-beta
-        title "Books read per year"
+        title Books read per year
         x-axis "Year" [2023, 2024]
         y-axis "Books read" 0 --> 10
         bar [7, 10]
@@ -122,8 +133,8 @@ export const bookFixture = [
     duration: "PT5H30M", // 5 hours 30 minutes
     description: "Description 2",
     thumbnail: "http://example.com/book2.jpg",
-    dateStarted: "2024-02-01",
-    dateFinished: "2024-02-05",
+    dateStarted: "2024-01-02",
+    dateFinished: "2024-01-05",
     categories: ["Nonfiction"],
   },
   {
@@ -132,8 +143,8 @@ export const bookFixture = [
     pageCount: 300,
     description: "Description 3",
     thumbnail: "http://example.com/book3.jpg",
-    dateStarted: "2024-03-01",
-    dateFinished: "2024-03-15",
+    dateStarted: "2024-01-01",
+    dateFinished: "2024-01-15",
     categories: ["Fiction"],
   },
   {
