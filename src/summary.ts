@@ -28,26 +28,22 @@ export function summaryMarkdown(
   const bookTitleLine = !isSummary
     ? `${capitalize(bookStatus)}: “${BookTitle}”`
     : "";
-  const yearReview = dateType.summaryEndDate
-    ? yearReviewSummary(library, dateType.summaryEndDate.slice(0, 4))
-    : "";
-  const genrePieChart = dateType.summaryEndDate
-    ? createGenrePieChart(library, dateType.summaryEndDate.slice(0, 4))
-    : "";
-  const yearComparison = dateType.summaryEndDate ? yearOverYear(library) : "";
-  const yearBarChart = createYearBarChart(library);
-  const booksByMonthChart = dateType.summaryEndDate
-    ? createBooksByMonthChart(library, dateType.summaryEndDate.slice(0, 4))
+  const endDate = dateType.summaryEndDate
+    ? dateType.summaryEndDate.slice(0, 4)
     : "";
 
   const markdownLines = [
     `# ${title}`,
     bookTitleLine,
-    yearReview,
-    genrePieChart,
-    booksByMonthChart,
-    yearComparison,
-    yearBarChart,
+    ...(endDate
+      ? [
+          yearReviewSummary(library, endDate),
+          createGenrePieChart(library, endDate),
+          createBooksByMonthChart(library, endDate),
+          yearOverYear(library),
+          createYearBarChart(library),
+        ]
+      : []),
   ];
 
   return markdownLines.filter(Boolean).join("\n\n");
