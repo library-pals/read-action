@@ -19,7 +19,8 @@ interface PieChart {
 
 export function createMermaidDiagram(
   chartType: ChartType,
-  data: BarChart | PieChart
+  data: BarChart | PieChart,
+  chartSubType: "bar" | "line" = "bar" // default to "bar"
 ): string {
   const theme = `%%{init: ${JSON.stringify({
     themeVariables: {
@@ -28,7 +29,7 @@ export function createMermaidDiagram(
   })} }%%`;
   switch (chartType) {
     case ChartType.XYChart:
-      return createBarChart(theme, data as BarChart);
+      return createBarChart(theme, data as BarChart, chartSubType);
     case ChartType.Pie:
       return createPieChart(theme, data as PieChart);
   }
@@ -43,13 +44,17 @@ ${data.data}
 \`\`\``;
 }
 
-export function createBarChart(theme: string, data: BarChart): string {
+export function createBarChart(
+  theme: string,
+  data: BarChart,
+  chartSubType: "bar" | "line"
+): string {
   return `\`\`\`mermaid
 ${theme}
 xychart-beta
   title "${data.title}"
   x-axis "${data.xAxisLabel}" [${data.xAxisData.join(", ")}]
   y-axis "${data.yAxisLabel}" ${data.yAxisData}
-  bar [${data.barData.join(", ")}]
+  ${chartSubType} [${data.barData.join(", ")}]
 \`\`\``;
 }
