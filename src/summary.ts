@@ -40,6 +40,8 @@ export function summaryMarkdown(
           yearReviewSummary(library, endDate),
           createGenrePieChart(library, endDate),
           createBooksByMonthChart(library, endDate),
+          createBooksByMonthPagesChart(library, endDate),
+          createdBooksByMonthHoursChart(library, endDate),
           yearOverYear(library),
           createYearBarChart(library),
         ]
@@ -47,6 +49,105 @@ export function summaryMarkdown(
   ];
 
   return markdownLines.filter(Boolean).join("\n\n");
+}
+
+function parseSecondsToHours(seconds: number): number {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secondsLeft = seconds % 60;
+  const totalHours = hours + minutes / 60 + secondsLeft / 3600;
+  // round to 1 decimal place
+  return Math.round(totalHours * 10) / 10;
+}
+
+function createdBooksByMonthHoursChart(books: NewBook[], year: string): string {
+  const booksThisYear = bBooksThisYear(books, year);
+  const booksWithDuration = booksThisYear.filter(
+    (b) => b.durationSeconds && b.durationSeconds > 0
+  );
+  if (booksWithDuration.length === 0) return "";
+  const months = Array.from({ length: 12 }, (_, i) =>
+    (i + 1).toString().padStart(2, "0")
+  );
+  const barData = months.map((month) => {
+    const booksInMonth = booksWithDuration.filter((b) =>
+      b.dateFinished?.startsWith(`${year}-${month}`)
+    );
+    return booksInMonth.reduce(
+      (total, book) => total + parseSecondsToHours(book.durationSeconds ?? 0),
+      0
+    );
+  });
+  const longest = Math.max(...barData);
+
+  const data = {
+    title: "Hours by month",
+    xAxisLabel: "Month",
+    xAxisData: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    yAxisLabel: "Book hours",
+    yAxisData: `0 --> ${longest}`,
+    barData,
+  };
+
+  return createMermaidDiagram(ChartType.XYChart, data);
+}
+
+function createBooksByMonthPagesChart(books: NewBook[], year: string): string {
+  const booksThisYear = bBooksThisYear(books, year);
+  const booksWithPages = booksThisYear.filter(
+    (b) => b.pageCount && b.pageCount > 0
+  );
+  if (booksWithPages.length === 0) return "";
+  const months = Array.from({ length: 12 }, (_, i) =>
+    (i + 1).toString().padStart(2, "0")
+  );
+  const barData = months.map((month) => {
+    const booksInMonth = booksWithPages.filter((b) =>
+      b.dateFinished?.startsWith(`${year}-${month}`)
+    );
+    return booksInMonth.reduce(
+      (total, book) => total + (book.pageCount ?? 0),
+      0
+    );
+  });
+  const mostPages = Math.max(...barData);
+
+  const data = {
+    title: "Pages by month",
+    xAxisLabel: "Month",
+    xAxisData: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    yAxisLabel: "Book pages",
+    yAxisData: `0 --> ${mostPages}`,
+    barData,
+  };
+
+  return createMermaidDiagram(ChartType.XYChart, data);
 }
 
 function createBooksByMonthChart(books: NewBook[], year: string): string {

@@ -95,6 +95,24 @@ describe("workflow", () => {
         bar [3, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0]
       \`\`\`
 
+      \`\`\`mermaid
+      %%{init: {"themeVariables":{"fontFamily":"Courier"}} }%%
+      xychart-beta
+        title "Pages by month"
+        x-axis "Month" [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+        y-axis "Book pages" 0 --> 400
+        bar [400, 0, 0, 0, 150, 0, 250, 0, 350, 0, 0, 0]
+      \`\`\`
+
+      \`\`\`mermaid
+      %%{init: {"themeVariables":{"fontFamily":"Courier"}} }%%
+      xychart-beta
+        title "Hours by month"
+        x-axis "Month" [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+        y-axis "Book hours" 0 --> 7.8
+        bar [5.5, 0, 0, 7.8, 0, 3.3, 0, 6.2, 0, 4.8, 0, 0]
+      \`\`\`
+
       ## Year over year
 
       | Year | Books read |
