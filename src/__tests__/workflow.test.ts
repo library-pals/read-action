@@ -228,7 +228,7 @@ describe("workflow", () => {
         title "By month"
         x-axis "Month" [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
         y-axis "Books read" 0 --> 1
-        bar [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+        line [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
       \`\`\`
 
       \`\`\`mermaid
@@ -237,7 +237,7 @@ describe("workflow", () => {
         title "Pages by month"
         x-axis "Month" [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
         y-axis "Book pages" 0 --> 240
-        bar [0, 0, 0, 0, 0, 0, 0, 0, 0, 240, 0, 0]
+        line [0, 0, 0, 0, 0, 0, 0, 0, 0, 240, 0, 0]
       \`\`\`",
       ]
     `);

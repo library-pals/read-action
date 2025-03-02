@@ -147,7 +147,7 @@ function createBooksByMonthPagesChart(books: NewBook[], year: string): string {
     barData,
   };
 
-  return createMermaidDiagram(ChartType.XYChart, data, "bar"); // specify "bar" or "line" as needed
+  return createMermaidDiagram(ChartType.XYChart, data, "line");
 }
 
 function createBooksByMonthChart(books: NewBook[], year: string): string {
@@ -181,7 +181,7 @@ function createBooksByMonthChart(books: NewBook[], year: string): string {
     barData,
   };
 
-  return createMermaidDiagram(ChartType.XYChart, data, "bar"); // specify "bar" or "line" as needed
+  return createMermaidDiagram(ChartType.XYChart, data, "line");
 }
 
 function createGenrePieChart(books, year): string {
