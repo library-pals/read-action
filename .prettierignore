@@ -1,3 +1,5 @@
 dist/
 coverage/
 _data
+src/__tests__/providers/**/*.json
+src/__tests__/providers/**/*.html
