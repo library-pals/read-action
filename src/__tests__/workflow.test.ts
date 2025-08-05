@@ -75,6 +75,8 @@ describe("workflow", () => {
               "Fiction",
               "Fiction / Literary",
               "Fiction / Cultural Heritage",
+              "Fiction / African American & Black / General",
+              "Fiction / Women",
               "Fiction / General",
             ],
             "dateAdded": "2022-10-01",
