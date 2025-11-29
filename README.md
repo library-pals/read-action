@@ -351,6 +351,8 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
 }
 ```
 
+
+
 ## Action outputs
 
 - `nowReading`: When a new book is started this output will contain an object with the book's: title, description, thumbnail, authors, and isbn.
