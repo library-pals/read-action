@@ -16,12 +16,12 @@ jobs:
     steps:
       # Release with semantic tag like v1.0.3
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.release.tag_name }}
 
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
 
       # Compile dist/index.js and bundle with action.yml
       # Force push major and minor tags, e.g. v1, v1.0

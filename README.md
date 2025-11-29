@@ -99,7 +99,7 @@ jobs:
     name: Read
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Read
         uses: library-pals/read-action@v9.5.0
@@ -182,7 +182,7 @@ jobs:
     name: Read
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Read
         id: read_action
@@ -295,7 +295,7 @@ jobs:
     name: Read
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Read
         uses: library-pals/read-action@v9.5.0
@@ -350,8 +350,6 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
   }
 }
 ```
-
-
 
 ## Action outputs
 
