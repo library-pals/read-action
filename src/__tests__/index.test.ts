@@ -284,7 +284,7 @@ describe("index", () => {
             "categories": [
               "Fiction",
               "Fiction / Literary",
-              "Fiction / Hispanic & Latino",
+              "Fiction / Hispanic & Latino / General",
               "Fiction / Historical / General",
             ],
             "dateFinished": "2022-08-02",
