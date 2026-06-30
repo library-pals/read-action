@@ -87,7 +87,7 @@ function createBooksByMonthChart(books: NewBook[], year: string): string {
   return createMermaidDiagram(ChartType.XYChart, data);
 }
 
-function createGenrePieChart(books, year): string {
+function createGenrePieChart(books: NewBook[], year: string): string {
   const booksThisYear = bBooksThisYear(books, year);
   const genres = findTopItems(booksThisYear, "categories", toLowerCase);
   if (genres.length === 0) return "";
@@ -203,28 +203,28 @@ export function yearReview(
   );
   const topAuthors = findTopItems(booksThisYear, "authors");
   const averageFinishTime = average(
-    booksThisYear.filter((b) => b.finishTime).map((b) => b.finishTime)
+    booksThisYear.filter((b) => b.finishTime).map((b) => b.finishTime as number)
   );
   const bookLengthsByPageCount = booksThisYear
     .map((b) => b.pageCount)
-    .filter((f) => f);
+    .filter((f): f is number => f !== undefined);
   const averageBookLengthByPages =
     bookLengthsByPageCount.length > 0
       ? Math.round(average(bookLengthsByPageCount))
       : undefined;
-  const totalPages = bookLengthsByPageCount.reduce(
-    (total: number, book: number) => book + total,
+  const totalPages = (bookLengthsByPageCount as number[]).reduce(
+    (total, book) => book + total,
     0
   );
   const bookLengthsByDuration = booksThisYear
     .map((b) => b.durationSeconds)
-    .filter((f) => f);
+    .filter((f): f is number => f !== undefined);
   const averageBookLengthByDuration =
     bookLengthsByDuration.length > 0
       ? Math.round(average(bookLengthsByDuration))
       : undefined;
-  const totalTime = bookLengthsByDuration.reduce(
-    (total: number, book: number) => book + total,
+  const totalTime = (bookLengthsByDuration as number[]).reduce(
+    (total, book) => book + total,
     0
   );
 
@@ -238,13 +238,13 @@ export function yearReview(
     dates: {
       averageFinishTime,
       mostReadMonth: {
-        month: monthToWord[mostReadMonth],
+        month: monthToWord[mostReadMonth as keyof typeof monthToWord],
         count: booksThisYear.filter((f) =>
           f.dateFinished?.startsWith(`${year}-${mostReadMonth}`)
         ).length,
       },
       leastReadMonth: {
-        month: monthToWord[leastReadMonth],
+        month: monthToWord[leastReadMonth as keyof typeof monthToWord],
         count: booksThisYear.filter((f) =>
           f.dateFinished?.startsWith(`${year}-${leastReadMonth}`)
         ).length,
@@ -273,7 +273,7 @@ export function yearReview(
   };
 }
 
-function simpleData(book) {
+function simpleData(book: (NewBook & { durationHours?: string }) | undefined) {
   if (!book) return;
   // istanbul ignore next
   return {
@@ -283,26 +283,32 @@ function simpleData(book) {
   };
 }
 
-function getKeyFromBiggestValue(object) {
+function getKeyFromBiggestValue(object: Record<string, number>) {
   return Object.keys(object).reduce((a, b) => (object[a] > object[b] ? a : b));
 }
 
-function getKeyFromSmallestValue(object) {
+function getKeyFromSmallestValue(object: Record<string, number>) {
   return Object.keys(object).reduce((a, b) => (object[a] > object[b] ? b : a));
 }
 
-function groupBy(array, key) {
+function groupBy(
+  array: Record<string, unknown>[],
+  key: string
+): Record<string, number> {
   return array
     .filter((b) => b[key])
-    .map((b) => b[key])
-    .reduce((obj, k) => {
-      if (!obj[k]) obj[k] = 0;
-      obj[k]++;
-      return obj;
-    }, {});
+    .map((b) => b[key] as string)
+    .reduce(
+      (obj: Record<string, number>, k: string) => {
+        if (!obj[k]) obj[k] = 0;
+        obj[k]++;
+        return obj;
+      },
+      {} as Record<string, number>
+    );
 }
 
-const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
+const average = (arr: number[]) => arr.reduce((p, c) => p + c, 0) / arr.length;
 
 export type YearReview = {
   year: string;
@@ -387,10 +393,13 @@ function sortBooksByPageCount(booksThisYear: NewBook[]): NewBook[] {
     .sort((a, b) => (b.pageCount ?? 0) - (a.pageCount ?? 0));
 }
 
-function sortBooksByDuration(booksThisYear): NewBook[] {
+function sortBooksByDuration(booksThisYear: NewBook[]): NewBook[] {
+  type BookWithDuration = NewBook & { durationSeconds: number };
   // istanbul ignore next
-  return booksThisYear
-    .filter((book) => book.durationSeconds !== undefined)
+  return (booksThisYear as BookWithDuration[])
+    .filter(
+      (book): book is BookWithDuration => book.durationSeconds !== undefined
+    )
     .sort((a, b) => b.durationSeconds - a.durationSeconds);
 }
 
@@ -429,18 +438,21 @@ const monthToWord = {
 function findTopItems(
   booksThisYear: NewBook[],
   key: string,
-  valueTransform?
+  valueTransform?: (s: string) => string
 ): { name: string; count: number }[] {
   const items = booksThisYear
-    .map((book) => book[key])
+    .map((book) => (book as Record<string, unknown>)[key])
     .flat()
     .filter((f) => f)
-    .map((f) => (valueTransform ? valueTransform(f) : f))
-    .reduce((obj, item: string) => {
-      if (!obj[item]) obj[item] = 0;
-      obj[item]++;
-      return obj;
-    }, {});
+    .map((f) => (valueTransform ? valueTransform(f as string) : (f as string)))
+    .reduce(
+      (obj: Record<string, number>, item: string) => {
+        if (!obj[item]) obj[item] = 0;
+        obj[item]++;
+        return obj;
+      },
+      {} as Record<string, number>
+    );
   const itemsArr = Object.keys(items)
     .map((a) => ({ name: a, count: items[a] }))
     .filter((f) => f.count > 1);

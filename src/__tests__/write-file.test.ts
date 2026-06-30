@@ -1,6 +1,6 @@
 import { promises, readFileSync } from "fs";
 import returnWriteFile from "../write-file";
-import { CleanBook } from "../clean-book";
+import type { CleanBook } from "../clean-book";
 
 const books = JSON.parse(
   readFileSync("./_data/read.json", "utf-8")

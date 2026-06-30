@@ -3,6 +3,7 @@
     "target": "es2022",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
+    "rootDir": "./src",
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true
   },

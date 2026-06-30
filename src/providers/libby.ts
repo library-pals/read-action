@@ -1,6 +1,7 @@
 import ogs from "open-graph-scraper";
 import { BookParams } from "../index.js";
-import { parse, HTMLElement } from "node-html-parser";
+import { parse } from "node-html-parser";
+import type { HTMLElement } from "node-html-parser";
 import { getLibbyId, parseOgMetatagResult } from "../utils.js";
 import { NewBook } from "../new-book.js";
 
@@ -58,7 +59,9 @@ export async function getLibby(
       ...(duration && { duration: toIsoFormat(duration) }),
     };
   } catch (error) {
-    throw new Error(`Failed to get book from Libby: ${error}`);
+    throw new Error(`Failed to get book from Libby: ${error}`, {
+      cause: error,
+    });
   }
 }
 
