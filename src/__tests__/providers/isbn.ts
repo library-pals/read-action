@@ -41,6 +41,45 @@ describe("getIsbn", () => {
     expect(Isbn.prototype.resolve).toHaveBeenCalledWith("9780525658184", {
       params: { key: "test-api-key" },
     });
+  });
+  test("works without API key", async () => {
+    delete process.env.GOOGLE_BOOKS_API_KEY;
+    (Isbn.prototype.resolve as jest.Mock).mockResolvedValue(book);
+
+    await getIsbn({
+      dateType: { dateFinished },
+      inputIdentifier: "9780525658184",
+      providers: ["google"],
+      bookStatus: "finished",
+      filename: "_data/read.yml",
+      setImage: false,
+    });
+    expect(Isbn.prototype.resolve).toHaveBeenCalledWith(
+      "9780525658184",
+      undefined
+    );
+  });
+  test("works with API key but non-Google provider", async () => {
+    process.env.GOOGLE_BOOKS_API_KEY = "test-api-key";
+    (Isbn.prototype.resolve as jest.Mock).mockResolvedValue(book);
+
+    await getIsbn({
+      dateType: { dateFinished },
+      inputIdentifier: "9780525658184",
+      providers: ["openlibrary"],
+      bookStatus: "finished",
+      filename: "_data/read.yml",
+      setImage: false,
+    });
+    expect(Isbn.prototype.resolve).toHaveBeenCalledWith(
+      "9780525658184",
+      undefined
+    );
+  });
+  test("snapshot", async () => {
+    process.env.GOOGLE_BOOKS_API_KEY = "test-api-key";
+    (Isbn.prototype.resolve as jest.Mock).mockResolvedValue(book);
+
     expect(
       await getIsbn({
         dateType: {

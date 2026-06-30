@@ -16,9 +16,12 @@ export async function getIsbn(
   try {
     const isbn = new Isbn();
     isbn.provider(providers);
-    book = await isbn.resolve(identifier, {
-      params: { key: process.env.GOOGLE_BOOKS_API_KEY },
-    });
+    const googleApiKey = process.env.GOOGLE_BOOKS_API_KEY;
+    const resolveOptions =
+      googleApiKey && providers.includes("google")
+        ? { params: { key: googleApiKey } }
+        : undefined;
+    book = await isbn.resolve(identifier, resolveOptions);
   } catch (error) {
     throw new Error(`Book (${identifier}) not found. ${error.message}`);
   }
