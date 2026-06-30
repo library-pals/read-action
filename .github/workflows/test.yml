@@ -14,3 +14,4 @@ jobs:
       - run: npm test
         env:
           CI: true
+          GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
