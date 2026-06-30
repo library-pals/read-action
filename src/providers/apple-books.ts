@@ -1,13 +1,13 @@
 import ogs from "open-graph-scraper";
 import { BookParams } from "../index.js";
-import { OgObject } from "open-graph-scraper/types";
+import type { OgObject } from "open-graph-scraper/types";
 import {
   formatDescription,
   getAppleBooksId,
   parseOgMetatagResult,
 } from "../utils.js";
 import { NewBook } from "../new-book.js";
-import { Audiobook } from "schema-dts";
+import type { Audiobook } from "schema-dts";
 
 export async function getAppleBooks(
   options: BookParams
@@ -48,7 +48,8 @@ export async function getAppleBooks(
     };
   } catch (error) {
     throw new Error(
-      `Failed to get book from Apple Books: ${error.result.error}`
+      `Failed to get book from Apple Books: ${(error as { result: { error: string } }).result.error}`,
+      { cause: error }
     );
   }
 }
@@ -64,11 +65,11 @@ function parseResult(result: OgObject): Partial<NewBook> {
   const duration = schema.duration;
   return {
     title: safeToString(schema.name),
-    description: formatDescription(schema.description),
-    authors: parseAuthors(schema.author),
+    description: formatDescription(schema.description as string | undefined),
+    authors: parseAuthors(schema.author as string | undefined),
     publishedDate: safeToString(schema.datePublished),
     thumbnail: safeToString(schema.image),
-    categories: parseCategories(schema.genre),
+    categories: parseCategories(schema.genre as string | undefined),
     format: schema["@type"].toLocaleLowerCase(),
     ...(pageCount && { pageCount }),
     language: safeToString(schema.inLanguage),
@@ -76,11 +77,11 @@ function parseResult(result: OgObject): Partial<NewBook> {
   };
 }
 
-function safeToString(value): string | undefined {
+function safeToString(value: unknown): string | undefined {
   return value?.toString() ?? undefined;
 }
 
-function parseAuthors(author): string[] {
+function parseAuthors(author: string | undefined): string[] {
   if (!author) return [];
   if (author.includes("&amp;")) {
     return author.split("&amp;").map((a) => a.trim());
@@ -88,7 +89,7 @@ function parseAuthors(author): string[] {
   return [author.toString()];
 }
 
-function parseCategories(genre): string[] {
+function parseCategories(genre: string | undefined): string[] {
   if (!genre) return [];
   if (genre.includes("&amp;")) {
     return genre.split("&amp;").map((a) => a.trim());
@@ -100,7 +101,7 @@ function parseCategories(genre): string[] {
     .filter((g) => g);
 }
 
-function parsePageCount(numberOfPages): number | undefined {
+function parsePageCount(numberOfPages: unknown): number | undefined {
   const pageCount = Number(numberOfPages);
   return !isNaN(pageCount) ? pageCount : undefined;
 }

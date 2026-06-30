@@ -170,11 +170,11 @@ describe("getLibby", () => {
       throw error;
     });
 
-    await expect(
-      getLibby({ inputIdentifier: "test" })
-    ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Failed to get book from Libby: Error: Test error"`
-    );
+    await expect(getLibby({ inputIdentifier: "test" })).rejects
+      .toThrowErrorMatchingInlineSnapshot(`
+      "Failed to get book from Libby: Error: Test error
+      Cause: Test error"
+    `);
   });
 
   it("should return book metadata when ogs succeeds, missing some data", async () => {

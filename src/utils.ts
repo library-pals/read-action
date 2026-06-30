@@ -1,7 +1,7 @@
 import { BookParams } from "./index.js";
 import { getInput } from "@actions/core";
 import { BookStatus, NewBook } from "./new-book.js";
-import { OgObject } from "open-graph-scraper/types";
+import type { OgObject } from "open-graph-scraper/types";
 
 /** make sure date is in YYYY-MM-DD format */
 export function dateFormat(date: string) {
@@ -29,7 +29,7 @@ export function sortByDate(array: NewBook[]): NewBook[] {
   });
 }
 
-export function formatDescription(str?) {
+export function formatDescription(str?: string) {
   if (!str) return "";
 
   // replace HTML entities
@@ -166,7 +166,7 @@ export function getLibrofmId(inputIdentifier: string): string {
   return isbn?.split("-")[0];
 }
 
-function removeInvisibleCharacters(text): string {
+function removeInvisibleCharacters(text: string): string {
   return text.replace(/\u200E/g, "");
 }
 
@@ -178,7 +178,9 @@ export function parseOgMetatagResult(result: OgObject): {
   thumbnail: string;
 } {
   return {
-    title: removeInvisibleCharacters(result.ogTitle),
+    title: result.ogTitle
+      ? removeInvisibleCharacters(result.ogTitle)
+      : /* istanbul ignore next */ undefined,
     description: formatDescription(result.ogDescription),
     authors: formatAuthor(result),
     publishedDate: result.bookReleaseDate,

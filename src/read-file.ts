@@ -9,6 +9,6 @@ export default async function returnReadFile(
     if (contents === "" || !contents) return [];
     return JSON.parse(contents);
   } catch (error) {
-    throw new Error(error);
+    throw new Error(String(error), { cause: error });
   }
 }

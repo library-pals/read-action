@@ -23,7 +23,10 @@ export async function getIsbn(
         : undefined;
     book = await isbn.resolve(identifier, resolveOptions);
   } catch (error) {
-    throw new Error(`Book (${identifier}) not found. ${error.message}`);
+    throw new Error(
+      `Book (${identifier}) not found. ${(error as Error).message}`,
+      { cause: error }
+    );
   }
   const newBook: NewBook = cleanBook(options, book);
   return newBook;

@@ -13,6 +13,9 @@ export async function getLibrofm(
     const book = await getIsbn(newOptions, true);
     return book;
   } catch (error) {
-    throw new Error(`Failed to get book from Libro.fm: ${error.message}`);
+    throw new Error(
+      `Failed to get book from Libro.fm: ${(error as Error).message}`,
+      { cause: error }
+    );
   }
 }

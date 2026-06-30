@@ -120,7 +120,7 @@ export async function read() {
       .addRaw(summaryMarkdown(library, dateType, bookStatus))
       .write();
   } catch (error) {
-    setFailed(error);
+    setFailed(error as Error);
   }
 }
 

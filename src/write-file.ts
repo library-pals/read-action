@@ -9,6 +9,6 @@ export default async function returnWriteFile(
     const promise = writeFile(fileName, JSON.stringify(bookMetadata, null, 2));
     await promise;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(String(error), { cause: error });
   }
 }
