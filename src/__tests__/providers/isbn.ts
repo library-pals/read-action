@@ -24,9 +24,23 @@ describe("getIsbn", () => {
   });
 
   test("works", async () => {
+    process.env.GOOGLE_BOOKS_API_KEY = "test-api-key";
     (Isbn.prototype.resolve as jest.Mock).mockResolvedValue(book);
 
     jest.spyOn(promises, "readFile").mockResolvedValueOnce(books);
+    await getIsbn({
+      dateType: {
+        dateFinished,
+      },
+      inputIdentifier: "9780525658184",
+      providers: ["google"],
+      bookStatus: "finished",
+      filename: "_data/read.yml",
+      setImage: false,
+    });
+    expect(Isbn.prototype.resolve).toHaveBeenCalledWith("9780525658184", {
+      params: { key: "test-api-key" },
+    });
     expect(
       await getIsbn({
         dateType: {

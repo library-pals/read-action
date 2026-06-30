@@ -73,7 +73,7 @@ export async function read() {
       getInput("set-image") === "true";
     const providers: ActionInputs["providers"] = getInput("providers")
       ? getInput("providers").split(",")
-      : new Isbn()._providers;
+      : new Isbn().providers;
     const thumbnailWidth: ActionInputs["thumbnail-width"] = getInput(
       "thumbnail-width"
     )
