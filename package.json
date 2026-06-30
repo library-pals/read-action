@@ -14,7 +14,7 @@
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.1",
-    "@library-pals/isbn": "^1.6.0",
+    "@library-pals/isbn": "^2.0.1",
     "node-html-parser": "^7.0.1",
     "open-graph-scraper": "^6.11.0",
     "schema-dts": "^1.1.5"

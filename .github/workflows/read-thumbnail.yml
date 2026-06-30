@@ -66,6 +66,8 @@ jobs:
         with:
           thumbnail-width: 1280
           set-image: true
+        env:
+          GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''

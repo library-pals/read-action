@@ -69,6 +69,8 @@ jobs:
 
       - name: Read
         uses: ./
+        env:
+          GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
 
       - name: Commit updated read file
         if: env.BookStatus != 'summary'
