@@ -15,9 +15,10 @@ const html_5004990 = readFileSync(
 
 jest.mock("@actions/core", () => {
   return {
-    ...jest.requireActual("@actions/core"),
-    setFailed: jest.fn(),
+    exportVariable: jest.fn(),
     getInput: jest.fn(),
+    setFailed: jest.fn(),
+    setOutput: jest.fn(),
     warning: jest.fn(),
     summary: {
       addRaw: () => ({

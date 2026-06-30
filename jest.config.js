@@ -10,7 +10,9 @@ export default {
   },
   prettierPath: "<rootDir>/node_modules/prettier-2/index.js",
   resolver: "./.jest/resolver.cjs",
-  transformIgnorePatterns: ["/node_modules/(?!@library-pals/isbn|entities)"],
+  transformIgnorePatterns: [
+    "/node_modules/(?!@library-pals/isbn|entities|@actions/|@octokit/|undici|universal-user-agent|before-after-hook)",
+  ],
   snapshotSerializers: ["./.jest/id-serializer.ts"],
   moduleNameMapper: {},
 };
