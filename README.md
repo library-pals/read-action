@@ -364,6 +364,17 @@ To trigger the action, [create a workflow dispatch event](https://docs.github.co
 - `nowReading`: When a new book is started this output will contain an object with the book's: title, description, thumbnail, authors, and isbn.
 <!-- END GENERATED DOCUMENTATION -->
 
+## Environment variables
+
+- `GOOGLE_BOOKS_API_KEY`: A Google Books API key to use when fetching book metadata. Add the key as a [repository secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions) and pass it to the action via `env`:
+
+  ```yml
+  - name: Read
+    uses: library-pals/read-action@v9.5.0
+    env:
+      GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
+  ```
+
 ## Contributing
 
 To run the tests locally, you can optionally pass a Google Books API key to avoid hitting rate limits:
