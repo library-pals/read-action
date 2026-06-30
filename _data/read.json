@@ -586,5 +586,32 @@
     "thumbnail": "https://books.google.com/books/publisher/content?id=hGFEDwAAQBAJ&printsec=frontcover&img=1&zoom=6&edge=curl&source=gbs_api",
     "language": "en",
     "link": "https://play.google.com/store/books/details?id=hGFEDwAAQBAJ"
+  },
+  {
+    "identifier": "9780767927932",
+    "identifiers": {
+      "isbn": "9780767927932"
+    },
+    "dateFinished": "2026-06-30",
+    "summaryEndDate": "2026-06-30",
+    "status": "finished",
+    "rating": "unrated",
+    "title": "The Words of Every Song",
+    "authors": [
+      "Liz Moore"
+    ],
+    "publishedDate": "2007-07-03",
+    "description": "From the acclaimed author of Long Bright River and Heft, a novel that allows us to take a peek behind the curtain of the music industry Liz Moore shows us the inner workings of an industry we’ve been fascinated with for decades. In these fourteen linked episodes, we meet a cast of characters from all the corners of the industry that we’ve come to glamourize. There’s the arrogantly hip, twenty-six-year-old A&R man; the rising young singer-songwriter; the established, arena-filling rock star on the verge of a midlife crisis; the type-A female executive with the heavy social calendar; and other recognizable figures. Set in the sleek offices, high-tech recording studios, and grungy downtown clubs of New York, The Words of Every Song offers an authenticity drawn from Liz Moore’s own experience and brings an insider’s touch to its depiction of the music industry and its denizens.",
+    "pageCount": 338,
+    "format": "book",
+    "categories": [
+      "Fiction",
+      "Fiction / Literary",
+      "Fiction / Short Stories (single author)",
+      "Fiction / Satire"
+    ],
+    "thumbnail": "https://books.google.com/books/content?id=p3_ghECxpt4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "language": "en",
+    "link": "https://play.google.com/store/books/details?id=p3_ghECxpt4C"
   }
 ]
