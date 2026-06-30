@@ -17,10 +17,21 @@ const defaultOptions = {
 };
 
 describe("getIsbn", () => {
+  let originalApiKey: string | undefined;
+
   beforeEach(() => {
+    originalApiKey = process.env.GOOGLE_BOOKS_API_KEY;
     jest
       .spyOn(core, "getInput")
       .mockImplementation((v) => defaultOptions[v] || undefined);
+  });
+
+  afterEach(() => {
+    if (originalApiKey === undefined) {
+      delete process.env.GOOGLE_BOOKS_API_KEY;
+    } else {
+      process.env.GOOGLE_BOOKS_API_KEY = originalApiKey;
+    }
   });
 
   test("works", async () => {
