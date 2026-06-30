@@ -191,6 +191,8 @@ jobs:
         with:
           set-image: true
         uses: library-pals/read-action@v9.5.0
+        env:
+          GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
@@ -304,6 +306,8 @@ jobs:
         with:
           thumbnail-width: 1280
           set-image: true
+        env:
+          GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
 
       - name: Download the book thumbnail
         if: env.BookThumbOutput != ''
@@ -333,17 +337,6 @@ jobs:
 - `set-image`: If true, the action will set the `image` for the book. This is helpful if you add an extra step to download this image.
 
 - `thumbnail-width`: The width of the thumbnail image (for books sourced from Google Books). The default size is 128.
-
-## Environment variables
-
-- `GOOGLE_BOOKS_API_KEY`: A Google Books API key to use when fetching book metadata. Add the key as a [repository secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions) and pass it to the action via `env`:
-
-  ```yml
-  - name: Read
-    uses: library-pals/read-action@v9.5.0
-    env:
-      GOOGLE_BOOKS_API_KEY: ${{ secrets.GOOGLE_BOOKS_API_KEY }}
-  ```
 
 ## Trigger the action
 
